@@ -1,0 +1,60 @@
+name: Daily Fantasy Stats Collection
+
+on:
+  schedule:
+    # Runs at 11:30 PM PST daily (7:30 AM UTC next day)
+    - cron: '30 7 * * *'
+  workflow_dispatch:  # Allows manual trigger from GitHub UI
+
+jobs:
+  collect_stats:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Create .env file for yfpy
+        run: |
+          mkdir -p test_yfpy
+          cat > test_yfpy/.env << EOF
+          YAHOO_REFRESH_TOKEN=${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_CONSUMER_KEY=${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CONSUMER_SECRET=${{ secrets.YAHOO_CLIENT_SECRET }}
+          EOF
+      
+      - name: Run stats collection
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+        run: |
+          python3 test_yfpy/fetch_player_data_daily.py
+      
+      - name: Commit and push results
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add test_yfpy/output/*.json
+          git diff --staged --quiet || git commit -m "Daily stats: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          git push
+      
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✅ Stats collection completed successfully"
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Stats collection failed - check logs"
+          exit 1
