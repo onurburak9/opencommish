@@ -51,6 +51,7 @@ test_yfpy/
 
 # OAuth tokens in cron directory
 cron/.env
+cron/token.json
 cron/yahoo_oauth_token.json
 
 # OAuth tokens

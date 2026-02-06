@@ -10,9 +10,15 @@ import json
 from pathlib import Path
 from datetime import date
 
-# Third-party helpers for .env loading and Yahoo API client.
-from dotenv import load_dotenv
+# Third-party helper for Yahoo API client.
 from yfpy.query import YahooFantasySportsQuery, Team, League
+
+
+def to_str(value):
+    """Convert bytes to string, or return value as-is."""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    return value
 
 
 def main() -> None:
@@ -23,35 +29,32 @@ def main() -> None:
 
     target_league_name = "teletabi ligi"
 
-    # Load credentials from the project-level .env file (for local runs).
-    # In GitHub Actions, these come from environment variables.
-    env_path = Path(__file__).parent.parent / ".env"
-    if env_path.exists():
-        load_dotenv(dotenv_path=env_path)
+    # Read Yahoo OAuth credentials from environment variables.
+    # These should be set in the environment before running the script.
+    client_id = os.getenv("YAHOO_CONSUMER_KEY")
+    client_secret = os.getenv("YAHOO_CONSUMER_SECRET")
+    refresh_token = os.getenv("YAHOO_REFRESH_TOKEN")
 
-    # Read Yahoo OAuth client credentials from environment.
-    client_id = os.getenv("YAHOO_CLIENT_ID") or os.getenv("YAHOO_CONSUMER_KEY")
-    client_secret = os.getenv("YAHOO_CLIENT_SECRET") or os.getenv("YAHOO_CONSUMER_SECRET")
-
-    if not client_id or not client_secret:
-        print("❌ Missing Yahoo API credentials")
+    if not client_id or not client_secret or not refresh_token:
+        print("❌ Missing Yahoo API credentials in environment variables")
+        print("   Required: YAHOO_CONSUMER_KEY, YAHOO_CONSUMER_SECRET, YAHOO_REFRESH_TOKEN")
         return
 
-    # Baseline NBA settings (used for auth context).
+    # Baseline NBA settings.
     game_code = "nba"
     target_league: League = None
 
-    # Initialize YahooFantasySportsQuery; token data is saved into .env for reuse.
-    # For GitHub Actions, use cron directory for token storage.
+    # Use cron directory for token storage.
     token_dir = Path(__file__).parent
+
+    # Initialize YahooFantasySportsQuery.
     query = YahooFantasySportsQuery(
-        "temp",
-        game_code,
+        auth_dir=token_dir,
+        league_id="temp",
+        game_code=game_code,
         game_id=None,
-        yahoo_consumer_key=client_id,
-        yahoo_consumer_secret=client_secret,
-        env_file_location=token_dir,
-        save_token_data_to_env_file=True,
+        consumer_key=client_id,
+        consumer_secret=client_secret,
     )
 
     print("✅ Authenticated with Yahoo API")
@@ -65,19 +68,21 @@ def main() -> None:
     stat_categories = game_info.stat_categories
     stat_id_to_name = {}
     for stat in stat_categories.stats:
-        stat_id_to_name[str(stat.stat_id)] = {
-            "display_name": stat.display_name,
-            "name": stat.name,
+        stat_info = stat['stat']
+        stat_id_to_name[str(stat_info.stat_id)] = {
+            "display_name": to_str(stat_info.display_name),
+            "name": to_str(stat_info.name),
         }
 
     # Fetch leagues for the authenticated user and find target league.
     leagues = query.get_user_leagues_by_game_key(game_code)
     print(f"\nFound {len(leagues)} league(s)")
-    
+
     for league in leagues:
-        league_name = str(league.name, "utf-8")
+        league_info = league['league']
+        league_name = league_info.name
         if league_name == target_league_name:
-            target_league = league
+            target_league = league_info
             print(f"✅ Target league found: {league_name}")
             break
 
@@ -93,8 +98,8 @@ def main() -> None:
     league_settings = query.get_league_settings()
     stat_modifiers = {}
     for modifier in league_settings.stat_modifiers.stats:
-        stat_id = int(modifier.stat.stat_id)
-        stat_modifiers[stat_id] = float(modifier.stat.value)
+        stat_id = int(modifier['stat'].stat_id)
+        stat_modifiers[stat_id] = float(modifier['stat'].value)
 
     print(f"Loaded {len(stat_modifiers)} stat modifiers")
 
@@ -110,18 +115,19 @@ def main() -> None:
     daily_snapshot = {
         "date": today_str,
         "week": current_week,
-        "league_id": target_league.league_id,
-        "league_key": target_league.league_key,
-        "league_name": str(target_league.name, "utf-8"),
+        "league_id": to_str(target_league.league_id),
+        "league_key": to_str(target_league.league_key),
+        "league_name": to_str(target_league.name),
         "teams": [],
     }
 
     print(f"Processing {len(league_teams)} teams...")
 
     for idx, team in enumerate(league_teams, 1):
-        team_name = str(team.name, "utf-8")
-        team_id = team.team_id
-        team_key = team.team_key
+        team_info = team['team']
+        team_name = to_str(team_info.name)
+        team_id = to_str(team_info.team_id)
+        team_key = to_str(team_info.team_key)
 
         print(f"  [{idx}/{len(league_teams)}] {team_name}")
 
@@ -137,16 +143,16 @@ def main() -> None:
         }
 
         for player in players:
-            player_name = player.name.full
-            player_id = player.player_id
-            player_key = player.player_key
-            player_roster_position = player.selected_position.position
+            player_info = player['player']
+            player_name = to_str(player_info.name.full)
+            player_id = to_str(player_info.player_id)
+            player_key = to_str(player_info.player_key)
+            player_roster_position = to_str(player_info.selected_position.position)
 
             # Fetch per-player stats for today.
             player_with_stats = query.get_player_stats_by_date(
                 player_key,
-                today_str,
-                limit_to_league_stats=False
+                today_str
             )
 
             if not player_with_stats or not player_with_stats.player_stats:
@@ -167,9 +173,10 @@ def main() -> None:
             if stat_items:
                 # Compute fantasy points using league stat modifiers.
                 for stat in stat_items:
-                    stat_id = int(stat.stat_id)
-                    stat_value = float(stat.value)
-                    stat_info = stat_id_to_name.get(
+                    stat_info = stat['stat']
+                    stat_id = int(stat_info.stat_id)
+                    stat_value = float(stat_info.value)
+                    stat_data = stat_id_to_name.get(
                         str(stat_id),
                         {"display_name": f"Stat {stat_id}", "name": f"Stat {stat_id}"},
                     )
@@ -178,8 +185,8 @@ def main() -> None:
                     fantasy_points += stat_points
                     stats_output.append({
                         "stat_id": stat_id,
-                        "display_name": stat_info["display_name"],
-                        "name": stat_info["name"],
+                        "display_name": to_str(stat_data["display_name"]),
+                        "name": to_str(stat_data["name"]),
                         "value": stat_value,
                         "modifier": modifier,
                         "points": stat_points,
@@ -200,7 +207,7 @@ def main() -> None:
     output_dir = Path(__file__).parent.parent / "data" / "daily_stats"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / f"league_{target_league.league_id}_{today_str}.json"
-    
+
     with output_path.open("w", encoding="utf-8") as output_file:
         json.dump(daily_snapshot, output_file, indent=2, ensure_ascii=False)
 
