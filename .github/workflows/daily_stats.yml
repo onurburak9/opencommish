@@ -53,22 +53,8 @@ jobs:
         run: |
           echo "✅ Stats collection completed successfully"
       
-      - name: Notify on failure (optional - add Slack webhook to secrets)
+      - name: Print failure message
         if: failure()
-        uses: slackapi/slack-github-action@v1.25.0
-        with:
-          payload: |
-            {
-              "text": "❌ Fantasy Stats Collection Failed",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "❌ *Daily Fantasy Stats Collection Failed*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>"
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "❌ Stats collection failed - check logs above"
+          echo "View run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
