@@ -46,8 +46,12 @@ Thumbs.db
 # Docker
 *.log
 
-# yfpy test
+# yfpy test files (local testing only)
 test_yfpy/
+
+# OAuth tokens in cron directory
+cron/.env
+cron/yahoo_oauth_token.json
 
 # OAuth tokens
 yahoo_oauth_token.json

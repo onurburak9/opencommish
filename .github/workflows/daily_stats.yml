@@ -26,8 +26,8 @@ jobs:
       
       - name: Create .env file for yfpy
         run: |
-          mkdir -p test_yfpy
-          cat > test_yfpy/.env << EOF
+          mkdir -p cron
+          cat > cron/.env << EOF
           YAHOO_REFRESH_TOKEN=${{ secrets.YAHOO_REFRESH_TOKEN }}
           YAHOO_CONSUMER_KEY=${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CONSUMER_SECRET=${{ secrets.YAHOO_CLIENT_SECRET }}
@@ -38,13 +38,13 @@ jobs:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
         run: |
-          python3 test_yfpy/fetch_player_data_daily.py
+          python3 cron/fetch_daily_stats.py
       
       - name: Commit and push results
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add test_yfpy/output/*.json
+          git add data/daily_stats/*.json
           git diff --staged --quiet || git commit -m "Daily stats: $(date +'%Y-%m-%d %H:%M:%S UTC')"
           git push
       
@@ -53,8 +53,22 @@ jobs:
         run: |
           echo "✅ Stats collection completed successfully"
       
-      - name: Notify on failure
+      - name: Notify on failure (optional - add Slack webhook to secrets)
         if: failure()
-        run: |
-          echo "❌ Stats collection failed - check logs"
-          exit 1
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "❌ Fantasy Stats Collection Failed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "❌ *Daily Fantasy Stats Collection Failed*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
