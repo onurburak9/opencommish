@@ -44,7 +44,8 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/daily_stats/*.json
-          git diff --staged --quiet || git commit -m "Daily stats: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          # Use PST timezone to match the game date (not UTC)
+          git diff --staged --quiet || git commit -m "Daily stats: $(TZ='America/Los_Angeles' date +'%Y-%m-%d')"
           git push
       
       - name: Notify on success
