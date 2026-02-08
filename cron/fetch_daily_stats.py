@@ -30,24 +30,23 @@ def main() -> None:
     target_league_name = "teletabi ligi"
 
     # Read Yahoo OAuth credentials from environment variables.
-    # These should be set in the environment before running the script.
     client_id = os.getenv("YAHOO_CONSUMER_KEY")
     client_secret = os.getenv("YAHOO_CONSUMER_SECRET")
-    refresh_token = os.getenv("YAHOO_REFRESH_TOKEN")
 
-    if not client_id or not client_secret or not refresh_token:
+    if not client_id or not client_secret:
         print("❌ Missing Yahoo API credentials in environment variables")
-        print("   Required: YAHOO_CONSUMER_KEY, YAHOO_CONSUMER_SECRET, YAHOO_REFRESH_TOKEN")
+        print("   Required: YAHOO_CONSUMER_KEY, YAHOO_CONSUMER_SECRET")
         return
 
     # Baseline NBA settings.
     game_code = "nba"
     target_league: League = None
 
-    # Use cron directory for token storage.
+    # Use cron directory for token storage (token.json or .env file).
     token_dir = Path(__file__).parent
 
     # Initialize YahooFantasySportsQuery.
+    # yfpy will look for token.json or .env file in auth_dir.
     query = YahooFantasySportsQuery(
         auth_dir=token_dir,
         league_id="temp",
@@ -55,6 +54,7 @@ def main() -> None:
         game_id=None,
         consumer_key=client_id,
         consumer_secret=client_secret,
+        browser_callback=False,
     )
 
     print("✅ Authenticated with Yahoo API")

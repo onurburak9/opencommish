@@ -27,17 +27,7 @@ jobs:
       - name: Create token.json for yfpy
         run: |
           mkdir -p cron
-          cat > cron/token.json << EOF
-          {
-            "access_token": "",
-            "consumer_key": "${{ secrets.YAHOO_CLIENT_ID }}",
-            "consumer_secret": "${{ secrets.YAHOO_CLIENT_SECRET }}",
-            "guid": null,
-            "refresh_token": "${{ secrets.YAHOO_REFRESH_TOKEN }}",
-            "token_time": 0,
-            "token_type": "bearer"
-          }
-          EOF
+          echo '${{ secrets.YAHOO_TOKEN_JSON }}' > cron/token.json
       
       - name: Run stats collection
         env:
