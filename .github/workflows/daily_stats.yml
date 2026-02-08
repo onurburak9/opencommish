@@ -24,16 +24,15 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Create token.json for yfpy
-        run: |
-          mkdir -p cron
-          echo '${{ secrets.YAHOO_TOKEN_JSON }}' > cron/token.json
-      
       - name: Run stats collection
         env:
           YAHOO_CONSUMER_KEY: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CONSUMER_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_ACCESS_TOKEN: ${{ secrets.YAHOO_ACCESS_TOKEN }}
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_TOKEN_TIME: ${{ secrets.YAHOO_TOKEN_TIME }}
+          YAHOO_TOKEN_TYPE: bearer
+          YAHOO_GUID: None
         run: |
           python3 cron/fetch_daily_stats.py
       

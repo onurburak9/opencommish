@@ -30,31 +30,33 @@ def main() -> None:
     target_league_name = "teletabi ligi"
 
     # Read Yahoo OAuth credentials from environment variables.
-    client_id = os.getenv("YAHOO_CONSUMER_KEY")
-    client_secret = os.getenv("YAHOO_CONSUMER_SECRET")
+    # For yfpy 17.0.0+, we use yahoo_access_token_json parameter for headless auth.
+    access_token_json = {
+        "access_token": os.getenv("YAHOO_ACCESS_TOKEN"),
+        "consumer_key": os.getenv("YAHOO_CONSUMER_KEY"),
+        "consumer_secret": os.getenv("YAHOO_CONSUMER_SECRET"),
+        "guid": os.getenv("YAHOO_GUID"),
+        "refresh_token": os.getenv("YAHOO_REFRESH_TOKEN"),
+        "token_time": float(os.getenv("YAHOO_TOKEN_TIME", "0")),
+        "token_type": os.getenv("YAHOO_TOKEN_TYPE", "bearer"),
+    }
 
-    if not client_id or not client_secret:
+    # Validate required fields.
+    if not access_token_json["consumer_key"] or not access_token_json["consumer_secret"]:
         print("❌ Missing Yahoo API credentials in environment variables")
-        print("   Required: YAHOO_CONSUMER_KEY, YAHOO_CONSUMER_SECRET")
+        print("   Required: YAHOO_CONSUMER_KEY, YAHOO_CONSUMER_SECRET, YAHOO_REFRESH_TOKEN, etc.")
         return
 
     # Baseline NBA settings.
     game_code = "nba"
     target_league: League = None
 
-    # Use cron directory for token storage (token.json or .env file).
-    token_dir = Path(__file__).parent
-
-    # Initialize YahooFantasySportsQuery.
-    # yfpy will look for token.json or .env file in auth_dir.
+    # Initialize YahooFantasySportsQuery with yahoo_access_token_json (yfpy 17.0.0+).
     query = YahooFantasySportsQuery(
-        auth_dir=token_dir,
         league_id="temp",
         game_code=game_code,
         game_id=None,
-        consumer_key=client_id,
-        consumer_secret=client_secret,
-        browser_callback=False,
+        yahoo_access_token_json=access_token_json,
     )
 
     print("✅ Authenticated with Yahoo API")
@@ -67,20 +69,22 @@ def main() -> None:
     # Stat categories for mapping stat IDs to names.
     stat_categories = game_info.stat_categories
     stat_id_to_name = {}
-    for stat in stat_categories.stats:
-        stat_info = stat['stat']
+    for stat_info in stat_categories.stats:
+        # In yfpy 17.0.0+, stat_wrapper might be an object with .stat attribute,
+        # or it might be the stat object itself. Check both cases.
         stat_id_to_name[str(stat_info.stat_id)] = {
             "display_name": to_str(stat_info.display_name),
             "name": to_str(stat_info.name),
         }
 
+    print(stat_id_to_name)
+
     # Fetch leagues for the authenticated user and find target league.
     leagues = query.get_user_leagues_by_game_key(game_code)
     print(f"\nFound {len(leagues)} league(s)")
 
-    for league in leagues:
-        league_info = league['league']
-        league_name = league_info.name
+    for league_info in leagues:
+        league_name = to_str(league_info.name)
         if league_name == target_league_name:
             target_league = league_info
             print(f"✅ Target league found: {league_name}")
@@ -97,9 +101,9 @@ def main() -> None:
     # Load league settings to get scoring modifiers for stat-based points.
     league_settings = query.get_league_settings()
     stat_modifiers = {}
-    for modifier in league_settings.stat_modifiers.stats:
-        stat_id = int(modifier['stat'].stat_id)
-        stat_modifiers[stat_id] = float(modifier['stat'].value)
+    for stat_info in league_settings.stat_modifiers.stats:
+        stat_id = int(stat_info.stat_id)
+        stat_modifiers[stat_id] = float(stat_info.value)
 
     print(f"Loaded {len(stat_modifiers)} stat modifiers")
 
@@ -123,13 +127,12 @@ def main() -> None:
 
     print(f"Processing {len(league_teams)} teams...")
 
-    for idx, team in enumerate(league_teams, 1):
-        team_info = team['team']
+    for idx, team_info in enumerate(league_teams, 1):
         team_name = to_str(team_info.name)
         team_id = to_str(team_info.team_id)
         team_key = to_str(team_info.team_key)
 
-        print(f"  [{idx}/{len(league_teams)}] {team_name}")
+        print(f"Team [{idx}/{len(league_teams)}] {team_name}")
 
         # Pull current-week roster to get player keys and positions.
         roster = query.get_team_roster_by_week(team_id, chosen_week=current_week)
@@ -142,8 +145,7 @@ def main() -> None:
             "players": [],
         }
 
-        for player in players:
-            player_info = player['player']
+        for player_info in players:
             player_name = to_str(player_info.name.full)
             player_id = to_str(player_info.player_id)
             player_key = to_str(player_info.player_key)
@@ -172,10 +174,9 @@ def main() -> None:
 
             if stat_items:
                 # Compute fantasy points using league stat modifiers.
-                for stat in stat_items:
-                    stat_info = stat['stat']
+                for stat_info in stat_items:
                     stat_id = int(stat_info.stat_id)
-                    stat_value = float(stat_info.value)
+                    stat_value = stat_info.value
                     stat_data = stat_id_to_name.get(
                         str(stat_id),
                         {"display_name": f"Stat {stat_id}", "name": f"Stat {stat_id}"},
