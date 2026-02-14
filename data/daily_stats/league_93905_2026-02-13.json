@@ -4200,9 +4200,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6401,
-          "player_key": "466.p.6401",
-          "name": "Deni Avdija",
+          "player_id": 6422,
+          "player_key": "466.p.6422",
+          "name": "Desmond Bane",
           "roster_position": "SG",
           "stats": [
             {
@@ -4314,9 +4314,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 5292,
-          "player_key": "466.p.5292",
-          "name": "Andrew Wiggins",
+          "player_id": 6562,
+          "player_key": "466.p.6562",
+          "name": "Jalen Johnson",
           "roster_position": "SF",
           "stats": [
             {
@@ -4485,238 +4485,10 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 10294,
-          "player_key": "466.p.10294",
-          "name": "Alex Sarr",
-          "roster_position": "C",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5958,
-          "player_key": "466.p.5958",
-          "name": "Deandre Ayton",
-          "roster_position": "C",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
           "player_id": 5352,
           "player_key": "466.p.5352",
           "name": "Nikola Jokić",
-          "roster_position": "Util",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5471,
-          "player_key": "466.p.5471",
-          "name": "Myles Turner",
-          "roster_position": "Util",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6422,
-          "player_key": "466.p.6422",
-          "name": "Desmond Bane",
-          "roster_position": "BN",
+          "roster_position": "C",
           "stats": [
             {
               "stat_id": 12,
@@ -4773,7 +4545,7 @@
           "player_id": 6163,
           "player_key": "466.p.6163",
           "name": "Zion Williamson",
-          "roster_position": "BN",
+          "roster_position": "C",
           "stats": [
             {
               "stat_id": 12,
@@ -4830,7 +4602,7 @@
           "player_id": 6028,
           "player_key": "466.p.6028",
           "name": "Donte DiVincenzo",
-          "roster_position": "BN",
+          "roster_position": "Util",
           "stats": [
             {
               "stat_id": 12,
@@ -4884,9 +4656,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6694,
-          "player_key": "466.p.6694",
-          "name": "Keegan Murray",
+          "player_id": 6401,
+          "player_key": "466.p.6401",
+          "name": "Deni Avdija",
           "roster_position": "IL",
           "stats": [
             {
@@ -4941,10 +4713,181 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6562,
-          "player_key": "466.p.6562",
-          "name": "Jalen Johnson",
+          "player_id": 5958,
+          "player_key": "466.p.5958",
+          "name": "Deandre Ayton",
+          "roster_position": "IL",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 0.0,
+              "modifier": 1.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 0.0,
+              "modifier": 1.2,
+              "points": 0.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 0.0,
+              "modifier": 1.5,
+              "points": 0.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 0.0,
+              "modifier": -1.0,
+              "points": -0.0
+            }
+          ],
+          "fantasy_points": 0.0
+        },
+        {
+          "player_id": 10294,
+          "player_key": "466.p.10294",
+          "name": "Alex Sarr",
           "roster_position": "IL+",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 0.0,
+              "modifier": 1.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 0.0,
+              "modifier": 1.2,
+              "points": 0.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 0.0,
+              "modifier": 1.5,
+              "points": 0.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 0.0,
+              "modifier": -1.0,
+              "points": -0.0
+            }
+          ],
+          "fantasy_points": 0.0
+        },
+        {
+          "player_id": 5292,
+          "player_key": "466.p.5292",
+          "name": "Andrew Wiggins",
+          "roster_position": "IL+",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 0.0,
+              "modifier": 1.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 0.0,
+              "modifier": 1.2,
+              "points": 0.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 0.0,
+              "modifier": 1.5,
+              "points": 0.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 0.0,
+              "modifier": -1.0,
+              "points": -0.0
+            }
+          ],
+          "fantasy_points": 0.0
+        },
+        {
+          "player_id": 5471,
+          "player_key": "466.p.5471",
+          "name": "Myles Turner",
+          "roster_position": null,
           "stats": [
             {
               "stat_id": 12,
@@ -7527,9 +7470,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6702,
-          "player_key": "466.p.6702",
-          "name": "Jalen Williams",
+          "player_id": 6205,
+          "player_key": "466.p.6205",
+          "name": "Nickeil Alexander-Walker",
           "roster_position": "Util",
           "stats": [
             {
@@ -7698,9 +7641,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6205,
-          "player_key": "466.p.6205",
-          "name": "Nickeil Alexander-Walker",
+          "player_id": 6698,
+          "player_key": "466.p.6698",
+          "name": "Dyson Daniels",
           "roster_position": "BN",
           "stats": [
             {
@@ -7869,9 +7812,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6698,
-          "player_key": "466.p.6698",
-          "name": "Dyson Daniels",
+          "player_id": 6702,
+          "player_key": "466.p.6702",
+          "name": "Jalen Williams",
           "roster_position": "IL+",
           "stats": [
             {
