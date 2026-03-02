@@ -115,6 +115,8 @@ opencommish/
 ├── 📁 notebooks/              # Jupyter analysis notebooks
 │   ├── analysis.ipynb         # Main analysis notebook
 │   └── requirements.txt       # Notebook dependencies
+├── 📁 scripts/                # Utility scripts
+│   └── safe-git.sh            # AI safety wrapper (see CLAUDE.md)
 ├── 📁 backend/                # FastAPI backend (planned)
 ├── 📁 frontend/               # Next.js frontend (planned)
 ├── 📄 CLAUDE.md               # Project guide & coding standards
