@@ -243,6 +243,38 @@ opencommish/
 6. **Keep it simple**: Don't over-engineer or add unnecessary features
 7. **Security first**: Validate input, sanitize data, protect API keys
 
+## AI Safety & Git Workflow Protection
+
+When using AI assistance (like Claude) for development, protect against accidental destructive actions:
+
+### PR Merge Protection
+
+**Always use the safe git wrapper** when working with AI agents:
+
+```bash
+# Add to your ~/.bashrc or ~/.zshrc:
+source /path/to/opencommish/scripts/safe-git.sh
+```
+
+This script:
+- ⛔ **Blocks** `gh pr merge` commands (requires human approval)
+- ⚠️ **Warns** on direct pushes to main/master
+- ✅ **Allows** all other git operations normally
+
+**Why this matters:** AI agents with `--dangerously-skip-permissions` can accidentally merge PRs. This wrapper forces human confirmation for merge operations.
+
+**To bypass (human override):**
+```bash
+command gh pr merge <PR-number>  # Direct gh access
+```
+
+### AI Development Best Practices
+
+- Review all AI-generated code before committing
+- Never grant `--dangerously-skip-permissions` in CI/CD
+- Keep human-in-the-loop for destructive operations
+- Use the safe wrapper on any machine with AI tooling
+
 ## Important Notes
 
 - **OAuth Tokens**: Store securely in database, implement refresh mechanism
