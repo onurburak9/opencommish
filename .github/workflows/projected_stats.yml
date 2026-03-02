@@ -7,26 +7,27 @@ on:
   workflow_dispatch:  # Allows manual trigger from GitHub UI
 
 permissions:
-  contents: write  # Required to push commits
+  contents: write       # Required to push branches
+  pull-requests: write  # Required to create PRs
 
 jobs:
   collect_projected_stats:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-      
+
       - name: Run projected stats collection
         env:
           YAHOO_CONSUMER_KEY: ${{ secrets.YAHOO_CLIENT_ID }}
@@ -37,22 +38,40 @@ jobs:
           YAHOO_TOKEN_TYPE: bearer
           YAHOO_GUID: None
         run: |
-          python3 cron/fetch_projected_stats.py
-      
-      - name: Commit and push results
+          DATE=$(TZ='America/Los_Angeles' date +'%Y-%m-%d')
+          python3 cron/fetch_projected_stats.py "${DATE}"
+
+      - name: Commit and push to branch, create PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          DATE=$(TZ='America/Los_Angeles' date +'%Y-%m-%d')
+          BRANCH="data/projected-stats-${DATE}"
+
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          git checkout -b "${BRANCH}"
           git add data/projected_stats/*.json
-          # Use PST timezone to match the game date (not UTC)
-          git diff --staged --quiet || git commit -m "Projected stats: $(TZ='America/Los_Angeles' date +'%Y-%m-%d')"
-          git push
-      
+
+          if git diff --staged --quiet; then
+            echo "No new projected stats data to commit."
+            exit 0
+          fi
+
+          git commit -m "Projected stats: ${DATE}"
+          git push origin "${BRANCH}"
+
+          gh pr create \
+            --title "Projected stats: ${DATE}" \
+            --body "Automated projected stats collection for ${DATE}." \
+            --base main \
+            --head "${BRANCH}"
+
       - name: Notify on success
         if: success()
         run: |
           echo "✅ Projected stats collection completed successfully"
-      
+
       - name: Print failure message
         if: failure()
         run: |
