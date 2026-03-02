@@ -1,0 +1,2208 @@
+{
+  "date": "2026-03-01",
+  "league_id": "93905",
+  "league_key": "466.l.93905",
+  "league_name": "teletabi ligi",
+  "teams": [
+    {
+      "team_id": 1,
+      "team_key": "466.l.93905.t.1",
+      "team_name": "Ankara Tinercileri",
+      "players": [
+        {
+          "player_id": "10455",
+          "player_name": "Nolan Traore",
+          "roster_position": "PG",
+          "opponent": "CLE",
+          "games_played": 1,
+          "fantasy_points": 19.47,
+          "stats": {
+            "PTS": 10.0,
+            "REB": 2.1,
+            "AST": 3.9,
+            "ST": 0.8,
+            "BLK": 0.4,
+            "TO": 2.5
+          }
+        },
+        {
+          "player_id": "6569",
+          "player_name": "Cam Thomas",
+          "roster_position": "SG",
+          "opponent": "@CHI",
+          "games_played": 1,
+          "fantasy_points": 21.63,
+          "stats": {
+            "PTS": 16.1,
+            "REB": 1.9,
+            "AST": 2.3,
+            "ST": 0.3,
+            "BLK": 0.1,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "10469",
+          "player_name": "Nique Clifford",
+          "roster_position": "G",
+          "opponent": "@LAL",
+          "games_played": 1,
+          "fantasy_points": 21.82,
+          "stats": {
+            "PTS": 10.5,
+            "REB": 4.1,
+            "AST": 2.6,
+            "ST": 1.2,
+            "BLK": 0.4,
+            "TO": 2.3
+          }
+        },
+        {
+          "player_id": "6411",
+          "player_name": "Saddiq Bey",
+          "roster_position": "SF",
+          "opponent": "@LAC",
+          "games_played": 1,
+          "fantasy_points": 26.31,
+          "stats": {
+            "PTS": 14.8,
+            "REB": 4.8,
+            "AST": 2.5,
+            "ST": 0.9,
+            "BLK": 0.1,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "6253",
+          "player_name": "Naz Reid",
+          "roster_position": "PF",
+          "opponent": "@DEN",
+          "games_played": 1,
+          "fantasy_points": 26.83,
+          "stats": {
+            "PTS": 13.4,
+            "REB": 5.4,
+            "AST": 2.3,
+            "ST": 0.7,
+            "BLK": 0.9,
+            "TO": 1.3
+          }
+        },
+        {
+          "player_id": "10070",
+          "player_name": "GG Jackson",
+          "roster_position": "F",
+          "opponent": "@IND",
+          "games_played": 1,
+          "fantasy_points": 18.89,
+          "stats": {
+            "PTS": 10.5,
+            "REB": 4.2,
+            "AST": 1.1,
+            "ST": 0.5,
+            "BLK": 0.5,
+            "TO": 1.3
+          }
+        },
+        {
+          "player_id": "6691",
+          "player_name": "Paolo Banchero",
+          "roster_position": "C",
+          "opponent": "DET",
+          "games_played": 1,
+          "fantasy_points": 43.62,
+          "stats": {
+            "PTS": 25.5,
+            "REB": 7.6,
+            "AST": 4.6,
+            "ST": 1.0,
+            "BLK": 0.9,
+            "TO": 3.6
+          }
+        },
+        {
+          "player_id": "5318",
+          "player_name": "Julius Randle",
+          "roster_position": "C",
+          "opponent": "@DEN",
+          "games_played": 1,
+          "fantasy_points": 37.88,
+          "stats": {
+            "PTS": 20.9,
+            "REB": 6.9,
+            "AST": 5.2,
+            "ST": 0.8,
+            "BLK": 0.3,
+            "TO": 2.4
+          }
+        },
+        {
+          "player_id": "6212",
+          "player_name": "Ty Jerome",
+          "roster_position": "Util",
+          "opponent": "@IND",
+          "games_played": 1,
+          "fantasy_points": 26.72,
+          "stats": {
+            "PTS": 15.2,
+            "REB": 2.6,
+            "AST": 4.2,
+            "ST": 1.1,
+            "BLK": 0.1,
+            "TO": 1.5
+          }
+        },
+        {
+          "player_id": "6044",
+          "player_name": "Jalen Brunson",
+          "roster_position": "Util",
+          "opponent": "SAS",
+          "games_played": 1,
+          "fantasy_points": 39.05,
+          "stats": {
+            "PTS": 24.6,
+            "REB": 3.0,
+            "AST": 6.7,
+            "ST": 0.8,
+            "BLK": 0.2,
+            "TO": 2.2
+          }
+        },
+        {
+          "player_id": "6693",
+          "player_name": "Jabari Smith Jr.",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6558",
+          "player_name": "Alperen Sengun",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6169",
+          "player_name": "Coby White",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5663",
+          "player_name": "Ivica Zubac",
+          "roster_position": "IL",
+          "opponent": "MEM",
+          "games_played": 1,
+          "fantasy_points": 32.72,
+          "stats": {
+            "PTS": 12.7,
+            "REB": 11.1,
+            "AST": 2.2,
+            "ST": 0.5,
+            "BLK": 1.1,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "10468",
+          "player_name": "Cooper Flagg",
+          "roster_position": "IL",
+          "opponent": "OKC",
+          "games_played": 1,
+          "fantasy_points": 34.31,
+          "stats": {
+            "PTS": 17.6,
+            "REB": 6.8,
+            "AST": 4.1,
+            "ST": 1.1,
+            "BLK": 0.8,
+            "TO": 3.3
+          }
+        },
+        {
+          "player_id": "6572",
+          "player_name": "Santi Aldama",
+          "roster_position": "IL+",
+          "opponent": "@IND",
+          "games_played": 1,
+          "fantasy_points": 28.87,
+          "stats": {
+            "PTS": 13.0,
+            "REB": 7.1,
+            "AST": 3.1,
+            "ST": 0.7,
+            "BLK": 0.6,
+            "TO": 1.2
+          }
+        },
+        {
+          "player_id": "6697",
+          "player_name": "Shaedon Sharpe",
+          "roster_position": "IL+",
+          "opponent": "@ATL",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "team_id": 2,
+      "team_key": "466.l.93905.t.2",
+      "team_name": "Adana Pigeons",
+      "players": [
+        {
+          "player_id": "6413",
+          "player_name": "Tyrese Maxey",
+          "roster_position": "PG",
+          "opponent": "@BOS",
+          "games_played": 1,
+          "fantasy_points": 40.7,
+          "stats": {
+            "PTS": 24.3,
+            "REB": 3.5,
+            "AST": 6.2,
+            "ST": 1.1,
+            "BLK": 0.5,
+            "TO": 1.9
+          }
+        },
+        {
+          "player_id": "5638",
+          "player_name": "Jamal Murray",
+          "roster_position": "SG",
+          "opponent": "MIN",
+          "games_played": 1,
+          "fantasy_points": 38.52,
+          "stats": {
+            "PTS": 21.9,
+            "REB": 4.1,
+            "AST": 6.6,
+            "ST": 1.1,
+            "BLK": 0.3,
+            "TO": 2.4
+          }
+        },
+        {
+          "player_id": "6395",
+          "player_name": "LaMelo Ball",
+          "roster_position": "G",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5905",
+          "player_name": "Royce O'Neale",
+          "roster_position": "SF",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "4896",
+          "player_name": "Kawhi Leonard",
+          "roster_position": "PF",
+          "opponent": "NOP",
+          "games_played": 1,
+          "fantasy_points": 46.12,
+          "stats": {
+            "PTS": 27.4,
+            "REB": 7.1,
+            "AST": 4.2,
+            "ST": 1.6,
+            "BLK": 0.5,
+            "TO": 2.4
+          }
+        },
+        {
+          "player_id": "4614",
+          "player_name": "DeMar DeRozan",
+          "roster_position": "F",
+          "opponent": "@LAL",
+          "games_played": 1,
+          "fantasy_points": 24.2,
+          "stats": {
+            "PTS": 15.0,
+            "REB": 2.5,
+            "AST": 3.0,
+            "ST": 0.7,
+            "BLK": 0.2,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "6733",
+          "player_name": "Moussa Diabaté",
+          "roster_position": "C",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6219",
+          "player_name": "Nic Claxton",
+          "roster_position": "C",
+          "opponent": "CLE",
+          "games_played": 1,
+          "fantasy_points": 30.22,
+          "stats": {
+            "PTS": 11.7,
+            "REB": 7.6,
+            "AST": 2.6,
+            "ST": 0.9,
+            "BLK": 1.4,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "10285",
+          "player_name": "Donovan Clingan",
+          "roster_position": "Util",
+          "opponent": "@ATL",
+          "games_played": 1,
+          "fantasy_points": 35.32,
+          "stats": {
+            "PTS": 11.2,
+            "REB": 11.6,
+            "AST": 2.2,
+            "ST": 0.6,
+            "BLK": 2.2,
+            "TO": 1.5
+          }
+        },
+        {
+          "player_id": "4563",
+          "player_name": "James Harden",
+          "roster_position": "Util",
+          "opponent": "@BKN",
+          "games_played": 1,
+          "fantasy_points": 38.91,
+          "stats": {
+            "PTS": 20.0,
+            "REB": 4.8,
+            "AST": 7.9,
+            "ST": 1.1,
+            "BLK": 0.5,
+            "TO": 3.5
+          }
+        },
+        {
+          "player_id": "5327",
+          "player_name": "Jusuf Nurkić",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6022",
+          "player_name": "Shai Gilgeous-Alexander",
+          "roster_position": "BN",
+          "opponent": "@DAL",
+          "games_played": 1,
+          "fantasy_points": 55.09,
+          "stats": {
+            "PTS": 33.0,
+            "REB": 5.2,
+            "AST": 6.9,
+            "ST": 1.6,
+            "BLK": 1.0,
+            "TO": 2.3
+          }
+        },
+        {
+          "player_id": "3704",
+          "player_name": "LeBron James",
+          "roster_position": "BN",
+          "opponent": "SAC",
+          "games_played": 1,
+          "fantasy_points": 44.67,
+          "stats": {
+            "PTS": 24.0,
+            "REB": 6.6,
+            "AST": 7.5,
+            "ST": 1.0,
+            "BLK": 0.5,
+            "TO": 3.0
+          }
+        },
+        {
+          "player_id": "6175",
+          "player_name": "Tyler Herro",
+          "roster_position": "IL",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5856",
+          "player_name": "Isaiah Hartenstein",
+          "roster_position": "IL",
+          "opponent": "@DAL",
+          "games_played": 1,
+          "fantasy_points": 32.49,
+          "stats": {
+            "PTS": 11.0,
+            "REB": 9.7,
+            "AST": 3.7,
+            "ST": 0.8,
+            "BLK": 1.1,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "6216",
+          "player_name": "Jordan Poole",
+          "roster_position": "IL+",
+          "opponent": "@LAC",
+          "games_played": 1,
+          "fantasy_points": 0.77,
+          "stats": {
+            "PTS": 0.6,
+            "REB": 0.1,
+            "AST": 0.1,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.1
+          }
+        },
+        {
+          "player_id": "5295",
+          "player_name": "Aaron Gordon",
+          "roster_position": "IL+",
+          "opponent": "MIN",
+          "games_played": 1,
+          "fantasy_points": 26.34,
+          "stats": {
+            "PTS": 14.0,
+            "REB": 5.2,
+            "AST": 3.2,
+            "ST": 0.6,
+            "BLK": 0.3,
+            "TO": 1.4
+          }
+        }
+      ]
+    },
+    {
+      "team_id": 3,
+      "team_key": "466.l.93905.t.3",
+      "team_name": "Cansu State Warriors",
+      "players": [
+        {
+          "player_id": "6355",
+          "player_name": "Anthony Edwards",
+          "roster_position": "PG",
+          "opponent": "@DEN",
+          "games_played": 1,
+          "fantasy_points": 44.54,
+          "stats": {
+            "PTS": 28.4,
+            "REB": 5.2,
+            "AST": 4.6,
+            "ST": 1.2,
+            "BLK": 0.6,
+            "TO": 2.4
+          }
+        },
+        {
+          "player_id": "10107",
+          "player_name": "Cason Wallace",
+          "roster_position": "SG",
+          "opponent": "@DAL",
+          "games_played": 1,
+          "fantasy_points": 22.36,
+          "stats": {
+            "PTS": 8.9,
+            "REB": 3.3,
+            "AST": 2.6,
+            "ST": 1.9,
+            "BLK": 0.3,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "10454",
+          "player_name": "VJ Edgecombe",
+          "roster_position": "G",
+          "opponent": "@BOS",
+          "games_played": 1,
+          "fantasy_points": 27.76,
+          "stats": {
+            "PTS": 14.2,
+            "REB": 4.3,
+            "AST": 3.8,
+            "ST": 1.0,
+            "BLK": 0.4,
+            "TO": 1.5
+          }
+        },
+        {
+          "player_id": "5602",
+          "player_name": "Jaylen Brown",
+          "roster_position": "SF",
+          "opponent": "PHI",
+          "games_played": 1,
+          "fantasy_points": 45.34,
+          "stats": {
+            "PTS": 27.3,
+            "REB": 7.7,
+            "AST": 5.4,
+            "ST": 1.0,
+            "BLK": 0.4,
+            "TO": 3.5
+          }
+        },
+        {
+          "player_id": "6412",
+          "player_name": "Precious Achiuwa",
+          "roster_position": "PF",
+          "opponent": "@LAL",
+          "games_played": 1,
+          "fantasy_points": 22.5,
+          "stats": {
+            "PTS": 9.9,
+            "REB": 6.5,
+            "AST": 1.4,
+            "ST": 0.8,
+            "BLK": 0.5,
+            "TO": 1.2
+          }
+        },
+        {
+          "player_id": "6174",
+          "player_name": "P.J. Washington",
+          "roster_position": "F",
+          "opponent": "OKC",
+          "games_played": 1,
+          "fantasy_points": 26.01,
+          "stats": {
+            "PTS": 12.7,
+            "REB": 5.8,
+            "AST": 1.9,
+            "ST": 0.9,
+            "BLK": 0.8,
+            "TO": 1.6
+          }
+        },
+        {
+          "player_id": "6226",
+          "player_name": "Daniel Gafford",
+          "roster_position": "C",
+          "opponent": "OKC",
+          "games_played": 1,
+          "fantasy_points": 22.83,
+          "stats": {
+            "PTS": 8.1,
+            "REB": 7.4,
+            "AST": 1.1,
+            "ST": 0.5,
+            "BLK": 1.3,
+            "TO": 1.2
+          }
+        },
+        {
+          "player_id": "6703",
+          "player_name": "Jalen Duren",
+          "roster_position": "C",
+          "opponent": "@ORL",
+          "games_played": 1,
+          "fantasy_points": 38.79,
+          "stats": {
+            "PTS": 15.8,
+            "REB": 12.2,
+            "AST": 2.7,
+            "ST": 0.8,
+            "BLK": 1.3,
+            "TO": 2.0
+          }
+        },
+        {
+          "player_id": "6515",
+          "player_name": "Scottie Barnes",
+          "roster_position": "Util",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6655",
+          "player_name": "Micah Potter",
+          "roster_position": "Util",
+          "opponent": "MEM",
+          "games_played": 1,
+          "fantasy_points": 8.23,
+          "stats": {
+            "PTS": 3.6,
+            "REB": 2.4,
+            "AST": 0.7,
+            "ST": 0.2,
+            "BLK": 0.2,
+            "TO": 0.5
+          }
+        },
+        {
+          "player_id": "6513",
+          "player_name": "Jalen Green",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10272",
+          "player_name": "Kyshawn George",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10104",
+          "player_name": "Brandon Miller",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10287",
+          "player_name": "Zach Edey",
+          "roster_position": "IL",
+          "opponent": "@IND",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5473",
+          "player_name": "Devin Booker",
+          "roster_position": "IL",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10095",
+          "player_name": "Anthony Black",
+          "roster_position": "IL+",
+          "opponent": "DET",
+          "games_played": 1,
+          "fantasy_points": 30.72,
+          "stats": {
+            "PTS": 14.9,
+            "REB": 3.6,
+            "AST": 4.0,
+            "ST": 1.7,
+            "BLK": 1.1,
+            "TO": 2.9
+          }
+        },
+        {
+          "player_id": "5769",
+          "player_name": "Lauri Markkanen",
+          "roster_position": "IL+",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "team_id": 5,
+      "team_key": "466.l.93905.t.5",
+      "team_name": "Izmirin Boyozlari",
+      "players": [
+        {
+          "player_id": "5826",
+          "player_name": "Donovan Mitchell",
+          "roster_position": "PG",
+          "opponent": "@BKN",
+          "games_played": 1,
+          "fantasy_points": 41.33,
+          "stats": {
+            "PTS": 24.6,
+            "REB": 4.4,
+            "AST": 5.5,
+            "ST": 1.5,
+            "BLK": 0.4,
+            "TO": 2.5
+          }
+        },
+        {
+          "player_id": "6165",
+          "player_name": "RJ Barrett",
+          "roster_position": "SG",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6441",
+          "player_name": "Isaiah Joe",
+          "roster_position": "G",
+          "opponent": "@DAL",
+          "games_played": 1,
+          "fantasy_points": 12.03,
+          "stats": {
+            "PTS": 6.7,
+            "REB": 1.9,
+            "AST": 1.1,
+            "ST": 0.5,
+            "BLK": 0.1,
+            "TO": 0.4
+          }
+        },
+        {
+          "player_id": "6023",
+          "player_name": "Miles Bridges",
+          "roster_position": "SF",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6025",
+          "player_name": "Michael Porter Jr.",
+          "roster_position": "PF",
+          "opponent": "CLE",
+          "games_played": 1,
+          "fantasy_points": 33.63,
+          "stats": {
+            "PTS": 20.3,
+            "REB": 6.4,
+            "AST": 2.7,
+            "ST": 0.8,
+            "BLK": 0.4,
+            "TO": 2.0
+          }
+        },
+        {
+          "player_id": "6398",
+          "player_name": "Onyeka Okongwu",
+          "roster_position": "F",
+          "opponent": "POR",
+          "games_played": 1,
+          "fantasy_points": 36.05,
+          "stats": {
+            "PTS": 15.6,
+            "REB": 8.5,
+            "AST": 2.5,
+            "ST": 1.3,
+            "BLK": 1.4,
+            "TO": 1.6
+          }
+        },
+        {
+          "player_id": "6705",
+          "player_name": "Mark Williams",
+          "roster_position": "C",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "4897",
+          "player_name": "Nikola Vučević",
+          "roster_position": "C",
+          "opponent": "PHI",
+          "games_played": 1,
+          "fantasy_points": 29.31,
+          "stats": {
+            "PTS": 13.8,
+            "REB": 7.8,
+            "AST": 2.7,
+            "ST": 0.5,
+            "BLK": 0.7,
+            "TO": 1.5
+          }
+        },
+        {
+          "player_id": "6516",
+          "player_name": "Jalen Suggs",
+          "roster_position": "Util",
+          "opponent": "DET",
+          "games_played": 1,
+          "fantasy_points": 32.75,
+          "stats": {
+            "PTS": 14.3,
+            "REB": 4.0,
+            "AST": 4.7,
+            "ST": 2.1,
+            "BLK": 1.1,
+            "TO": 3.0
+          }
+        },
+        {
+          "player_id": "6418",
+          "player_name": "Payton Pritchard",
+          "roster_position": "Util",
+          "opponent": "PHI",
+          "games_played": 1,
+          "fantasy_points": 33.22,
+          "stats": {
+            "PTS": 18.1,
+            "REB": 4.6,
+            "AST": 5.4,
+            "ST": 0.9,
+            "BLK": 0.2,
+            "TO": 1.8
+          }
+        },
+        {
+          "player_id": "4390",
+          "player_name": "Russell Westbrook",
+          "roster_position": "BN",
+          "opponent": "@LAL",
+          "games_played": 1,
+          "fantasy_points": 27.19,
+          "stats": {
+            "PTS": 12.5,
+            "REB": 3.7,
+            "AST": 5.3,
+            "ST": 1.2,
+            "BLK": 0.3,
+            "TO": 2.2
+          }
+        },
+        {
+          "player_id": "6512",
+          "player_name": "Cade Cunningham",
+          "roster_position": "BN",
+          "opponent": "@ORL",
+          "games_played": 1,
+          "fantasy_points": 49.1,
+          "stats": {
+            "PTS": 26.6,
+            "REB": 6.0,
+            "AST": 8.8,
+            "ST": 1.1,
+            "BLK": 1.0,
+            "TO": 4.2
+          }
+        },
+        {
+          "player_id": "6548",
+          "player_name": "Josh Giddey",
+          "roster_position": "BN",
+          "opponent": "MIL",
+          "games_played": 1,
+          "fantasy_points": 36.15,
+          "stats": {
+            "PTS": 14.7,
+            "REB": 7.0,
+            "AST": 7.7,
+            "ST": 1.0,
+            "BLK": 0.5,
+            "TO": 3.0
+          }
+        },
+        {
+          "player_id": "5007",
+          "player_name": "Anthony Davis",
+          "roster_position": "IL",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10465",
+          "player_name": "Cedric Coward",
+          "roster_position": "IL",
+          "opponent": "@IND",
+          "games_played": 1,
+          "fantasy_points": 25.51,
+          "stats": {
+            "PTS": 12.5,
+            "REB": 4.8,
+            "AST": 2.7,
+            "ST": 0.9,
+            "BLK": 0.5,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "6559",
+          "player_name": "Trey Murphy III",
+          "roster_position": "IL+",
+          "opponent": "@LAC",
+          "games_played": 1,
+          "fantasy_points": 34.86,
+          "stats": {
+            "PTS": 20.3,
+            "REB": 4.3,
+            "AST": 3.6,
+            "ST": 1.1,
+            "BLK": 0.7,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "5294",
+          "player_name": "Joel Embiid",
+          "roster_position": "IL+",
+          "opponent": "@BOS",
+          "games_played": 1,
+          "fantasy_points": 43.47,
+          "stats": {
+            "PTS": 26.1,
+            "REB": 8.1,
+            "AST": 4.1,
+            "ST": 0.5,
+            "BLK": 1.0,
+            "TO": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "team_id": 6,
+      "team_key": "466.l.93905.t.6",
+      "team_name": "Kerem Tuncerispor",
+      "players": [
+        {
+          "player_id": "6028",
+          "player_name": "Donte DiVincenzo",
+          "roster_position": "PG",
+          "opponent": "@DEN",
+          "games_played": 1,
+          "fantasy_points": 25.43,
+          "stats": {
+            "PTS": 11.5,
+            "REB": 3.9,
+            "AST": 4.1,
+            "ST": 1.2,
+            "BLK": 0.3,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "6422",
+          "player_name": "Desmond Bane",
+          "roster_position": "SG",
+          "opponent": "DET",
+          "games_played": 1,
+          "fantasy_points": 35.37,
+          "stats": {
+            "PTS": 21.1,
+            "REB": 4.6,
+            "AST": 3.9,
+            "ST": 1.3,
+            "BLK": 0.6,
+            "TO": 2.8
+          }
+        },
+        {
+          "player_id": "5161",
+          "player_name": "CJ McCollum",
+          "roster_position": "G",
+          "opponent": "POR",
+          "games_played": 1,
+          "fantasy_points": 33.39,
+          "stats": {
+            "PTS": 19.7,
+            "REB": 3.7,
+            "AST": 4.3,
+            "ST": 1.1,
+            "BLK": 0.5,
+            "TO": 2.0
+          }
+        },
+        {
+          "player_id": "6420",
+          "player_name": "Jaden McDaniels",
+          "roster_position": "SF",
+          "opponent": "@DEN",
+          "games_played": 1,
+          "fantasy_points": 27.77,
+          "stats": {
+            "PTS": 13.8,
+            "REB": 5.6,
+            "AST": 1.9,
+            "ST": 1.0,
+            "BLK": 0.9,
+            "TO": 1.3
+          }
+        },
+        {
+          "player_id": "4901",
+          "player_name": "Tobias Harris",
+          "roster_position": "PF",
+          "opponent": "@ORL",
+          "games_played": 1,
+          "fantasy_points": 26.51,
+          "stats": {
+            "PTS": 13.2,
+            "REB": 5.8,
+            "AST": 1.9,
+            "ST": 0.9,
+            "BLK": 0.7,
+            "TO": 1.3
+          }
+        },
+        {
+          "player_id": "10103",
+          "player_name": "Jarace Walker",
+          "roster_position": "F",
+          "opponent": "MEM",
+          "games_played": 1,
+          "fantasy_points": 28.53,
+          "stats": {
+            "PTS": 13.6,
+            "REB": 6.4,
+            "AST": 3.1,
+            "ST": 1.1,
+            "BLK": 0.5,
+            "TO": 2.2
+          }
+        },
+        {
+          "player_id": "5352",
+          "player_name": "Nikola Jokić",
+          "roster_position": "C",
+          "opponent": "MIN",
+          "games_played": 1,
+          "fantasy_points": 59.79,
+          "stats": {
+            "PTS": 28.0,
+            "REB": 12.2,
+            "AST": 9.5,
+            "ST": 1.5,
+            "BLK": 0.6,
+            "TO": 3.4
+          }
+        },
+        {
+          "player_id": "5471",
+          "player_name": "Myles Turner",
+          "roster_position": "C",
+          "opponent": "@CHI",
+          "games_played": 1,
+          "fantasy_points": 31.0,
+          "stats": {
+            "PTS": 14.8,
+            "REB": 6.0,
+            "AST": 1.4,
+            "ST": 0.6,
+            "BLK": 2.1,
+            "TO": 1.2
+          }
+        },
+        {
+          "player_id": "10440",
+          "player_name": "Jeremiah Fears",
+          "roster_position": "Util",
+          "opponent": "@LAC",
+          "games_played": 1,
+          "fantasy_points": 18.53,
+          "stats": {
+            "PTS": 10.1,
+            "REB": 2.9,
+            "AST": 2.3,
+            "ST": 0.9,
+            "BLK": 0.2,
+            "TO": 1.8
+          }
+        },
+        {
+          "player_id": "6562",
+          "player_name": "Jalen Johnson",
+          "roster_position": "Util",
+          "opponent": "POR",
+          "games_played": 1,
+          "fantasy_points": 50.94,
+          "stats": {
+            "PTS": 22.1,
+            "REB": 9.7,
+            "AST": 7.4,
+            "ST": 1.9,
+            "BLK": 1.1,
+            "TO": 2.9
+          }
+        },
+        {
+          "player_id": "10108",
+          "player_name": "Amen Thompson",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5292",
+          "player_name": "Andrew Wiggins",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10115",
+          "player_name": "Brandin Podziemski",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10294",
+          "player_name": "Alex Sarr",
+          "roster_position": "IL",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6163",
+          "player_name": "Zion Williamson",
+          "roster_position": "IL+",
+          "opponent": "@LAC",
+          "games_played": 1,
+          "fantasy_points": 37.07,
+          "stats": {
+            "PTS": 21.0,
+            "REB": 6.1,
+            "AST": 4.1,
+            "ST": 1.1,
+            "BLK": 0.6,
+            "TO": 2.5
+          }
+        },
+        {
+          "player_id": "6401",
+          "player_name": "Deni Avdija",
+          "roster_position": "IL+",
+          "opponent": "@ATL",
+          "games_played": 1,
+          "fantasy_points": 40.73,
+          "stats": {
+            "PTS": 21.0,
+            "REB": 8.4,
+            "AST": 5.3,
+            "ST": 1.2,
+            "BLK": 0.6,
+            "TO": 3.7
+          }
+        }
+      ]
+    },
+    {
+      "team_id": 8,
+      "team_key": "466.l.93905.t.8",
+      "team_name": "Kilikya Gücü🧿",
+      "players": [
+        {
+          "player_id": "5842",
+          "player_name": "Derrick White",
+          "roster_position": "PG",
+          "opponent": "PHI",
+          "games_played": 1,
+          "fantasy_points": 38.15,
+          "stats": {
+            "PTS": 18.9,
+            "REB": 5.0,
+            "AST": 6.1,
+            "ST": 0.8,
+            "BLK": 1.3,
+            "TO": 2.2
+          }
+        },
+        {
+          "player_id": "6218",
+          "player_name": "Kevin Porter Jr.",
+          "roster_position": "SG",
+          "opponent": "@CHI",
+          "games_played": 1,
+          "fantasy_points": 40.28,
+          "stats": {
+            "PTS": 19.4,
+            "REB": 5.4,
+            "AST": 7.2,
+            "ST": 1.6,
+            "BLK": 0.5,
+            "TO": 2.7
+          }
+        },
+        {
+          "player_id": "5660",
+          "player_name": "Dejounte Murray",
+          "roster_position": "G",
+          "opponent": "@LAC",
+          "games_played": 1,
+          "fantasy_points": 24.06,
+          "stats": {
+            "PTS": 12.2,
+            "REB": 3.3,
+            "AST": 3.8,
+            "ST": 1.0,
+            "BLK": 0.2,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "6549",
+          "player_name": "Jonathan Kuminga",
+          "roster_position": "SF",
+          "opponent": "POR",
+          "games_played": 1,
+          "fantasy_points": 16.69,
+          "stats": {
+            "PTS": 9.4,
+            "REB": 2.7,
+            "AST": 1.3,
+            "ST": 0.7,
+            "BLK": 0.3,
+            "TO": 0.9
+          }
+        },
+        {
+          "player_id": "6745",
+          "player_name": "Gui Santos",
+          "roster_position": "PF",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10450",
+          "player_name": "Kon Knueppel",
+          "roster_position": "F",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6514",
+          "player_name": "Evan Mobley",
+          "roster_position": "C",
+          "opponent": "@BKN",
+          "games_played": 1,
+          "fantasy_points": 39.61,
+          "stats": {
+            "PTS": 17.4,
+            "REB": 8.8,
+            "AST": 3.5,
+            "ST": 1.0,
+            "BLK": 1.7,
+            "TO": 1.7
+          }
+        },
+        {
+          "player_id": "6692",
+          "player_name": "Chet Holmgren",
+          "roster_position": "C",
+          "opponent": "@DAL",
+          "games_played": 1,
+          "fantasy_points": 41.94,
+          "stats": {
+            "PTS": 18.3,
+            "REB": 9.7,
+            "AST": 2.4,
+            "ST": 0.8,
+            "BLK": 2.6,
+            "TO": 1.8
+          }
+        },
+        {
+          "player_id": "6014",
+          "player_name": "Luka Dončić",
+          "roster_position": "Util",
+          "opponent": "SAC",
+          "games_played": 1,
+          "fantasy_points": 57.19,
+          "stats": {
+            "PTS": 31.9,
+            "REB": 8.2,
+            "AST": 8.7,
+            "ST": 1.6,
+            "BLK": 0.4,
+            "TO": 3.6
+          }
+        },
+        {
+          "player_id": "6734",
+          "player_name": "Ryan Rollins",
+          "roster_position": "Util",
+          "opponent": "@CHI",
+          "games_played": 1,
+          "fantasy_points": 34.57,
+          "stats": {
+            "PTS": 16.2,
+            "REB": 4.6,
+            "AST": 4.9,
+            "ST": 1.9,
+            "BLK": 0.6,
+            "TO": 2.0
+          }
+        },
+        {
+          "player_id": "5601",
+          "player_name": "Brandon Ingram",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5640",
+          "player_name": "Jakob Poeltl",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6032",
+          "player_name": "Grayson Allen",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5765",
+          "player_name": "Jayson Tatum",
+          "roster_position": "IL",
+          "opponent": "PHI",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5506",
+          "player_name": "Norman Powell",
+          "roster_position": "IL",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6499",
+          "player_name": "Naji Marshall",
+          "roster_position": "IL+",
+          "opponent": "OKC",
+          "games_played": 1,
+          "fantasy_points": 23.71,
+          "stats": {
+            "PTS": 12.1,
+            "REB": 4.8,
+            "AST": 2.9,
+            "ST": 0.9,
+            "BLK": 0.2,
+            "TO": 1.8
+          }
+        }
+      ]
+    },
+    {
+      "team_id": 10,
+      "team_key": "466.l.93905.t.10",
+      "team_name": "Kozyatağı Korsanları",
+      "players": [
+        {
+          "player_id": "6606",
+          "player_name": "Austin Reaves",
+          "roster_position": "PG",
+          "opponent": "SAC",
+          "games_played": 1,
+          "fantasy_points": 37.16,
+          "stats": {
+            "PTS": 22.1,
+            "REB": 4.3,
+            "AST": 5.4,
+            "ST": 1.1,
+            "BLK": 0.3,
+            "TO": 2.4
+          }
+        },
+        {
+          "player_id": "6021",
+          "player_name": "Mikal Bridges",
+          "roster_position": "SG",
+          "opponent": "SAS",
+          "games_played": 1,
+          "fantasy_points": 27.02,
+          "stats": {
+            "PTS": 15.3,
+            "REB": 3.1,
+            "AST": 3.4,
+            "ST": 0.9,
+            "BLK": 0.5,
+            "TO": 1.3
+          }
+        },
+        {
+          "player_id": "10290",
+          "player_name": "Stephon Castle",
+          "roster_position": "G",
+          "opponent": "@NYK",
+          "games_played": 1,
+          "fantasy_points": 26.39,
+          "stats": {
+            "PTS": 12.4,
+            "REB": 4.2,
+            "AST": 4.5,
+            "ST": 0.9,
+            "BLK": 0.5,
+            "TO": 2.0
+          }
+        },
+        {
+          "player_id": "5836",
+          "player_name": "OG Anunoby",
+          "roster_position": "SF",
+          "opponent": "SAS",
+          "games_played": 1,
+          "fantasy_points": 29.87,
+          "stats": {
+            "PTS": 16.0,
+            "REB": 4.6,
+            "AST": 2.1,
+            "ST": 1.4,
+            "BLK": 0.8,
+            "TO": 1.4
+          }
+        },
+        {
+          "player_id": "10094",
+          "player_name": "Victor Wembanyama",
+          "roster_position": "PF",
+          "opponent": "@NYK",
+          "games_played": 1,
+          "fantasy_points": 54.53,
+          "stats": {
+            "PTS": 24.3,
+            "REB": 11.9,
+            "AST": 2.7,
+            "ST": 1.0,
+            "BLK": 3.7,
+            "TO": 2.2
+          }
+        },
+        {
+          "player_id": "6696",
+          "player_name": "Bennedict Mathurin",
+          "roster_position": "F",
+          "opponent": "NOP",
+          "games_played": 1,
+          "fantasy_points": 27.33,
+          "stats": {
+            "PTS": 16.9,
+            "REB": 5.4,
+            "AST": 2.3,
+            "ST": 0.6,
+            "BLK": 0.2,
+            "TO": 1.9
+          }
+        },
+        {
+          "player_id": "5835",
+          "player_name": "Jarrett Allen",
+          "roster_position": "C",
+          "opponent": "@BKN",
+          "games_played": 1,
+          "fantasy_points": 29.61,
+          "stats": {
+            "PTS": 13.1,
+            "REB": 7.8,
+            "AST": 1.9,
+            "ST": 0.9,
+            "BLK": 0.9,
+            "TO": 1.1
+          }
+        },
+        {
+          "player_id": "10444",
+          "player_name": "Derik Queen",
+          "roster_position": "C",
+          "opponent": "@LAC",
+          "games_played": 1,
+          "fantasy_points": 28.7,
+          "stats": {
+            "PTS": 11.2,
+            "REB": 6.5,
+            "AST": 3.8,
+            "ST": 1.2,
+            "BLK": 1.0,
+            "TO": 2.6
+          }
+        },
+        {
+          "player_id": "5843",
+          "player_name": "Josh Hart",
+          "roster_position": "Util",
+          "opponent": "SAS",
+          "games_played": 1,
+          "fantasy_points": 28.4,
+          "stats": {
+            "PTS": 10.5,
+            "REB": 7.5,
+            "AST": 4.6,
+            "ST": 1.0,
+            "BLK": 0.2,
+            "TO": 1.6
+          }
+        },
+        {
+          "player_id": "10265",
+          "player_name": "Matas Buzelis",
+          "roster_position": "Util",
+          "opponent": "MIL",
+          "games_played": 1,
+          "fantasy_points": 30.55,
+          "stats": {
+            "PTS": 15.9,
+            "REB": 6.0,
+            "AST": 2.3,
+            "ST": 0.6,
+            "BLK": 1.3,
+            "TO": 1.7
+          }
+        },
+        {
+          "player_id": "4244",
+          "player_name": "Kevin Durant",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "5658",
+          "player_name": "Pascal Siakam",
+          "roster_position": "BN",
+          "opponent": "MEM",
+          "games_played": 1,
+          "fantasy_points": 36.81,
+          "stats": {
+            "PTS": 20.9,
+            "REB": 6.8,
+            "AST": 4.5,
+            "ST": 0.7,
+            "BLK": 0.5,
+            "TO": 2.6
+          }
+        },
+        {
+          "player_id": "10100",
+          "player_name": "Keyonte George",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6164",
+          "player_name": "Ja Morant",
+          "roster_position": "IL",
+          "opponent": "@IND",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "4612",
+          "player_name": "Stephen Curry",
+          "roster_position": "IL",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6016",
+          "player_name": "Trae Young",
+          "roster_position": "IL+",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6721",
+          "player_name": "Andrew Nembhard",
+          "roster_position": "IL+",
+          "opponent": "MEM",
+          "games_played": 1,
+          "fantasy_points": 30.01,
+          "stats": {
+            "PTS": 14.8,
+            "REB": 3.3,
+            "AST": 6.3,
+            "ST": 1.1,
+            "BLK": 0.2,
+            "TO": 2.1
+          }
+        }
+      ]
+    },
+    {
+      "team_id": 11,
+      "team_key": "466.l.93905.t.11",
+      "team_name": "Batuball",
+      "players": [
+        {
+          "player_id": "4622",
+          "player_name": "Jrue Holiday",
+          "roster_position": "PG",
+          "opponent": "@ATL",
+          "games_played": 1,
+          "fantasy_points": 31.4,
+          "stats": {
+            "PTS": 14.6,
+            "REB": 4.5,
+            "AST": 6.0,
+            "ST": 1.1,
+            "BLK": 0.4,
+            "TO": 2.1
+          }
+        },
+        {
+          "player_id": "6711",
+          "player_name": "Christian Braun",
+          "roster_position": "SG",
+          "opponent": "MIN",
+          "games_played": 1,
+          "fantasy_points": 21.36,
+          "stats": {
+            "PTS": 10.9,
+            "REB": 4.3,
+            "AST": 2.2,
+            "ST": 0.7,
+            "BLK": 0.3,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "10279",
+          "player_name": "Jaylon Tyson",
+          "roster_position": "G",
+          "opponent": "@BKN",
+          "games_played": 1,
+          "fantasy_points": 16.5,
+          "stats": {
+            "PTS": 9.4,
+            "REB": 3.0,
+            "AST": 2.0,
+            "ST": 0.5,
+            "BLK": 0.1,
+            "TO": 1.3
+          }
+        },
+        {
+          "player_id": "10096",
+          "player_name": "Ausar Thompson",
+          "roster_position": "SF",
+          "opponent": "@ORL",
+          "games_played": 1,
+          "fantasy_points": 27.43,
+          "stats": {
+            "PTS": 10.9,
+            "REB": 5.4,
+            "AST": 2.5,
+            "ST": 1.7,
+            "BLK": 0.9,
+            "TO": 1.5
+          }
+        },
+        {
+          "player_id": "5475",
+          "player_name": "Kelly Oubre Jr.",
+          "roster_position": "PF",
+          "opponent": "@BOS",
+          "games_played": 1,
+          "fantasy_points": 23.4,
+          "stats": {
+            "PTS": 12.4,
+            "REB": 5.0,
+            "AST": 1.4,
+            "ST": 0.9,
+            "BLK": 0.4,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "5432",
+          "player_name": "Karl-Anthony Towns",
+          "roster_position": "F",
+          "opponent": "SAS",
+          "games_played": 1,
+          "fantasy_points": 40.65,
+          "stats": {
+            "PTS": 20.0,
+            "REB": 11.5,
+            "AST": 3.1,
+            "ST": 0.9,
+            "BLK": 0.6,
+            "TO": 2.3
+          }
+        },
+        {
+          "player_id": "5197",
+          "player_name": "Rudy Gobert",
+          "roster_position": "C",
+          "opponent": "@DEN",
+          "games_played": 1,
+          "fantasy_points": 31.12,
+          "stats": {
+            "PTS": 11.3,
+            "REB": 10.1,
+            "AST": 1.6,
+            "ST": 0.7,
+            "BLK": 1.4,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "10496",
+          "player_name": "Maxime Raynaud",
+          "roster_position": "C",
+          "opponent": "@LAL",
+          "games_played": 1,
+          "fantasy_points": 27.69,
+          "stats": {
+            "PTS": 12.4,
+            "REB": 9.2,
+            "AST": 1.5,
+            "ST": 0.6,
+            "BLK": 0.4,
+            "TO": 1.0
+          }
+        },
+        {
+          "player_id": "6698",
+          "player_name": "Dyson Daniels",
+          "roster_position": "Util",
+          "opponent": "POR",
+          "games_played": 1,
+          "fantasy_points": 32.92,
+          "stats": {
+            "PTS": 10.6,
+            "REB": 6.1,
+            "AST": 4.0,
+            "ST": 2.9,
+            "BLK": 0.7,
+            "TO": 1.8
+          }
+        },
+        {
+          "player_id": "5767",
+          "player_name": "De'Aaron Fox",
+          "roster_position": "Util",
+          "opponent": "@NYK",
+          "games_played": 1,
+          "fantasy_points": 31.7,
+          "stats": {
+            "PTS": 17.5,
+            "REB": 3.5,
+            "AST": 5.4,
+            "ST": 1.1,
+            "BLK": 0.3,
+            "TO": 2.3
+          }
+        },
+        {
+          "player_id": "5827",
+          "player_name": "Bam Adebayo",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "10315",
+          "player_name": "Kyle Filipowski",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6417",
+          "player_name": "Immanuel Quickley",
+          "roster_position": "BN",
+          "opponent": "",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        },
+        {
+          "player_id": "6167",
+          "player_name": "Darius Garland",
+          "roster_position": "IL",
+          "opponent": "NOP",
+          "games_played": 1,
+          "fantasy_points": 35.86,
+          "stats": {
+            "PTS": 21.1,
+            "REB": 2.8,
+            "AST": 7.2,
+            "ST": 1.0,
+            "BLK": 0.1,
+            "TO": 2.7
+          }
+        },
+        {
+          "player_id": "5185",
+          "player_name": "G. Antetokounmpo",
+          "roster_position": "IL",
+          "opponent": "@CHI",
+          "games_played": 1,
+          "fantasy_points": 62.42,
+          "stats": {
+            "PTS": 34.7,
+            "REB": 11.6,
+            "AST": 7.6,
+            "ST": 1.0,
+            "BLK": 1.0,
+            "TO": 3.6
+          }
+        },
+        {
+          "player_id": "6205",
+          "player_name": "N. Alexander-Walker",
+          "roster_position": "IL+",
+          "opponent": "POR",
+          "games_played": 1,
+          "fantasy_points": 36.08,
+          "stats": {
+            "PTS": 19.8,
+            "REB": 3.9,
+            "AST": 4.0,
+            "ST": 1.7,
+            "BLK": 0.8,
+            "TO": 1.9
+          }
+        },
+        {
+          "player_id": "6702",
+          "player_name": "Jalen Williams",
+          "roster_position": "IL+",
+          "opponent": "@DAL",
+          "games_played": 0,
+          "fantasy_points": 0.0,
+          "stats": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

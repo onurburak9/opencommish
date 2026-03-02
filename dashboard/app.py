@@ -39,15 +39,18 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Resolve data directory relative to the project root (parent of dashboard/)
+PROJECT_ROOT = Path(__file__).parent.parent
+
 # Data loading functions
 @st.cache_data(ttl=300)
 def load_latest_data():
     """Load the most recent day's data."""
-    data_dir = Path("data/daily_stats")
+    data_dir = PROJECT_ROOT / "data/daily_stats"
     stats_files = sorted(data_dir.glob("league_*.json"))
     if not stats_files:
         return None
-    
+
     latest_file = stats_files[-1]
     with open(latest_file) as f:
         return json.load(f)
@@ -55,7 +58,7 @@ def load_latest_data():
 @st.cache_data(ttl=300)
 def load_all_data(days=30):
     """Load last N days of data."""
-    data_dir = Path("data/daily_stats")
+    data_dir = PROJECT_ROOT / "data/daily_stats"
     stats_files = sorted(data_dir.glob("league_*.json"))[-days:]
     
     all_data = []

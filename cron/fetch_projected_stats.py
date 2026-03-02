@@ -9,10 +9,11 @@ This script:
 """
 
 import os
+import sys
 import json
 import requests
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, date
 from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 from yfpy.query import YahooFantasySportsQuery, Team, League
@@ -259,9 +260,16 @@ def main() -> None:
     query.league_id = target_league.league_id
     query.league_key = target_league.league_key
 
-    # Get today's date in Pacific timezone
-    pacific_tz = ZoneInfo("America/Los_Angeles")
-    today_pacific = datetime.now(pacific_tz).date()
+    # Allow passing a specific date via CLI arg (YYYY-MM-DD), defaulting to today PST.
+    if len(sys.argv) > 1:
+        try:
+            today_pacific = date.fromisoformat(sys.argv[1])
+        except ValueError:
+            print(f"❌ Invalid date format '{sys.argv[1]}'. Use YYYY-MM-DD.")
+            return
+    else:
+        pacific_tz = ZoneInfo("America/Los_Angeles")
+        today_pacific = datetime.now(pacific_tz).date()
     today_str = today_pacific.strftime("%Y-%m-%d")
 
     print(f"Fetching projected stats for {today_str}")

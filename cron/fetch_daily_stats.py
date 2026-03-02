@@ -6,9 +6,10 @@ Runs via GitHub Actions cron job at 11:30 PM PST daily.
 
 # Standard library imports for env access and path handling.
 import os
+import sys
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, date
 from zoneinfo import ZoneInfo
 
 # Third-party helper for Yahoo API client.
@@ -27,6 +28,17 @@ def main() -> None:
     print("=" * 80)
     print("DAILY FANTASY STATS COLLECTION")
     print("=" * 80)
+
+    # Allow passing a specific date via CLI arg (YYYY-MM-DD), defaulting to today PST.
+    if len(sys.argv) > 1:
+        try:
+            target_date = date.fromisoformat(sys.argv[1])
+        except ValueError:
+            print(f"❌ Invalid date format '{sys.argv[1]}'. Use YYYY-MM-DD.")
+            return
+    else:
+        pacific_tz = ZoneInfo("America/Los_Angeles")
+        target_date = datetime.now(pacific_tz).date()
 
     target_league_name = "teletabi ligi"
 
@@ -108,11 +120,7 @@ def main() -> None:
 
     print(f"Loaded {len(stat_modifiers)} stat modifiers")
 
-    # Get today's stats for players on every team in the target league.
-    # Use Pacific timezone since the cron runs at 11:30 PM PST (7:30 AM UTC next day)
-    pacific_tz = ZoneInfo("America/Los_Angeles")
-    today_pacific = datetime.now(pacific_tz).date()
-    today_str = today_pacific.strftime("%Y-%m-%d")
+    today_str = target_date.strftime("%Y-%m-%d")
     league_meta = query.get_league_metadata()
     current_week = league_meta.current_week
 
