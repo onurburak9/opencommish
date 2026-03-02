@@ -330,16 +330,30 @@ st.sidebar.info(
     f"📊 Week: {data['week']}"
 )
 
-# Shared derived data used across multiple pages
-week_data = load_current_week_data()
-df_week_teams = calculate_week_team_metrics(week_data)
+# Build a week → list of day-dicts map from all loaded data
+weeks_map: dict = defaultdict(list)
+for _d in all_data:
+    weeks_map[_d['week']].append(_d)
+all_week_numbers = sorted(weeks_map.keys(), reverse=True)  # latest first
+latest_week_number = data['week']
 
 # ---------------------------------------------------------------------------
 # OVERVIEW
 # ---------------------------------------------------------------------------
 if page == "📊 Overview":
     st.markdown('<h1 class="main-header">🏀 OpenCommish Dashboard</h1>', unsafe_allow_html=True)
-    st.markdown(f"### {data['league_name']} — Week {data['week']}")
+    st.markdown(f"### {data['league_name']}")
+
+    # Week selector — latest week is default
+    selected_week = st.selectbox(
+        "Week",
+        options=all_week_numbers,
+        index=0,  # latest week first
+        format_func=lambda w: f"Week {w}" + (" (current)" if w == latest_week_number else ""),
+        key="overview_week_select",
+    )
+    week_data = sorted(weeks_map[selected_week], key=lambda d: d['date'])
+    df_week_teams = calculate_week_team_metrics(week_data)
 
     # Derive week date range
     if week_data:
@@ -353,7 +367,7 @@ if page == "📊 Overview":
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.metric("Week", f"#{data['week']}", f"{week_start} → {week_end}")
+        st.metric("Week", f"#{selected_week}", f"{week_start} → {week_end}")
     with col2:
         st.metric("Days collected", len(week_data))
     with col3:
@@ -387,7 +401,7 @@ if page == "📊 Overview":
 
     # Week team performance — stacked bar
     st.subheader("🏆 Week Team Performance")
-    st.caption(f"Week {data['week']} cumulative totals ({len(week_data)} days)")
+    st.caption(f"Week {selected_week} cumulative totals ({len(week_data)} days)")
 
     if not df_week_teams.empty:
         df_week_sorted = df_week_teams.sort_values('total_points', ascending=True)
@@ -403,10 +417,12 @@ if page == "📊 Overview":
 
     # Top performers
     st.subheader("🏅 Top Performers")
-    perf_tab1, perf_tab2 = st.tabs([f"Today ({data['date']})", f"Week {data['week']}"])
+    # "Today" tab shows the latest day of the selected week, not necessarily today
+    latest_day_in_week = week_data[-1] if week_data else data
+    perf_tab1, perf_tab2 = st.tabs([f"Latest day ({latest_day_in_week['date']})", f"Week {selected_week}"])
 
     with perf_tab1:
-        df_today = get_all_players_multi([data])
+        df_today = get_all_players_multi([latest_day_in_week])
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("**Top 10 Players**")
