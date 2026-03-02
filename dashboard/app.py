@@ -429,13 +429,13 @@ if page == "📊 Overview":
             top_players = df_today[df_today['is_active']].nlargest(10, 'fantasy_points')[
                 ['name', 'nba_team', 'opponent', 'team', 'roster_position', 'fantasy_points']
             ]
-            st.dataframe(top_players, use_container_width=True, hide_index=True)
+            st.dataframe(top_players, width="stretch", hide_index=True)
         with col2:
             st.markdown("**Top Bench Performers**")
             bench_stars = df_today[df_today['is_bench']].nlargest(10, 'fantasy_points')[
                 ['name', 'nba_team', 'opponent', 'team', 'fantasy_points']
             ]
-            st.dataframe(bench_stars, use_container_width=True, hide_index=True)
+            st.dataframe(bench_stars, width="stretch", hide_index=True)
 
     with perf_tab2:
         df_week_players = get_all_players_multi(week_data)
@@ -453,11 +453,11 @@ if page == "📊 Overview":
             with col1:
                 st.markdown("**Top 10 Players (week total)**")
                 top_week = week_agg[~week_agg['is_bench']].head(10)[['name', 'team', 'fantasy_points']]
-                st.dataframe(top_week, use_container_width=True, hide_index=True)
+                st.dataframe(top_week, width="stretch", hide_index=True)
             with col2:
                 st.markdown("**Top Bench Performers (week total)**")
                 bench_week = week_agg[week_agg['is_bench']].head(10)[['name', 'team', 'fantasy_points']]
-                st.dataframe(bench_week, use_container_width=True, hide_index=True)
+                st.dataframe(bench_week, width="stretch", hide_index=True)
 
             st.markdown("**Per-Date Breakdown**")
             all_players_sorted = week_agg.sort_values('fantasy_points', ascending=False)['name'].unique().tolist()
@@ -468,7 +468,7 @@ if page == "📊 Overview":
                 [['date', 'name', 'nba_team', 'opponent', 'team', 'roster_position', 'fantasy_points']]
                 .sort_values('date')
             )
-            st.dataframe(player_daily, use_container_width=True, hide_index=True)
+            st.dataframe(player_daily, width="stretch", hide_index=True)
             st.bar_chart(
                 player_daily.set_index('date')[['fantasy_points']],
                 x_label="Date",
@@ -498,7 +498,7 @@ elif page == "🏆 Team Rankings":
     if selected_teams and len(selected_teams) >= 2:
         st.subheader("Team Comparison")
         compare_cols = ['team_name', 'active_points', 'bench_points', 'total_points', 'bench_percentage']
-        st.dataframe(df_sorted[compare_cols], use_container_width=True, hide_index=True)
+        st.dataframe(df_sorted[compare_cols], width="stretch", hide_index=True)
         comparison_pivot = df_sorted.set_index('team_name')[['active_points', 'bench_points']]
         st.bar_chart(comparison_pivot, stack=False, x_label="Team", y_label="Fantasy Points")
         st.markdown("---")
@@ -532,7 +532,7 @@ elif page == "🏆 Team Rankings":
 
     st.subheader("Detailed Team Statistics")
     display_cols = ['team_name', 'active_points', 'bench_points', 'total_points', 'bench_percentage']
-    st.dataframe(df_sorted[display_cols], use_container_width=True)
+    st.dataframe(df_sorted[display_cols], width="stretch")
 
 # ---------------------------------------------------------------------------
 # PLAYER ANALYSIS
@@ -645,7 +645,7 @@ elif page == "⭐ Player Analysis":
         show_cols = ['date', 'name', 'nba_team', 'opponent', 'team', 'roster_position', 'fantasy_points']
     st.dataframe(
         filtered_players[show_cols].sort_values('fantasy_points', ascending=False),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
@@ -707,7 +707,7 @@ elif page == "📈 Trends":
             last5_pivot = df_last5.pivot(
                 index='date', columns='team', values='active_points'
             ).fillna(0).reset_index()
-            st.dataframe(last5_pivot, use_container_width=True, hide_index=True)
+            st.dataframe(last5_pivot, width="stretch", hide_index=True)
 
         # N-day summary
         st.subheader(f"Last 7 Days Summary")
@@ -723,7 +723,7 @@ elif page == "📈 Trends":
                 Std_Dev=('active_points', 'std'),
             ).reset_index().rename(columns={'team': 'Team'})
             summary = summary.sort_values('Average', ascending=False)
-            st.dataframe(summary.round(2), use_container_width=True, hide_index=True)
+            st.dataframe(summary.round(2), width="stretch", hide_index=True)
             st.bar_chart(
                 summary.set_index('Team')[['Average']],
                 x_label="Team",
@@ -935,7 +935,7 @@ elif page == "📉 Projected Stats":
     scatter_df = player_agg.sort_values('projected_points', ascending=False)
     st.dataframe(
         scatter_df[['player', 'team', 'projected_points', 'actual_points', 'delta', 'delta_%']].round(2),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
@@ -944,7 +944,7 @@ elif page == "📉 Projected Stats":
     detail_cols = ['date', 'player', 'team', 'roster_position', 'projected_points', 'actual_points', 'delta', 'delta_%']
     st.dataframe(
         df_view[detail_cols].sort_values(['date', 'delta'], ascending=[False, True]).round(2),
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 

@@ -171,29 +171,27 @@ def main() -> None:
     print(f"Loaded {len(stat_modifiers)} stat modifiers")
 
     today_str = target_date.strftime("%Y-%m-%d")
+    # Find the exact week that contains target_date by scanning all game weeks.
     league_meta = query.get_league_metadata()
     current_week = league_meta.current_week
 
-    # Yahoo sometimes advances current_week a day before the scoring period starts.
-    # Look up the actual start date for current_week using game weeks data and
-    # fall back to current_week - 1 if target_date precedes it.
     try:
         game_weeks = query.get_game_weeks_by_game_id(game_info.game_id)
         week_by_num = {int(to_str(gw.week)): gw for gw in game_weeks}
-        gw = week_by_num.get(current_week)
-        if gw:
+        matched_week = None
+        for week_num, gw in week_by_num.items():
             week_start = date.fromisoformat(to_str(gw.start))
             week_end = date.fromisoformat(to_str(gw.end))
-            if target_date < week_start:
-                print(f"⚠️  {today_str} is before Week {current_week} start ({week_start}), using Week {current_week - 1}")
-                current_week -= 1
-                gw = week_by_num.get(current_week)
-                if gw:
-                    week_start = date.fromisoformat(to_str(gw.start))
-                    week_end = date.fromisoformat(to_str(gw.end))
-            print(f"Week {current_week} scoring period: {week_start} → {week_end}")
+            if week_start <= target_date <= week_end:
+                matched_week = week_num
+                print(f"Week {week_num} scoring period: {week_start} → {week_end}")
+                break
+        if matched_week is not None:
+            current_week = matched_week
+        else:
+            print(f"⚠️  No game week found containing {today_str}, falling back to current_week={current_week}")
     except Exception as e:
-        print(f"⚠️  Could not verify week date range: {e}")
+        print(f"⚠️  Could not look up week for {today_str}: {e}")
 
     print(f"Collecting stats for {today_str} (Week {current_week})")
 
@@ -261,8 +259,18 @@ def main() -> None:
                     "points": stat_points,
                 })
 
-            nba_team = to_str(getattr(player_info, 'editorial_team_abbr', '') or '')
-            opponent = opponent_map.get(nba_team, '')
+            yahoo_team = to_str(getattr(player_info, 'editorial_team_abbr', '') or '')
+            # Only populate opponent when the player actually scored AND Yahoo's
+            # current team abbr was playing that day. If points == 0 we can't
+            # distinguish "no game", "DNP", or "traded today" — leave opponent
+            # blank to avoid showing wrong matchup data (e.g. a just-traded player
+            # whose Yahoo team is already updated but whose stats are from the old team).
+            if fantasy_points > 0 and yahoo_team in opponent_map:
+                nba_team = yahoo_team
+                opponent = opponent_map[yahoo_team]
+            else:
+                nba_team = yahoo_team if fantasy_points > 0 else ''
+                opponent = ''
 
             team_entry["players"].append({
                 "player_id": player_id,
