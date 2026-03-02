@@ -77,25 +77,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 5.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 2.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 1.5
             },
             {
               "stat_id": 17,
@@ -117,12 +117,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -5.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 3.9000000000000004
         },
         {
           "player_id": 10455,
@@ -134,33 +134,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 8.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 1.2
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 7.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
@@ -174,12 +174,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -4.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 18.7
         },
         {
           "player_id": 6411,
@@ -239,50 +239,50 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6558,
-          "player_key": "466.p.6558",
-          "name": "Alperen Sengun",
-          "roster_position": "F",
+          "player_id": 6693,
+          "player_key": "466.p.6693",
+          "name": "Jabari Smith Jr.",
+          "roster_position": "PF",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 15.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 15.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 7.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 8.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 1.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
@@ -293,7 +293,64 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 30.9
+        },
+        {
+          "player_id": 6558,
+          "player_key": "466.p.6558",
+          "name": "Alperen Sengun",
+          "roster_position": "F",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 13.0,
+              "modifier": 1.0,
+              "points": 13.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 2.0,
+              "modifier": 1.2,
+              "points": 2.4
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 7.0,
+              "modifier": 1.5,
+              "points": 10.5
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 3.0,
+              "modifier": 3.0,
+              "points": 9.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 2.0,
+              "modifier": -1.0,
+              "points": -2.0
+            }
+          ],
+          "fantasy_points": 35.9
         },
         {
           "player_id": 6691,
@@ -305,115 +362,58 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 30.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 30.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -3.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 48.0
         },
         {
           "player_id": 5318,
           "player_key": "466.p.5318",
           "name": "Julius Randle",
           "roster_position": "C",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6253,
-          "player_key": "466.p.6253",
-          "name": "Naz Reid",
-          "roster_position": "Util",
           "stats": [
             {
               "stat_id": 12,
@@ -527,39 +527,39 @@
           "player_id": 6044,
           "player_key": "466.p.6044",
           "name": "Jalen Brunson",
-          "roster_position": "BN",
+          "roster_position": "Util",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 33.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 33.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 7.199999999999999
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
@@ -573,17 +573,17 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -6.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 52.2
         },
         {
-          "player_id": 6693,
-          "player_key": "466.p.6693",
-          "name": "Jabari Smith Jr.",
+          "player_id": 6253,
+          "player_key": "466.p.6253",
+          "name": "Naz Reid",
           "roster_position": "BN",
           "stats": [
             {
@@ -921,291 +921,6 @@
             }
           ],
           "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6791,
-          "player_key": "466.p.6791",
-          "name": "Dominick Barlow",
-          "roster_position": null,
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5647,
-          "player_key": "466.p.5647",
-          "name": "Guerschon Yabusele",
-          "roster_position": null,
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6015,
-          "player_key": "466.p.6015",
-          "name": "Jaren Jackson Jr.",
-          "roster_position": null,
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6707,
-          "player_key": "466.p.6707",
-          "name": "Tari Eason",
-          "roster_position": null,
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5959,
-          "player_key": "466.p.5959",
-          "name": "Marvin Bagley III",
-          "roster_position": null,
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
         }
       ]
     },
@@ -1224,52 +939,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 28.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 28.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 4.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 40.1
         },
         {
           "player_id": 5638,
@@ -1281,52 +996,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 20.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 20.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 9.6
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -4.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 46.6
         },
         {
           "player_id": 6395,
@@ -1338,33 +1053,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 11.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 11.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 7.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 8.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 7.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 10.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
@@ -1378,12 +1093,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 31.9
         },
         {
           "player_id": 5905,
@@ -1395,25 +1110,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 8.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 7.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 8.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 1.5
             },
             {
               "stat_id": 17,
@@ -1427,9 +1142,9 @@
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
@@ -1440,7 +1155,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 20.9
         },
         {
           "player_id": 4896,
@@ -1452,25 +1167,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 23.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 23.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 4.8
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 4.5
             },
             {
               "stat_id": 17,
@@ -1492,12 +1207,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 30.299999999999997
         },
         {
           "player_id": 4614,
@@ -1509,25 +1224,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 13.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 13.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 17,
@@ -1554,7 +1269,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 25.6
         },
         {
           "player_id": 6733,
@@ -1737,33 +1452,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 16.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 16.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 9.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 13.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 18,
@@ -1777,12 +1492,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 42.5
         },
         {
           "player_id": 5327,
@@ -2191,26 +1906,26 @@
       "team_name": "Cansu State Warriors",
       "players": [
         {
-          "player_id": 10107,
-          "player_key": "466.p.10107",
-          "name": "Cason Wallace",
+          "player_id": 5473,
+          "player_key": "466.p.5473",
+          "name": "Devin Booker",
           "roster_position": "PG",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 5.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 1.2
             },
             {
               "stat_id": 16,
@@ -2240,12 +1955,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 5.2
         },
         {
           "player_id": 10272,
@@ -2257,25 +1972,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 1.5
             },
             {
               "stat_id": 17,
@@ -2289,42 +2004,42 @@
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 16.1
         },
         {
-          "player_id": 10095,
-          "player_key": "466.p.10095",
-          "name": "Anthony Black",
+          "player_id": 10454,
+          "player_key": "466.p.10454",
+          "name": "VJ Edgecombe",
           "roster_position": "G",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 20.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 20.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 9.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 10.799999999999999
             },
             {
               "stat_id": 16,
@@ -2338,28 +2053,28 @@
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -6.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 30.799999999999997
         },
         {
           "player_id": 5602,
@@ -2371,25 +2086,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 23.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 23.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 15.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 18.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 13.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 19.5
             },
             {
               "stat_id": 17,
@@ -2411,12 +2126,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 58.5
         },
         {
           "player_id": 10104,
@@ -2428,33 +2143,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 17.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 17.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 4.8
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 7.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 10.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
@@ -2468,12 +2183,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -3.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 32.3
         },
         {
           "player_id": 6515,
@@ -2485,52 +2200,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 14.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 14.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 9.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 10.799999999999999
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 7.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -6.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 35.3
         },
         {
           "player_id": 4472,
@@ -2542,25 +2257,82 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 8.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 7.199999999999999
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 1.0,
+              "modifier": -1.0,
+              "points": -1.0
+            }
+          ],
+          "fantasy_points": 23.2
+        },
+        {
+          "player_id": 6571,
+          "player_key": "466.p.6571",
+          "name": "Day'Ron Sharpe",
+          "roster_position": "C",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 4.0,
+              "modifier": 1.0,
+              "points": 4.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 5.0,
+              "modifier": 1.2,
+              "points": 6.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 3.0,
+              "modifier": 1.5,
+              "points": 4.5
             },
             {
               "stat_id": 17,
@@ -2587,13 +2359,127 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 14.5
+        },
+        {
+          "player_id": 10095,
+          "player_key": "466.p.10095",
+          "name": "Anthony Black",
+          "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 20.0,
+              "modifier": 1.0,
+              "points": 20.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 3.0,
+              "modifier": 1.2,
+              "points": 3.5999999999999996
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 3.0,
+              "modifier": 1.5,
+              "points": 4.5
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 3.0,
+              "modifier": 3.0,
+              "points": 9.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 1.0,
+              "modifier": -1.0,
+              "points": -1.0
+            }
+          ],
+          "fantasy_points": 36.1
+        },
+        {
+          "player_id": 6513,
+          "player_key": "466.p.6513",
+          "name": "Jalen Green",
+          "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 26.0,
+              "modifier": 1.0,
+              "points": 26.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 3.0,
+              "modifier": 1.2,
+              "points": 3.5999999999999996
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 2.0,
+              "modifier": 1.5,
+              "points": 3.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 3.0,
+              "modifier": 3.0,
+              "points": 9.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 3.0,
+              "modifier": -1.0,
+              "points": -3.0
+            }
+          ],
+          "fantasy_points": 38.6
         },
         {
           "player_id": 6174,
           "player_key": "466.p.6174",
           "name": "P.J. Washington",
-          "roster_position": "C",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -2650,7 +2536,7 @@
           "player_id": 6355,
           "player_key": "466.p.6355",
           "name": "Anthony Edwards",
-          "roster_position": "Util",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -2704,10 +2590,10 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 10454,
-          "player_key": "466.p.10454",
-          "name": "VJ Edgecombe",
-          "roster_position": "Util",
+          "player_id": 10107,
+          "player_key": "466.p.10107",
+          "name": "Cason Wallace",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -2764,64 +2650,7 @@
           "player_id": 5769,
           "player_key": "466.p.5769",
           "name": "Lauri Markkanen",
-          "roster_position": "BN",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5473,
-          "player_key": "466.p.5473",
-          "name": "Devin Booker",
-          "roster_position": "BN",
+          "roster_position": "IL",
           "stats": [
             {
               "stat_id": 12,
@@ -2878,63 +2707,6 @@
           "player_id": 10287,
           "player_key": "466.p.10287",
           "name": "Zach Edey",
-          "roster_position": "IL",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6513,
-          "player_key": "466.p.6513",
-          "name": "Jalen Green",
           "roster_position": "IL",
           "stats": [
             {
@@ -3119,25 +2891,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 17.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 17.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 7.5
             },
             {
               "stat_id": 17,
@@ -3159,12 +2931,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 26.1
         },
         {
           "player_id": 6512,
@@ -3176,147 +2948,147 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 42.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 42.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 9.6
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 13.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 19.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -5.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 75.1
         },
         {
-          "player_id": 6165,
-          "player_key": "466.p.6165",
-          "name": "RJ Barrett",
+          "player_id": 6548,
+          "player_key": "466.p.6548",
+          "name": "Josh Giddey",
           "roster_position": "G",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 5.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 4.8
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 7.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -4.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 22.3
         },
         {
-          "player_id": 6441,
-          "player_key": "466.p.6441",
-          "name": "Isaiah Joe",
+          "player_id": 6165,
+          "player_key": "466.p.6165",
+          "name": "RJ Barrett",
           "roster_position": "SF",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 13.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 13.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 7.199999999999999
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 4.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
@@ -3335,37 +3107,37 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 27.7
         },
         {
-          "player_id": 6559,
-          "player_key": "466.p.6559",
-          "name": "Trey Murphy III",
+          "player_id": 6025,
+          "player_key": "466.p.6025",
+          "name": "Michael Porter Jr.",
           "roster_position": "PF",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 14.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 14.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 17,
@@ -3379,9 +3151,9 @@
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
@@ -3392,7 +3164,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 26.0
         },
         {
           "player_id": 6398,
@@ -3404,25 +3176,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 8.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 10.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 17,
@@ -3444,12 +3216,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 21.0
         },
         {
           "player_id": 6705,
@@ -3461,17 +3233,17 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 11.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 11.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 10.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 16,
@@ -3493,9 +3265,9 @@
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
@@ -3506,7 +3278,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 26.0
         },
         {
           "player_id": 4897,
@@ -3518,17 +3290,17 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 9.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
@@ -3542,17 +3314,17 @@
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
@@ -3563,7 +3335,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 21.0
         },
         {
           "player_id": 6516,
@@ -3575,25 +3347,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 9.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 4.5
             },
             {
               "stat_id": 17,
@@ -3607,6 +3379,63 @@
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 3.0,
+              "modifier": -1.0,
+              "points": -3.0
+            }
+          ],
+          "fantasy_points": 17.1
+        },
+        {
+          "player_id": 6418,
+          "player_key": "466.p.6418",
+          "name": "Payton Pritchard",
+          "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 26.0,
+              "modifier": 1.0,
+              "points": 26.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 6.0,
+              "modifier": 1.2,
+              "points": 7.199999999999999
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 7.0,
+              "modifier": 1.5,
+              "points": 10.5
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
               "value": 0.0,
               "modifier": 3.0,
               "points": 0.0
@@ -3615,18 +3444,75 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -4.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 42.7
         },
         {
-          "player_id": 6418,
-          "player_key": "466.p.6418",
-          "name": "Payton Pritchard",
-          "roster_position": "Util",
+          "player_id": 4390,
+          "player_key": "466.p.4390",
+          "name": "Russell Westbrook",
+          "roster_position": "BN",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 5.0,
+              "modifier": 1.0,
+              "points": 5.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 0.0,
+              "modifier": 1.2,
+              "points": 0.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 1.0,
+              "modifier": 1.5,
+              "points": 1.5
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 3.0,
+              "modifier": -1.0,
+              "points": -3.0
+            }
+          ],
+          "fantasy_points": 6.5
+        },
+        {
+          "player_id": 6441,
+          "player_key": "466.p.6441",
+          "name": "Isaiah Joe",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -3740,64 +3626,7 @@
           "player_id": 10465,
           "player_key": "466.p.10465",
           "name": "Cedric Coward",
-          "roster_position": "BN",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 4390,
-          "player_key": "466.p.4390",
-          "name": "Russell Westbrook",
-          "roster_position": "BN",
+          "roster_position": "IL",
           "stats": [
             {
               "stat_id": 12,
@@ -3908,10 +3737,10 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6548,
-          "player_key": "466.p.6548",
-          "name": "Josh Giddey",
-          "roster_position": "IL",
+          "player_id": 6559,
+          "player_key": "466.p.6559",
+          "name": "Trey Murphy III",
+          "roster_position": "IL+",
           "stats": [
             {
               "stat_id": 12,
@@ -4020,63 +3849,6 @@
             }
           ],
           "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6025,
-          "player_key": "466.p.6025",
-          "name": "Michael Porter Jr.",
-          "roster_position": "IL+",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
         }
       ]
     },
@@ -4095,52 +3867,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 9.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 7.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 8.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -3.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 32.4
         },
         {
           "player_id": 6422,
@@ -4152,41 +3924,41 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 17.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 17.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 4.8
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
@@ -4197,7 +3969,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 33.8
         },
         {
           "player_id": 5161,
@@ -4209,52 +3981,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 23.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 23.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 1.2
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 7.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 39.7
         },
         {
           "player_id": 6562,
@@ -4266,52 +4038,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 32.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 32.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 10.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 7.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -4.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 59.5
         },
         {
           "player_id": 4901,
@@ -4323,90 +4095,90 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 11.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 11.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 10.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 7.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 34.5
         },
         {
-          "player_id": 6420,
-          "player_key": "466.p.6420",
-          "name": "Jaden McDaniels",
+          "player_id": 10103,
+          "player_key": "466.p.10103",
+          "name": "Jarace Walker",
           "roster_position": "F",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 19.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 19.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 14.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 16.8
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 7.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 10.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
@@ -4420,12 +4192,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -5.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 47.3
         },
         {
           "player_id": 5352,
@@ -4437,25 +4209,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 22.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 22.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 17.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 20.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 17,
@@ -4477,12 +4249,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -6.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 45.4
         },
         {
           "player_id": 6163,
@@ -4542,9 +4314,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6028,
-          "player_key": "466.p.6028",
-          "name": "Donte DiVincenzo",
+          "player_id": 6401,
+          "player_key": "466.p.6401",
+          "name": "Deni Avdija",
           "roster_position": "Util",
           "stats": [
             {
@@ -4599,10 +4371,181 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6401,
-          "player_key": "466.p.6401",
-          "name": "Deni Avdija",
+          "player_id": 6707,
+          "player_key": "466.p.6707",
+          "name": "Tari Eason",
           "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 5.0,
+              "modifier": 1.0,
+              "points": 5.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 3.0,
+              "modifier": 1.2,
+              "points": 3.5999999999999996
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 0.0,
+              "modifier": 1.5,
+              "points": 0.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 3.0,
+              "modifier": 3.0,
+              "points": 9.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 1.0,
+              "modifier": -1.0,
+              "points": -1.0
+            }
+          ],
+          "fantasy_points": 16.6
+        },
+        {
+          "player_id": 6420,
+          "player_key": "466.p.6420",
+          "name": "Jaden McDaniels",
+          "roster_position": "BN",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 0.0,
+              "modifier": 1.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 0.0,
+              "modifier": 1.2,
+              "points": 0.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 0.0,
+              "modifier": 1.5,
+              "points": 0.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 0.0,
+              "modifier": -1.0,
+              "points": -0.0
+            }
+          ],
+          "fantasy_points": 0.0
+        },
+        {
+          "player_id": 6028,
+          "player_key": "466.p.6028",
+          "name": "Donte DiVincenzo",
+          "roster_position": "BN",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 0.0,
+              "modifier": 1.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 0.0,
+              "modifier": 1.2,
+              "points": 0.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 0.0,
+              "modifier": 1.5,
+              "points": 0.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 0.0,
+              "modifier": -1.0,
+              "points": -0.0
+            }
+          ],
+          "fantasy_points": 0.0
+        },
+        {
+          "player_id": 10282,
+          "player_key": "466.p.10282",
+          "name": "Isaiah Collier",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -4825,63 +4768,6 @@
             }
           ],
           "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5471,
-          "player_key": "466.p.5471",
-          "name": "Myles Turner",
-          "roster_position": null,
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
         }
       ]
     },
@@ -4900,52 +4786,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 10.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 10.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -3.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 40.0
         },
         {
           "player_id": 6417,
@@ -4957,33 +4843,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 14.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 14.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 2.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 4.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
@@ -4997,12 +4883,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 25.9
         },
         {
           "player_id": 10450,
@@ -5014,33 +4900,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 15.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 15.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
@@ -5054,12 +4940,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -5.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 25.0
         },
         {
           "player_id": 6032,
@@ -5119,42 +5005,42 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 5840,
-          "player_key": "466.p.5840",
-          "name": "Kyle Kuzma",
+          "player_id": 6745,
+          "player_key": "466.p.6745",
+          "name": "Gui Santos",
           "roster_position": "PF",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 17.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 17.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 7.199999999999999
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
@@ -5173,7 +5059,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 33.2
         },
         {
           "player_id": 5601,
@@ -5185,33 +5071,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 31.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 31.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 9.6
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 6.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 18,
@@ -5225,12 +5111,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 53.6
         },
         {
           "player_id": 6692,
@@ -5290,34 +5176,34 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 10070,
-          "player_key": "466.p.10070",
-          "name": "GG Jackson",
-          "roster_position": "Util",
+          "player_id": 6514,
+          "player_key": "466.p.6514",
+          "name": "Evan Mobley",
+          "roster_position": "C",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 10.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 10.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 9.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 10.799999999999999
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 17,
@@ -5331,25 +5217,82 @@
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 24.799999999999997
         },
         {
-          "player_id": 6514,
-          "player_key": "466.p.6514",
-          "name": "Evan Mobley",
+          "player_id": 6694,
+          "player_key": "466.p.6694",
+          "name": "Keegan Murray",
+          "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 15.0,
+              "modifier": 1.0,
+              "points": 15.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 8.0,
+              "modifier": 1.2,
+              "points": 9.6
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 2.0,
+              "modifier": 1.5,
+              "points": 3.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 3.0,
+              "modifier": -1.0,
+              "points": -3.0
+            }
+          ],
+          "fantasy_points": 27.6
+        },
+        {
+          "player_id": 6734,
+          "player_key": "466.p.6734",
+          "name": "Ryan Rollins",
           "roster_position": "Util",
           "stats": [
             {
@@ -5464,63 +5407,6 @@
           "player_id": 6014,
           "player_key": "466.p.6014",
           "name": "Luka Dončić",
-          "roster_position": "BN",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6499,
-          "player_key": "466.p.6499",
-          "name": "Naji Marshall",
           "roster_position": "BN",
           "stats": [
             {
@@ -5746,9 +5632,9 @@
           "fantasy_points": 0.0
         },
         {
-          "player_id": 6734,
-          "player_key": "466.p.6734",
-          "name": "Ryan Rollins",
+          "player_id": 6499,
+          "player_key": "466.p.6499",
+          "name": "Naji Marshall",
           "roster_position": "IL+",
           "stats": [
             {
@@ -5876,33 +5762,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 20.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 20.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 2.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 18,
@@ -5916,12 +5802,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 35.4
         },
         {
           "player_id": 6696,
@@ -5933,33 +5819,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 38.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 38.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 18,
@@ -5973,12 +5859,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -3.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 56.0
         },
         {
           "player_id": 4244,
@@ -5990,25 +5876,82 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 35.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 35.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 9.6
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 6.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 3.0,
+              "modifier": 3.0,
+              "points": 9.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 1.0,
+              "modifier": -1.0,
+              "points": -1.0
+            }
+          ],
+          "fantasy_points": 61.6
+        },
+        {
+          "player_id": 10265,
+          "player_key": "466.p.10265",
+          "name": "Matas Buzelis",
+          "roster_position": "SF",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 4.0,
+              "modifier": 1.0,
+              "points": 4.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 6.0,
+              "modifier": 1.2,
+              "points": 7.199999999999999
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 1.0,
+              "modifier": 1.5,
+              "points": 1.5
             },
             {
               "stat_id": 17,
@@ -6030,58 +5973,58 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -4.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 8.7
         },
         {
-          "player_id": 10265,
-          "player_key": "466.p.10265",
-          "name": "Matas Buzelis",
+          "player_id": 10078,
+          "player_key": "466.p.10078",
+          "name": "Tristan Vukcevic",
           "roster_position": "PF",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 12.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 15.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
@@ -6092,7 +6035,7 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 39.0
         },
         {
           "player_id": 6021,
@@ -6104,17 +6047,17 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 8.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
@@ -6128,9 +6071,9 @@
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
@@ -6144,12 +6087,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 13.6
         },
         {
           "player_id": 5835,
@@ -6161,41 +6104,41 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 15.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 15.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 10.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 1.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 19,
@@ -6206,127 +6149,184 @@
               "points": -0.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 37.5
         },
         {
-          "player_id": 5658,
-          "player_key": "466.p.5658",
-          "name": "Pascal Siakam",
+          "player_id": 10094,
+          "player_key": "466.p.10094",
+          "name": "Victor Wembanyama",
           "roster_position": "C",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 17.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 17.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 11.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 13.2
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 5.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 15.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 10094,
-          "player_key": "466.p.10094",
-          "name": "Victor Wembanyama",
-          "roster_position": "Util",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
+          "fantasy_points": 53.2
         },
         {
           "player_id": 6721,
           "player_key": "466.p.6721",
           "name": "Andrew Nembhard",
           "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 5.0,
+              "modifier": 1.0,
+              "points": 5.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 1.0,
+              "modifier": 1.2,
+              "points": 1.2
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 4.0,
+              "modifier": 1.5,
+              "points": 6.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 6.0,
+              "modifier": -1.0,
+              "points": -6.0
+            }
+          ],
+          "fantasy_points": 6.199999999999999
+        },
+        {
+          "player_id": 5843,
+          "player_key": "466.p.5843",
+          "name": "Josh Hart",
+          "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 11.0,
+              "modifier": 1.0,
+              "points": 11.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 4.0,
+              "modifier": 1.2,
+              "points": 4.8
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 3.0,
+              "modifier": 1.5,
+              "points": 4.5
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 1.0,
+              "modifier": -1.0,
+              "points": -1.0
+            }
+          ],
+          "fantasy_points": 19.3
+        },
+        {
+          "player_id": 5658,
+          "player_key": "466.p.5658",
+          "name": "Pascal Siakam",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -6440,120 +6440,6 @@
           "player_id": 6606,
           "player_key": "466.p.6606",
           "name": "Austin Reaves",
-          "roster_position": "BN",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5843,
-          "player_key": "466.p.5843",
-          "name": "Josh Hart",
-          "roster_position": "BN",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5836,
-          "player_key": "466.p.5836",
-          "name": "OG Anunoby",
           "roster_position": "BN",
           "stats": [
             {
@@ -6722,124 +6608,67 @@
           "fantasy_points": 0.0
         },
         {
+          "player_id": 5836,
+          "player_key": "466.p.5836",
+          "name": "OG Anunoby",
+          "roster_position": "IL+",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 8.0,
+              "modifier": 1.0,
+              "points": 8.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 0.0,
+              "modifier": 1.2,
+              "points": 0.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 0.0,
+              "modifier": 1.5,
+              "points": 0.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 4.0,
+              "modifier": 3.0,
+              "points": 12.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 0.0,
+              "modifier": -1.0,
+              "points": -0.0
+            }
+          ],
+          "fantasy_points": 20.0
+        },
+        {
           "player_id": 10100,
           "player_key": "466.p.10100",
           "name": "Keyonte George",
           "roster_position": "IL+",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6550,
-          "player_key": "466.p.6550",
-          "name": "Franz Wagner",
-          "roster_position": "IL+",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 10282,
-          "player_key": "466.p.10282",
-          "name": "Isaiah Collier",
-          "roster_position": null,
           "stats": [
             {
               "stat_id": 12,
@@ -6900,42 +6729,42 @@
       "team_name": "Batuball",
       "players": [
         {
-          "player_id": 4622,
-          "player_key": "466.p.4622",
-          "name": "Jrue Holiday",
+          "player_id": 6205,
+          "player_key": "466.p.6205",
+          "name": "Nickeil Alexander-Walker",
           "roster_position": "PG",
           "stats": [
             {
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 14.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 14.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 6.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 18,
@@ -6949,12 +6778,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -4.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 28.6
         },
         {
           "player_id": 6751,
@@ -6966,33 +6795,33 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 8.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 2.4
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 8.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 12.0
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 18,
@@ -7006,12 +6835,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 24.4
         },
         {
           "player_id": 6035,
@@ -7023,25 +6852,25 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 20.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 20.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 1.2
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 1.5
             },
             {
               "stat_id": 17,
@@ -7063,12 +6892,12 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 20.7
         },
         {
           "player_id": 5475,
@@ -7080,52 +6909,52 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 17.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 17.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 3.5999999999999996
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 1.5,
-              "points": 0.0
+              "points": 4.5
             },
             {
               "stat_id": 17,
               "display_name": "ST",
               "name": "Steals",
-              "value": 0.0,
+              "value": 3.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 9.0
             },
             {
               "stat_id": 18,
               "display_name": "BLK",
               "name": "Blocked Shots",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": 3.0,
-              "points": 0.0
+              "points": 3.0
             },
             {
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 2.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -2.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 35.1
         },
         {
           "player_id": 5832,
@@ -7137,25 +6966,253 @@
               "stat_id": 12,
               "display_name": "PTS",
               "name": "Points Scored",
-              "value": 0.0,
+              "value": 11.0,
               "modifier": 1.0,
-              "points": 0.0
+              "points": 11.0
             },
             {
               "stat_id": 15,
               "display_name": "REB",
               "name": "Total Rebounds",
-              "value": 0.0,
+              "value": 12.0,
               "modifier": 1.2,
-              "points": 0.0
+              "points": 14.399999999999999
             },
             {
               "stat_id": 16,
               "display_name": "AST",
               "name": "Assists",
-              "value": 0.0,
+              "value": 4.0,
               "modifier": 1.5,
+              "points": 6.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 3.0,
+              "modifier": 3.0,
+              "points": 9.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 2.0,
+              "modifier": -1.0,
+              "points": -2.0
+            }
+          ],
+          "fantasy_points": 41.4
+        },
+        {
+          "player_id": 6698,
+          "player_key": "466.p.6698",
+          "name": "Dyson Daniels",
+          "roster_position": "F",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 15.0,
+              "modifier": 1.0,
+              "points": 15.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 7.0,
+              "modifier": 1.2,
+              "points": 8.4
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 2.0,
+              "modifier": 1.5,
+              "points": 3.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
               "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 2.0,
+              "modifier": -1.0,
+              "points": -2.0
+            }
+          ],
+          "fantasy_points": 27.4
+        },
+        {
+          "player_id": 5432,
+          "player_key": "466.p.5432",
+          "name": "Karl-Anthony Towns",
+          "roster_position": "C",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 21.0,
+              "modifier": 1.0,
+              "points": 21.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 11.0,
+              "modifier": 1.2,
+              "points": 13.2
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 4.0,
+              "modifier": 1.5,
+              "points": 6.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 2.0,
+              "modifier": -1.0,
+              "points": -2.0
+            }
+          ],
+          "fantasy_points": 41.2
+        },
+        {
+          "player_id": 10496,
+          "player_key": "466.p.10496",
+          "name": "Maxime Raynaud",
+          "roster_position": "C",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 17.0,
+              "modifier": 1.0,
+              "points": 17.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 14.0,
+              "modifier": 1.2,
+              "points": 16.8
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 4.0,
+              "modifier": 1.5,
+              "points": 6.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 1.0,
+              "modifier": 3.0,
+              "points": 3.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 1.0,
+              "modifier": -1.0,
+              "points": -1.0
+            }
+          ],
+          "fantasy_points": 41.8
+        },
+        {
+          "player_id": 5767,
+          "player_key": "466.p.5767",
+          "name": "De'Aaron Fox",
+          "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 15.0,
+              "modifier": 1.0,
+              "points": 15.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 3.0,
+              "modifier": 1.2,
+              "points": 3.5999999999999996
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 8.0,
+              "modifier": 1.5,
+              "points": 12.0
             },
             {
               "stat_id": 17,
@@ -7177,18 +7234,75 @@
               "stat_id": 19,
               "display_name": "TO",
               "name": "Turnovers",
-              "value": 0.0,
+              "value": 1.0,
               "modifier": -1.0,
-              "points": -0.0
+              "points": -1.0
             }
           ],
-          "fantasy_points": 0.0
+          "fantasy_points": 29.6
         },
         {
-          "player_id": 5432,
-          "player_key": "466.p.5432",
-          "name": "Karl-Anthony Towns",
-          "roster_position": "F",
+          "player_id": 10096,
+          "player_key": "466.p.10096",
+          "name": "Ausar Thompson",
+          "roster_position": "Util",
+          "stats": [
+            {
+              "stat_id": 12,
+              "display_name": "PTS",
+              "name": "Points Scored",
+              "value": 10.0,
+              "modifier": 1.0,
+              "points": 10.0
+            },
+            {
+              "stat_id": 15,
+              "display_name": "REB",
+              "name": "Total Rebounds",
+              "value": 5.0,
+              "modifier": 1.2,
+              "points": 6.0
+            },
+            {
+              "stat_id": 16,
+              "display_name": "AST",
+              "name": "Assists",
+              "value": 4.0,
+              "modifier": 1.5,
+              "points": 6.0
+            },
+            {
+              "stat_id": 17,
+              "display_name": "ST",
+              "name": "Steals",
+              "value": 3.0,
+              "modifier": 3.0,
+              "points": 9.0
+            },
+            {
+              "stat_id": 18,
+              "display_name": "BLK",
+              "name": "Blocked Shots",
+              "value": 0.0,
+              "modifier": 3.0,
+              "points": 0.0
+            },
+            {
+              "stat_id": 19,
+              "display_name": "TO",
+              "name": "Turnovers",
+              "value": 1.0,
+              "modifier": -1.0,
+              "points": -1.0
+            }
+          ],
+          "fantasy_points": 30.0
+        },
+        {
+          "player_id": 4622,
+          "player_key": "466.p.4622",
+          "name": "Jrue Holiday",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -7245,64 +7359,7 @@
           "player_id": 5197,
           "player_key": "466.p.5197",
           "name": "Rudy Gobert",
-          "roster_position": "C",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5482,
-          "player_key": "466.p.5482",
-          "name": "Bobby Portis",
-          "roster_position": "C",
+          "roster_position": "BN",
           "stats": [
             {
               "stat_id": 12,
@@ -7359,234 +7416,6 @@
           "player_id": 5827,
           "player_key": "466.p.5827",
           "name": "Bam Adebayo",
-          "roster_position": "Util",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 5767,
-          "player_key": "466.p.5767",
-          "name": "De'Aaron Fox",
-          "roster_position": "Util",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 10096,
-          "player_key": "466.p.10096",
-          "name": "Ausar Thompson",
-          "roster_position": "BN",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6205,
-          "player_key": "466.p.6205",
-          "name": "Nickeil Alexander-Walker",
-          "roster_position": "BN",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 6698,
-          "player_key": "466.p.6698",
-          "name": "Dyson Daniels",
           "roster_position": "BN",
           "stats": [
             {
@@ -7759,63 +7588,6 @@
           "player_key": "466.p.6702",
           "name": "Jalen Williams",
           "roster_position": "IL+",
-          "stats": [
-            {
-              "stat_id": 12,
-              "display_name": "PTS",
-              "name": "Points Scored",
-              "value": 0.0,
-              "modifier": 1.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 15,
-              "display_name": "REB",
-              "name": "Total Rebounds",
-              "value": 0.0,
-              "modifier": 1.2,
-              "points": 0.0
-            },
-            {
-              "stat_id": 16,
-              "display_name": "AST",
-              "name": "Assists",
-              "value": 0.0,
-              "modifier": 1.5,
-              "points": 0.0
-            },
-            {
-              "stat_id": 17,
-              "display_name": "ST",
-              "name": "Steals",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 18,
-              "display_name": "BLK",
-              "name": "Blocked Shots",
-              "value": 0.0,
-              "modifier": 3.0,
-              "points": 0.0
-            },
-            {
-              "stat_id": 19,
-              "display_name": "TO",
-              "name": "Turnovers",
-              "value": 0.0,
-              "modifier": -1.0,
-              "points": -0.0
-            }
-          ],
-          "fantasy_points": 0.0
-        },
-        {
-          "player_id": 10092,
-          "player_key": "466.p.10092",
-          "name": "Jaime Jaquez Jr.",
-          "roster_position": null,
           "stats": [
             {
               "stat_id": 12,

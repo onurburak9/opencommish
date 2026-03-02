@@ -83,14 +83,10 @@ def main() -> None:
     stat_categories = game_info.stat_categories
     stat_id_to_name = {}
     for stat_info in stat_categories.stats:
-        # In yfpy 17.0.0+, stat_wrapper might be an object with .stat attribute,
-        # or it might be the stat object itself. Check both cases.
         stat_id_to_name[str(stat_info.stat_id)] = {
             "display_name": to_str(stat_info.display_name),
             "name": to_str(stat_info.name),
         }
-
-    print(stat_id_to_name)
 
     # Fetch leagues for the authenticated user and find target league.
     leagues = query.get_user_leagues_by_game_key(game_code)
@@ -124,6 +120,27 @@ def main() -> None:
     league_meta = query.get_league_metadata()
     current_week = league_meta.current_week
 
+    # Yahoo sometimes advances current_week a day before the scoring period starts.
+    # Look up the actual start date for current_week using game weeks data and
+    # fall back to current_week - 1 if target_date precedes it.
+    try:
+        game_weeks = query.get_game_weeks_by_game_id(game_info.game_id)
+        week_by_num = {int(to_str(gw.week)): gw for gw in game_weeks}
+        gw = week_by_num.get(current_week)
+        if gw:
+            week_start = date.fromisoformat(to_str(gw.start))
+            week_end = date.fromisoformat(to_str(gw.end))
+            if target_date < week_start:
+                print(f"⚠️  {today_str} is before Week {current_week} start ({week_start}), using Week {current_week - 1}")
+                current_week -= 1
+                gw = week_by_num.get(current_week)
+                if gw:
+                    week_start = date.fromisoformat(to_str(gw.start))
+                    week_end = date.fromisoformat(to_str(gw.end))
+            print(f"Week {current_week} scoring period: {week_start} → {week_end}")
+    except Exception as e:
+        print(f"⚠️  Could not verify week date range: {e}")
+
     print(f"Collecting stats for {today_str} (Week {current_week})")
 
     # Build a daily snapshot for all teams in the target league.
@@ -146,9 +163,10 @@ def main() -> None:
 
         print(f"Team [{idx}/{len(league_teams)}] {team_name}")
 
-        # Pull current-week roster to get player keys and positions.
-        roster = query.get_team_roster_by_week(team_id, chosen_week=current_week)
-        players = roster.players
+        # get_team_roster_player_info_by_date returns each player's selected_position
+        # and player_stats as-of the target date, so positions are correct for that day
+        # (not today's lineup). This is the correct method for historical backfill too.
+        players = query.get_team_roster_player_info_by_date(team_id, chosen_date=today_str)
 
         team_entry = {
             "team_id": team_id,
@@ -163,52 +181,36 @@ def main() -> None:
             player_key = to_str(player_info.player_key)
             player_roster_position = to_str(player_info.selected_position.position)
 
-            # Fetch per-player stats for today.
-            player_with_stats = query.get_player_stats_by_date(
-                player_key,
-                today_str
-            )
-
-            if not player_with_stats or not player_with_stats.player_stats:
-                team_entry["players"].append({
-                    "player_id": player_id,
-                    "player_key": player_key,
-                    "name": player_name,
-                    "roster_position": player_roster_position,
-                    "stats": [],
-                    "fantasy_points": 0.0,
-                })
-                continue
-
-            stat_items = player_with_stats.player_stats.stats
+            stat_items = player_info.player_stats.stats if player_info.player_stats else []
             fantasy_points = 0.0
             stats_output = []
 
-            if stat_items:
-                # Compute fantasy points using league stat modifiers.
-                for stat_info in stat_items:
-                    stat_id = int(stat_info.stat_id)
-                    stat_value = stat_info.value
-                    stat_data = stat_id_to_name.get(
-                        str(stat_id),
-                        {"display_name": f"Stat {stat_id}", "name": f"Stat {stat_id}"},
-                    )
-                    modifier = stat_modifiers.get(stat_id, 0.0)
-                    stat_points = stat_value * modifier
-                    fantasy_points += stat_points
-                    stats_output.append({
-                        "stat_id": stat_id,
-                        "display_name": to_str(stat_data["display_name"]),
-                        "name": to_str(stat_data["name"]),
-                        "value": stat_value,
-                        "modifier": modifier,
-                        "points": stat_points,
-                    })
+            for stat_info in stat_items:
+                stat_id = int(stat_info.stat_id)
+                stat_value = stat_info.value
+                stat_data = stat_id_to_name.get(
+                    str(stat_id),
+                    {"display_name": f"Stat {stat_id}", "name": f"Stat {stat_id}"},
+                )
+                modifier = stat_modifiers.get(stat_id, 0.0)
+                stat_points = stat_value * modifier
+                fantasy_points += stat_points
+                stats_output.append({
+                    "stat_id": stat_id,
+                    "display_name": to_str(stat_data["display_name"]),
+                    "name": to_str(stat_data["name"]),
+                    "value": stat_value,
+                    "modifier": modifier,
+                    "points": stat_points,
+                })
+
+            nba_team = to_str(getattr(player_info, 'editorial_team_abbr', '') or '')
 
             team_entry["players"].append({
                 "player_id": player_id,
                 "player_key": player_key,
                 "name": player_name,
+                "nba_team": nba_team,
                 "roster_position": player_roster_position,
                 "stats": stats_output,
                 "fantasy_points": fantasy_points,
