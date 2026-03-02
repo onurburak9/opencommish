@@ -37,6 +37,7 @@ jobs:
           YAHOO_TOKEN_TIME: ${{ secrets.YAHOO_TOKEN_TIME }}
           YAHOO_TOKEN_TYPE: bearer
           YAHOO_GUID: None
+          BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
         run: |
           DATE=$(TZ='America/Los_Angeles' date +'%Y-%m-%d')
           python3 cron/fetch_daily_stats.py "${DATE}"

@@ -8,12 +8,29 @@ Runs via GitHub Actions cron job at 11:30 PM PST daily.
 import os
 import sys
 import json
+import requests
 from pathlib import Path
 from datetime import datetime, date
 from zoneinfo import ZoneInfo
 
 # Third-party helper for Yahoo API client.
 from yfpy.query import YahooFantasySportsQuery, Team, League
+
+
+def load_env_file() -> None:
+    """Load .env file from project root into os.environ if running locally."""
+    env_path = Path(__file__).parent.parent / ".env"
+    if not env_path.exists():
+        return
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, _, value = line.partition('=')
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            os.environ.setdefault(key, value)
 
 
 def to_str(value):
@@ -23,11 +40,48 @@ def to_str(value):
     return value
 
 
+def fetch_nba_opponent_map(date_str: str) -> dict:
+    """Return {team_abbr: opponent_abbr} for every NBA game on the given date.
+
+    Uses the BallDontLie API. If the call fails, returns an empty dict so the
+    rest of the fetch continues without opponent data.
+    """
+    api_key = os.getenv("BALLDONTLIE_API_KEY", "")
+    if not api_key:
+        print("⚠️  BALLDONTLIE_API_KEY not set, skipping opponent lookup")
+        return {}
+
+    try:
+        resp = requests.get(
+            "https://api.balldontlie.io/v1/games",
+            params={"dates[]": date_str, "per_page": 100},
+            headers={"Authorization": api_key},
+            timeout=10,
+        )
+        resp.raise_for_status()
+        games = resp.json().get("data", [])
+    except Exception as e:
+        print(f"⚠️  BallDontLie request failed: {e}")
+        return {}
+
+    opponent_map = {}
+    for game in games:
+        home = game["home_team"]["abbreviation"]
+        away = game["visitor_team"]["abbreviation"]
+        opponent_map[home] = away
+        opponent_map[away] = home
+
+    print(f"✅ BallDontLie: {len(games)} games on {date_str}, {len(opponent_map)} teams with opponents")
+    return opponent_map
+
+
 def main() -> None:
     # Header output so the script's purpose is clear in the terminal.
     print("=" * 80)
     print("DAILY FANTASY STATS COLLECTION")
     print("=" * 80)
+
+    load_env_file()
 
     # Allow passing a specific date via CLI arg (YYYY-MM-DD), defaulting to today PST.
     if len(sys.argv) > 1:
@@ -154,6 +208,9 @@ def main() -> None:
         "teams": [],
     }
 
+    # Fetch NBA game schedule for today so we can record each player's opponent.
+    opponent_map = fetch_nba_opponent_map(today_str)
+
     print(f"Processing {len(league_teams)} teams...")
 
     for idx, team_info in enumerate(league_teams, 1):
@@ -205,12 +262,14 @@ def main() -> None:
                 })
 
             nba_team = to_str(getattr(player_info, 'editorial_team_abbr', '') or '')
+            opponent = opponent_map.get(nba_team, '')
 
             team_entry["players"].append({
                 "player_id": player_id,
                 "player_key": player_key,
                 "name": player_name,
                 "nba_team": nba_team,
+                "opponent": opponent,
                 "roster_position": player_roster_position,
                 "stats": stats_output,
                 "fantasy_points": fantasy_points,
