@@ -7,8 +7,7 @@ on:
   workflow_dispatch:  # Allows manual trigger from GitHub UI
 
 permissions:
-  contents: write       # Required to push branches
-  pull-requests: write  # Required to create PRs
+  contents: write       # Required to push to main
 
 jobs:
   collect_stats:
@@ -42,16 +41,14 @@ jobs:
           DATE=$(TZ='America/Los_Angeles' date +'%Y-%m-%d')
           python3 cron/fetch_daily_stats.py "${DATE}"
 
-      - name: Commit and push to branch, create PR
+      - name: Commit and push to main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DATE=$(TZ='America/Los_Angeles' date +'%Y-%m-%d')
-          BRANCH="data/daily-stats-${DATE}"
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git checkout -b "${BRANCH}"
           git add data/daily_stats/*.json
 
           if git diff --staged --quiet; then
@@ -60,17 +57,7 @@ jobs:
           fi
 
           git commit -m "Daily stats: ${DATE}"
-          git push --force origin "${BRANCH}"
-
-          if ! gh pr view "${BRANCH}" --json state -q '.state' 2>/dev/null | grep -q "OPEN"; then
-            gh pr create \
-              --title "Daily stats: ${DATE}" \
-              --body "Automated daily stats collection for ${DATE}." \
-              --base main \
-              --head "${BRANCH}"
-          else
-            echo "PR already exists for ${BRANCH}, skipping PR creation."
-          fi
+          git push origin main
 
       - name: Notify on success
         if: success()
