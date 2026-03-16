@@ -1,0 +1,58 @@
+name: Kimi K2.5 AI Assistant
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
+  pull_request:
+    types: [opened, edited]
+  pull_request_review_comment:
+    types: [created, edited]
+
+jobs:
+  kimi-assist:
+    runs-on: ubuntu-latest
+    name: Kimi K2.5 AI Assistant
+    # Only run if @kimi is mentioned in the issue/comment
+    if: |
+      contains(github.event.issue.body || github.event.comment.body || github.event.pull_request.body || github.event.comment.body, '@kimi') ||
+      contains(github.event.issue.body || github.event.comment.body || github.event.pull_request.body || github.event.comment.body, '@Kimi')
+    
+    permissions:
+      contents: read      # Read codebase
+      issues: write       # Comment on issues
+      pull-requests: write # Comment on PRs and create PRs
+      actions: read       # Read workflow info
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for context
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests PyGithub
+
+      - name: Process Kimi Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+          OPENCLAW_GATEWAY_URL: ${{ secrets.OPENCLAW_GATEWAY_URL }}
+          OPENCLAW_GATEWAY_TOKEN: ${{ secrets.OPENCLAW_GATEWAY_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+          ISSUE_BODY: ${{ github.event.issue.body || github.event.comment.body || github.event.pull_request.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          EVENT_TYPE: ${{ github.event_name }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          python .github/scripts/kimi_handler.py
