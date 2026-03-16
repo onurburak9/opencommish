@@ -1,8 +1,15 @@
+"""
+Pytest fixtures for integration tests.
+
+Starts Streamlit server for Playwright browser tests.
+"""
+
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 import subprocess
 import time
 import socket
+from pathlib import Path
 
 
 def wait_for_port(host: str, port: int, timeout: float = 60.0) -> bool:
@@ -17,9 +24,21 @@ def wait_for_port(host: str, port: int, timeout: float = 60.0) -> bool:
     return False
 
 
+def check_data_available() -> bool:
+    """Check if required data files exist."""
+    project_root = Path(__file__).parent.parent.parent
+    daily_stats_dir = project_root / "data" / "daily_stats"
+    files = list(daily_stats_dir.glob("league_*.json"))
+    return len(files) > 0
+
+
 @pytest.fixture(scope="session")
 def streamlit_server():
     """Start Streamlit server for testing."""
+    # Check if data is available
+    if not check_data_available():
+        pytest.skip("No data files available - skipping integration tests")
+    
     # Start Streamlit in background
     process = subprocess.Popen(
         ["streamlit", "run", "dashboard/app.py", "--server.port=8501", "--server.headless=true"],

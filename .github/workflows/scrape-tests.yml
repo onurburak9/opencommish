@@ -31,13 +31,12 @@ jobs:
           pytest tests/unit/ -v
 
   # Validation tests require Yahoo API credentials and existing data
-  # Run conditionally only when secrets are available
+  # Run conditionally only on main repo (not forks) and not on PRs from forks
   validation-tests:
     runs-on: ubuntu-latest
     name: Projected Stats Validation
     needs: unit-tests
-    # Only run if Yahoo secrets are available (not on forks without secrets)
-    if: github.repository == 'onurburak9/opencommish' && github.event_name != 'pull_request'
+    if: github.repository == 'onurburak9/opencommish' && github.event_name == 'push'
     
     steps:
       - name: Checkout repository
