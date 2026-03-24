@@ -15,6 +15,7 @@ OpenCommish is a comprehensive analytics platform for Yahoo NBA Fantasy Basketba
 ### 📊 Data Collection (Automated)
 - **Daily Stats**: Automatically fetches player stats every day at 11:30 PM PST
 - **Projected Stats**: Collects Yahoo's projected stats daily at 12:00 PM PST
+- **Yesterday's Game Analysis**: Daily performance breakdown with top/worst performers
 - **GitHub Actions**: Serverless automation - no server needed!
 - **Historical Data**: 20+ days of data collected and stored
 
@@ -40,6 +41,12 @@ OpenCommish is a comprehensive analytics platform for Yahoo NBA Fantasy Basketba
 - **Integration Tests**: Playwright browser automation tests
 - **Data Validation**: Compare scraped vs API data for accuracy
 - **Unit Tests**: Schema validation and calculation verification
+
+### 🏆 Yesterday's Game Analysis
+- **Top 5 Overall**: Best fantasy performers across all teams
+- **Team Breakdowns**: Best and worst performers per fantasy team
+- **Team Totals**: Combined fantasy points per team for the day
+- **Daily Insights**: Quick view of who crushed it and who disappointed
 
 ### 🔮 Coming Soon
 - FastAPI Backend with REST endpoints
@@ -118,6 +125,26 @@ pip install -r requirements.txt
 jupyter notebook analysis.ipynb
 ```
 
+### 6. Run Yesterday's Game Analysis
+
+Analyze yesterday's fantasy performance:
+
+```bash
+# Analyze yesterday (default)
+python cron/analyze_yesterday_games.py
+
+# Analyze specific date
+python cron/analyze_yesterday_games.py 2026-03-07
+```
+
+This script outputs:
+- **Top 5 Overall**: Best fantasy performers across all teams
+- **Best 2 per Team**: Top performers for each fantasy team
+- **Worst 2 per Team**: Bottom performers for each fantasy team
+- **Team Totals**: Combined fantasy points per team
+
+Results are saved to `data/analysis/yesterday_analysis_YYYY-MM-DD.json`.
+
 ## 📁 Project Structure
 
 ```
@@ -125,12 +152,14 @@ opencommish/
 ├── 📁 .github/workflows/       # GitHub Actions automation
 │   ├── daily_stats.yml         # Daily data collection
 │   ├── projected_stats.yml     # Projected stats collection
+│   ├── yesterday_analysis.yml  # Daily performance analysis
 │   ├── integration-tests.yml   # Docker + Playwright tests
 │   └── scrape-tests.yml        # Data validation tests
 ├── 📁 cron/                    # Data collection scripts
 │   ├── fetch_daily_stats.py    # Daily stats fetcher (API)
 │   ├── fetch_projected_stats.py    # Projected stats scraper (UI)
 │   ├── fetch_projected_stats_api.py # Projected stats fetcher (API)
+│   ├── analyze_yesterday_games.py   # Yesterday's performance analysis
 │   ├── validate_projected_stats.py  # Data validation tool
 │   └── VALIDATION.md           # Validation documentation
 ├── 📁 dashboard/               # Streamlit web app
