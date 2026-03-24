@@ -283,7 +283,12 @@ def fetch_matchup_scores(target_date: date, query: YahooFantasySportsQuery | Non
             # Get teams in this matchup
             teams_data = []
             for team in matchup.teams:
-                team_points = float(to_str(getattr(team, 'team_points', {}).get('total', 0) if hasattr(team, 'team_points') else 0))
+                # team_points is a TeamPoints object, not a dict
+                team_points_obj = getattr(team, 'team_points', None)
+                if team_points_obj and hasattr(team_points_obj, 'total'):
+                    team_points = float(team_points_obj.total)
+                else:
+                    team_points = 0.0
                 teams_data.append({
                     "team_name": to_str(team.name),
                     "team_key": to_str(team.team_key),
