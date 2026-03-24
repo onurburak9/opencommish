@@ -73,7 +73,7 @@
           "player_id": 6569,
           "player_key": "466.p.6569",
           "name": "Cam Thomas",
-          "nba_team": "MIL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "SG",
           "stats": [
@@ -132,7 +132,7 @@
           "player_id": 10288,
           "player_key": "466.p.10288",
           "name": "Reed Sheppard",
-          "nba_team": "HOU",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "G",
           "stats": [
@@ -191,7 +191,7 @@
           "player_id": 10462,
           "player_key": "466.p.10462",
           "name": "Ace Bailey",
-          "nba_team": "UTA",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "SF",
           "stats": [
@@ -250,7 +250,7 @@
           "player_id": 6558,
           "player_key": "466.p.6558",
           "name": "Alperen Sengun",
-          "nba_team": "HOU",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "PF",
           "stats": [
@@ -781,7 +781,7 @@
           "player_id": 6693,
           "player_key": "466.p.6693",
           "name": "Jabari Smith Jr.",
-          "nba_team": "HOU",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL",
           "stats": [
@@ -840,8 +840,8 @@
           "player_id": 10468,
           "player_key": "466.p.10468",
           "name": "Cooper Flagg",
-          "nba_team": "DAL",
-          "opponent": "CHA",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -899,8 +899,8 @@
           "player_id": 6169,
           "player_key": "466.p.6169",
           "name": "Coby White",
-          "nba_team": "CHA",
-          "opponent": "DAL",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -958,8 +958,8 @@
           "player_id": 6572,
           "player_key": "466.p.6572",
           "name": "Santi Aldama",
-          "nba_team": "MEM",
-          "opponent": "MIN",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -1083,7 +1083,7 @@
           "player_id": 5638,
           "player_key": "466.p.5638",
           "name": "Jamal Murray",
-          "nba_team": "DEN",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "SG",
           "stats": [
@@ -1260,7 +1260,7 @@
           "player_id": 4896,
           "player_key": "466.p.4896",
           "name": "Kawhi Leonard",
-          "nba_team": "LAC",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "PF",
           "stats": [
@@ -1496,7 +1496,7 @@
           "player_id": 10285,
           "player_key": "466.p.10285",
           "name": "Donovan Clingan",
-          "nba_team": "POR",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "Util",
           "stats": [
@@ -1614,7 +1614,7 @@
           "player_id": 5327,
           "player_key": "466.p.5327",
           "name": "Jusuf Nurkić",
-          "nba_team": "UTA",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -1673,8 +1673,8 @@
           "player_id": 6022,
           "player_key": "466.p.6022",
           "name": "Shai Gilgeous-Alexander",
-          "nba_team": "OKC",
-          "opponent": "CHI",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "BN",
           "stats": [
             {
@@ -1850,8 +1850,8 @@
           "player_id": 5856,
           "player_key": "466.p.5856",
           "name": "Isaiah Hartenstein",
-          "nba_team": "OKC",
-          "opponent": "CHI",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -1909,8 +1909,8 @@
           "player_id": 6216,
           "player_key": "466.p.6216",
           "name": "Jordan Poole",
-          "nba_team": "NOP",
-          "opponent": "LAL",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -1968,7 +1968,7 @@
           "player_id": 5295,
           "player_key": "466.p.5295",
           "name": "Aaron Gordon",
-          "nba_team": "DEN",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL+",
           "stats": [
@@ -2624,7 +2624,7 @@
           "player_id": 6655,
           "player_key": "466.p.6655",
           "name": "Micah Potter",
-          "nba_team": "IND",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -2742,7 +2742,7 @@
           "player_id": 5602,
           "player_key": "466.p.5602",
           "name": "Jaylen Brown",
-          "nba_team": "BOS",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -2801,8 +2801,8 @@
           "player_id": 10287,
           "player_key": "466.p.10287",
           "name": "Zach Edey",
-          "nba_team": "MEM",
-          "opponent": "MIN",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -2860,7 +2860,7 @@
           "player_id": 5769,
           "player_key": "466.p.5769",
           "name": "Lauri Markkanen",
-          "nba_team": "UTA",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL",
           "stats": [
@@ -2919,8 +2919,8 @@
           "player_id": 10095,
           "player_key": "466.p.10095",
           "name": "Anthony Black",
-          "nba_team": "ORL",
-          "opponent": "WAS",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -2978,8 +2978,8 @@
           "player_id": 10272,
           "player_key": "466.p.10272",
           "name": "Kyshawn George",
-          "nba_team": "WAS",
-          "opponent": "ORL",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -3044,8 +3044,8 @@
           "player_id": 5826,
           "player_key": "466.p.5826",
           "name": "Donovan Mitchell",
-          "nba_team": "CLE",
-          "opponent": "DET",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "PG",
           "stats": [
             {
@@ -3339,7 +3339,7 @@
           "player_id": 6398,
           "player_key": "466.p.6398",
           "name": "Onyeka Okongwu",
-          "nba_team": "ATL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "F",
           "stats": [
@@ -3457,7 +3457,7 @@
           "player_id": 4897,
           "player_key": "466.p.4897",
           "name": "Nikola Vučević",
-          "nba_team": "BOS",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "C",
           "stats": [
@@ -3575,7 +3575,7 @@
           "player_id": 6418,
           "player_key": "466.p.6418",
           "name": "Payton Pritchard",
-          "nba_team": "BOS",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "Util",
           "stats": [
@@ -3811,8 +3811,8 @@
           "player_id": 5007,
           "player_key": "466.p.5007",
           "name": "Anthony Davis",
-          "nba_team": "WAS",
-          "opponent": "ORL",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -3988,8 +3988,8 @@
           "player_id": 5294,
           "player_key": "466.p.5294",
           "name": "Joel Embiid",
-          "nba_team": "PHI",
-          "opponent": "SAS",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -4349,7 +4349,7 @@
           "player_id": 10108,
           "player_key": "466.p.10108",
           "name": "Amen Thompson",
-          "nba_team": "HOU",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "F",
           "stats": [
@@ -4408,7 +4408,7 @@
           "player_id": 5352,
           "player_key": "466.p.5352",
           "name": "Nikola Jokić",
-          "nba_team": "DEN",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "C",
           "stats": [
@@ -4467,7 +4467,7 @@
           "player_id": 5471,
           "player_key": "466.p.5471",
           "name": "Myles Turner",
-          "nba_team": "MIL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "C",
           "stats": [
@@ -4585,7 +4585,7 @@
           "player_id": 6562,
           "player_key": "466.p.6562",
           "name": "Jalen Johnson",
-          "nba_team": "ATL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "Util",
           "stats": [
@@ -4644,7 +4644,7 @@
           "player_id": 10115,
           "player_key": "466.p.10115",
           "name": "Brandin Podziemski",
-          "nba_team": "GSW",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -4703,7 +4703,7 @@
           "player_id": 5161,
           "player_key": "466.p.5161",
           "name": "CJ McCollum",
-          "nba_team": "ATL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -4762,7 +4762,7 @@
           "player_id": 10103,
           "player_key": "466.p.10103",
           "name": "Jarace Walker",
-          "nba_team": "IND",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -4821,8 +4821,8 @@
           "player_id": 10294,
           "player_key": "466.p.10294",
           "name": "Alex Sarr",
-          "nba_team": "WAS",
-          "opponent": "ORL",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -4939,7 +4939,7 @@
           "player_id": 6401,
           "player_key": "466.p.6401",
           "name": "Deni Avdija",
-          "nba_team": "POR",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL+",
           "stats": [
@@ -5064,7 +5064,7 @@
           "player_id": 6218,
           "player_key": "466.p.6218",
           "name": "Kevin Porter Jr.",
-          "nba_team": "MIL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "SG",
           "stats": [
@@ -5182,7 +5182,7 @@
           "player_id": 6549,
           "player_key": "466.p.6549",
           "name": "Jonathan Kuminga",
-          "nba_team": "ATL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "SF",
           "stats": [
@@ -5595,7 +5595,7 @@
           "player_id": 5842,
           "player_key": "466.p.5842",
           "name": "Derrick White",
-          "nba_team": "BOS",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -5654,7 +5654,7 @@
           "player_id": 6745,
           "player_key": "466.p.6745",
           "name": "Gui Santos",
-          "nba_team": "GSW",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -5713,7 +5713,7 @@
           "player_id": 6734,
           "player_key": "466.p.6734",
           "name": "Ryan Rollins",
-          "nba_team": "MIL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -5772,7 +5772,7 @@
           "player_id": 5765,
           "player_key": "466.p.5765",
           "name": "Jayson Tatum",
-          "nba_team": "BOS",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL",
           "stats": [
@@ -5831,8 +5831,8 @@
           "player_id": 5506,
           "player_key": "466.p.5506",
           "name": "Norman Powell",
-          "nba_team": "MIA",
-          "opponent": "BKN",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -5890,8 +5890,8 @@
           "player_id": 6499,
           "player_key": "466.p.6499",
           "name": "Naji Marshall",
-          "nba_team": "DAL",
-          "opponent": "CHA",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -6487,7 +6487,7 @@
           "player_id": 10100,
           "player_key": "466.p.10100",
           "name": "Keyonte George",
-          "nba_team": "UTA",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "Util",
           "stats": [
@@ -6546,7 +6546,7 @@
           "player_id": 4244,
           "player_key": "466.p.4244",
           "name": "Kevin Durant",
-          "nba_team": "HOU",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -6605,7 +6605,7 @@
           "player_id": 6696,
           "player_key": "466.p.6696",
           "name": "Bennedict Mathurin",
-          "nba_team": "LAC",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -6664,7 +6664,7 @@
           "player_id": 6721,
           "player_key": "466.p.6721",
           "name": "Andrew Nembhard",
-          "nba_team": "IND",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -6723,8 +6723,8 @@
           "player_id": 6164,
           "player_key": "466.p.6164",
           "name": "Ja Morant",
-          "nba_team": "MEM",
-          "opponent": "MIN",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -6782,7 +6782,7 @@
           "player_id": 4612,
           "player_key": "466.p.4612",
           "name": "Stephen Curry",
-          "nba_team": "GSW",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL",
           "stats": [
@@ -6841,8 +6841,8 @@
           "player_id": 6016,
           "player_key": "466.p.6016",
           "name": "Trae Young",
-          "nba_team": "WAS",
-          "opponent": "ORL",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL+",
           "stats": [
             {
@@ -6900,7 +6900,7 @@
           "player_id": 5658,
           "player_key": "466.p.5658",
           "name": "Pascal Siakam",
-          "nba_team": "IND",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL+",
           "stats": [
@@ -6966,7 +6966,7 @@
           "player_id": 6167,
           "player_key": "466.p.6167",
           "name": "Darius Garland",
-          "nba_team": "LAC",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "PG",
           "stats": [
@@ -7025,7 +7025,7 @@
           "player_id": 6711,
           "player_key": "466.p.6711",
           "name": "Christian Braun",
-          "nba_team": "DEN",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "SG",
           "stats": [
@@ -7438,7 +7438,7 @@
           "player_id": 6698,
           "player_key": "466.p.6698",
           "name": "Dyson Daniels",
-          "nba_team": "ATL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "Util",
           "stats": [
@@ -7556,7 +7556,7 @@
           "player_id": 10315,
           "player_key": "466.p.10315",
           "name": "Kyle Filipowski",
-          "nba_team": "UTA",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -7615,7 +7615,7 @@
           "player_id": 5185,
           "player_key": "466.p.5185",
           "name": "Giannis Antetokounmpo",
-          "nba_team": "MIL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -7674,7 +7674,7 @@
           "player_id": 4622,
           "player_key": "466.p.4622",
           "name": "Jrue Holiday",
-          "nba_team": "POR",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "BN",
           "stats": [
@@ -7733,8 +7733,8 @@
           "player_id": 6702,
           "player_key": "466.p.6702",
           "name": "Jalen Williams",
-          "nba_team": "OKC",
-          "opponent": "CHI",
+          "nba_team": "",
+          "opponent": "",
           "roster_position": "IL",
           "stats": [
             {
@@ -7792,7 +7792,7 @@
           "player_id": 6205,
           "player_key": "466.p.6205",
           "name": "Nickeil Alexander-Walker",
-          "nba_team": "ATL",
+          "nba_team": "",
           "opponent": "",
           "roster_position": "IL+",
           "stats": [
