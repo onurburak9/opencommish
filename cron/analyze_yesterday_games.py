@@ -223,7 +223,88 @@ def fetch_yesterday_stats(target_date: date) -> dict:
     return daily_snapshot
 
 
-def analyze_yesterday_games(data: dict) -> dict:
+def fetch_matchup_scores(target_date: date, query: YahooFantasySportsQuery | None = None) -> list[dict] | None:
+    """Fetch matchup scores for the week containing target_date.
+    
+    If query is None, will create a new connection (requires env vars).
+    Returns list of matchups with team scores, or None if error.
+    """
+    from datetime import datetime
+    
+    try:
+        if query is None:
+            load_env_file()
+            
+            access_token_json = {
+                "access_token": os.getenv("YAHOO_ACCESS_TOKEN"),
+                "consumer_key": os.getenv("YAHOO_CONSUMER_KEY"),
+                "consumer_secret": os.getenv("YAHOO_CONSUMER_SECRET"),
+                "guid": os.getenv("YAHOO_GUID"),
+                "refresh_token": os.getenv("YAHOO_REFRESH_TOKEN"),
+                "token_time": float(os.getenv("YAHOO_TOKEN_TIME", "0")),
+                "token_type": os.getenv("YAHOO_TOKEN_TYPE", "bearer"),
+            }
+            
+            if not access_token_json["consumer_key"]:
+                return None
+            
+            query = YahooFantasySportsQuery(
+                league_id="93905",
+                game_code="nba",
+                game_id=None,
+                yahoo_access_token_json=access_token_json,
+            )
+        
+        # Get the week number for the target date
+        game_info = query.get_current_game_info()
+        game_weeks = query.get_game_weeks_by_game_id(game_info.game_id)
+        
+        target_week = None
+        for gw in game_weeks:
+            week_start = date.fromisoformat(to_str(gw.start))
+            week_end = date.fromisoformat(to_str(gw.end))
+            if week_start <= target_date <= week_end:
+                target_week = int(to_str(gw.week))
+                break
+        
+        if target_week is None:
+            print(f"⚠️ Could not find week for {target_date}")
+            return None
+        
+        # Fetch scoreboard for that week
+        scoreboard = query.get_league_scoreboard_by_week(target_week)
+        
+        matchups = []
+        for matchup in scoreboard.matchups:
+            # Get teams in this matchup
+            teams_data = []
+            for team in matchup.teams:
+                team_points = float(to_str(getattr(team, 'team_points', {}).get('total', 0) if hasattr(team, 'team_points') else 0))
+                teams_data.append({
+                    "team_name": to_str(team.name),
+                    "team_key": to_str(team.team_key),
+                    "points": team_points,
+                })
+            
+            if len(teams_data) == 2:
+                matchups.append({
+                    "matchup_id": matchup.matchup_id if hasattr(matchup, 'matchup_id') else None,
+                    "week": target_week,
+                    "team_1": teams_data[0],
+                    "team_2": teams_data[1],
+                    "winner": teams_data[0]["team_name"] if teams_data[0]["points"] > teams_data[1]["points"] 
+                              else teams_data[1]["team_name"] if teams_data[1]["points"] > teams_data[0]["points"] 
+                              else "Tie",
+                })
+        
+        return matchups
+    
+    except Exception as e:
+        print(f"⚠️ Could not fetch matchup scores: {e}")
+        return None
+
+
+def analyze_yesterday_games(data: dict, matchup_scores: list[dict] | None = None) -> dict:
     """Analyze yesterday's games and return performance metrics."""
     date_str = data["date"]
     league_name = data["league_name"]
@@ -287,10 +368,34 @@ def analyze_yesterday_games(data: dict) -> dict:
             }
             for t in team_totals_sorted
         ],
+        "matchups": matchup_scores if matchup_scores else [],
         "top_5_overall": [],
         "best_per_team": {},
         "worst_per_team": {},
     }
+    
+    # Print matchup scores if available
+    if matchup_scores:
+        print("🏀 WEEKLY MATCHUP SCORES")
+        print("-" * 80)
+        for matchup in matchup_scores:
+            t1 = matchup["team_1"]
+            t2 = matchup["team_2"]
+            winner = matchup["winner"]
+            
+            # Determine winner indicator
+            if winner == "Tie":
+                result = "TIE"
+            elif winner == t1["team_name"]:
+                result = f"{t1['team_name']} WINS"
+            else:
+                result = f"{t2['team_name']} WINS"
+            
+            print(f"  {t1['team_name']}: {t1['points']:.2f}")
+            print(f"  {t2['team_name']}: {t2['points']:.2f}")
+            print(f"  → {result}")
+            print()
+        print()
     
     # Top 5 best performers overall
     print("🏆 TOP 5 BEST PERFORMERS OVERALL")
@@ -404,8 +509,16 @@ def main() -> None:
             print(f"❌ Error fetching data: {e}")
             sys.exit(1)
     
+    # Fetch matchup scores if we don't have them already
+    matchup_scores = None
+    if data and "week" in data:
+        try:
+            matchup_scores = fetch_matchup_scores(target_date)
+        except Exception as e:
+            print(f"⚠️ Could not fetch matchup scores: {e}")
+    
     # Run analysis
-    results = analyze_yesterday_games(data)
+    results = analyze_yesterday_games(data, matchup_scores)
     
     # Save results to file
     output_dir = Path(__file__).parent.parent / "data" / "analysis"

@@ -46,6 +46,7 @@ OpenCommish is a comprehensive analytics platform for Yahoo NBA Fantasy Basketba
 - **Top 5 Overall**: Best fantasy performers across all teams
 - **Team Breakdowns**: Best and worst performers per fantasy team
 - **Team Totals**: Combined fantasy points per team for the day
+- **Matchup Scores**: Weekly head-to-head scores and winners
 - **Daily Insights**: Quick view of who crushed it and who disappointed
 
 ### 🔮 Coming Soon
@@ -142,6 +143,7 @@ This script outputs:
 - **Best 2 per Team**: Top performers for each fantasy team
 - **Worst 2 per Team**: Bottom performers for each fantasy team
 - **Team Totals**: Combined fantasy points per team
+- **Matchup Scores**: Weekly head-to-head matchup results with scores
 
 Results are saved to `data/analysis/yesterday_analysis_YYYY-MM-DD.json`.
 
