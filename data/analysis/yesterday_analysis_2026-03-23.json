@@ -48,6 +48,38 @@
       "active_players": 6
     }
   ],
+  "matchups": [
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Ankara Tinercileri",
+        "team_key": "466.l.93905.t.1",
+        "points": 360.4
+      },
+      "team_2": {
+        "team_name": "Kilikya Gücü🧿",
+        "team_key": "466.l.93905.t.8",
+        "points": 296.4
+      },
+      "winner": "Ankara Tinercileri"
+    },
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Kerem Tuncerispor",
+        "team_key": "466.l.93905.t.6",
+        "points": 234.1
+      },
+      "team_2": {
+        "team_name": "Batuball",
+        "team_key": "466.l.93905.t.11",
+        "points": 246.3
+      },
+      "winner": "Batuball"
+    }
+  ],
   "top_5_overall": [
     {
       "rank": 1,
