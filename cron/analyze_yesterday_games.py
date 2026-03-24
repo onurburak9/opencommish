@@ -68,8 +68,11 @@ def load_daily_stats(target_date: date) -> dict | None:
     return None
 
 
-def fetch_yesterday_stats(target_date: date) -> dict:
-    """Fetch yesterday's stats from Yahoo API."""
+def fetch_yesterday_stats(target_date: date) -> tuple[dict, YahooFantasySportsQuery]:
+    """Fetch yesterday's stats from Yahoo API.
+    
+    Returns tuple of (daily_snapshot_data, query_object) so query can be reused.
+    """
     load_env_file()
     
     target_league_name = "teletabi ligi"
@@ -220,7 +223,7 @@ def fetch_yesterday_stats(target_date: date) -> dict:
         
         daily_snapshot["teams"].append(team_entry)
     
-    return daily_snapshot
+    return daily_snapshot, query
 
 
 def fetch_matchup_scores(target_date: date, query: YahooFantasySportsQuery | None = None) -> list[dict] | None:
@@ -237,15 +240,16 @@ def fetch_matchup_scores(target_date: date, query: YahooFantasySportsQuery | Non
             
             access_token_json = {
                 "access_token": os.getenv("YAHOO_ACCESS_TOKEN"),
-                "consumer_key": os.getenv("YAHOO_CONSUMER_KEY"),
-                "consumer_secret": os.getenv("YAHOO_CONSUMER_SECRET"),
+                "consumer_key": os.getenv("YAHOO_CLIENT_ID"),
+                "consumer_secret": os.getenv("YAHOO_CLIENT_SECRET"),
                 "guid": os.getenv("YAHOO_GUID"),
                 "refresh_token": os.getenv("YAHOO_REFRESH_TOKEN"),
                 "token_time": float(os.getenv("YAHOO_TOKEN_TIME", "0")),
                 "token_type": os.getenv("YAHOO_TOKEN_TYPE", "bearer"),
             }
             
-            if not access_token_json["consumer_key"]:
+            if not access_token_json["consumer_key"] or not access_token_json["consumer_secret"]:
+                print("⚠️ Missing Yahoo API credentials for matchup fetch")
                 return None
             
             query = YahooFantasySportsQuery(
@@ -499,12 +503,13 @@ def main() -> None:
     # Try to load existing data first
     data = load_daily_stats(target_date)
     
+    query = None
     if data:
         print(f"✅ Loaded existing data from data/daily_stats/league_93905_{date_str}.json")
     else:
         print(f"🔄 Data not found locally. Fetching from Yahoo API...")
         try:
-            data = fetch_yesterday_stats(target_date)
+            data, query = fetch_yesterday_stats(target_date)
         except Exception as e:
             print(f"❌ Error fetching data: {e}")
             sys.exit(1)
@@ -513,7 +518,7 @@ def main() -> None:
     matchup_scores = None
     if data and "week" in data:
         try:
-            matchup_scores = fetch_matchup_scores(target_date)
+            matchup_scores = fetch_matchup_scores(target_date, query)
         except Exception as e:
             print(f"⚠️ Could not fetch matchup scores: {e}")
     
