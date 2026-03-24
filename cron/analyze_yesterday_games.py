@@ -77,14 +77,14 @@ def fetch_yesterday_stats(target_date: date) -> dict:
     # Yahoo OAuth credentials
     access_token_json = {
         "access_token": os.getenv("YAHOO_ACCESS_TOKEN"),
-        "consumer_key": os.getenv("YAHOO_CONSUMER_KEY"),
-        "consumer_secret": os.getenv("YAHOO_CONSUMER_SECRET"),
+        "consumer_key": os.getenv("YAHOO_CLIENT_ID"),
+        "consumer_secret": os.getenv("YAHOO_CLIENT_SECRET"),
         "guid": os.getenv("YAHOO_GUID"),
         "refresh_token": os.getenv("YAHOO_REFRESH_TOKEN"),
         "token_time": float(os.getenv("YAHOO_TOKEN_TIME", "0")),
         "token_type": os.getenv("YAHOO_TOKEN_TYPE", "bearer"),
     }
-    
+
     if not access_token_json["consumer_key"] or not access_token_json["consumer_secret"]:
         raise ValueError("Missing Yahoo API credentials in environment variables")
     
