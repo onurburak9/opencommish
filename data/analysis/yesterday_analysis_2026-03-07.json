@@ -1,0 +1,353 @@
+{
+  "date": "2026-03-07",
+  "league_name": "teletabi ligi",
+  "summary": {
+    "total_teams": 8,
+    "total_players_with_stats": 42,
+    "date_analyzed": "2026-03-07"
+  },
+  "team_totals": [
+    {
+      "team_name": "Kerem Tuncerispor",
+      "total_fantasy_points": 241.2,
+      "active_players": 8
+    },
+    {
+      "team_name": "Batuball",
+      "total_fantasy_points": 233.6,
+      "active_players": 6
+    },
+    {
+      "team_name": "Ankara Tinercileri",
+      "total_fantasy_points": 198.5,
+      "active_players": 7
+    },
+    {
+      "team_name": "Cansu State Warriors",
+      "total_fantasy_points": 170.3,
+      "active_players": 6
+    },
+    {
+      "team_name": "Izmirin Boyozlari",
+      "total_fantasy_points": 167.3,
+      "active_players": 5
+    },
+    {
+      "team_name": "Adana Pigeons",
+      "total_fantasy_points": 158.6,
+      "active_players": 4
+    },
+    {
+      "team_name": "Kilikya G\u00fcc\u00fc\ud83e\uddff",
+      "total_fantasy_points": 127.2,
+      "active_players": 4
+    },
+    {
+      "team_name": "Kozyata\u011f\u0131 Korsanlar\u0131",
+      "total_fantasy_points": 68.9,
+      "active_players": 2
+    }
+  ],
+  "top_5_overall": [
+    {
+      "rank": 1,
+      "name": "Giannis Antetokounmpo",
+      "fantasy_team": "Batuball",
+      "nba_team": "MIL",
+      "fantasy_points": 59.8,
+      "roster_position": "PF"
+    },
+    {
+      "rank": 2,
+      "name": "Jalen Johnson",
+      "fantasy_team": "Kerem Tuncerispor",
+      "nba_team": "ATL",
+      "fantasy_points": 58.5,
+      "roster_position": "F"
+    },
+    {
+      "rank": 3,
+      "name": "Michael Porter Jr.",
+      "fantasy_team": "Izmirin Boyozlari",
+      "nba_team": "BKN",
+      "fantasy_points": 54.1,
+      "roster_position": "PF"
+    },
+    {
+      "rank": 4,
+      "name": "Anthony Edwards",
+      "fantasy_team": "Cansu State Warriors",
+      "nba_team": "MIN",
+      "fantasy_points": 52.6,
+      "roster_position": "PG"
+    },
+    {
+      "rank": 5,
+      "name": "Tyrese Maxey",
+      "fantasy_team": "Adana Pigeons",
+      "nba_team": "PHI",
+      "fantasy_points": 47.9,
+      "roster_position": "PG"
+    }
+  ],
+  "best_per_team": {
+    "Ankara Tinercileri": [
+      {
+        "rank": 1,
+        "name": "Ty Jerome",
+        "nba_team": "MEM",
+        "fantasy_points": 43.9,
+        "roster_position": "PG"
+      },
+      {
+        "rank": 2,
+        "name": "Paolo Banchero",
+        "nba_team": "ORL",
+        "fantasy_points": 42.5,
+        "roster_position": "C"
+      }
+    ],
+    "Adana Pigeons": [
+      {
+        "rank": 1,
+        "name": "Tyrese Maxey",
+        "nba_team": "PHI",
+        "fantasy_points": 47.9,
+        "roster_position": "PG"
+      },
+      {
+        "rank": 2,
+        "name": "Kawhi Leonard",
+        "nba_team": "LAC",
+        "fantasy_points": 43.0,
+        "roster_position": "PF"
+      }
+    ],
+    "Cansu State Warriors": [
+      {
+        "rank": 1,
+        "name": "Anthony Edwards",
+        "nba_team": "MIN",
+        "fantasy_points": 52.6,
+        "roster_position": "PG"
+      },
+      {
+        "rank": 2,
+        "name": "Jalen Duren",
+        "nba_team": "DET",
+        "fantasy_points": 47.8,
+        "roster_position": "C"
+      }
+    ],
+    "Izmirin Boyozlari": [
+      {
+        "rank": 1,
+        "name": "Michael Porter Jr.",
+        "nba_team": "BKN",
+        "fantasy_points": 54.1,
+        "roster_position": "PF"
+      },
+      {
+        "rank": 2,
+        "name": "Jalen Suggs",
+        "nba_team": "ORL",
+        "fantasy_points": 32.8,
+        "roster_position": "Util"
+      }
+    ],
+    "Kerem Tuncerispor": [
+      {
+        "rank": 1,
+        "name": "Jalen Johnson",
+        "nba_team": "ATL",
+        "fantasy_points": 58.5,
+        "roster_position": "F"
+      },
+      {
+        "rank": 2,
+        "name": "Desmond Bane",
+        "nba_team": "ORL",
+        "fantasy_points": 40.6,
+        "roster_position": "SG"
+      }
+    ],
+    "Kilikya G\u00fcc\u00fc\ud83e\uddff": [
+      {
+        "rank": 1,
+        "name": "Gui Santos",
+        "nba_team": "GSW",
+        "fantasy_points": 44.7,
+        "roster_position": "SF"
+      },
+      {
+        "rank": 2,
+        "name": "Ryan Rollins",
+        "nba_team": "MIL",
+        "fantasy_points": 43.2,
+        "roster_position": "PG"
+      }
+    ],
+    "Kozyata\u011f\u0131 Korsanlar\u0131": [
+      {
+        "rank": 1,
+        "name": "Bennedict Mathurin",
+        "nba_team": "LAC",
+        "fantasy_points": 38.5,
+        "roster_position": "G"
+      },
+      {
+        "rank": 2,
+        "name": "Keyonte George",
+        "nba_team": "UTA",
+        "fantasy_points": 30.4,
+        "roster_position": "PG"
+      }
+    ],
+    "Batuball": [
+      {
+        "rank": 1,
+        "name": "Giannis Antetokounmpo",
+        "nba_team": "MIL",
+        "fantasy_points": 59.8,
+        "roster_position": "PF"
+      },
+      {
+        "rank": 2,
+        "name": "Kyle Filipowski",
+        "nba_team": "UTA",
+        "fantasy_points": 43.2,
+        "roster_position": "C"
+      }
+    ]
+  },
+  "worst_per_team": {
+    "Ankara Tinercileri": [
+      {
+        "rank": 1,
+        "name": "Kris Dunn",
+        "nba_team": "LAC",
+        "fantasy_points": 11.1,
+        "roster_position": "Util"
+      },
+      {
+        "rank": 2,
+        "name": "Ace Bailey",
+        "nba_team": "UTA",
+        "fantasy_points": 21.7,
+        "roster_position": "SF"
+      }
+    ],
+    "Adana Pigeons": [
+      {
+        "rank": 1,
+        "name": "Nic Claxton",
+        "nba_team": "BKN",
+        "fantasy_points": 25.2,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Shai Gilgeous-Alexander",
+        "nba_team": "OKC",
+        "fantasy_points": 42.5,
+        "roster_position": "BN"
+      }
+    ],
+    "Cansu State Warriors": [
+      {
+        "rank": 1,
+        "name": "Anthony Black",
+        "nba_team": "ORL",
+        "fantasy_points": 4.2,
+        "roster_position": "SG"
+      },
+      {
+        "rank": 2,
+        "name": "Al Horford",
+        "nba_team": "GSW",
+        "fantasy_points": 18.0,
+        "roster_position": "F"
+      }
+    ],
+    "Izmirin Boyozlari": [
+      {
+        "rank": 1,
+        "name": "Cedric Coward",
+        "nba_team": "MEM",
+        "fantasy_points": 23.4,
+        "roster_position": "IL"
+      },
+      {
+        "rank": 2,
+        "name": "Isaiah Joe",
+        "nba_team": "OKC",
+        "fantasy_points": 27.3,
+        "roster_position": "G"
+      }
+    ],
+    "Kerem Tuncerispor": [
+      {
+        "rank": 1,
+        "name": "Donte DiVincenzo",
+        "nba_team": "MIN",
+        "fantasy_points": 10.4,
+        "roster_position": "PG"
+      },
+      {
+        "rank": 2,
+        "name": "Myles Turner",
+        "nba_team": "MIL",
+        "fantasy_points": 17.6,
+        "roster_position": "C"
+      }
+    ],
+    "Kilikya G\u00fcc\u00fc\ud83e\uddff": [
+      {
+        "rank": 1,
+        "name": "Isaiah Stewart",
+        "nba_team": "DET",
+        "fantasy_points": 14.8,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Kristaps Porzi\u0146\u0123is",
+        "nba_team": "GSW",
+        "fantasy_points": 24.5,
+        "roster_position": "IL"
+      }
+    ],
+    "Kozyata\u011f\u0131 Korsanlar\u0131": [
+      {
+        "rank": 1,
+        "name": "Keyonte George",
+        "nba_team": "UTA",
+        "fantasy_points": 30.4,
+        "roster_position": "PG"
+      },
+      {
+        "rank": 2,
+        "name": "Bennedict Mathurin",
+        "nba_team": "LAC",
+        "fantasy_points": 38.5,
+        "roster_position": "G"
+      }
+    ],
+    "Batuball": [
+      {
+        "rank": 1,
+        "name": "Rudy Gobert",
+        "nba_team": "MIN",
+        "fantasy_points": 28.6,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Darius Garland",
+        "nba_team": "LAC",
+        "fantasy_points": 31.8,
+        "roster_position": "G"
+      }
+    ]
+  }
+}
