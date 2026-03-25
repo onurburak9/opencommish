@@ -309,6 +309,44 @@ class KimiHandler:
                 log_error(f"Failed to post comment: {e2}")
                 raise
     
+    def update_reaction(self, success: bool = True):
+        """Update the reaction on the triggering comment."""
+        comment_id = os.environ.get('COMMENT_ID')
+        if not comment_id:
+            log_info("No COMMENT_ID set, skipping reaction update")
+            return
+        
+        log_info(f"Updating reaction for comment {comment_id}")
+        
+        from github import Github
+        
+        try:
+            g = Github(self.token)
+            repo = g.get_repo(f"{self.repo_owner}/{self.repo_name}")
+            
+            # Get the comment to find the current reaction
+            # Note: PyGithub doesn't have direct reaction update, so we add new + delete old
+            # For simplicity, we just add a new reaction indicating completion
+            emoji = 'rocket' if success else 'confused'
+            
+            # Use raw API call via requests since PyGithub reaction support is limited
+            import requests
+            url = f"https://api.github.com/repos/{self.repo_owner}/{self.repo_name}/issues/comments/{comment_id}/reactions"
+            headers = {
+                "Accept": "application/vnd.github+json",
+                "Authorization": f"Bearer {self.token}",
+                "X-GitHub-Api-Version": "2022-11-28"
+            }
+            data = {"content": emoji}
+            
+            response = requests.post(url, headers=headers, json=data)
+            if response.status_code == 201:
+                log_success(f"Added {emoji} reaction")
+            else:
+                log_info(f"Could not add reaction: {response.status_code}")
+        except Exception as e:
+            log_info(f"Failed to update reaction: {e}")
+    
     def create_pull_request(self, branch: str, title: str, body: str) -> str:
         """Create a pull request with the changes."""
         log_step(5, "CREATING PULL REQUEST")
@@ -369,6 +407,10 @@ class KimiHandler:
         
         log_step(8, "POSTING COMMENT")
         self.post_comment(summary)
+        
+        log_step(9, "UPDATING REACTION")
+        all_success = all(r['success'] for r in results)
+        self.update_reaction(success=all_success)
         
         log_success("Request processing complete!")
     
