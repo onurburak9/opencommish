@@ -1,0 +1,63 @@
+name: Yesterday's Game Analysis
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to analyze (YYYY-MM-DD, defaults to yesterday)'
+        required: false
+        default: ''
+  
+  # Run daily at 8:00 AM PST (after games complete and daily stats are fetched)
+  schedule:
+    - cron: '0 8 * * *'  # 8:00 AM UTC = 12:00 AM PST (midnight)
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run yesterday's game analysis
+      env:
+        YAHOO_CONSUMER_KEY: ${{ secrets.YAHOO_CONSUMER_KEY }}
+        YAHOO_CONSUMER_SECRET: ${{ secrets.YAHOO_CONSUMER_SECRET }}
+        YAHOO_ACCESS_TOKEN: ${{ secrets.YAHOO_ACCESS_TOKEN }}
+        YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+        YAHOO_TOKEN_TIME: ${{ secrets.YAHOO_TOKEN_TIME }}
+        YAHOO_TOKEN_TYPE: ${{ secrets.YAHOO_TOKEN_TYPE }}
+        YAHOO_GUID: ${{ secrets.YAHOO_GUID }}
+      run: |
+        if [ -n "${{ github.event.inputs.date }}" ]; then
+          python cron/analyze_yesterday_games.py "${{ github.event.inputs.date }}"
+        else
+          python cron/analyze_yesterday_games.py
+        fi
+    
+    - name: Upload analysis results
+      uses: actions/upload-artifact@v4
+      with:
+        name: yesterday-analysis-${{ github.run_id }}
+        path: data/analysis/yesterday_analysis_*.json
+        retention-days: 30
+    
+    - name: Commit analysis results
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/analysis/
+        git diff --staged --quiet || git commit -m "Add yesterday's game analysis [$(date +%Y-%m-%d)]"
+        git push || echo "No changes to commit"

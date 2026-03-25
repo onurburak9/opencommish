@@ -1,0 +1,385 @@
+{
+  "date": "2026-03-23",
+  "league_name": "teletabi ligi",
+  "summary": {
+    "total_teams": 8,
+    "total_players_with_stats": 61,
+    "date_analyzed": "2026-03-23"
+  },
+  "team_totals": [
+    {
+      "team_name": "Ankara Tinercileri",
+      "total_fantasy_points": 360.4,
+      "active_players": 9
+    },
+    {
+      "team_name": "Kozyatağı Korsanları",
+      "total_fantasy_points": 309.6,
+      "active_players": 7
+    },
+    {
+      "team_name": "Kilikya Gücü🧿",
+      "total_fantasy_points": 296.4,
+      "active_players": 8
+    },
+    {
+      "team_name": "Adana Pigeons",
+      "total_fantasy_points": 254.5,
+      "active_players": 7
+    },
+    {
+      "team_name": "Cansu State Warriors",
+      "total_fantasy_points": 246.6,
+      "active_players": 7
+    },
+    {
+      "team_name": "Batuball",
+      "total_fantasy_points": 246.3,
+      "active_players": 9
+    },
+    {
+      "team_name": "Kerem Tuncerispor",
+      "total_fantasy_points": 234.1,
+      "active_players": 8
+    },
+    {
+      "team_name": "Izmirin Boyozlari",
+      "total_fantasy_points": 184.3,
+      "active_players": 6
+    }
+  ],
+  "matchups": [
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Ankara Tinercileri",
+        "team_key": "466.l.93905.t.1",
+        "points": 360.4
+      },
+      "team_2": {
+        "team_name": "Kilikya Gücü🧿",
+        "team_key": "466.l.93905.t.8",
+        "points": 296.4
+      },
+      "winner": "Ankara Tinercileri"
+    },
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Kerem Tuncerispor",
+        "team_key": "466.l.93905.t.6",
+        "points": 234.1
+      },
+      "team_2": {
+        "team_name": "Batuball",
+        "team_key": "466.l.93905.t.11",
+        "points": 246.3
+      },
+      "winner": "Batuball"
+    }
+  ],
+  "top_5_overall": [
+    {
+      "rank": 1,
+      "name": "Alperen Sengun",
+      "fantasy_team": "Ankara Tinercileri",
+      "nba_team": "HOU",
+      "fantasy_points": 73.6,
+      "roster_position": "C"
+    },
+    {
+      "rank": 2,
+      "name": "Victor Wembanyama",
+      "fantasy_team": "Kozyatağı Korsanları",
+      "nba_team": "SAS",
+      "fantasy_points": 63.0,
+      "roster_position": "C"
+    },
+    {
+      "rank": 3,
+      "name": "Pascal Siakam",
+      "fantasy_team": "Kozyatağı Korsanları",
+      "nba_team": "IND",
+      "fantasy_points": 55.7,
+      "roster_position": "C"
+    },
+    {
+      "rank": 4,
+      "name": "Luka Dončić",
+      "fantasy_team": "Kilikya Gücü🧿",
+      "nba_team": "LAL",
+      "fantasy_points": 55.4,
+      "roster_position": "SG"
+    },
+    {
+      "rank": 5,
+      "name": "Ace Bailey",
+      "fantasy_team": "Ankara Tinercileri",
+      "nba_team": "UTA",
+      "fantasy_points": 54.7,
+      "roster_position": "SF"
+    }
+  ],
+  "best_per_team": {
+    "Ankara Tinercileri": [
+      {
+        "rank": 1,
+        "name": "Alperen Sengun",
+        "nba_team": "HOU",
+        "fantasy_points": 73.6,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Ace Bailey",
+        "nba_team": "UTA",
+        "fantasy_points": 54.7,
+        "roster_position": "SF"
+      }
+    ],
+    "Adana Pigeons": [
+      {
+        "rank": 1,
+        "name": "Kawhi Leonard",
+        "nba_team": "LAC",
+        "fantasy_points": 48.5,
+        "roster_position": "PF"
+      },
+      {
+        "rank": 2,
+        "name": "Donovan Clingan",
+        "nba_team": "POR",
+        "fantasy_points": 44.0,
+        "roster_position": "Util"
+      }
+    ],
+    "Cansu State Warriors": [
+      {
+        "rank": 1,
+        "name": "VJ Edgecombe",
+        "nba_team": "PHI",
+        "fantasy_points": 50.2,
+        "roster_position": "PG"
+      },
+      {
+        "rank": 2,
+        "name": "Scottie Barnes",
+        "nba_team": "TOR",
+        "fantasy_points": 45.4,
+        "roster_position": "G"
+      }
+    ],
+    "Izmirin Boyozlari": [
+      {
+        "rank": 1,
+        "name": "Josh Giddey",
+        "nba_team": "CHI",
+        "fantasy_points": 49.9,
+        "roster_position": "G"
+      },
+      {
+        "rank": 2,
+        "name": "RJ Barrett",
+        "nba_team": "TOR",
+        "fantasy_points": 38.4,
+        "roster_position": "PF"
+      }
+    ],
+    "Kerem Tuncerispor": [
+      {
+        "rank": 1,
+        "name": "Brandin Podziemski",
+        "nba_team": "GSW",
+        "fantasy_points": 44.0,
+        "roster_position": "G"
+      },
+      {
+        "rank": 2,
+        "name": "Amen Thompson",
+        "nba_team": "HOU",
+        "fantasy_points": 38.1,
+        "roster_position": "Util"
+      }
+    ],
+    "Kilikya Gücü🧿": [
+      {
+        "rank": 1,
+        "name": "Luka Dončić",
+        "nba_team": "LAL",
+        "fantasy_points": 55.4,
+        "roster_position": "SG"
+      },
+      {
+        "rank": 2,
+        "name": "Chet Holmgren",
+        "nba_team": "OKC",
+        "fantasy_points": 47.8,
+        "roster_position": "C"
+      }
+    ],
+    "Kozyatağı Korsanları": [
+      {
+        "rank": 1,
+        "name": "Victor Wembanyama",
+        "nba_team": "SAS",
+        "fantasy_points": 63.0,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Pascal Siakam",
+        "nba_team": "IND",
+        "fantasy_points": 55.7,
+        "roster_position": "C"
+      }
+    ],
+    "Batuball": [
+      {
+        "rank": 1,
+        "name": "Nickeil Alexander-Walker",
+        "nba_team": "ATL",
+        "fantasy_points": 40.4,
+        "roster_position": "F"
+      },
+      {
+        "rank": 2,
+        "name": "Bam Adebayo",
+        "nba_team": "MIA",
+        "fantasy_points": 30.6,
+        "roster_position": "C"
+      }
+    ]
+  },
+  "worst_per_team": {
+    "Ankara Tinercileri": [
+      {
+        "rank": 1,
+        "name": "Jabari Smith Jr.",
+        "nba_team": "HOU",
+        "fantasy_points": 11.5,
+        "roster_position": "Util"
+      },
+      {
+        "rank": 2,
+        "name": "Justin Edwards",
+        "nba_team": "PHI",
+        "fantasy_points": 12.2,
+        "roster_position": "F"
+      }
+    ],
+    "Adana Pigeons": [
+      {
+        "rank": 1,
+        "name": "Nic Claxton",
+        "nba_team": "BKN",
+        "fantasy_points": 22.8,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Tyler Herro",
+        "nba_team": "MIA",
+        "fantasy_points": 28.0,
+        "roster_position": "IL"
+      }
+    ],
+    "Cansu State Warriors": [
+      {
+        "rank": 1,
+        "name": "P.J. Washington",
+        "nba_team": "DAL",
+        "fantasy_points": 24.6,
+        "roster_position": "F"
+      },
+      {
+        "rank": 2,
+        "name": "Wendell Carter Jr.",
+        "nba_team": "ORL",
+        "fantasy_points": 27.0,
+        "roster_position": "C"
+      }
+    ],
+    "Izmirin Boyozlari": [
+      {
+        "rank": 1,
+        "name": "Isaiah Joe",
+        "nba_team": "OKC",
+        "fantasy_points": 18.9,
+        "roster_position": "SF"
+      },
+      {
+        "rank": 2,
+        "name": "Jaime Jaquez Jr.",
+        "nba_team": "MIA",
+        "fantasy_points": 21.4,
+        "roster_position": "F"
+      }
+    ],
+    "Kerem Tuncerispor": [
+      {
+        "rank": 1,
+        "name": "Myles Turner",
+        "nba_team": "MIL",
+        "fantasy_points": 11.0,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Kel'el Ware",
+        "nba_team": "MIA",
+        "fantasy_points": 21.9,
+        "roster_position": "PF"
+      }
+    ],
+    "Kilikya Gücü🧿": [
+      {
+        "rank": 1,
+        "name": "Norman Powell",
+        "nba_team": "MIA",
+        "fantasy_points": 24.8,
+        "roster_position": "Util"
+      },
+      {
+        "rank": 2,
+        "name": "Brice Sensabaugh",
+        "nba_team": "UTA",
+        "fantasy_points": 28.5,
+        "roster_position": "G"
+      }
+    ],
+    "Kozyatağı Korsanları": [
+      {
+        "rank": 1,
+        "name": "Matas Buzelis",
+        "nba_team": "CHI",
+        "fantasy_points": 26.3,
+        "roster_position": "BN"
+      },
+      {
+        "rank": 2,
+        "name": "Austin Reaves",
+        "nba_team": "LAL",
+        "fantasy_points": 33.9,
+        "roster_position": "BN"
+      }
+    ],
+    "Batuball": [
+      {
+        "rank": 1,
+        "name": "Jrue Holiday",
+        "nba_team": "POR",
+        "fantasy_points": 19.4,
+        "roster_position": "SG"
+      },
+      {
+        "rank": 2,
+        "name": "Ausar Thompson",
+        "nba_team": "DET",
+        "fantasy_points": 21.5,
+        "roster_position": "SF"
+      }
+    ]
+  }
+}
