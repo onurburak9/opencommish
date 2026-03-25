@@ -221,12 +221,21 @@ class KimiHandler:
     
     def process_request(self):
         """Main entry point to process the Kimi request."""
+        # Debug: Print environment
+        print("=== Debug Info ===", file=sys.stderr)
+        print(f"OPENCLAW_GATEWAY_URL: {'set' if os.environ.get('OPENCLAW_GATEWAY_URL') else 'not set'}", file=sys.stderr)
+        print(f"KIMI_API_KEY: {'set' if os.environ.get('KIMI_API_KEY') else 'not set'}", file=sys.stderr)
+        print(f"EVENT_TYPE: {os.environ.get('EVENT_TYPE')}", file=sys.stderr)
+        print(f"REPO: {os.environ.get('REPO_OWNER')}/{os.environ.get('REPO_NAME')}", file=sys.stderr)
+        print(f"TRIGGER_BODY: {self.trigger_body[:200]}...", file=sys.stderr)
+        print("==================", file=sys.stderr)
+        
         request = self.extract_kimi_request()
         if not request:
-            print("No @kimi request found")
+            print("No @kimi request found", file=sys.stderr)
             return
         
-        print(f"Processing request: {request}")
+        print(f"Processing request: {request}", file=sys.stderr)
         
         # Gather context
         context = self.get_repo_context()
@@ -235,10 +244,14 @@ class KimiHandler:
         prompt = self._build_prompt(request, context)
         
         # Send to Kimi API (or OpenClaw gateway)
+        print("Calling Kimi API...", file=sys.stderr)
         response = self._call_kimi_api(prompt)
+        print(f"API Response length: {len(response)}", file=sys.stderr)
+        print(f"API Response preview: {response[:500]}...", file=sys.stderr)
         
         # Process response and execute actions
         actions = self._parse_actions(response)
+        print(f"Parsed {len(actions)} actions", file=sys.stderr)
         
         # Execute actions safely
         results = self._execute_actions(actions)
@@ -329,6 +342,7 @@ What actions should you take to fulfill the request?"""
         """Call Moonshot/Kimi API directly."""
         import requests
         
+        print(f"Calling Moonshot API directly...", file=sys.stderr)
         try:
             response = requests.post(
                 "https://api.moonshot.cn/v1/chat/completions",
@@ -343,11 +357,17 @@ What actions should you take to fulfill the request?"""
                 },
                 timeout=120
             )
+            print(f"API status: {response.status_code}", file=sys.stderr)
             response.raise_for_status()
             data = response.json()
+            print(f"Got response with {len(data.get('choices', []))} choices", file=sys.stderr)
             return data['choices'][0]['message']['content']
+        except requests.exceptions.RequestException as e:
+            print(f"API request failed: {e}", file=sys.stderr)
+            return json.dumps({"actions": [{"type": "comment", "message": f"Kimi API call failed: {e}"}]})
         except Exception as e:
-            return json.dumps({"error": str(e)})
+            print(f"API error: {e}", file=sys.stderr)
+            return json.dumps({"actions": [{"type": "comment", "message": f"Kimi API error: {e}"}]})
     
     def _parse_actions(self, response: str) -> List[Dict]:
         """Parse the JSON response from Kimi."""
