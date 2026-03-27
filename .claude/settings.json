@@ -1,7 +1,5 @@
 {
-  "env": {
-    "VIRTUAL_ENV": "/Users/onuryildirim/Documents/workspace/.venv",
-    "PATH": "/Users/onuryildirim/Documents/workspace/.venv/bin:/opt/homebrew/bin:$PATH",
-    "PYTHONPATH": "${VIRTUAL_ENV}/lib/python3.13/site-packages"
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
   }
 }
