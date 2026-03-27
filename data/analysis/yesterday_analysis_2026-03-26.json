@@ -1,0 +1,385 @@
+{
+  "date": "2026-03-26",
+  "league_name": "teletabi ligi",
+  "summary": {
+    "total_teams": 8,
+    "total_players_with_stats": 27,
+    "date_analyzed": "2026-03-26"
+  },
+  "team_totals": [
+    {
+      "team_name": "Ankara Tinercileri",
+      "total_fantasy_points": 163.8,
+      "active_players": 4
+    },
+    {
+      "team_name": "Cansu State Warriors",
+      "total_fantasy_points": 157.6,
+      "active_players": 4
+    },
+    {
+      "team_name": "Kilikya Gücü🧿",
+      "total_fantasy_points": 137.3,
+      "active_players": 4
+    },
+    {
+      "team_name": "Adana Pigeons",
+      "total_fantasy_points": 119.2,
+      "active_players": 3
+    },
+    {
+      "team_name": "Batuball",
+      "total_fantasy_points": 108.2,
+      "active_players": 4
+    },
+    {
+      "team_name": "Kerem Tuncerispor",
+      "total_fantasy_points": 88.8,
+      "active_players": 3
+    },
+    {
+      "team_name": "Kozyatağı Korsanları",
+      "total_fantasy_points": 85.0,
+      "active_players": 3
+    },
+    {
+      "team_name": "Izmirin Boyozlari",
+      "total_fantasy_points": 46.3,
+      "active_players": 2
+    }
+  ],
+  "matchups": [
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Ankara Tinercileri",
+        "team_key": "466.l.93905.t.1",
+        "points": 1012.7
+      },
+      "team_2": {
+        "team_name": "Kilikya Gücü🧿",
+        "team_key": "466.l.93905.t.8",
+        "points": 890.5
+      },
+      "winner": "Ankara Tinercileri"
+    },
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Kerem Tuncerispor",
+        "team_key": "466.l.93905.t.6",
+        "points": 804.5
+      },
+      "team_2": {
+        "team_name": "Batuball",
+        "team_key": "466.l.93905.t.11",
+        "points": 828.7
+      },
+      "winner": "Batuball"
+    }
+  ],
+  "top_5_overall": [
+    {
+      "rank": 1,
+      "name": "Jalen Duren",
+      "fantasy_team": "Cansu State Warriors",
+      "nba_team": "DET",
+      "fantasy_points": 61.5,
+      "roster_position": "C"
+    },
+    {
+      "rank": 2,
+      "name": "DeMar DeRozan",
+      "fantasy_team": "Adana Pigeons",
+      "nba_team": "SAC",
+      "fantasy_points": 56.7,
+      "roster_position": "F"
+    },
+    {
+      "rank": 3,
+      "name": "Paolo Banchero",
+      "fantasy_team": "Ankara Tinercileri",
+      "nba_team": "ORL",
+      "fantasy_points": 50.3,
+      "roster_position": "C"
+    },
+    {
+      "rank": 4,
+      "name": "Kon Knueppel",
+      "fantasy_team": "Kilikya Gücü🧿",
+      "nba_team": "CHA",
+      "fantasy_points": 49.2,
+      "roster_position": "SF"
+    },
+    {
+      "rank": 5,
+      "name": "Jalen Brunson",
+      "fantasy_team": "Ankara Tinercileri",
+      "nba_team": "NYK",
+      "fantasy_points": 48.9,
+      "roster_position": "G"
+    }
+  ],
+  "best_per_team": {
+    "Ankara Tinercileri": [
+      {
+        "rank": 1,
+        "name": "Paolo Banchero",
+        "nba_team": "ORL",
+        "fantasy_points": 50.3,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Jalen Brunson",
+        "nba_team": "NYK",
+        "fantasy_points": 48.9,
+        "roster_position": "G"
+      }
+    ],
+    "Adana Pigeons": [
+      {
+        "rank": 1,
+        "name": "DeMar DeRozan",
+        "nba_team": "SAC",
+        "fantasy_points": 56.7,
+        "roster_position": "F"
+      },
+      {
+        "rank": 2,
+        "name": "LaMelo Ball",
+        "nba_team": "CHA",
+        "fantasy_points": 36.0,
+        "roster_position": "G"
+      }
+    ],
+    "Cansu State Warriors": [
+      {
+        "rank": 1,
+        "name": "Jalen Duren",
+        "nba_team": "DET",
+        "fantasy_points": 61.5,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Precious Achiuwa",
+        "nba_team": "SAC",
+        "fantasy_points": 37.8,
+        "roster_position": "F"
+      }
+    ],
+    "Izmirin Boyozlari": [
+      {
+        "rank": 1,
+        "name": "Miles Bridges",
+        "nba_team": "CHA",
+        "fantasy_points": 26.5,
+        "roster_position": "BN"
+      },
+      {
+        "rank": 2,
+        "name": "Jalen Suggs",
+        "nba_team": "ORL",
+        "fantasy_points": 19.8,
+        "roster_position": "Util"
+      }
+    ],
+    "Kerem Tuncerispor": [
+      {
+        "rank": 1,
+        "name": "Zion Williamson",
+        "nba_team": "NOP",
+        "fantasy_points": 38.2,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Desmond Bane",
+        "nba_team": "ORL",
+        "fantasy_points": 30.0,
+        "roster_position": "SG"
+      }
+    ],
+    "Kilikya Gücü🧿": [
+      {
+        "rank": 1,
+        "name": "Kon Knueppel",
+        "nba_team": "CHA",
+        "fantasy_points": 49.2,
+        "roster_position": "SF"
+      },
+      {
+        "rank": 2,
+        "name": "Tobias Harris",
+        "nba_team": "DET",
+        "fantasy_points": 36.3,
+        "roster_position": "Util"
+      }
+    ],
+    "Kozyatağı Korsanları": [
+      {
+        "rank": 1,
+        "name": "Josh Hart",
+        "nba_team": "NYK",
+        "fantasy_points": 44.4,
+        "roster_position": "SG"
+      },
+      {
+        "rank": 2,
+        "name": "OG Anunoby",
+        "nba_team": "NYK",
+        "fantasy_points": 24.6,
+        "roster_position": "SF"
+      }
+    ],
+    "Batuball": [
+      {
+        "rank": 1,
+        "name": "Maxime Raynaud",
+        "nba_team": "SAC",
+        "fantasy_points": 30.9,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Ausar Thompson",
+        "nba_team": "DET",
+        "fantasy_points": 29.8,
+        "roster_position": "SF"
+      }
+    ]
+  },
+  "worst_per_team": {
+    "Ankara Tinercileri": [
+      {
+        "rank": 1,
+        "name": "Saddiq Bey",
+        "nba_team": "NOP",
+        "fantasy_points": 29.7,
+        "roster_position": "SF"
+      },
+      {
+        "rank": 2,
+        "name": "Daniss Jenkins",
+        "nba_team": "DET",
+        "fantasy_points": 34.9,
+        "roster_position": "PG"
+      }
+    ],
+    "Adana Pigeons": [
+      {
+        "rank": 1,
+        "name": "Moussa Diabaté",
+        "nba_team": "CHA",
+        "fantasy_points": 26.5,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "LaMelo Ball",
+        "nba_team": "CHA",
+        "fantasy_points": 36.0,
+        "roster_position": "G"
+      }
+    ],
+    "Cansu State Warriors": [
+      {
+        "rank": 1,
+        "name": "Wendell Carter Jr.",
+        "nba_team": "ORL",
+        "fantasy_points": 27.2,
+        "roster_position": "C"
+      },
+      {
+        "rank": 2,
+        "name": "Brandon Miller",
+        "nba_team": "CHA",
+        "fantasy_points": 31.1,
+        "roster_position": "PF"
+      }
+    ],
+    "Izmirin Boyozlari": [
+      {
+        "rank": 1,
+        "name": "Jalen Suggs",
+        "nba_team": "ORL",
+        "fantasy_points": 19.8,
+        "roster_position": "Util"
+      },
+      {
+        "rank": 2,
+        "name": "Miles Bridges",
+        "nba_team": "CHA",
+        "fantasy_points": 26.5,
+        "roster_position": "BN"
+      }
+    ],
+    "Kerem Tuncerispor": [
+      {
+        "rank": 1,
+        "name": "Coby White",
+        "nba_team": "CHA",
+        "fantasy_points": 20.6,
+        "roster_position": "PG"
+      },
+      {
+        "rank": 2,
+        "name": "Desmond Bane",
+        "nba_team": "ORL",
+        "fantasy_points": 30.0,
+        "roster_position": "SG"
+      }
+    ],
+    "Kilikya Gücü🧿": [
+      {
+        "rank": 1,
+        "name": "Tristan da Silva",
+        "nba_team": "ORL",
+        "fantasy_points": 21.4,
+        "roster_position": "PF"
+      },
+      {
+        "rank": 2,
+        "name": "Dejounte Murray",
+        "nba_team": "NOP",
+        "fantasy_points": 30.4,
+        "roster_position": "PG"
+      }
+    ],
+    "Kozyatağı Korsanları": [
+      {
+        "rank": 1,
+        "name": "Mikal Bridges",
+        "nba_team": "NYK",
+        "fantasy_points": 16.0,
+        "roster_position": "G"
+      },
+      {
+        "rank": 2,
+        "name": "OG Anunoby",
+        "nba_team": "NYK",
+        "fantasy_points": 24.6,
+        "roster_position": "SF"
+      }
+    ],
+    "Batuball": [
+      {
+        "rank": 1,
+        "name": "Karl-Anthony Towns",
+        "nba_team": "NYK",
+        "fantasy_points": 18.6,
+        "roster_position": "PF"
+      },
+      {
+        "rank": 2,
+        "name": "Malik Monk",
+        "nba_team": "SAC",
+        "fantasy_points": 28.9,
+        "roster_position": "PG"
+      }
+    ]
+  }
+}
