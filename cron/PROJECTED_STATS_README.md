@@ -103,8 +103,8 @@ python cron/fetch_projected_stats.py
 
 ```bash
 YAHOO_ACCESS_TOKEN=your_access_token
-YAHOO_CONSUMER_KEY=your_consumer_key
-YAHOO_CONSUMER_SECRET=your_consumer_secret
+YAHOO_CLIENT_ID=your_consumer_key
+YAHOO_CLIENT_SECRET=your_consumer_secret
 YAHOO_GUID=your_guid
 YAHOO_REFRESH_TOKEN=your_refresh_token
 YAHOO_TOKEN_TIME=timestamp
