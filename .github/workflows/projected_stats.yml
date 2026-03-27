@@ -29,8 +29,8 @@ jobs:
 
       - name: Run projected stats collection
         env:
-          YAHOO_CONSUMER_KEY: ${{ secrets.YAHOO_CLIENT_ID }}
-          YAHOO_CONSUMER_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
           YAHOO_ACCESS_TOKEN: ${{ secrets.YAHOO_ACCESS_TOKEN }}
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
           YAHOO_TOKEN_TIME: ${{ secrets.YAHOO_TOKEN_TIME }}
