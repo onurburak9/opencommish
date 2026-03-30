@@ -1,0 +1,104 @@
+{
+  "date": "2026-03-28",
+  "league_name": "teletabi ligi",
+  "summary": {
+    "total_teams": 8,
+    "total_players_with_stats": 0,
+    "date_analyzed": "2026-03-28"
+  },
+  "team_totals": [
+    {
+      "team_name": "Ankara Tinercileri",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    },
+    {
+      "team_name": "Adana Pigeons",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    },
+    {
+      "team_name": "Cansu State Warriors",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    },
+    {
+      "team_name": "Izmirin Boyozlari",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    },
+    {
+      "team_name": "Kerem Tuncerispor",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    },
+    {
+      "team_name": "Kilikya Gücü🧿",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    },
+    {
+      "team_name": "Kozyatağı Korsanları",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    },
+    {
+      "team_name": "Batuball",
+      "total_fantasy_points": 0,
+      "active_players": 0
+    }
+  ],
+  "matchups": [
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Ankara Tinercileri",
+        "team_key": "466.l.93905.t.1",
+        "points": 1646.4
+      },
+      "team_2": {
+        "team_name": "Kilikya Gücü🧿",
+        "team_key": "466.l.93905.t.8",
+        "points": 1534.4
+      },
+      "winner": "Ankara Tinercileri"
+    },
+    {
+      "matchup_id": null,
+      "week": 22,
+      "team_1": {
+        "team_name": "Kerem Tuncerispor",
+        "team_key": "466.l.93905.t.6",
+        "points": 1643.8
+      },
+      "team_2": {
+        "team_name": "Batuball",
+        "team_key": "466.l.93905.t.11",
+        "points": 1554.6
+      },
+      "winner": "Kerem Tuncerispor"
+    }
+  ],
+  "top_5_overall": [],
+  "best_per_team": {
+    "Ankara Tinercileri": [],
+    "Adana Pigeons": [],
+    "Cansu State Warriors": [],
+    "Izmirin Boyozlari": [],
+    "Kerem Tuncerispor": [],
+    "Kilikya Gücü🧿": [],
+    "Kozyatağı Korsanları": [],
+    "Batuball": []
+  },
+  "worst_per_team": {
+    "Ankara Tinercileri": [],
+    "Adana Pigeons": [],
+    "Cansu State Warriors": [],
+    "Izmirin Boyozlari": [],
+    "Kerem Tuncerispor": [],
+    "Kilikya Gücü🧿": [],
+    "Kozyatağı Korsanları": [],
+    "Batuball": []
+  }
+}
