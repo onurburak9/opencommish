@@ -2,8 +2,8 @@ name: Daily Fantasy Stats Collection
 
 on:
   schedule:
-    # Runs at 11:30 PM PT daily (6:30 AM UTC next day - handles both PST/PDT)
-    - cron: '30 6 * * *'
+    # Runs at 3:00 AM PT daily (11:00 AM UTC - fetches previous day's stats)
+    - cron: '0 11 * * *'
   workflow_dispatch:  # Allows manual trigger from GitHub UI
 
 permissions:
@@ -38,14 +38,14 @@ jobs:
           YAHOO_GUID: None
           BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
         run: |
-          DATE=$(TZ='America/Los_Angeles' date +'%Y-%m-%d')
+          DATE=$(TZ='America/Los_Angeles' date -d 'yesterday' +'%Y-%m-%d')
           python3 cron/fetch_daily_stats.py "${DATE}"
 
       - name: Commit and push to main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          DATE=$(TZ='America/Los_Angeles' date +'%Y-%m-%d')
+          DATE=$(TZ='America/Los_Angeles' date -d 'yesterday' +'%Y-%m-%d')
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"

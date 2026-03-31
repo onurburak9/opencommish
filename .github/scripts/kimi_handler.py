@@ -508,12 +508,15 @@ What actions should you take to fulfill the request?"""
             return json.dumps({"actions": [{"type": "comment", "message": f"❌ OpenClaw gateway error: {e}"}]})
     
     def _call_kimi_direct(self, prompt: str, api_key: str) -> str:
-        """Call Moonshot/Kimi API directly."""
+        """Call Kimi Coding API directly."""
         import requests
         
-        api_url = "https://api.moonshot.cn/v1/chat/completions"
+        # Kimi Coding uses api.moonshot.ai (international endpoint)
+        api_url = "https://api.moonshot.ai/v1/chat/completions"
+        model = "kimi-k2.5"  # or "kimi-coding/k2p5" if supported
+        
         log_info(f"POST to {api_url}")
-        log_info(f"Using model: kimi-k2.5")
+        log_info(f"Using model: {model}")
         log_info(f"API key (first 8 chars): {api_key[:8]}...")
         
         try:
@@ -524,7 +527,7 @@ What actions should you take to fulfill the request?"""
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "kimi-k2.5",
+                    "model": model,
                     "messages": [{"role": "user", "content": prompt}],
                     "temperature": 0.3
                 },
@@ -535,7 +538,8 @@ What actions should you take to fulfill the request?"""
             
             if response.status_code == 401:
                 log_error("API returned 401 Unauthorized - check your KIMI_API_KEY")
-                return json.dumps({"actions": [{"type": "comment", "message": "❌ Kimi API authentication failed. Check your KIMI_API_KEY secret."}]})
+                log_info("Make sure you're using a key from https://platform.moonshot.cn/ not kimi.com")
+                return json.dumps({"actions": [{"type": "comment", "message": "❌ Kimi API authentication failed. Check your KIMI_API_KEY secret is from platform.moonshot.cn (not kimi.com)"}]})
             elif response.status_code == 429:
                 log_error("API returned 429 Rate Limited")
                 return json.dumps({"actions": [{"type": "comment", "message": "❌ Kimi API rate limit exceeded. Please try again later."}]})
