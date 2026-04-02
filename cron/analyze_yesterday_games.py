@@ -227,13 +227,13 @@ def fetch_yesterday_stats(target_date: date) -> tuple[dict, YahooFantasySportsQu
 
 
 def fetch_matchup_scores(target_date: date, query: YahooFantasySportsQuery | None = None) -> list[dict] | None:
-    """Fetch matchup scores for the week containing target_date.
+    """Fetch matchup scores and projections for the week containing target_date.
 
     If query is None, will create a new connection (requires env vars).
-    Returns list of matchups with team scores, or None if error.
+    Returns list of matchups with team scores and projected scores, or None if error.
+    Projections come from the Yahoo API (team_projected_points) and fall back to
+    scraping the Yahoo Fantasy matchup page if not available.
     """
-    from datetime import datetime
-
     try:
         if query is None:
             load_env_file()
@@ -279,16 +279,31 @@ def fetch_matchup_scores(target_date: date, query: YahooFantasySportsQuery | Non
         scoreboard = query.get_league_scoreboard_by_week(target_week)
 
         matchups = []
+        has_any_projections = False
         for matchup in scoreboard.matchups:
             # Get teams in this matchup
             teams_data = []
             for team in matchup.teams:
                 tp = getattr(team, 'team_points', None)
                 team_points = float(to_str(tp.total)) if tp and hasattr(tp, 'total') else 0.0
+
+                # Extract projected points from API
+                tpp = getattr(team, 'team_projected_points', None)
+                projected_points = None
+                if tpp and hasattr(tpp, 'total'):
+                    try:
+                        projected_points = float(to_str(tpp.total))
+                        has_any_projections = True
+                    except (ValueError, TypeError):
+                        pass
+
                 teams_data.append({
                     "team_name": to_str(team.name),
                     "team_key": to_str(team.team_key),
                     "points": team_points,
+                    "projected_points": projected_points,
+                    "games_played": None,
+                    "games_remaining": None,
                 })
 
             if len(teams_data) == 2:
@@ -302,11 +317,200 @@ def fetch_matchup_scores(target_date: date, query: YahooFantasySportsQuery | Non
                               else "Tie",
                 })
 
+        # Scrape Yahoo Fantasy roster pages for game counts and projections fallback
+        all_team_ids = set()
+        for m in matchups:
+            for key in ("team_1", "team_2"):
+                tk = m[key].get("team_key", "")
+                tid = tk.rsplit(".t.", 1)[-1] if ".t." in tk else ""
+                if tid:
+                    all_team_ids.add(tid)
+
+        if all_team_ids:
+            scraped = scrape_team_weekly_stats("93905", all_team_ids)
+            if scraped:
+                _merge_scraped_team_stats(matchups, scraped, has_any_projections)
+
+        proj_count = sum(
+            1 for m in matchups
+            if m["team_1"].get("projected_points") is not None
+        )
+        print(f"🔮 Matchup projections: {proj_count}/{len(matchups)} matchups have projections")
+
         return matchups
 
     except Exception as e:
         print(f"⚠️ Could not fetch matchup scores: {e}")
         return None
+
+
+def scrape_team_weekly_stats(league_id: str, team_ids: set[str]) -> dict[str, dict] | None:
+    """Scrape weekly projected stats for each team from Yahoo Fantasy roster pages.
+
+    Uses the same roster page format as fetch_projected_stats.py (stat1=P&stat2=P)
+    but without a date parameter to get the full-week view.
+
+    Returns dict mapping team_key -> {projected_points, games_played, games_remaining}
+    where games_played/games_remaining count active roster slots only (excludes BN/IL/IL+).
+    """
+    import requests
+    from bs4 import BeautifulSoup
+
+    BENCH_POSITIONS = {"BN", "IL", "IL+"}
+    results: dict[str, dict] = {}
+
+    print(f"🔮 Scraping weekly projections for {len(team_ids)} teams...")
+
+    for team_id in sorted(team_ids):
+        url = (
+            f"https://basketball.fantasysports.yahoo.com/nba/{league_id}/{team_id}"
+            f"/team?stat1=P&stat2=P&ajaxrequest=1"
+        )
+
+        try:
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            data = response.json()
+
+            html_content = data.get("content", "")
+            if not html_content:
+                continue
+
+            players = _parse_roster_projections_html(html_content)
+            if not players:
+                continue
+
+            total_projected = 0.0
+            games_played = 0
+            games_remaining = 0
+
+            for p in players:
+                if p["roster_position"] in BENCH_POSITIONS:
+                    continue
+                total_projected += p["fantasy_points"]
+                gp = p["games_played"]  # GP* from Yahoo = games left to play
+                if gp > 0:
+                    games_remaining += gp
+                # Players with 0 GP* but nonzero projected points already played
+                # (Yahoo zeroes out GP* once a game is completed)
+                if p["fantasy_points"] > 0 and gp == 0:
+                    games_played += 1
+
+            team_key = f"466.l.{league_id}.t.{team_id}"
+            results[team_key] = {
+                "projected_points": round(total_projected, 2),
+                "games_played": games_played,
+                "games_remaining": games_remaining,
+            }
+            print(f"  Team {team_id}: proj={total_projected:.1f}, GP={games_played}, GR={games_remaining}")
+
+        except Exception as e:
+            print(f"  ⚠️ Could not scrape team {team_id}: {e}")
+            continue
+
+    return results if results else None
+
+
+def _parse_roster_projections_html(html_content: str) -> list[dict]:
+    """Parse Yahoo Fantasy roster HTML for projected stats.
+
+    Reuses the same HTML table format as fetch_projected_stats.py.
+    Returns list of player dicts with roster_position, fantasy_points, games_played.
+    """
+    from bs4 import BeautifulSoup
+
+    soup = BeautifulSoup(html_content, 'html.parser')
+    table = soup.find('table', {'id': 'statTable0'})
+    if not table:
+        return []
+
+    thead = table.find('thead')
+    if not thead:
+        return []
+
+    header_rows = thead.find_all('tr')
+    if len(header_rows) < 2:
+        return []
+
+    headers = []
+    for th in header_rows[1].find_all('th'):
+        div = th.find('div')
+        text = div.get_text(strip=True) if div else th.get_text(strip=True)
+        if not text or text == '\xa0':
+            text = th.get('title', '') or f"col_{len(headers)}"
+        colspan = int(th.get('colspan', 1))
+        for i in range(colspan):
+            headers.append(text if i == 0 else f"{text}_{i}")
+
+    try:
+        pos_idx = headers.index('Pos')
+        fan_pts_idx = headers.index('Fan Pts')
+        gp_idx = headers.index('GP*')
+    except ValueError:
+        return []
+
+    tbody = table.find('tbody')
+    if not tbody:
+        return []
+
+    players = []
+    for row in tbody.find_all('tr'):
+        cells = row.find_all('td')
+        if len(cells) <= max(pos_idx, fan_pts_idx, gp_idx):
+            continue
+
+        pos_span = cells[pos_idx].find('span', {'class': 'pos-label'})
+        if not pos_span:
+            continue
+        roster_position = pos_span.get_text(strip=True)
+
+        fan_pts_text = cells[fan_pts_idx].get_text(strip=True)
+        try:
+            fantasy_points = float(fan_pts_text) if fan_pts_text else 0.0
+        except ValueError:
+            fantasy_points = 0.0
+
+        gp_text = cells[gp_idx].get_text(strip=True)
+        try:
+            games_played = int(gp_text) if gp_text and gp_text != '0' else 0
+        except ValueError:
+            games_played = 0
+
+        players.append({
+            "roster_position": roster_position,
+            "fantasy_points": fantasy_points,
+            "games_played": games_played,
+        })
+
+    return players
+
+
+def _merge_scraped_team_stats(
+    matchups: list[dict],
+    scraped: dict[str, dict],
+    has_api_projections: bool,
+) -> None:
+    """Merge scraped team stats (game counts, projections) into matchup data."""
+    for matchup in matchups:
+        for key in ("team_1", "team_2"):
+            team = matchup[key]
+            team_data = scraped.get(team.get("team_key", ""))
+            if not team_data:
+                continue
+            team["games_played"] = team_data["games_played"]
+            team["games_remaining"] = team_data["games_remaining"]
+            if not has_api_projections and team.get("projected_points") is None:
+                team["projected_points"] = team_data["projected_points"]
+
+
+def _format_matchup_extras(team: dict) -> str:
+    """Format projection and game count info for matchup display."""
+    parts = []
+    if team.get('projected_points') is not None:
+        parts.append(f"proj: {team['projected_points']:.2f}")
+    if team.get('games_played') is not None and team.get('games_remaining') is not None:
+        parts.append(f"GP: {team['games_played']}, GR: {team['games_remaining']}")
+    return f" ({', '.join(parts)})" if parts else ""
 
 
 def analyze_yesterday_games(data: dict, matchup_scores: list[dict] | None = None) -> dict:
@@ -396,9 +600,24 @@ def analyze_yesterday_games(data: dict, matchup_scores: list[dict] | None = None
             else:
                 result = f"{t2['team_name']} WINS"
 
-            print(f"  {t1['team_name']}: {t1['points']:.2f}")
-            print(f"  {t2['team_name']}: {t2['points']:.2f}")
-            print(f"  → {result}")
+            # Format score lines with projections and game counts
+            t1_extras = _format_matchup_extras(t1)
+            t2_extras = _format_matchup_extras(t2)
+
+            print(f"  {t1['team_name']}: {t1['points']:.2f}{t1_extras}")
+            print(f"  {t2['team_name']}: {t2['points']:.2f}{t2_extras}")
+
+            # Show projected winner if projections available
+            if t1.get('projected_points') is not None and t2.get('projected_points') is not None:
+                if t1['projected_points'] > t2['projected_points']:
+                    proj_winner = t1['team_name']
+                elif t2['projected_points'] > t1['projected_points']:
+                    proj_winner = t2['team_name']
+                else:
+                    proj_winner = "Tie"
+                print(f"  → Actual: {result} | Projected: {proj_winner}")
+            else:
+                print(f"  → {result}")
             print()
         print()
 
