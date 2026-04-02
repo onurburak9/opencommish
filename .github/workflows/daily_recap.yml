@@ -1,0 +1,87 @@
+name: Daily Fantasy Recap
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to recap (YYYY-MM-DD, defaults to yesterday PST)'
+        required: false
+        default: ''
+      no_llm:
+        description: 'Skip LLM call (just generate payload)'
+        required: false
+        default: 'false'
+
+  # Run after daily stats (3AM PST) and projected stats (12PM PST) are collected
+  # Recap runs at 5AM PST (13 UTC)
+  schedule:
+    - cron: '0 13 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  generate_recap:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Pull latest data
+      run: git pull origin main
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Determine target date
+      id: date
+      run: |
+        if [ -n "${{ github.event.inputs.date }}" ]; then
+          echo "target=${{ github.event.inputs.date }}" >> $GITHUB_OUTPUT
+        else
+          echo "target=$(TZ='America/Los_Angeles' date -d 'yesterday' +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Run enrichment
+      run: python cron/enrich_daily_data.py "${{ steps.date.outputs.target }}"
+
+    - name: Fetch league context
+      env:
+        YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+        YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+        YAHOO_ACCESS_TOKEN: ${{ secrets.YAHOO_ACCESS_TOKEN }}
+        YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+        YAHOO_TOKEN_TIME: ${{ secrets.YAHOO_TOKEN_TIME }}
+        YAHOO_TOKEN_TYPE: bearer
+        YAHOO_GUID: None
+      run: python cron/fetch_league_context.py "${{ steps.date.outputs.target }}"
+
+    - name: Generate recap
+      env:
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      run: |
+        NO_LLM_FLAG=""
+        if [ "${{ github.event.inputs.no_llm }}" = "true" ]; then
+          NO_LLM_FLAG="--no-llm"
+        fi
+        python cron/generate_recap.py "${{ steps.date.outputs.target }}" $NO_LLM_FLAG
+
+    - name: Commit results
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add data/analysis/ data/recaps/
+        if git diff --staged --quiet; then
+          echo "No changes to commit."
+        else
+          git commit -m "Daily recap: ${{ steps.date.outputs.target }}"
+          git push origin main
+        fi

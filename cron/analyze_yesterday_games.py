@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 """
+DEPRECATED: This script is replaced by the new enrichment pipeline:
+    - cron/enrich_daily_data.py  (enrichment + missed opportunities + achievements)
+    - cron/fetch_league_context.py  (standings + matchups + week metadata)
+    - cron/generate_recap.py  (orchestrator: enrich → context → LLM → recap)
+
+Use `python cron/generate_recap.py YYYY-MM-DD` instead.
+
+---
+
 Yesterday's Game Analysis - Fetches and analyzes fantasy performance from yesterday's games.
 
 Fetches data from Yahoo Fantasy API and calculates:
