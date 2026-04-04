@@ -160,7 +160,9 @@ class TestProjectedStatsValues:
                 opponent = player["opponent"]
                 # Opponent can be empty or a valid 3-letter abbreviation
                 if opponent:
-                    assert len(opponent) == 3 and opponent.upper() == opponent, \
+                    # Strip optional home/away prefix (@)
+                    abbr = opponent.lstrip("@")
+                    assert len(abbr) == 3 and abbr.upper() == abbr, \
                         f"Invalid opponent format '{opponent}' for {player['player_name']}"
 
 

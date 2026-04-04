@@ -110,6 +110,42 @@ def load_system_prompt() -> str:
     return "\n".join(lines)
 
 
+def _format_team_detail(team: dict) -> list[str]:
+    """Format a single team's player table and missed opportunities."""
+    parts = []
+    parts.append(f"\n### {team['team_name']}")
+    parts.append(f"Günlük Aktif Puan: **{team['daily_active_points']:.1f}**")
+
+    parts.append("\n| Oyuncu | Pozisyon | Puan | Projeksiyon | Maç | Takım |")
+    parts.append("|--------|----------|------|-------------|-----|-------|")
+    for p in sorted(team["players"], key=lambda x: x["fantasy_points"], reverse=True):
+        game_indicator = f"vs {p.get('opponent', '')}" if p["had_game"] else "❌ maç yok"
+        proj = (
+            f"{p['projected_fantasy_points']:.1f}"
+            if p.get("projected_fantasy_points")
+            else "-"
+        )
+        achiev = " ".join(f"🏅{a}" for a in p.get("achievements", []))
+        parts.append(
+            f"| {p['name']} {achiev} | {p['roster_position']} | "
+            f"{p['fantasy_points']:.1f} | {proj} | {game_indicator} | {p['nba_team']} |"
+        )
+
+    if team["missed_opportunities"]:
+        parts.append("\n**🚨 Missed Opportunities:**")
+        for opp in team["missed_opportunities"]:
+            feasible = (
+                "" if opp["swap_feasible"] else " ⚠️ IL — roster hamlesi gerekirdi"
+            )
+            parts.append(
+                f"- **{opp['bench_player']}** (BN: {opp['bench_points']:.1f} pts) → "
+                f"**{opp['active_player_replaced']}** ({opp['active_position']}: "
+                f"{opp['active_points']:.1f} pts) yerine konabilirdi. "
+                f"**{opp['points_lost']:.1f} puan kayıp!**{feasible}"
+            )
+    return parts
+
+
 def assemble_user_message(enriched: dict, context: dict | None) -> str:
     """Assemble the user message payload for the LLM from enriched data + context."""
     parts = []
@@ -125,17 +161,31 @@ def assemble_user_message(enriched: dict, context: dict | None) -> str:
             f"(Haftanın {context.get('week_day_number', '?')}. günü — "
             f"hafta {context.get('week_start', '?')} - {context.get('week_end', '?')})"
         )
+        if context.get("is_playoffs"):
+            parts.append("\n**⚠️ LİG PLAYOFF MODUNDA!**")
+            if context.get("eliminated_teams"):
+                parts.append(
+                    f"Elenen takımlar (recap'te detaylı analiz YAPMA): "
+                    f"{', '.join(context['eliminated_teams'])}"
+                )
     else:
         parts.append(f"**Tarih:** {target_date}")
 
-    # Matchups
-    parts.append("\n## Haftalık Matchup Skorları")
+    # Build team lookup
+    teams_by_name = {t["team_name"]: t for t in enriched["teams"]}
+    playoff_teams = set(context.get("playoff_teams", [])) if context else set()
     matchups = context.get("matchups", []) if context else []
+
+    # Matchup-oriented structure
+    parts.append("\n## Matchup Detayları")
     if matchups:
-        for m in matchups:
+        for i, m in enumerate(matchups, 1):
             t1, t2 = m["team_1"], m["team_2"]
-            parts.append(f"\n**{t1['team_name']}** vs **{t2['team_name']}**")
-            parts.append(f"- Skor: {t1['points']:.1f} - {t2['points']:.1f}")
+            parts.append(f"\n---\n## Matchup {i}: {t1['team_name']} vs {t2['team_name']}")
+            parts.append(f"- Haftalık Skor: {t1['points']:.1f} - {t2['points']:.1f}")
+            diff = abs(t1["points"] - t2["points"])
+            leader = t1["team_name"] if t1["points"] > t2["points"] else t2["team_name"]
+            parts.append(f"- Fark: {diff:.1f} puan ({leader} önde)")
             if t1.get("projected_points"):
                 proj2 = t2.get("projected_points", 0) or 0
                 parts.append(f"- Projeksiyon: {t1['projected_points']:.1f} - {proj2:.1f}")
@@ -144,42 +194,34 @@ def assemble_user_message(enriched: dict, context: dict | None) -> str:
                     f"- Kalan maç: {t1['team_name']}: {t1['games_remaining']}, "
                     f"{t2['team_name']}: {t2.get('games_remaining', '?')}"
                 )
+
+            # Team 1 detail
+            team1_data = teams_by_name.get(t1["team_name"])
+            if team1_data:
+                parts.extend(_format_team_detail(team1_data))
+
+            # Team 2 detail
+            team2_data = teams_by_name.get(t2["team_name"])
+            if team2_data:
+                parts.extend(_format_team_detail(team2_data))
     else:
         parts.append("(Matchup verisi mevcut değil)")
+        # Fallback: show all teams if no matchup data
+        parts.append("\n## Takım Detayları")
+        for team in enriched["teams"]:
+            parts.extend(_format_team_detail(team))
 
-    # Team details
-    parts.append("\n## Takım Detayları")
-    for team in enriched["teams"]:
-        parts.append(f"\n### {team['team_name']}")
-        parts.append(f"Günlük Aktif Puan: **{team['daily_active_points']:.1f}**")
-
-        parts.append("\n| Oyuncu | Pozisyon | Puan | Projeksiyon | Maç | Takım |")
-        parts.append("|--------|----------|------|-------------|-----|-------|")
-        for p in sorted(team["players"], key=lambda x: x["fantasy_points"], reverse=True):
-            game_indicator = f"vs {p.get('opponent', '')}" if p["had_game"] else "❌ maç yok"
-            proj = (
-                f"{p['projected_fantasy_points']:.1f}"
-                if p.get("projected_fantasy_points")
-                else "-"
-            )
-            achiev = " ".join(f"🏅{a}" for a in p.get("achievements", []))
+    # Eliminated teams — brief summary only
+    eliminated_names = set(context.get("eliminated_teams", [])) if context else set()
+    eliminated_teams_data = [
+        t for t in enriched["teams"] if t["team_name"] in eliminated_names
+    ]
+    if eliminated_teams_data:
+        parts.append("\n---\n## Elenen Takımlar (kısa özet)")
+        for team in eliminated_teams_data:
             parts.append(
-                f"| {p['name']} {achiev} | {p['roster_position']} | "
-                f"{p['fantasy_points']:.1f} | {proj} | {game_indicator} | {p['nba_team']} |"
+                f"- **{team['team_name']}**: Günlük {team['daily_active_points']:.1f} puan"
             )
-
-        if team["missed_opportunities"]:
-            parts.append("\n**🚨 Missed Opportunities:**")
-            for opp in team["missed_opportunities"]:
-                feasible = (
-                    "" if opp["swap_feasible"] else " ⚠️ IL — roster hamlesi gerekirdi"
-                )
-                parts.append(
-                    f"- **{opp['bench_player']}** (BN: {opp['bench_points']:.1f} pts) → "
-                    f"**{opp['active_player_replaced']}** ({opp['active_position']}: "
-                    f"{opp['active_points']:.1f} pts) yerine konabilirdi. "
-                    f"**{opp['points_lost']:.1f} puan kayıp!**{feasible}"
-                )
 
     # Top 5 + Awards
     parts.append("\n## Günün İstatistik Özetleri")

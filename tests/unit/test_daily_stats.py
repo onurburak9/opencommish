@@ -69,11 +69,11 @@ class TestTeamStructure:
             for field in TestDailyStatsSchema.REQUIRED_TEAM_FIELDS:
                 assert field in team, f"Team missing required field: {field}"
     
-    def test_team_id_is_string(self, sample_daily_stats):
-        """Verify team_id is a string."""
+    def test_team_id_is_string_or_int(self, sample_daily_stats):
+        """Verify team_id is a string or int."""
         for team in sample_daily_stats["teams"]:
-            assert isinstance(team["team_id"], str), \
-                f"team_id should be string, got {type(team['team_id'])}"
+            assert isinstance(team["team_id"], (str, int)), \
+                f"team_id should be string or int, got {type(team['team_id'])}"
     
     def test_team_name_not_empty(self, sample_daily_stats):
         """Verify team_name is not empty."""

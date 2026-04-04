@@ -191,11 +191,24 @@ def main() -> None:
         if len(teams_data) == 2:
             matchups.append({"team_1": teams_data[0], "team_2": teams_data[1]})
 
+    # Derive playoff teams from matchups
+    playoff_team_names = set()
+    for m in matchups:
+        playoff_team_names.add(m["team_1"]["team_name"])
+        playoff_team_names.add(m["team_2"]["team_name"])
+
+    eliminated_teams = [
+        s["team_name"] for s in standings if s["team_name"] not in playoff_team_names
+    ]
+
     result = {
         "date": target_date.isoformat(),
         **week_meta,
         "standings": standings,
         "matchups": matchups,
+        "playoff_teams": sorted(playoff_team_names),
+        "eliminated_teams": eliminated_teams,
+        "is_playoffs": len(matchups) < len(standings) // 2,
     }
 
     data_dir = Path(__file__).parent.parent / "data" / "analysis"
