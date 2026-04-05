@@ -11,7 +11,7 @@ from unittest.mock import Mock, patch, MagicMock
 
 # Add parent to path for imports
 import sys
-sys.path.insert(0, str(Path(__file__).parent.parent / "cron"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "cron"))
 
 from analyze_yesterday_games import (
     to_str,
@@ -235,31 +235,25 @@ class TestLoadDailyStats:
     
     def test_returns_none_when_file_not_exists(self, tmp_path):
         """Test that None is returned when file doesn't exist."""
-        # Patch the data path to use a temp directory
-        with patch("analyze_yesterday_games.Path") as mock_path:
-            mock_instance = MagicMock()
-            mock_instance.parent.parent.__truediv__ = lambda x: mock_instance
-            mock_instance.__truediv__ = lambda x: tmp_path / "nonexistent.json"
-            mock_instance.exists.return_value = False
-            mock_path.return_value = mock_instance
-            
+        fake_file = tmp_path / "cron" / "fake.py"
+        fake_file.parent.mkdir(parents=True)
+        fake_file.touch()
+        with patch("analyze_yesterday_games.__file__", str(fake_file)):
             result = load_daily_stats(date(2026, 3, 7))
             assert result is None
-    
+
     def test_returns_data_when_file_exists(self, tmp_path):
         """Test that data is loaded when file exists."""
-        # Create a test file
         data_dir = tmp_path / "data" / "daily_stats"
         data_dir.mkdir(parents=True)
         test_file = data_dir / "league_93905_2026-03-07.json"
         test_data = {"date": "2026-03-07", "teams": []}
         test_file.write_text(json.dumps(test_data))
-        
-        # Patch the path
-        cron_dir = tmp_path / "cron"
-        cron_dir.mkdir()
-        
-        with patch.object(Path, "__truediv__", lambda self, other: tmp_path / other):
+
+        fake_file = tmp_path / "cron" / "fake.py"
+        fake_file.parent.mkdir(parents=True, exist_ok=True)
+        fake_file.touch()
+        with patch("analyze_yesterday_games.__file__", str(fake_file)):
             result = load_daily_stats(date(2026, 3, 7))
             assert result is not None
             assert result["date"] == "2026-03-07"
