@@ -23,6 +23,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent.parent / ".env")
+
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 LLM_DIR = Path(__file__).parent.parent / "llm"

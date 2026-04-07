@@ -1,0 +1,3162 @@
+{
+  "date": "2026-04-05",
+  "week": 23,
+  "league_name": "teletabi ligi",
+  "teams": [
+    {
+      "team_name": "Ankara Tinercileri",
+      "team_id": 1,
+      "daily_active_points": 368.9,
+      "daily_total_points_all": 403.2,
+      "players": [
+        {
+          "name": "Cooper Flagg",
+          "player_id": 10468,
+          "nba_team": "DAL",
+          "opponent": "LAL",
+          "roster_position": "PG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 75.1,
+          "stats_summary": {
+            "PTS": 45.0,
+            "REB": 8.0,
+            "AST": 9.0,
+            "ST": 2.0,
+            "BLK": 1.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 37.34,
+          "projection_diff": 37.76,
+          "projection_diff_pct": 101.1
+        },
+        {
+          "name": "Jeremiah Fears",
+          "player_id": 10440,
+          "nba_team": "NOP",
+          "opponent": "ORL",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 39.1,
+          "stats_summary": {
+            "PTS": 19.0,
+            "REB": 3.0,
+            "AST": 7.0,
+            "ST": 2.0,
+            "BLK": 1.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 31.68,
+          "projection_diff": 7.42,
+          "projection_diff_pct": 23.4
+        },
+        {
+          "name": "Ace Bailey",
+          "player_id": 10462,
+          "nba_team": "UTA",
+          "opponent": "OKC",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 27.8,
+          "stats_summary": {
+            "PTS": 14.0,
+            "REB": 4.0,
+            "AST": 2.0,
+            "ST": 1.0,
+            "BLK": 2.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 33.85,
+          "projection_diff": -6.05,
+          "projection_diff_pct": -17.9
+        },
+        {
+          "name": "Saddiq Bey",
+          "player_id": 6411,
+          "nba_team": "NOP",
+          "opponent": "ORL",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 45.7,
+          "stats_summary": {
+            "PTS": 32.0,
+            "REB": 6.0,
+            "AST": 1.0,
+            "ST": 2.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 30.48,
+          "projection_diff": 15.22,
+          "projection_diff_pct": 49.9
+        },
+        {
+          "name": "Julius Randle",
+          "player_id": 5318,
+          "nba_team": "MIN",
+          "opponent": "CHA",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 36.6,
+          "stats_summary": {
+            "PTS": 26.0,
+            "REB": 8.0,
+            "AST": 4.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 5.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 40.82,
+          "projection_diff": -4.22,
+          "projection_diff_pct": -10.3
+        },
+        {
+          "name": "Jabari Smith Jr.",
+          "player_id": 6693,
+          "nba_team": "HOU",
+          "opponent": "GSW",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 33.3,
+          "stats_summary": {
+            "PTS": 23.0,
+            "REB": 9.0,
+            "AST": 1.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 29.11,
+          "projection_diff": 4.19,
+          "projection_diff_pct": 14.4
+        },
+        {
+          "name": "Paolo Banchero",
+          "player_id": 6691,
+          "nba_team": "ORL",
+          "opponent": "NOP",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 55.2,
+          "stats_summary": {
+            "PTS": 23.0,
+            "REB": 16.0,
+            "AST": 6.0,
+            "ST": 2.0,
+            "BLK": 1.0,
+            "TO": 5.0
+          },
+          "achievements": [
+            "double-double"
+          ],
+          "projected_fantasy_points": 43.5,
+          "projection_diff": 11.7,
+          "projection_diff_pct": 26.9
+        },
+        {
+          "name": "Alperen Sengun",
+          "player_id": 6558,
+          "nba_team": "HOU",
+          "opponent": "GSW",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 45.7,
+          "stats_summary": {
+            "PTS": 24.0,
+            "REB": 6.0,
+            "AST": 7.0,
+            "ST": 0.0,
+            "BLK": 2.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 41.15,
+          "projection_diff": 4.55,
+          "projection_diff_pct": 11.1
+        },
+        {
+          "name": "Jalen Brunson",
+          "player_id": 6044,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Brook Lopez",
+          "player_id": 4472,
+          "nba_team": "LAC",
+          "opponent": "SAC",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 10.4,
+          "stats_summary": {
+            "PTS": 9.0,
+            "REB": 2.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 26.94,
+          "projection_diff": -16.54,
+          "projection_diff_pct": -61.4
+        },
+        {
+          "name": "Daniss Jenkins",
+          "player_id": 10316,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Paul George",
+          "player_id": 4725,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Collin Sexton",
+          "player_id": 6019,
+          "nba_team": "CHI",
+          "opponent": "PHX",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 34.3,
+          "stats_summary": {
+            "PTS": 18.0,
+            "REB": 9.0,
+            "AST": 1.0,
+            "ST": 3.0,
+            "BLK": 0.0,
+            "TO": 5.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 33.05,
+          "projection_diff": 1.25,
+          "projection_diff_pct": 3.8
+        },
+        {
+          "name": "Ty Jerome",
+          "player_id": 6212,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        }
+      ],
+      "missed_opportunities": [
+        {
+          "bench_player": "Collin Sexton",
+          "bench_position": "BN",
+          "bench_points": 34.3,
+          "active_player_replaced": "Jalen Brunson",
+          "active_position": "Util",
+          "active_points": 0.0,
+          "points_lost": 34.3,
+          "swap_feasible": true
+        }
+      ]
+    },
+    {
+      "team_name": "Adana Pigeons",
+      "team_id": 2,
+      "daily_active_points": 188.0,
+      "daily_total_points_all": 311.7,
+      "players": [
+        {
+          "name": "Tyrese Maxey",
+          "player_id": 6413,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "PG",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Jamal Murray",
+          "player_id": 5638,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "LaMelo Ball",
+          "player_id": 6395,
+          "nba_team": "CHA",
+          "opponent": "MIN",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 49.6,
+          "stats_summary": {
+            "PTS": 35.0,
+            "REB": 3.0,
+            "AST": 8.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 4.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 40.27,
+          "projection_diff": 9.33,
+          "projection_diff_pct": 23.2
+        },
+        {
+          "name": "Royce O'Neale",
+          "player_id": 5905,
+          "nba_team": "PHX",
+          "opponent": "CHI",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 7.6,
+          "stats_summary": {
+            "PTS": 3.0,
+            "REB": 3.0,
+            "AST": 2.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 19.8,
+          "projection_diff": -12.2,
+          "projection_diff_pct": -61.6
+        },
+        {
+          "name": "Kawhi Leonard",
+          "player_id": 4896,
+          "nba_team": "LAC",
+          "opponent": "SAC",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 36.7,
+          "stats_summary": {
+            "PTS": 26.0,
+            "REB": 6.0,
+            "AST": 3.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 44.49,
+          "projection_diff": -7.79,
+          "projection_diff_pct": -17.5
+        },
+        {
+          "name": "DeMar DeRozan",
+          "player_id": 4614,
+          "nba_team": "SAC",
+          "opponent": "LAC",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 11.0,
+          "stats_summary": {
+            "PTS": 9.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 30.16,
+          "projection_diff": -19.16,
+          "projection_diff_pct": -63.5
+        },
+        {
+          "name": "Moussa Diabaté",
+          "player_id": 6733,
+          "nba_team": "CHA",
+          "opponent": "MIN",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 29.8,
+          "stats_summary": {
+            "PTS": 8.0,
+            "REB": 9.0,
+            "AST": 4.0,
+            "ST": 1.0,
+            "BLK": 1.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 28.28,
+          "projection_diff": 1.52,
+          "projection_diff_pct": 5.4
+        },
+        {
+          "name": "Nic Claxton",
+          "player_id": 6219,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Donovan Clingan",
+          "player_id": 10285,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "James Harden",
+          "player_id": 4563,
+          "nba_team": "CLE",
+          "opponent": "IND",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 53.3,
+          "stats_summary": {
+            "PTS": 28.0,
+            "REB": 4.0,
+            "AST": 7.0,
+            "ST": 3.0,
+            "BLK": 1.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 45.32,
+          "projection_diff": 7.98,
+          "projection_diff_pct": 17.6
+        },
+        {
+          "name": "Jusuf Nurkić",
+          "player_id": 5327,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Shai Gilgeous-Alexander",
+          "player_id": 6022,
+          "nba_team": "OKC",
+          "opponent": "UTA",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 35.3,
+          "stats_summary": {
+            "PTS": 20.0,
+            "REB": 4.0,
+            "AST": 7.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 49.47,
+          "projection_diff": -14.17,
+          "projection_diff_pct": -28.6
+        },
+        {
+          "name": "LeBron James",
+          "player_id": 3704,
+          "nba_team": "LAL",
+          "opponent": "DAL",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 62.3,
+          "stats_summary": {
+            "PTS": 30.0,
+            "REB": 9.0,
+            "AST": 15.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 4.0
+          },
+          "achievements": [
+            "double-double"
+          ],
+          "projected_fantasy_points": 50.74,
+          "projection_diff": 11.56,
+          "projection_diff_pct": 22.8
+        },
+        {
+          "name": "Tyler Herro",
+          "player_id": 6175,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Isaiah Hartenstein",
+          "player_id": 5856,
+          "nba_team": "OKC",
+          "opponent": "UTA",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 26.1,
+          "stats_summary": {
+            "PTS": 10.0,
+            "REB": 8.0,
+            "AST": 3.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 27.1,
+          "projection_diff": -1.0,
+          "projection_diff_pct": -3.7
+        },
+        {
+          "name": "Jordan Poole",
+          "player_id": 6216,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 14.35,
+          "projection_diff": -14.35,
+          "projection_diff_pct": -100.0
+        },
+        {
+          "name": "Aaron Gordon",
+          "player_id": 5295,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        }
+      ],
+      "missed_opportunities": [
+        {
+          "bench_player": "LeBron James",
+          "bench_position": "BN",
+          "bench_points": 62.3,
+          "active_player_replaced": "Tyrese Maxey",
+          "active_position": "PG",
+          "active_points": 0.0,
+          "points_lost": 62.3,
+          "swap_feasible": true
+        },
+        {
+          "bench_player": "Shai Gilgeous-Alexander",
+          "bench_position": "BN",
+          "bench_points": 35.3,
+          "active_player_replaced": "Jamal Murray",
+          "active_position": "SG",
+          "active_points": 0.0,
+          "points_lost": 35.3,
+          "swap_feasible": true
+        },
+        {
+          "bench_player": "Isaiah Hartenstein",
+          "bench_position": "IL",
+          "bench_points": 26.1,
+          "active_player_replaced": "Nic Claxton",
+          "active_position": "C",
+          "active_points": 0.0,
+          "points_lost": 26.1,
+          "swap_feasible": false
+        }
+      ]
+    },
+    {
+      "team_name": "Cansu State Warriors",
+      "team_id": 3,
+      "daily_active_points": 265.0,
+      "daily_total_points_all": 299.7,
+      "players": [
+        {
+          "name": "Devin Booker",
+          "player_id": 5473,
+          "nba_team": "PHX",
+          "opponent": "CHI",
+          "roster_position": "PG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 41.6,
+          "stats_summary": {
+            "PTS": 30.0,
+            "REB": 3.0,
+            "AST": 4.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 46.82,
+          "projection_diff": -5.22,
+          "projection_diff_pct": -11.1
+        },
+        {
+          "name": "Jalen Green",
+          "player_id": 6513,
+          "nba_team": "PHX",
+          "opponent": "CHI",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 32.8,
+          "stats_summary": {
+            "PTS": 25.0,
+            "REB": 4.0,
+            "AST": 4.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 6.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 33.52,
+          "projection_diff": -0.72,
+          "projection_diff_pct": -2.1
+        },
+        {
+          "name": "Jaylen Brown",
+          "player_id": 5602,
+          "nba_team": "BOS",
+          "opponent": "TOR",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 38.7,
+          "stats_summary": {
+            "PTS": 26.0,
+            "REB": 6.0,
+            "AST": 3.0,
+            "ST": 2.0,
+            "BLK": 0.0,
+            "TO": 5.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 41.77,
+          "projection_diff": -3.07,
+          "projection_diff_pct": -7.3
+        },
+        {
+          "name": "Ayo Dosunmu",
+          "player_id": 6580,
+          "nba_team": "MIN",
+          "opponent": "CHA",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 18.8,
+          "stats_summary": {
+            "PTS": 12.0,
+            "REB": 4.0,
+            "AST": 2.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 30.71,
+          "projection_diff": -11.91,
+          "projection_diff_pct": -38.8
+        },
+        {
+          "name": "Brandon Miller",
+          "player_id": 10104,
+          "nba_team": "CHA",
+          "opponent": "MIN",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 20.7,
+          "stats_summary": {
+            "PTS": 7.0,
+            "REB": 6.0,
+            "AST": 3.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 33.96,
+          "projection_diff": -13.26,
+          "projection_diff_pct": -39.0
+        },
+        {
+          "name": "Franz Wagner",
+          "player_id": 6550,
+          "nba_team": "ORL",
+          "opponent": "NOP",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 23.0,
+          "stats_summary": {
+            "PTS": 11.0,
+            "REB": 5.0,
+            "AST": 2.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 23.63,
+          "projection_diff": -0.63,
+          "projection_diff_pct": -2.7
+        },
+        {
+          "name": "Scottie Barnes",
+          "player_id": 6515,
+          "nba_team": "TOR",
+          "opponent": "BOS",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 34.2,
+          "stats_summary": {
+            "PTS": 10.0,
+            "REB": 6.0,
+            "AST": 8.0,
+            "ST": 3.0,
+            "BLK": 0.0,
+            "TO": 4.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 41.3,
+          "projection_diff": -7.1,
+          "projection_diff_pct": -17.2
+        },
+        {
+          "name": "Precious Achiuwa",
+          "player_id": 6412,
+          "nba_team": "SAC",
+          "opponent": "LAC",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 13.0,
+          "stats_summary": {
+            "PTS": 8.0,
+            "REB": 5.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 28.8,
+          "projection_diff": -15.8,
+          "projection_diff_pct": -54.9
+        },
+        {
+          "name": "Reed Sheppard",
+          "player_id": 10288,
+          "nba_team": "HOU",
+          "opponent": "GSW",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 22.0,
+          "stats_summary": {
+            "PTS": 11.0,
+            "REB": 0.0,
+            "AST": 2.0,
+            "ST": 2.0,
+            "BLK": 1.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 29.99,
+          "projection_diff": -7.99,
+          "projection_diff_pct": -26.6
+        },
+        {
+          "name": "P.J. Washington",
+          "player_id": 6174,
+          "nba_team": "DAL",
+          "opponent": "LAL",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 20.2,
+          "stats_summary": {
+            "PTS": 15.0,
+            "REB": 6.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 29.23,
+          "projection_diff": -9.03,
+          "projection_diff_pct": -30.9
+        },
+        {
+          "name": "VJ Edgecombe",
+          "player_id": 10454,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "De'Aaron Fox",
+          "player_id": 5767,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Jalen Duren",
+          "player_id": 6703,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Lauri Markkanen",
+          "player_id": 5769,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Anthony Edwards",
+          "player_id": 6355,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Naji Marshall",
+          "player_id": 6499,
+          "nba_team": "DAL",
+          "opponent": "LAL",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 34.7,
+          "stats_summary": {
+            "PTS": 13.0,
+            "REB": 6.0,
+            "AST": 7.0,
+            "ST": 2.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 24.6,
+          "projection_diff": 10.1,
+          "projection_diff_pct": 41.1
+        }
+      ],
+      "missed_opportunities": [
+        {
+          "bench_player": "Naji Marshall",
+          "bench_position": "IL+",
+          "bench_points": 34.7,
+          "active_player_replaced": "Precious Achiuwa",
+          "active_position": "C",
+          "active_points": 13.0,
+          "points_lost": 21.7,
+          "swap_feasible": false
+        }
+      ]
+    },
+    {
+      "team_name": "Izmirin Boyozlari",
+      "team_id": 5,
+      "daily_active_points": 142.6,
+      "daily_total_points_all": 239.9,
+      "players": [
+        {
+          "name": "Bones Hyland",
+          "player_id": 6568,
+          "nba_team": "MIN",
+          "opponent": "CHA",
+          "roster_position": "PG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 41.2,
+          "stats_summary": {
+            "PTS": 18.0,
+            "REB": 6.0,
+            "AST": 6.0,
+            "ST": 2.0,
+            "BLK": 1.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 25.9,
+          "projection_diff": 15.3,
+          "projection_diff_pct": 59.1
+        },
+        {
+          "name": "Russell Westbrook",
+          "player_id": 4390,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Josh Giddey",
+          "player_id": 6548,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Isaiah Joe",
+          "player_id": 6441,
+          "nba_team": "OKC",
+          "opponent": "UTA",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 13.9,
+          "stats_summary": {
+            "PTS": 9.0,
+            "REB": 2.0,
+            "AST": 1.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 13.04,
+          "projection_diff": 0.86,
+          "projection_diff_pct": 6.6
+        },
+        {
+          "name": "RJ Barrett",
+          "player_id": 6165,
+          "nba_team": "TOR",
+          "opponent": "BOS",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 27.0,
+          "stats_summary": {
+            "PTS": 15.0,
+            "REB": 5.0,
+            "AST": 4.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 33.2,
+          "projection_diff": -6.2,
+          "projection_diff_pct": -18.7
+        },
+        {
+          "name": "Jaime Jaquez Jr.",
+          "player_id": 10092,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Onyeka Okongwu",
+          "player_id": 6398,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Bobby Portis",
+          "player_id": 5482,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Jalen Suggs",
+          "player_id": 6516,
+          "nba_team": "ORL",
+          "opponent": "NOP",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 29.8,
+          "stats_summary": {
+            "PTS": 11.0,
+            "REB": 4.0,
+            "AST": 8.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 34.41,
+          "projection_diff": -4.61,
+          "projection_diff_pct": -13.4
+        },
+        {
+          "name": "Payton Pritchard",
+          "player_id": 6418,
+          "nba_team": "BOS",
+          "opponent": "TOR",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 30.7,
+          "stats_summary": {
+            "PTS": 17.0,
+            "REB": 1.0,
+            "AST": 3.0,
+            "ST": 3.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 30.17,
+          "projection_diff": 0.53,
+          "projection_diff_pct": 1.8
+        },
+        {
+          "name": "Miles Bridges",
+          "player_id": 6023,
+          "nba_team": "CHA",
+          "opponent": "MIN",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 43.1,
+          "stats_summary": {
+            "PTS": 25.0,
+            "REB": 8.0,
+            "AST": 7.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 29.48,
+          "projection_diff": 13.62,
+          "projection_diff_pct": 46.2
+        },
+        {
+          "name": "Donovan Mitchell",
+          "player_id": 5826,
+          "nba_team": "CLE",
+          "opponent": "IND",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 54.2,
+          "stats_summary": {
+            "PTS": 38.0,
+            "REB": 6.0,
+            "AST": 6.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 45.88,
+          "projection_diff": 8.32,
+          "projection_diff_pct": 18.1
+        },
+        {
+          "name": "Trey Murphy III",
+          "player_id": 6559,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Cade Cunningham",
+          "player_id": 6512,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Joel Embiid",
+          "player_id": 5294,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Michael Porter Jr.",
+          "player_id": 6025,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Cedric Coward",
+          "player_id": 10465,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        }
+      ],
+      "missed_opportunities": [
+        {
+          "bench_player": "Donovan Mitchell",
+          "bench_position": "BN",
+          "bench_points": 54.2,
+          "active_player_replaced": "Russell Westbrook",
+          "active_position": "SG",
+          "active_points": 0.0,
+          "points_lost": 54.2,
+          "swap_feasible": true
+        },
+        {
+          "bench_player": "Miles Bridges",
+          "bench_position": "BN",
+          "bench_points": 43.1,
+          "active_player_replaced": "Josh Giddey",
+          "active_position": "G",
+          "active_points": 0.0,
+          "points_lost": 43.1,
+          "swap_feasible": true
+        }
+      ]
+    },
+    {
+      "team_name": "Kerem Tuncerispor",
+      "team_id": 6,
+      "daily_active_points": 212.6,
+      "daily_total_points_all": 212.6,
+      "players": [
+        {
+          "name": "Donte DiVincenzo",
+          "player_id": 6028,
+          "nba_team": "MIN",
+          "opponent": "CHA",
+          "roster_position": "PG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 15.7,
+          "stats_summary": {
+            "PTS": 6.0,
+            "REB": 1.0,
+            "AST": 3.0,
+            "ST": 2.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 29.0,
+          "projection_diff": -13.3,
+          "projection_diff_pct": -45.9
+        },
+        {
+          "name": "Desmond Bane",
+          "player_id": 6422,
+          "nba_team": "ORL",
+          "opponent": "NOP",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 44.2,
+          "stats_summary": {
+            "PTS": 27.0,
+            "REB": 6.0,
+            "AST": 4.0,
+            "ST": 1.0,
+            "BLK": 1.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 36.99,
+          "projection_diff": 7.21,
+          "projection_diff_pct": 19.5
+        },
+        {
+          "name": "Brandin Podziemski",
+          "player_id": 10115,
+          "nba_team": "GSW",
+          "opponent": "HOU",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 25.9,
+          "stats_summary": {
+            "PTS": 18.0,
+            "REB": 2.0,
+            "AST": 3.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 26.72,
+          "projection_diff": -0.82,
+          "projection_diff_pct": -3.1
+        },
+        {
+          "name": "Zion Williamson",
+          "player_id": 6163,
+          "nba_team": "NOP",
+          "opponent": "ORL",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 30.4,
+          "stats_summary": {
+            "PTS": 17.0,
+            "REB": 7.0,
+            "AST": 2.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 39.65,
+          "projection_diff": -9.25,
+          "projection_diff_pct": -23.3
+        },
+        {
+          "name": "Naz Reid",
+          "player_id": 6253,
+          "nba_team": "MIN",
+          "opponent": "CHA",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 17.9,
+          "stats_summary": {
+            "PTS": 6.0,
+            "REB": 7.0,
+            "AST": 1.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 31.27,
+          "projection_diff": -13.37,
+          "projection_diff_pct": -42.8
+        },
+        {
+          "name": "Deni Avdija",
+          "player_id": 6401,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Deandre Ayton",
+          "player_id": 5958,
+          "nba_team": "LAL",
+          "opponent": "DAL",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 22.3,
+          "stats_summary": {
+            "PTS": 13.0,
+            "REB": 4.0,
+            "AST": 1.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 28.64,
+          "projection_diff": -6.34,
+          "projection_diff_pct": -22.1
+        },
+        {
+          "name": "Nikola Jokić",
+          "player_id": 5352,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Amen Thompson",
+          "player_id": 10108,
+          "nba_team": "HOU",
+          "opponent": "GSW",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 33.1,
+          "stats_summary": {
+            "PTS": 18.0,
+            "REB": 3.0,
+            "AST": 7.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 43.55,
+          "projection_diff": -10.45,
+          "projection_diff_pct": -24.0
+        },
+        {
+          "name": "Kristaps Porziņģis",
+          "player_id": 5464,
+          "nba_team": "GSW",
+          "opponent": "HOU",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 23.1,
+          "stats_summary": {
+            "PTS": 9.0,
+            "REB": 8.0,
+            "AST": 3.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 34.31,
+          "projection_diff": -11.21,
+          "projection_diff_pct": -32.7
+        },
+        {
+          "name": "CJ McCollum",
+          "player_id": 5161,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Andrew Wiggins",
+          "player_id": 5292,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Jalen Johnson",
+          "player_id": 6562,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Jaden McDaniels",
+          "player_id": 6420,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Alex Sarr",
+          "player_id": 10294,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        }
+      ],
+      "missed_opportunities": []
+    },
+    {
+      "team_name": "Kilikya Gücü🧿",
+      "team_id": 8,
+      "daily_active_points": 202.5,
+      "daily_total_points_all": 324.6,
+      "players": [
+        {
+          "name": "Tre Jones",
+          "player_id": 6433,
+          "nba_team": "CHI",
+          "opponent": "PHX",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 45.6,
+          "stats_summary": {
+            "PTS": 29.0,
+            "REB": 3.0,
+            "AST": 6.0,
+            "ST": 2.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 30.21,
+          "projection_diff": 15.39,
+          "projection_diff_pct": 50.9
+        },
+        {
+          "name": "Derrick White",
+          "player_id": 5842,
+          "nba_team": "BOS",
+          "opponent": "TOR",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 28.2,
+          "stats_summary": {
+            "PTS": 10.0,
+            "REB": 6.0,
+            "AST": 6.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 33.51,
+          "projection_diff": -5.31,
+          "projection_diff_pct": -15.8
+        },
+        {
+          "name": "Jayson Tatum",
+          "player_id": 5765,
+          "nba_team": "BOS",
+          "opponent": "TOR",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 53.1,
+          "stats_summary": {
+            "PTS": 23.0,
+            "REB": 13.0,
+            "AST": 7.0,
+            "ST": 3.0,
+            "BLK": 0.0,
+            "TO": 5.0
+          },
+          "achievements": [
+            "double-double"
+          ],
+          "projected_fantasy_points": 39.98,
+          "projection_diff": 13.12,
+          "projection_diff_pct": 32.8
+        },
+        {
+          "name": "Gui Santos",
+          "player_id": 6745,
+          "nba_team": "GSW",
+          "opponent": "HOU",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 24.3,
+          "stats_summary": {
+            "PTS": 15.0,
+            "REB": 4.0,
+            "AST": 1.0,
+            "ST": 2.0,
+            "BLK": 0.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 30.47,
+          "projection_diff": -6.17,
+          "projection_diff_pct": -20.2
+        },
+        {
+          "name": "Cody Williams",
+          "player_id": 10283,
+          "nba_team": "UTA",
+          "opponent": "OKC",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 28.3,
+          "stats_summary": {
+            "PTS": 8.0,
+            "REB": 4.0,
+            "AST": 5.0,
+            "ST": 3.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 28.38,
+          "projection_diff": -0.08,
+          "projection_diff_pct": -0.3
+        },
+        {
+          "name": "Evan Mobley",
+          "player_id": 6514,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Jakob Poeltl",
+          "player_id": 5640,
+          "nba_team": "TOR",
+          "opponent": "BOS",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 13.4,
+          "stats_summary": {
+            "PTS": 14.0,
+            "REB": 2.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 28.85,
+          "projection_diff": -15.45,
+          "projection_diff_pct": -53.6
+        },
+        {
+          "name": "Tristan da Silva",
+          "player_id": 10275,
+          "nba_team": "ORL",
+          "opponent": "NOP",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 9.6,
+          "stats_summary": {
+            "PTS": 2.0,
+            "REB": 3.0,
+            "AST": 2.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 24.27,
+          "projection_diff": -14.67,
+          "projection_diff_pct": -60.4
+        },
+        {
+          "name": "Dejounte Murray",
+          "player_id": 5660,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Tobias Harris",
+          "player_id": 4901,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Chet Holmgren",
+          "player_id": 6692,
+          "nba_team": "OKC",
+          "opponent": "UTA",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 41.9,
+          "stats_summary": {
+            "PTS": 21.0,
+            "REB": 7.0,
+            "AST": 1.0,
+            "ST": 0.0,
+            "BLK": 4.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 36.0,
+          "projection_diff": 5.9,
+          "projection_diff_pct": 16.4
+        },
+        {
+          "name": "Kon Knueppel",
+          "player_id": 10450,
+          "nba_team": "CHA",
+          "opponent": "MIN",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 20.3,
+          "stats_summary": {
+            "PTS": 11.0,
+            "REB": 4.0,
+            "AST": 3.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 29.15,
+          "projection_diff": -8.85,
+          "projection_diff_pct": -30.4
+        },
+        {
+          "name": "Luka Dončić",
+          "player_id": 6014,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Kevin Porter Jr.",
+          "player_id": 6218,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Norman Powell",
+          "player_id": 5506,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Ryan Rollins",
+          "player_id": 6734,
+          "nba_team": "MIL",
+          "opponent": "MEM",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 34.3,
+          "stats_summary": {
+            "PTS": 24.0,
+            "REB": 4.0,
+            "AST": 3.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 35.85,
+          "projection_diff": -1.55,
+          "projection_diff_pct": -4.3
+        },
+        {
+          "name": "Brandon Ingram",
+          "player_id": 5601,
+          "nba_team": "TOR",
+          "opponent": "BOS",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": true,
+          "fantasy_points": 25.6,
+          "stats_summary": {
+            "PTS": 15.0,
+            "REB": 3.0,
+            "AST": 4.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 35.24,
+          "projection_diff": -9.64,
+          "projection_diff_pct": -27.4
+        }
+      ],
+      "missed_opportunities": [
+        {
+          "bench_player": "Chet Holmgren",
+          "bench_position": "BN",
+          "bench_points": 41.9,
+          "active_player_replaced": "Evan Mobley",
+          "active_position": "C",
+          "active_points": 0.0,
+          "points_lost": 41.9,
+          "swap_feasible": true
+        },
+        {
+          "bench_player": "Ryan Rollins",
+          "bench_position": "IL+",
+          "bench_points": 34.3,
+          "active_player_replaced": "Dejounte Murray",
+          "active_position": "Util",
+          "active_points": 0.0,
+          "points_lost": 34.3,
+          "swap_feasible": false
+        },
+        {
+          "bench_player": "Brandon Ingram",
+          "bench_position": "IL+",
+          "bench_points": 25.6,
+          "active_player_replaced": "Tristan da Silva",
+          "active_position": "Util",
+          "active_points": 9.6,
+          "points_lost": 16.0,
+          "swap_feasible": false
+        },
+        {
+          "bench_player": "Kon Knueppel",
+          "bench_position": "BN",
+          "bench_points": 20.3,
+          "active_player_replaced": "Jakob Poeltl",
+          "active_position": "C",
+          "active_points": 13.4,
+          "points_lost": 6.9,
+          "swap_feasible": true
+        }
+      ]
+    },
+    {
+      "team_name": "Kozyatağı Korsanları",
+      "team_id": 10,
+      "daily_active_points": 257.8,
+      "daily_total_points_all": 257.8,
+      "players": [
+        {
+          "name": "Stephen Curry",
+          "player_id": 4612,
+          "nba_team": "GSW",
+          "opponent": "HOU",
+          "roster_position": "PG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 39.4,
+          "stats_summary": {
+            "PTS": 29.0,
+            "REB": 2.0,
+            "AST": 4.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 32.93,
+          "projection_diff": 6.47,
+          "projection_diff_pct": 19.6
+        },
+        {
+          "name": "Kevin Durant",
+          "player_id": 4244,
+          "nba_team": "HOU",
+          "opponent": "GSW",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 58.6,
+          "stats_summary": {
+            "PTS": 31.0,
+            "REB": 8.0,
+            "AST": 8.0,
+            "ST": 0.0,
+            "BLK": 3.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 40.1,
+          "projection_diff": 18.5,
+          "projection_diff_pct": 46.1
+        },
+        {
+          "name": "Josh Hart",
+          "player_id": 5843,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Matas Buzelis",
+          "player_id": 10265,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "John Collins",
+          "player_id": 5832,
+          "nba_team": "LAC",
+          "opponent": "SAC",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 36.8,
+          "stats_summary": {
+            "PTS": 25.0,
+            "REB": 4.0,
+            "AST": 2.0,
+            "ST": 2.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 28.51,
+          "projection_diff": 8.29,
+          "projection_diff_pct": 29.1
+        },
+        {
+          "name": "Kyle Filipowski",
+          "player_id": 10315,
+          "nba_team": "UTA",
+          "opponent": "OKC",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 46.8,
+          "stats_summary": {
+            "PTS": 20.0,
+            "REB": 14.0,
+            "AST": 6.0,
+            "ST": 0.0,
+            "BLK": 1.0,
+            "TO": 2.0
+          },
+          "achievements": [
+            "double-double"
+          ],
+          "projected_fantasy_points": 37.32,
+          "projection_diff": 9.48,
+          "projection_diff_pct": 25.4
+        },
+        {
+          "name": "Ousmane Dieng",
+          "player_id": 6701,
+          "nba_team": "MIL",
+          "opponent": "MEM",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 34.8,
+          "stats_summary": {
+            "PTS": 17.0,
+            "REB": 9.0,
+            "AST": 6.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 32.8,
+          "projection_diff": 2.0,
+          "projection_diff_pct": 6.1
+        },
+        {
+          "name": "Jarrett Allen",
+          "player_id": 5835,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Neemias Queta",
+          "player_id": 6581,
+          "nba_team": "BOS",
+          "opponent": "TOR",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 41.4,
+          "stats_summary": {
+            "PTS": 18.0,
+            "REB": 7.0,
+            "AST": 4.0,
+            "ST": 0.0,
+            "BLK": 3.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 28.17,
+          "projection_diff": 13.23,
+          "projection_diff_pct": 47.0
+        },
+        {
+          "name": "Stephon Castle",
+          "player_id": 10290,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Devin Vassell",
+          "player_id": 6403,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "OG Anunoby",
+          "player_id": 5836,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Victor Wembanyama",
+          "player_id": 10094,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Keyonte George",
+          "player_id": 10100,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Andrew Nembhard",
+          "player_id": 6721,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Austin Reaves",
+          "player_id": 6606,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Pascal Siakam",
+          "player_id": 5658,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        }
+      ],
+      "missed_opportunities": []
+    },
+    {
+      "team_name": "Batuball",
+      "team_id": 11,
+      "daily_active_points": 238.6,
+      "daily_total_points_all": 238.6,
+      "players": [
+        {
+          "name": "Darius Garland",
+          "player_id": 6167,
+          "nba_team": "LAC",
+          "opponent": "SAC",
+          "roster_position": "PG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 31.8,
+          "stats_summary": {
+            "PTS": 17.0,
+            "REB": 4.0,
+            "AST": 6.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 39.03,
+          "projection_diff": -7.23,
+          "projection_diff_pct": -18.5
+        },
+        {
+          "name": "Malik Monk",
+          "player_id": 5824,
+          "nba_team": "SAC",
+          "opponent": "LAC",
+          "roster_position": "SG",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 8.5,
+          "stats_summary": {
+            "PTS": 7.0,
+            "REB": 0.0,
+            "AST": 1.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 3.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 24.47,
+          "projection_diff": -15.97,
+          "projection_diff_pct": -65.3
+        },
+        {
+          "name": "Brice Sensabaugh",
+          "player_id": 10122,
+          "nba_team": "UTA",
+          "opponent": "OKC",
+          "roster_position": "G",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 47.3,
+          "stats_summary": {
+            "PTS": 34.0,
+            "REB": 4.0,
+            "AST": 5.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 2.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 34.36,
+          "projection_diff": 12.94,
+          "projection_diff_pct": 37.7
+        },
+        {
+          "name": "Jalen Williams",
+          "player_id": 6702,
+          "nba_team": "OKC",
+          "opponent": "UTA",
+          "roster_position": "SF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 26.9,
+          "stats_summary": {
+            "PTS": 15.0,
+            "REB": 2.0,
+            "AST": 7.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 32.72,
+          "projection_diff": -5.82,
+          "projection_diff_pct": -17.8
+        },
+        {
+          "name": "Daeqwon Plowden",
+          "player_id": 6786,
+          "nba_team": "SAC",
+          "opponent": "LAC",
+          "roster_position": "PF",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 23.9,
+          "stats_summary": {
+            "PTS": 15.0,
+            "REB": 2.0,
+            "AST": 3.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 20.01,
+          "projection_diff": 3.89,
+          "projection_diff_pct": 19.4
+        },
+        {
+          "name": "Bam Adebayo",
+          "player_id": 5827,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "F",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Maxime Raynaud",
+          "player_id": 10496,
+          "nba_team": "SAC",
+          "opponent": "LAC",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 36.0,
+          "stats_summary": {
+            "PTS": 11.0,
+            "REB": 15.0,
+            "AST": 2.0,
+            "ST": 1.0,
+            "BLK": 1.0,
+            "TO": 2.0
+          },
+          "achievements": [
+            "double-double"
+          ],
+          "projected_fantasy_points": 31.36,
+          "projection_diff": 4.64,
+          "projection_diff_pct": 14.8
+        },
+        {
+          "name": "Rudy Gobert",
+          "player_id": 5197,
+          "nba_team": "MIN",
+          "opponent": "CHA",
+          "roster_position": "C",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 30.0,
+          "stats_summary": {
+            "PTS": 12.0,
+            "REB": 10.0,
+            "AST": 2.0,
+            "ST": 1.0,
+            "BLK": 1.0,
+            "TO": 3.0
+          },
+          "achievements": [
+            "double-double"
+          ],
+          "projected_fantasy_points": 32.03,
+          "projection_diff": -2.03,
+          "projection_diff_pct": -6.3
+        },
+        {
+          "name": "Jrue Holiday",
+          "player_id": 4622,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Draymond Green",
+          "player_id": 5069,
+          "nba_team": "GSW",
+          "opponent": "HOU",
+          "roster_position": "Util",
+          "is_active_position": true,
+          "had_game": true,
+          "fantasy_points": 34.2,
+          "stats_summary": {
+            "PTS": 7.0,
+            "REB": 6.0,
+            "AST": 12.0,
+            "ST": 1.0,
+            "BLK": 0.0,
+            "TO": 1.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 29.71,
+          "projection_diff": 4.49,
+          "projection_diff_pct": 15.1
+        },
+        {
+          "name": "Ausar Thompson",
+          "player_id": 10096,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Nickeil Alexander-Walker",
+          "player_id": 6205,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Dyson Daniels",
+          "player_id": 6698,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "BN",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Giannis Antetokounmpo",
+          "player_id": 5185,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Trae Young",
+          "player_id": 6016,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        },
+        {
+          "name": "Karl-Anthony Towns",
+          "player_id": 5432,
+          "nba_team": "",
+          "opponent": "",
+          "roster_position": "IL+",
+          "is_active_position": false,
+          "had_game": false,
+          "fantasy_points": 0.0,
+          "stats_summary": {
+            "PTS": 0.0,
+            "REB": 0.0,
+            "AST": 0.0,
+            "ST": 0.0,
+            "BLK": 0.0,
+            "TO": 0.0
+          },
+          "achievements": [],
+          "projected_fantasy_points": 0.0,
+          "projection_diff": 0.0,
+          "projection_diff_pct": 0
+        }
+      ],
+      "missed_opportunities": []
+    }
+  ],
+  "top_5_active": [
+    {
+      "name": "Cooper Flagg",
+      "team_name": "Ankara Tinercileri",
+      "nba_team": "DAL",
+      "fantasy_points": 75.1,
+      "roster_position": "PG",
+      "stats_summary": {
+        "PTS": 45.0,
+        "REB": 8.0,
+        "AST": 9.0,
+        "ST": 2.0,
+        "BLK": 1.0,
+        "TO": 2.0
+      },
+      "achievements": []
+    },
+    {
+      "name": "Kevin Durant",
+      "team_name": "Kozyatağı Korsanları",
+      "nba_team": "HOU",
+      "fantasy_points": 58.6,
+      "roster_position": "SG",
+      "stats_summary": {
+        "PTS": 31.0,
+        "REB": 8.0,
+        "AST": 8.0,
+        "ST": 0.0,
+        "BLK": 3.0,
+        "TO": 3.0
+      },
+      "achievements": []
+    },
+    {
+      "name": "Paolo Banchero",
+      "team_name": "Ankara Tinercileri",
+      "nba_team": "ORL",
+      "fantasy_points": 55.2,
+      "roster_position": "C",
+      "stats_summary": {
+        "PTS": 23.0,
+        "REB": 16.0,
+        "AST": 6.0,
+        "ST": 2.0,
+        "BLK": 1.0,
+        "TO": 5.0
+      },
+      "achievements": [
+        "double-double"
+      ]
+    },
+    {
+      "name": "James Harden",
+      "team_name": "Adana Pigeons",
+      "nba_team": "CLE",
+      "fantasy_points": 53.3,
+      "roster_position": "Util",
+      "stats_summary": {
+        "PTS": 28.0,
+        "REB": 4.0,
+        "AST": 7.0,
+        "ST": 3.0,
+        "BLK": 1.0,
+        "TO": 2.0
+      },
+      "achievements": []
+    },
+    {
+      "name": "Jayson Tatum",
+      "team_name": "Kilikya Gücü🧿",
+      "nba_team": "BOS",
+      "fantasy_points": 53.1,
+      "roster_position": "SF",
+      "stats_summary": {
+        "PTS": 23.0,
+        "REB": 13.0,
+        "AST": 7.0,
+        "ST": 3.0,
+        "BLK": 0.0,
+        "TO": 5.0
+      },
+      "achievements": [
+        "double-double"
+      ]
+    }
+  ],
+  "daily_awards": {
+    "mvp": {
+      "name": "Cooper Flagg",
+      "team": "Ankara Tinercileri",
+      "points": 75.1
+    },
+    "biggest_disappointment": {
+      "name": "Malik Monk",
+      "team": "Batuball",
+      "points": 8.5,
+      "projected": 24.47,
+      "diff_pct": -65.3
+    },
+    "biggest_surprise": {
+      "name": "Cooper Flagg",
+      "team": "Ankara Tinercileri",
+      "points": 75.1,
+      "projected": 37.34,
+      "diff_pct": 101.1
+    },
+    "worst_missed_opportunity": {
+      "bench_player": "LeBron James",
+      "bench_position": "BN",
+      "bench_points": 62.3,
+      "active_player_replaced": "Tyrese Maxey",
+      "active_position": "PG",
+      "active_points": 0.0,
+      "points_lost": 62.3,
+      "swap_feasible": true,
+      "team": "Adana Pigeons"
+    }
+  }
+}
