@@ -10,12 +10,13 @@ This script is the single entry point for generating a daily recap. It:
 5. Saves the generated recap to data/recaps/
 
 Usage:
-    python cron/generate_recap.py YYYY-MM-DD [--dry-run] [--no-llm] [--force]
+    python cron/generate_recap.py YYYY-MM-DD [--dry-run] [--no-llm] [--force] [--context "extra context"]
 
 Options:
-    --dry-run   Print what would be done without executing scripts
-    --no-llm    Run enrichment/context but skip LLM call (outputs assembled payload)
-    --force     Re-run enrichment even if enriched file already exists
+    --dry-run       Print what would be done without executing scripts
+    --no-llm        Run enrichment/context but skip LLM call (outputs assembled payload)
+    --force         Re-run enrichment even if enriched file already exists
+    --context STR   Additional context to inject into the LLM prompt
 """
 
 import json
@@ -301,13 +302,21 @@ def call_llm(system_prompt: str, user_message: str) -> str:
 def main() -> None:
     args = sys.argv[1:]
     if not args or args[0].startswith("--"):
-        print("Usage: python cron/generate_recap.py YYYY-MM-DD [--dry-run] [--no-llm] [--force]")
+        print("Usage: python cron/generate_recap.py YYYY-MM-DD [--dry-run] [--no-llm] [--force] [--context \"...\"]")
         sys.exit(1)
 
     target_date = args[0]
     dry_run = "--dry-run" in args
     no_llm = "--no-llm" in args
     force = "--force" in args
+    additional_context: str | None = None
+    if "--context" in args:
+        ctx_idx = args.index("--context")
+        if ctx_idx + 1 < len(args):
+            additional_context = args[ctx_idx + 1]
+        else:
+            print("❌ --context requires a value")
+            sys.exit(1)
 
     print(f"{'='*60}")
     print(f"🏀 DAILY RECAP GENERATOR — {target_date}")
@@ -334,6 +343,9 @@ def main() -> None:
     # Step 3: Assemble prompt
     system_prompt = load_system_prompt()
     user_message = assemble_user_message(enriched, context)
+
+    if additional_context:
+        user_message += f"\n\n## Ek Bağlam\n{additional_context}"
 
     if no_llm:
         print(f"\n📝 Assembled user message ({len(user_message)} chars, --no-llm mode)")
