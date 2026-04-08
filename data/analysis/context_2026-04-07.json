@@ -1,0 +1,146 @@
+{
+  "date": "2026-04-07",
+  "week": 24,
+  "week_start": "2026-04-06",
+  "week_end": "2026-04-12",
+  "week_day_number": 2,
+  "week_total_days": 7,
+  "day_name": "Salı",
+  "standings": [
+    {
+      "team_name": "Kozyatağı Korsanları",
+      "rank": 1,
+      "wins": 17,
+      "losses": 4,
+      "streak": "",
+      "points_for": 31000.4,
+      "points_against": 27821.500000000004
+    },
+    {
+      "team_name": "Cansu State Warriors",
+      "rank": 2,
+      "wins": 13,
+      "losses": 8,
+      "streak": "",
+      "points_for": 30655.8,
+      "points_against": 29499.5
+    },
+    {
+      "team_name": "Kerem Tuncerispor",
+      "rank": 3,
+      "wins": 13,
+      "losses": 8,
+      "streak": "",
+      "points_for": 30536.3,
+      "points_against": 28160.7
+    },
+    {
+      "team_name": "Ankara Tinercileri",
+      "rank": 4,
+      "wins": 11,
+      "losses": 10,
+      "streak": "",
+      "points_for": 29289.0,
+      "points_against": 28529.899999999994
+    },
+    {
+      "team_name": "Kilikya Gücü🧿",
+      "rank": 5,
+      "wins": 10,
+      "losses": 11,
+      "streak": "",
+      "points_for": 29630.3,
+      "points_against": 29590.500000000004
+    },
+    {
+      "team_name": "Batuball",
+      "rank": 6,
+      "wins": 10,
+      "losses": 11,
+      "streak": "",
+      "points_for": 29621.7,
+      "points_against": 28684.799999999996
+    },
+    {
+      "team_name": "Izmirin Boyozlari",
+      "rank": 7,
+      "wins": 6,
+      "losses": 15,
+      "streak": "",
+      "points_for": 25904.1,
+      "points_against": 29927.2
+    },
+    {
+      "team_name": "Adana Pigeons",
+      "rank": 8,
+      "wins": 4,
+      "losses": 17,
+      "streak": "",
+      "points_for": 24743.4,
+      "points_against": 29166.899999999998
+    }
+  ],
+  "matchups": [
+    {
+      "team_1": {
+        "team_name": "Ankara Tinercileri",
+        "team_key": "466.l.93905.t.1",
+        "points": 458.7,
+        "projected_points": 1492.87,
+        "games_remaining": null
+      },
+      "team_2": {
+        "team_name": "Cansu State Warriors",
+        "team_key": "466.l.93905.t.3",
+        "points": 454.7,
+        "projected_points": 1386.4,
+        "games_remaining": null
+      }
+    },
+    {
+      "team_1": {
+        "team_name": "Adana Pigeons",
+        "team_key": "466.l.93905.t.2",
+        "points": 218.9,
+        "projected_points": 1172.61,
+        "games_remaining": null
+      },
+      "team_2": {
+        "team_name": "Izmirin Boyozlari",
+        "team_key": "466.l.93905.t.5",
+        "points": 194.6,
+        "projected_points": 1003.27,
+        "games_remaining": null
+      }
+    },
+    {
+      "team_1": {
+        "team_name": "Kerem Tuncerispor",
+        "team_key": "466.l.93905.t.6",
+        "points": 455.8,
+        "projected_points": 1437.33,
+        "games_remaining": null
+      },
+      "team_2": {
+        "team_name": "Kozyatağı Korsanları",
+        "team_key": "466.l.93905.t.10",
+        "points": 310.4,
+        "projected_points": 1375.75,
+        "games_remaining": null
+      }
+    }
+  ],
+  "playoff_teams": [
+    "Adana Pigeons",
+    "Ankara Tinercileri",
+    "Cansu State Warriors",
+    "Izmirin Boyozlari",
+    "Kerem Tuncerispor",
+    "Kozyatağı Korsanları"
+  ],
+  "eliminated_teams": [
+    "Kilikya Gücü🧿",
+    "Batuball"
+  ],
+  "is_playoffs": true
+}
