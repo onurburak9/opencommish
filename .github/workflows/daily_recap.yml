@@ -14,8 +14,8 @@ on:
 
   # Run after daily stats (3AM PST) and projected stats (12PM PST) are collected
   # Recap runs at 5AM PST (13 UTC)
-  schedule:
-    - cron: '0 13 * * *'
+  # schedule:
+  #   - cron: '0 13 * * *'
 
 permissions:
   contents: write
