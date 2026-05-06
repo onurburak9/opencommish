@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NBADailyRecap",
+  "type": "object",
+  "required": ["recap_id", "date", "generated_at", "metadata", "content"],
+  "properties": {
+    "recap_id": {"type": "string"},
+    "date": {"type": "string"},
+    "generated_at": {"type": "string"},
+    "metadata": {
+      "type": "object",
+      "required": ["games_count", "sources_used", "generation_time_seconds"],
+      "properties": {
+        "games_count": {"type": "integer"},
+        "sources_used": {"type": "array", "items": {"type": "string"}},
+        "subagents_spawned": {"type": "integer"},
+        "generation_time_seconds": {"type": "number"}
+      }
+    },
+    "content": {
+      "type": "object",
+      "required": ["headline", "summary", "sections"],
+      "properties": {
+        "headline": {"type": "string"},
+        "summary": {"type": "string"},
+        "sections": {"type": "array"}
+      }
+    }
+  }
+}
