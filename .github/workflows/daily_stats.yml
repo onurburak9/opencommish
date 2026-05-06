@@ -1,9 +1,9 @@
 name: Daily Fantasy Stats Collection
 
 on:
-  schedule:
-    # Runs at 3:00 AM PT daily (11:00 AM UTC - fetches previous day's stats)
-    - cron: '0 11 * * *'
+  # schedule:
+  #   # Runs at 3:00 AM PT daily (11:00 AM UTC - fetches previous day's stats)
+  #   - cron: '0 11 * * *'
   workflow_dispatch:  # Allows manual trigger from GitHub UI
 
 permissions:
