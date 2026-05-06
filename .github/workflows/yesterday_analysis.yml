@@ -10,8 +10,8 @@ on:
         default: ''
   
   # Run daily at 8:00 AM PST (after games complete and daily stats are fetched)
-  schedule:
-    - cron: '0 8 * * *'  # 8:00 AM UTC = 12:00 AM PST (midnight)
+  # schedule:
+  #   - cron: '0 8 * * *'  # 8:00 AM UTC = 12:00 AM PST (midnight)
 
 jobs:
   analyze:
