@@ -7,6 +7,8 @@ import time
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 
+_API_SLEEP_S = 0.6  # NBA API rate-limit buffer
+
 
 @dataclass
 class RawGameData:
@@ -78,22 +80,27 @@ def parse_standings_entry(raw: dict) -> dict:
 
 def _fetch_scoreboard(game_date: str) -> list[dict]:
     from nba_api.stats.endpoints import ScoreboardV2
-    time.sleep(0.6)
-    board = ScoreboardV2(game_date=game_date, timeout=30)
-    d = board.game_header.get_dict()
-    return [dict(zip(d["headers"], row)) for row in d["data"]]
+    time.sleep(_API_SLEEP_S)
+    try:
+        board = ScoreboardV2(game_date=game_date, timeout=30)
+        d = board.game_header.get_dict()
+        return [dict(zip(d["headers"], row)) for row in d["data"]]
+    except Exception as e:
+        print(f"  ⚠️  Scoreboard fetch failed for {game_date}: {e}")
+        return []
 
 
 def _fetch_box_score_performers(game_id: str) -> list[dict]:
     from nba_api.stats.endpoints import BoxScoreTraditionalV2
-    time.sleep(0.6)
+    time.sleep(_API_SLEEP_S)
     try:
         box = BoxScoreTraditionalV2(game_id=game_id, timeout=30)
         d = box.player_stats.get_dict()
         players = [dict(zip(d["headers"], row)) for row in d["data"]]
         result = []
         for p in players:
-            if p.get("MIN") is None:
+            min_val = p.get("MIN")
+            if not min_val or min_val == "0:00":
                 continue
             result.append({
                 "name": p.get("PLAYER_NAME", ""),
@@ -112,7 +119,7 @@ def _fetch_box_score_performers(game_id: str) -> list[dict]:
 
 def _fetch_standings() -> tuple[list[dict], list[dict]]:
     from nba_api.stats.endpoints import LeagueStandingsV3
-    time.sleep(0.6)
+    time.sleep(_API_SLEEP_S)
     try:
         s = LeagueStandingsV3(timeout=30)
         d = s.standings.get_dict()
@@ -128,7 +135,7 @@ def _fetch_standings() -> tuple[list[dict], list[dict]]:
 def _fetch_upcoming(target_date: str) -> list[dict]:
     from nba_api.stats.endpoints import ScoreboardV2
     next_day = (date.fromisoformat(target_date) + timedelta(days=1)).isoformat()
-    time.sleep(0.6)
+    time.sleep(_API_SLEEP_S)
     try:
         board = ScoreboardV2(game_date=next_day, timeout=30)
         d = board.game_header.get_dict()
