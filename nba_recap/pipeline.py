@@ -46,13 +46,25 @@ async def _run_agent(agent, prompt: str, session_id: str) -> str:
     return final_text
 
 
+def _strip_fences(text: str) -> str:
+    """Strip markdown code fences that LLMs commonly wrap JSON in."""
+    text = text.strip()
+    if text.startswith("```"):
+        lines = text.split("\n")
+        inner = lines[1:]
+        if inner and inner[-1].strip() == "```":
+            inner = inner[:-1]
+        text = "\n".join(inner).strip()
+    return text
+
+
 async def _run_structure(data: CollectedData) -> dict:
-    """Phase 2: classify raw data into sections."""
+    """Phase 1: classify raw data into sections."""
     print("  🧠 Structure agent running...")
     prompt = build_structure_prompt(data)
     response = await _run_agent(structure_agent, prompt, "structure_session")
     try:
-        return json.loads(response.strip())
+        return json.loads(_strip_fences(response))
     except json.JSONDecodeError:
         print("  ⚠️  Structure agent returned invalid JSON, using empty sections")
         return {"sections": []}
@@ -123,7 +135,10 @@ async def _enrich_sections(sections: list[dict], date: str) -> tuple[list[dict],
             player_count = min(3, len(section.get("players", [])))
             tasks.append(_enrich_player_section(section))
             subagents_spawned += player_count
+        elif section_type in {"storylines", "quick_hits", "looking_ahead"}:
+            tasks.append(_passthrough(section))
         else:
+            print(f"  ⚠️  Unknown section type '{section_type}' — passing through unchanged")
             tasks.append(_passthrough(section))
 
     enriched = await asyncio.gather(*tasks, return_exceptions=True)
