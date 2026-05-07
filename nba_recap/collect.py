@@ -110,6 +110,7 @@ def _fetch_box_score_performers(game_id: str) -> list[dict]:
             result.append({
                 "name": p.get("PLAYER_NAME", ""),
                 "team": p.get("TEAM_ABBREVIATION", ""),
+                "player_id": p.get("PLAYER_ID"),
                 "pts": p.get("PTS") or 0,
                 "reb": p.get("REB") or 0,
                 "ast": p.get("AST") or 0,

@@ -2,22 +2,24 @@
 
 Flow:
   1. structure_agent  → classifies raw data into sections (sequential)
-  2. game_detail_agent + player_media_agent → enrich sections (parallel)
+  2. Direct API enrichment → ESPN recap URLs, NBA CDN headshots (parallel, no LLM)
   3. synthesis_agent  → writes final prose (sequential)
 """
 
 import asyncio
 import json
 
+import httpx
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
 
-from nba_recap.agents.game_detail_agent import game_detail_agent, build_game_search_prompt
-from nba_recap.agents.player_media_agent import player_media_agent, build_player_search_prompt
 from nba_recap.agents.structure_agent import structure_agent, build_structure_prompt
 from nba_recap.agents.synthesis_agent import synthesis_agent, parse_synthesis_response
 from nba_recap.collect import CollectedData
+
+_ESPN_SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
+_NBA_HEADSHOT_CDN = "https://cdn.nba.com/headshots/nba/latest/1040x760/{player_id}.png"
 
 
 async def _run_agent(agent, prompt: str, session_id: str) -> str:
@@ -70,49 +72,71 @@ async def _run_structure(data: CollectedData) -> dict:
         return {"sections": []}
 
 
+def _abbr_matches(espn_abbr: str, nba_abbr: str) -> bool:
+    """ESPN uses shorter abbreviations (NY vs NYK, SA vs SAS). Match on prefix."""
+    return nba_abbr.startswith(espn_abbr) or espn_abbr.startswith(nba_abbr)
+
+
+async def _fetch_espn_game_media(home_team: str, away_team: str, date: str) -> dict:
+    """Fetch game recap URL from ESPN's public scoreboard API (no auth required).
+
+    Returns permanent ESPN URLs — never ephemeral redirect tokens.
+    """
+    date_compact = date.replace("-", "")
+    async with httpx.AsyncClient(timeout=10) as client:
+        try:
+            resp = await client.get(_ESPN_SCOREBOARD, params={"dates": date_compact})
+            resp.raise_for_status()
+            for event in resp.json().get("events", []):
+                competitors = event.get("competitions", [{}])[0].get("competitors", [])
+                espn_abbrs = [c["team"]["abbreviation"] for c in competitors]
+                home_match = any(_abbr_matches(a, home_team) for a in espn_abbrs)
+                away_match = any(_abbr_matches(a, away_team) for a in espn_abbrs)
+                if home_match and away_match:
+                    recap_url = None
+                    for link in event.get("links", []):
+                        if "summary" in link.get("rel", []):
+                            recap_url = link.get("href")
+                            break
+                    highlight_url = (
+                        f"https://www.youtube.com/results"
+                        f"?search_query={away_team}+vs+{home_team}+highlights+NBA+{date}"
+                    )
+                    return {"recap_url": recap_url, "highlight_url": highlight_url}
+        except Exception as e:
+            print(f"  ⚠️  ESPN API failed: {e}")
+    return {"recap_url": None, "highlight_url": None}
+
+
 async def _enrich_game_section(section: dict, date: str) -> dict:
-    """Run game_detail_agent for a game_of_night section."""
+    """Enrich game_of_night with ESPN recap URL and YouTube search link."""
     home = section.get("home_team", "")
     away = section.get("away_team", "")
     if not home or not away:
         return {**section, "media": {"recap_url": None, "highlight_url": None}}
-    prompt = build_game_search_prompt(home, away, date)
-    session_id = f"game_{home}_{away}_{date}".replace("-", "")
-    response = await _run_agent(game_detail_agent, prompt, session_id)
-    try:
-        media = json.loads(response.strip())
-    except json.JSONDecodeError:
-        media = {"recap_url": None, "highlight_url": None}
+    media = await _fetch_espn_game_media(home, away, date)
     return {**section, "media": media}
 
 
-async def _enrich_single_player(player: dict) -> dict:
-    """Run player_media_agent for one player."""
+def _build_player_media(player: dict, player_id_lookup: dict[str, int]) -> dict:
+    """Build player media URLs from NBA CDN and YouTube search (no API calls needed)."""
     name = player.get("name", "")
-    team = player.get("team", "")
-    line = player.get("line", "")
-    prompt = build_player_search_prompt(name, team, line)
-    session_id = f"player_{name.replace(' ', '_')}"
-    response = await _run_agent(player_media_agent, prompt, session_id)
-    try:
-        media = json.loads(response.strip())
-    except json.JSONDecodeError:
-        media = {"headshot_url": None, "interview_url": None}
-    return {**player, "media": media}
+    player_id = player.get("player_id") or player_id_lookup.get(name)
+    headshot_url = (
+        _NBA_HEADSHOT_CDN.format(player_id=player_id) if player_id else None
+    )
+    interview_url = (
+        f"https://www.youtube.com/results?search_query={name.replace(' ', '+')}+post+game+interview+NBA+2026"
+        if name else None
+    )
+    return {**player, "media": {"headshot_url": headshot_url, "interview_url": interview_url}}
 
 
-async def _enrich_player_section(section: dict) -> dict:
-    """Run player_media_agent for up to 3 players in a player_spotlight section."""
+async def _enrich_player_section(section: dict, player_id_lookup: dict[str, int]) -> dict:
+    """Build media URLs for up to 3 players using NBA CDN + YouTube search."""
     players = section.get("players", [])
-    tasks = [_enrich_single_player(p) for p in players[:3]]
-    enriched = await asyncio.gather(*tasks, return_exceptions=True)
-    result_players = []
-    for player, res in zip(players[:3], enriched):
-        if isinstance(res, Exception):
-            result_players.append({**player, "media": {"headshot_url": None, "interview_url": None}})
-        else:
-            result_players.append(res)
-    return {**section, "players": result_players, "media": {}}
+    enriched_players = [_build_player_media(p, player_id_lookup) for p in players[:3]]
+    return {**section, "players": enriched_players, "media": {}}
 
 
 async def _passthrough(section: dict) -> dict:
@@ -120,7 +144,9 @@ async def _passthrough(section: dict) -> dict:
     return {**section, "media": {}}
 
 
-async def _enrich_sections(sections: list[dict], date: str) -> tuple[list[dict], int]:
+async def _enrich_sections(
+    sections: list[dict], date: str, player_id_lookup: dict[str, int]
+) -> tuple[list[dict], int]:
     """Phase 3: enrich all sections in parallel. Returns (enriched_sections, subagents_spawned)."""
     print(f"  🔍 Enriching {len(sections)} sections via subagents...")
     tasks = []
@@ -133,7 +159,7 @@ async def _enrich_sections(sections: list[dict], date: str) -> tuple[list[dict],
             subagents_spawned += 1
         elif section_type == "player_spotlight":
             player_count = min(3, len(section.get("players", [])))
-            tasks.append(_enrich_player_section(section))
+            tasks.append(_enrich_player_section(section, player_id_lookup))
             subagents_spawned += player_count
         elif section_type in {"storylines", "quick_hits", "looking_ahead"}:
             tasks.append(_passthrough(section))
@@ -164,8 +190,15 @@ async def _run_synthesis(enriched_sections: list[dict]) -> dict:
 
 async def run_pipeline(data: CollectedData) -> tuple[dict, int]:
     """Execute all four phases. Returns (synthesized_dict, subagents_spawned)."""
+    # Build name→player_id lookup from collected box score data
+    player_id_lookup: dict[str, int] = {}
+    for game in data.games:
+        for p in game.top_performers:
+            if p.get("name") and p.get("player_id"):
+                player_id_lookup[p["name"]] = p["player_id"]
+
     structured = await _run_structure(data)
     sections = structured.get("sections", [])
-    enriched_sections, subagents_spawned = await _enrich_sections(sections, data.date)
+    enriched_sections, subagents_spawned = await _enrich_sections(sections, data.date, player_id_lookup)
     synthesized = await _run_synthesis(enriched_sections)
     return synthesized, subagents_spawned
