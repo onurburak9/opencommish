@@ -13,7 +13,7 @@ _SYSTEM_PROMPT = (Path(__file__).parent.parent / "prompts" / "structure.md").rea
 
 structure_agent = Agent(
     name="nba_structure_agent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction=_SYSTEM_PROMPT,
 )
 

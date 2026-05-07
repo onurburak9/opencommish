@@ -22,7 +22,7 @@ Return ONLY the JSON object, no explanation, no markdown fences.
 
 player_media_agent = Agent(
     name="nba_player_media_finder",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction=_INSTRUCTION,
     tools=[google_search],
 )

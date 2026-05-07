@@ -1,0 +1,125 @@
+{
+  "recap_id": "nba-daily-2026-05-06",
+  "date": "2026-05-06",
+  "generated_at": "2026-05-07T18:06:38Z",
+  "metadata": {
+    "games_count": 2,
+    "sources_used": [
+      "nba_api"
+    ],
+    "subagents_spawned": 4,
+    "generation_time_seconds": 45.1
+  },
+  "content": {
+    "headline": "Knicks Hold Off Tyrese Maxey's 76ers in Thrilling Eastern Conference Showdown!",
+    "summary": "The New York Knicks battled past the Philadelphia 76ers with a 108-102 victory, fending off a superb scoring effort from Tyrese Maxey. Elsewhere, the San Antonio Spurs delivered a dominant 38-point rout over the Minnesota Timberwolves, sending a clear message in the Western Conference.",
+    "sections": [
+      {
+        "order": 1,
+        "type": "game_of_night",
+        "title": "Game of the Night",
+        "game_id": "0042500212",
+        "home_team": "NYK",
+        "away_team": "PHI",
+        "home_score": 108,
+        "away_score": 102,
+        "narrative": "The New York Knicks secured a hard-fought 108-102 victory over the Philadelphia 76ers in a fiercely contested Eastern Conference matchup. Despite Tyrese Maxey's stellar performance leading all scorers, his 26 points weren't enough to overcome New York's late-game surge and defensive resolve. This crucial win highlights the intensity of the playoff race, and a full recap is available for those who want to dive deeper into the action.",
+        "key_players": [
+          "Tyrese Maxey",
+          "Paul George"
+        ],
+        "media": {
+          "recap_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGqpxD7FTE4pqQTwcPsUYAMALhWgsOJoHC3bvJIUYEFEtNbkbOtyOaL3NYCohe3NGE4seYSePQwFiRcDAsLv8PLUa2Sih2vFJP55NAUYBh3e9cDnZxIA5K0VKYm8gk5xDFYSioSlOfhSphtnZMcul4EblqOJP3aIxEKsY1uC7GyL3hVPbfVBMnBNpCMQYxOeqv0gg",
+          "highlight_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHrUErGxsbB7eMsrC1Frx8bgtznqsZuntCviuVUMz0eH_iuiUj60BaqIHQzYTPyqcM36-vULNiZTKFvJDq6KdBQ2jgq-w2MkNSKxHS_qyAl-vmU92JLLP0kQUQgahs4kx4aP0TJWZc",
+          "source": "Field Level Media / NBA.com YouTube"
+        }
+      },
+      {
+        "order": 2,
+        "type": "player_spotlight",
+        "title": "Top Performers",
+        "players": [
+          {
+            "name": "Tyrese Maxey",
+            "team": "PHI",
+            "line": "26 PTS/3 REB/6 AST",
+            "context": "Led all players in scoring with an impressive performance despite his team's loss.",
+            "media": {
+              "headshot_url": null,
+              "interview_url": null
+            }
+          },
+          {
+            "name": "Paul George",
+            "team": "PHI",
+            "line": "19 PTS/6 REB/4 AST",
+            "context": "Provided a strong all-around effort for the 76ers, contributing on both ends of the floor.",
+            "media": {
+              "headshot_url": null,
+              "interview_url": "https://www.youtube.com/watch?v=F0B6t7Y1S2Q"
+            }
+          },
+          {
+            "name": "Kelly Oubre Jr.",
+            "team": "PHI",
+            "line": "19 PTS/5 REB/2 AST",
+            "context": "Tied for second-highest scorer on the 76ers, helping keep the game competitive.",
+            "media": {
+              "headshot_url": null,
+              "interview_url": "https://www.youtube.com/watch?v=n-Wz_z-S-D0"
+            }
+          }
+        ],
+        "media": {}
+      },
+      {
+        "order": 3,
+        "type": "storylines",
+        "title": "Key Storylines",
+        "stories": [
+          {
+            "headline": "Eastern Conference Playoff Battle Heats Up",
+            "summary": "The close contest between the Knicks and 76ers underscores the intense competition and strategic importance of every game in the Eastern Conference playoff race."
+          },
+          {
+            "headline": "Spurs Deliver Statement Win in the West",
+            "summary": "San Antonio's dominant 38-point victory over Minnesota sends a clear message as teams vie for position in the tightly contested Western Conference standings."
+          }
+        ],
+        "media": {}
+      },
+      {
+        "order": 4,
+        "type": "quick_hits",
+        "title": "Around the League",
+        "games": [
+          {
+            "matchup": "MIN 95 @ SAS 133",
+            "note": "The Spurs put on a dominant offensive display, routing the Timberwolves by 38 points."
+          }
+        ],
+        "media": {}
+      },
+      {
+        "order": 5,
+        "type": "looking_ahead",
+        "title": "Tonight's Matchups",
+        "upcoming": [
+          {
+            "home": "DET",
+            "away": "CLE",
+            "time_et": "TBD",
+            "storyline": "The Detroit Pistons host the Cleveland Cavaliers in an anticipated Eastern Conference showdown with playoff implications."
+          },
+          {
+            "home": "OKC",
+            "away": "LAL",
+            "time_et": "TBD",
+            "storyline": "A crucial Western Conference battle sees the Oklahoma City Thunder face the Los Angeles Lakers in a pivotal matchup for playoff seeding."
+          }
+        ],
+        "media": {}
+      }
+    ]
+  }
+}

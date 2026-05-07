@@ -11,7 +11,7 @@ _SYSTEM_PROMPT = (Path(__file__).parent.parent / "prompts" / "synthesis.md").rea
 
 synthesis_agent = Agent(
     name="nba_synthesis_agent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction=_SYSTEM_PROMPT,
 )
 
