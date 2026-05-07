@@ -80,7 +80,10 @@ def _render_section(section: dict) -> list[str]:
             away = upcoming.get("away", "")
             time_et = upcoming.get("time_et", "")
             storyline = upcoming.get("storyline", "")
-            lines.append(f"- **{away} @ {home}** {time_et} — {storyline}")
+            espn_url = upcoming.get("espn_url")
+            matchup = f"{away} @ {home}"
+            matchup_md = f"[{matchup}]({espn_url})" if espn_url else matchup
+            lines.append(f"- **{matchup_md}** {time_et} — {storyline}")
         lines.append("")
 
     return lines

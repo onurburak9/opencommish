@@ -170,6 +170,21 @@ async def _enrich_storylines_section(section: dict) -> dict:
     return {**section, "stories": enriched_stories, "media": {}}
 
 
+async def _enrich_looking_ahead_section(section: dict, date: str) -> dict:
+    """Add ESPN game page URLs to upcoming games using the next day's ESPN scoreboard."""
+    from datetime import date as date_type, timedelta
+    next_date = (date_type.fromisoformat(date) + timedelta(days=1)).isoformat()
+    espn_games_tomorrow = await _fetch_all_espn_games(next_date)
+
+    enriched_upcoming = []
+    for upcoming in section.get("upcoming", []):
+        home = upcoming.get("home", "")
+        away = upcoming.get("away", "")
+        media = _find_espn_game(espn_games_tomorrow, home, away, next_date)
+        enriched_upcoming.append({**upcoming, "espn_url": media.get("recap_url")})
+    return {**section, "upcoming": enriched_upcoming, "media": {}}
+
+
 def _build_player_media(player: dict, player_id_lookup: dict[str, int]) -> dict:
     """Build player media URLs from NBA CDN and YouTube search (no API calls needed)."""
     name = player.get("name", "")
@@ -221,8 +236,8 @@ async def _enrich_sections(
             tasks.append(_enrich_quick_hits_section(section, espn_games, date))
         elif section_type == "storylines":
             tasks.append(_enrich_storylines_section(section))
-        elif section_type in {"looking_ahead"}:
-            tasks.append(_passthrough(section))
+        elif section_type == "looking_ahead":
+            tasks.append(_enrich_looking_ahead_section(section, date))
         else:
             print(f"  ⚠️  Unknown section type '{section_type}' — passing through unchanged")
             tasks.append(_passthrough(section))
