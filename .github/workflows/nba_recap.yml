@@ -1,0 +1,71 @@
+name: NBA Daily Recap
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to recap (YYYY-MM-DD, defaults to yesterday ET)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run — collect only, no LLM'
+        required: false
+        default: 'false'
+
+  # Run at 8 AM ET (12 UTC) after all games from previous night are complete
+  # Uncomment when ready for production:
+  # schedule:
+  #   - cron: '0 12 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  generate_nba_recap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pull latest data
+        run: git pull origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Determine target date
+        id: date
+        run: |
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            echo "target=${{ github.event.inputs.date }}" >> $GITHUB_OUTPUT
+          else
+            echo "target=$(TZ='America/New_York' date -d 'yesterday' +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate NBA recap
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
+        run: |
+          ARGS="${{ steps.date.outputs.target }}"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python nba_recap/main.py $ARGS
+
+      - name: Commit recap data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          DATE="${{ steps.date.outputs.target }}"
+          git add "data/nba_recaps/${DATE}.json" "data/nba_recaps/${DATE}.md" || true
+          git diff --staged --quiet || git commit -m "NBA recap: ${DATE}"
+          git push
