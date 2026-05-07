@@ -1,18 +1,18 @@
 {
   "recap_id": "nba-daily-2026-05-06",
   "date": "2026-05-06",
-  "generated_at": "2026-05-07T18:53:40Z",
+  "generated_at": "2026-05-07T18:55:31Z",
   "metadata": {
     "games_count": 2,
     "sources_used": [
       "nba_api"
     ],
     "subagents_spawned": 4,
-    "generation_time_seconds": 30.3
+    "generation_time_seconds": 29.7
   },
   "content": {
-    "headline": "Knicks Hold Off Tyrese Maxey's Heroics in Thrilling Six-Point Victory Over 76ers",
-    "summary": "The New York Knicks secured a hard-fought 108-102 win against the Philadelphia 76ers, fending off a superb individual performance from Tyrese Maxey. Elsewhere, the San Antonio Spurs delivered a dominant 38-point rout over the Minnesota Timberwolves, showcasing their offensive prowess.",
+    "headline": "New York Knicks Fend Off Tyrese Maxey's Heroics in Hard-Fought Win Over 76ers",
+    "summary": "The New York Knicks secured a crucial six-point victory over the Philadelphia 76ers in a tight contest, highlighted by Tyrese Maxey's leading 26-point effort. Meanwhile, the San Antonio Spurs delivered a dominant 38-point rout against the Minnesota Timberwolves in a lopsided affair.",
     "sections": [
       {
         "order": 1,
@@ -23,7 +23,7 @@
         "away_team": "PHI",
         "home_score": 108,
         "away_score": 102,
-        "narrative": "The New York Knicks emerged victorious in a spirited clash against the Philadelphia 76ers, clinching a tight 108-102 win on their home court. Despite a strong offensive effort led by Tyrese Maxey for the Sixers, the Knicks' resilient defense proved to be the deciding factor in holding off their division rivals. Fans can dive deeper into the game's details with the available recap.",
+        "narrative": "The New York Knicks emerged victorious in a hard-fought battle against the Philadelphia 76ers, securing a 108-102 win. Despite Tyrese Maxey's impressive scoring effort for Philly, the Knicks maintained their composure in a tight contest, ultimately sealing the six-point victory. A full recap of the thrilling matchup is available.",
         "key_players": [
           "Tyrese Maxey",
           "Paul George"
@@ -41,30 +41,33 @@
           {
             "name": "Tyrese Maxey",
             "team": "PHI",
-            "line": "26/3/6",
-            "context": "Tyrese Maxey was the offensive engine for the 76ers, pouring in a game-high 26 points and dishing out 6 assists. His relentless attack kept Philadelphia competitive throughout the intense matchup, showcasing his burgeoning star power.",
+            "line": "26 PTS/3 REB/6 AST",
+            "context": "Tyrese Maxey showcased his scoring prowess, leading all players with an impressive 26 points, complemented by 3 rebounds and 6 assists. His relentless attack was crucial in driving the 76ers' offense throughout the tight contest.",
             "media": {
               "headshot_url": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630178.png",
+              "boxscore_url": "https://www.espn.com/nba/boxscore/_/gameId/401871160",
               "interview_url": "https://www.youtube.com/results?search_query=Tyrese+Maxey+post+game+interview+NBA+2026"
             }
           },
           {
             "name": "Paul George",
             "team": "PHI",
-            "line": "19/6/4",
-            "context": "Paul George delivered an efficient performance for Philadelphia, contributing 19 points, grabbing 6 rebounds, and handing out 4 assists. His versatile play on both ends of the floor provided crucial support in the team's effort against the Knicks.",
+            "line": "19 PTS/6 REB/4 AST",
+            "context": "Paul George delivered a solid all-around performance for the 76ers, contributing 19 points, 6 rebounds, and 4 assists. His versatile play provided a much-needed boost on both ends of the court.",
             "media": {
               "headshot_url": "https://cdn.nba.com/headshots/nba/latest/1040x760/202331.png",
+              "boxscore_url": "https://www.espn.com/nba/boxscore/_/gameId/401871160",
               "interview_url": "https://www.youtube.com/results?search_query=Paul+George+post+game+interview+NBA+2026"
             }
           },
           {
             "name": "Kelly Oubre Jr.",
             "team": "PHI",
-            "line": "19/5/2",
-            "context": "Kelly Oubre Jr. provided a significant scoring spark off the bench for the 76ers, tallying 19 points and pulling down 5 rebounds. His energy and timely buckets were vital in keeping the game close, demonstrating his impact on the offensive end.",
+            "line": "19 PTS/5 REB/2 AST",
+            "context": "Kelly Oubre Jr. provided a significant offensive spark off the bench, matching Paul George with 19 points. He also chipped in with 5 rebounds and 2 assists, making a crucial impact for Philadelphia.",
             "media": {
               "headshot_url": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626162.png",
+              "boxscore_url": "https://www.espn.com/nba/boxscore/_/gameId/401871160",
               "interview_url": "https://www.youtube.com/results?search_query=Kelly+Oubre+Jr.+post+game+interview+NBA+2026"
             }
           }
@@ -77,14 +80,14 @@
         "title": "Key Storylines",
         "stories": [
           {
-            "headline": "Spurs Dominate Timberwolves in Lopsided Affair",
-            "summary": "San Antonio delivered a resounding 38-point victory over Minnesota, showcasing a powerful offensive display and stifling defense.",
-            "news_url": "https://news.google.com/search?q=Spurs+Dominate+Timberwolves+in+Lopsided+Affair+NBA"
+            "headline": "Knicks Secure Hard-Fought Win Over 76ers",
+            "summary": "The New York Knicks showcased their resilience and ability to perform under pressure, grinding out a tough six-point victory against the Philadelphia 76ers. This win highlights their composure in critical moments and strengthens their position.",
+            "news_url": "https://news.google.com/search?q=Knicks+Secure+Hard-Fought+Win+Over+76ers+NBA"
           },
           {
-            "headline": "Knicks Edge Out 76ers in Intense Home Victory",
-            "summary": "New York secured a crucial six-point win against Philadelphia, highlighting a hard-fought battle down the stretch in a competitive game.",
-            "news_url": "https://news.google.com/search?q=Knicks+Edge+Out+76ers+in+Intense+Home+Victory+NBA"
+            "headline": "Spurs Dominate Timberwolves in Lopsided Affair",
+            "summary": "The San Antonio Spurs delivered a stunning performance, completely overwhelming the Minnesota Timberwolves in a dominant 38-point rout. This lopsided affair underscored the Spurs' potent offense and stifling defense on the night.",
+            "news_url": "https://news.google.com/search?q=Spurs+Dominate+Timberwolves+in+Lopsided+Affair+NBA"
           }
         ],
         "media": {}
@@ -96,7 +99,7 @@
         "games": [
           {
             "matchup": "MIN 95 @ SAS 133",
-            "note": "The San Antonio Spurs delivered a commanding performance at home, routing the Minnesota Timberwolves with a final score of 133-95. Their impressive 38-point differential highlighted a dominant display on both ends of the court. A full recap of the game is available for more details.",
+            "note": "The San Antonio Spurs delivered a masterful performance at home, completely dismantling the Minnesota Timberwolves in a dominant 133-95 victory. Their impressive 38-point blowout left no doubt about who controlled the game. For all the details, a full recap is available.",
             "recap_url": "https://www.espn.com/nba/game/_/gameId/401871153/timberwolves-spurs"
           }
         ],
@@ -111,14 +114,14 @@
             "home": "DET",
             "away": "CLE",
             "time_et": "TBD",
-            "storyline": "An anticipated Eastern Conference showdown awaits as the Detroit Pistons host the Cleveland Cavaliers. Both teams will be looking to establish dominance and gain crucial ground in the standings, promising a competitive battle.",
+            "storyline": "Two Eastern Conference playoff hopefuls are set to clash in a pivotal matchup, as the Pistons host the Cavaliers. This game carries significant implications for conference seeding as the regular season draws to a close, promising a highly competitive battle.",
             "espn_url": "https://www.espn.com/nba/game/_/gameId/401871334/cavaliers-pistons"
           },
           {
             "home": "OKC",
             "away": "LAL",
             "time_et": "TBD",
-            "storyline": "A high-stakes Western Conference clash is on tap as the Oklahoma City Thunder welcome the Los Angeles Lakers. This matchup features two dynamic teams with championship aspirations, setting the stage for an exciting and impactful game.",
+            "storyline": "A high-stakes Western Conference showdown awaits as the Oklahoma City Thunder visit the Los Angeles Lakers. This crucial contest pits the young, dynamic Thunder against the experienced Lakers, with both teams fighting for prime playoff positioning.",
             "espn_url": "https://www.espn.com/nba/game/_/gameId/401871327/lakers-thunder"
           }
         ],

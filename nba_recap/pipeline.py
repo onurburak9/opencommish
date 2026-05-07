@@ -101,6 +101,7 @@ async def _fetch_all_espn_games(date: str) -> list[dict]:
                     None,
                 )
                 games.append({
+                    "espn_game_id": event.get("id", ""),
                     "home_abbr": home_abbr,
                     "away_abbr": away_abbr,
                     "recap_url": recap_url,
@@ -185,24 +186,39 @@ async def _enrich_looking_ahead_section(section: dict, date: str) -> dict:
     return {**section, "upcoming": enriched_upcoming, "media": {}}
 
 
-def _build_player_media(player: dict, player_id_lookup: dict[str, int]) -> dict:
-    """Build player media URLs from NBA CDN and YouTube search (no API calls needed)."""
+def _boxscore_url_for_team(team_abbr: str, espn_games: list[dict]) -> str | None:
+    """Find the ESPN boxscore URL for the game a given team played in."""
+    for g in espn_games:
+        if g.get("espn_game_id") and (
+            _abbr_matches(g["home_abbr"], team_abbr)
+            or _abbr_matches(g["away_abbr"], team_abbr)
+        ):
+            return f"https://www.espn.com/nba/boxscore/_/gameId/{g['espn_game_id']}"
+    return None
+
+
+def _build_player_media(player: dict, player_id_lookup: dict[str, int], espn_games: list[dict]) -> dict:
+    """Build player media URLs from NBA CDN, YouTube search, and ESPN boxscore."""
     name = player.get("name", "")
+    team = player.get("team", "")
     player_id = player.get("player_id") or player_id_lookup.get(name)
-    headshot_url = (
-        _NBA_HEADSHOT_CDN.format(player_id=player_id) if player_id else None
-    )
+    headshot_url = _NBA_HEADSHOT_CDN.format(player_id=player_id) if player_id else None
     interview_url = (
         f"https://www.youtube.com/results?search_query={name.replace(' ', '+')}+post+game+interview+NBA+2026"
         if name else None
     )
-    return {**player, "media": {"headshot_url": headshot_url, "interview_url": interview_url}}
+    boxscore_url = _boxscore_url_for_team(team, espn_games) if team else None
+    return {**player, "media": {
+        "headshot_url": headshot_url,
+        "boxscore_url": boxscore_url,
+        "interview_url": interview_url,
+    }}
 
 
-async def _enrich_player_section(section: dict, player_id_lookup: dict[str, int]) -> dict:
-    """Build media URLs for up to 3 players using NBA CDN + YouTube search."""
+async def _enrich_player_section(section: dict, player_id_lookup: dict[str, int], espn_games: list[dict]) -> dict:
+    """Build media URLs for up to 3 players using NBA CDN + ESPN boxscore + YouTube search."""
     players = section.get("players", [])
-    enriched_players = [_build_player_media(p, player_id_lookup) for p in players[:3]]
+    enriched_players = [_build_player_media(p, player_id_lookup, espn_games) for p in players[:3]]
     return {**section, "players": enriched_players, "media": {}}
 
 
@@ -230,7 +246,7 @@ async def _enrich_sections(
             subagents_spawned += 1
         elif section_type == "player_spotlight":
             player_count = min(3, len(section.get("players", [])))
-            tasks.append(_enrich_player_section(section, player_id_lookup))
+            tasks.append(_enrich_player_section(section, player_id_lookup, espn_games))
             subagents_spawned += player_count
         elif section_type == "quick_hits":
             tasks.append(_enrich_quick_hits_section(section, espn_games, date))

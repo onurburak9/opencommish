@@ -47,13 +47,18 @@ def _render_section(section: dict) -> list[str]:
             context = player.get("context", "")
             player_media = player.get("media", {})
             headshot = player_media.get("headshot_url")
+            boxscore = player_media.get("boxscore_url")
             interview = player_media.get("interview_url")
-            # Name as link to headshot if available
             name_md = f"[{name}]({headshot})" if headshot else name
             parts = [f"**{name_md}**", line, context]
             lines.append(" — ".join(p for p in parts if p))
+            links = []
+            if boxscore:
+                links.append(f"[Box score]({boxscore})")
             if interview:
-                lines.append(f"  [Post-game interview]({interview})")
+                links.append(f"[Post-game interview]({interview})")
+            if links:
+                lines.append("  " + " · ".join(links))
         lines.append("")
 
     elif section_type == "storylines":
