@@ -10,15 +10,14 @@ from nba_recap.collect import (
 
 
 def test_build_game_record_basic():
-    raw = {
-        "GAME_ID": "0022600001",
-        "HOME_TEAM_ABBREVIATION": "LAL",
-        "VISITOR_TEAM_ABBREVIATION": "GSW",
-        "PTS_HOME": 128,
-        "PTS_AWAY": 112,
-        "GAME_STATUS_TEXT": "Final",
+    # ScoreboardV3 format: nested homeTeam/awayTeam objects
+    game = {
+        "gameId": "0022600001",
+        "gameStatusText": "Final",
+        "homeTeam": {"teamTricode": "LAL", "score": 128},
+        "awayTeam": {"teamTricode": "GSW", "score": 112},
     }
-    result = build_game_record(raw)
+    result = build_game_record(game)
     assert result["game_id"] == "0022600001"
     assert result["home_team"] == "LAL"
     assert result["away_team"] == "GSW"
@@ -29,15 +28,13 @@ def test_build_game_record_basic():
 
 
 def test_build_game_record_overtime():
-    raw = {
-        "GAME_ID": "0022600002",
-        "HOME_TEAM_ABBREVIATION": "BOS",
-        "VISITOR_TEAM_ABBREVIATION": "MIL",
-        "PTS_HOME": 115,
-        "PTS_AWAY": 113,
-        "GAME_STATUS_TEXT": "Final/OT",
+    game = {
+        "gameId": "0022600002",
+        "gameStatusText": "Final/OT",
+        "homeTeam": {"teamTricode": "BOS", "score": 115},
+        "awayTeam": {"teamTricode": "MIL", "score": 113},
     }
-    result = build_game_record(raw)
+    result = build_game_record(game)
     assert result["overtime"] is True
     assert result["margin"] == 2
 

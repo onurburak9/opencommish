@@ -34,15 +34,20 @@ class CollectedData:
     sources_used: list[str] = field(default_factory=list)
 
 
-def build_game_record(raw: dict) -> dict:
-    """Normalize a raw NBA API scoreboard row into a game dict."""
-    home_score = raw.get("PTS_HOME") or 0
-    away_score = raw.get("PTS_AWAY") or 0
-    status = raw.get("GAME_STATUS_TEXT", "")
+def build_game_record(game: dict) -> dict:
+    """Normalize a ScoreboardV3 game dict into a flat game record.
+
+    ScoreboardV3 nests team info under homeTeam/awayTeam objects.
+    """
+    home = game.get("homeTeam", {})
+    away = game.get("awayTeam", {})
+    home_score = home.get("score") or 0
+    away_score = away.get("score") or 0
+    status = game.get("gameStatusText", "")
     return {
-        "game_id": raw["GAME_ID"],
-        "home_team": raw["HOME_TEAM_ABBREVIATION"],
-        "away_team": raw["VISITOR_TEAM_ABBREVIATION"],
+        "game_id": game.get("gameId", ""),
+        "home_team": home.get("teamTricode", ""),
+        "away_team": away.get("teamTricode", ""),
         "home_score": home_score,
         "away_score": away_score,
         "status": status,
@@ -79,12 +84,12 @@ def parse_standings_entry(raw: dict) -> dict:
 
 
 def _fetch_scoreboard(game_date: str) -> list[dict]:
-    from nba_api.stats.endpoints import ScoreboardV2
+    from nba_api.stats.endpoints import ScoreboardV3
     time.sleep(_API_SLEEP_S)
     try:
-        board = ScoreboardV2(game_date=game_date, timeout=30)
-        d = board.game_header.get_dict()
-        return [dict(zip(d["headers"], row)) for row in d["data"]]
+        board = ScoreboardV3(game_date=game_date, timeout=30)
+        data = board.get_dict()
+        return data.get("scoreboard", {}).get("games", [])
     except Exception as e:
         print(f"  ⚠️  Scoreboard fetch failed for {game_date}: {e}")
         return []
@@ -133,20 +138,20 @@ def _fetch_standings() -> tuple[list[dict], list[dict]]:
 
 
 def _fetch_upcoming(target_date: str) -> list[dict]:
-    from nba_api.stats.endpoints import ScoreboardV2
+    from nba_api.stats.endpoints import ScoreboardV3
     next_day = (date.fromisoformat(target_date) + timedelta(days=1)).isoformat()
     time.sleep(_API_SLEEP_S)
     try:
-        board = ScoreboardV2(game_date=next_day, timeout=30)
-        d = board.game_header.get_dict()
-        rows = [dict(zip(d["headers"], row)) for row in d["data"]]
+        board = ScoreboardV3(game_date=next_day, timeout=30)
+        data = board.get_dict()
+        games = data.get("scoreboard", {}).get("games", [])
         return [
             {
-                "home": r.get("HOME_TEAM_ABBREVIATION", ""),
-                "away": r.get("VISITOR_TEAM_ABBREVIATION", ""),
-                "game_id": r.get("GAME_ID", ""),
+                "home": g.get("homeTeam", {}).get("teamTricode", ""),
+                "away": g.get("awayTeam", {}).get("teamTricode", ""),
+                "game_id": g.get("gameId", ""),
             }
-            for r in rows
+            for g in games
         ]
     except Exception as e:
         print(f"  Warning: Upcoming games failed: {e}")
