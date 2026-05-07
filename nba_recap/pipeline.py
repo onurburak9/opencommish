@@ -77,45 +77,97 @@ def _abbr_matches(espn_abbr: str, nba_abbr: str) -> bool:
     return nba_abbr.startswith(espn_abbr) or espn_abbr.startswith(nba_abbr)
 
 
-async def _fetch_espn_game_media(home_team: str, away_team: str, date: str) -> dict:
-    """Fetch game recap URL from ESPN's public scoreboard API (no auth required).
+async def _fetch_all_espn_games(date: str) -> list[dict]:
+    """Fetch all games for a date from ESPN's public API. Called once and shared.
 
-    Returns permanent ESPN URLs — never ephemeral redirect tokens.
+    Returns list of dicts with home_abbrs, away_abbrs, recap_url, highlight_url.
     """
     date_compact = date.replace("-", "")
     async with httpx.AsyncClient(timeout=10) as client:
         try:
             resp = await client.get(_ESPN_SCOREBOARD, params={"dates": date_compact})
             resp.raise_for_status()
+            games = []
             for event in resp.json().get("events", []):
                 competitors = event.get("competitions", [{}])[0].get("competitors", [])
-                espn_abbrs = [c["team"]["abbreviation"] for c in competitors]
-                home_match = any(_abbr_matches(a, home_team) for a in espn_abbrs)
-                away_match = any(_abbr_matches(a, away_team) for a in espn_abbrs)
-                if home_match and away_match:
-                    recap_url = None
-                    for link in event.get("links", []):
-                        if "summary" in link.get("rel", []):
-                            recap_url = link.get("href")
-                            break
-                    highlight_url = (
-                        f"https://www.youtube.com/results"
-                        f"?search_query={away_team}+vs+{home_team}+highlights+NBA+{date}"
-                    )
-                    return {"recap_url": recap_url, "highlight_url": highlight_url}
+                home_abbr, away_abbr = "", ""
+                for c in competitors:
+                    if c.get("homeAway") == "home":
+                        home_abbr = c["team"]["abbreviation"]
+                    else:
+                        away_abbr = c["team"]["abbreviation"]
+                recap_url = next(
+                    (lnk["href"] for lnk in event.get("links", []) if "summary" in lnk.get("rel", [])),
+                    None,
+                )
+                games.append({
+                    "home_abbr": home_abbr,
+                    "away_abbr": away_abbr,
+                    "recap_url": recap_url,
+                })
+            return games
         except Exception as e:
             print(f"  ⚠️  ESPN API failed: {e}")
+    return []
+
+
+def _find_espn_game(espn_games: list[dict], home_team: str, away_team: str, date: str) -> dict:
+    """Find matching ESPN game entry and return media URLs."""
+    for g in espn_games:
+        home_match = _abbr_matches(g["home_abbr"], home_team)
+        away_match = _abbr_matches(g["away_abbr"], away_team)
+        if home_match and away_match:
+            return {
+                "recap_url": g["recap_url"],
+                "highlight_url": (
+                    f"https://www.youtube.com/results"
+                    f"?search_query={away_team}+vs+{home_team}+highlights+NBA+{date}"
+                ),
+            }
     return {"recap_url": None, "highlight_url": None}
 
 
-async def _enrich_game_section(section: dict, date: str) -> dict:
+async def _enrich_game_section(section: dict, espn_games: list[dict], date: str) -> dict:
     """Enrich game_of_night with ESPN recap URL and YouTube search link."""
     home = section.get("home_team", "")
     away = section.get("away_team", "")
     if not home or not away:
         return {**section, "media": {"recap_url": None, "highlight_url": None}}
-    media = await _fetch_espn_game_media(home, away, date)
+    media = _find_espn_game(espn_games, home, away, date)
     return {**section, "media": media}
+
+
+def _parse_teams_from_matchup(matchup: str) -> tuple[str, str]:
+    """Extract (away, home) abbreviations from a matchup string like 'PHI 102 @ NYK 108'."""
+    import re
+    m = re.match(r"([A-Z]{2,3})\s+\d+\s+@\s+([A-Z]{2,3})", matchup)
+    if m:
+        return m.group(1), m.group(2)
+    return "", ""
+
+
+async def _enrich_quick_hits_section(section: dict, espn_games: list[dict], date: str) -> dict:
+    """Add ESPN game URLs to each game in the quick_hits section."""
+    enriched_games = []
+    for game in section.get("games", []):
+        matchup = game.get("matchup", "")
+        away, home = _parse_teams_from_matchup(matchup)
+        media = _find_espn_game(espn_games, home, away, date) if home and away else {}
+        enriched_games.append({**game, "recap_url": media.get("recap_url")})
+    return {**section, "games": enriched_games, "media": {}}
+
+
+async def _enrich_storylines_section(section: dict) -> dict:
+    """Add a Google News search URL to each story based on its headline."""
+    enriched_stories = []
+    for story in section.get("stories", []):
+        headline = story.get("headline", "")
+        search_url = (
+            f"https://news.google.com/search?q={headline.replace(' ', '+').replace(',', '')}+NBA"
+            if headline else None
+        )
+        enriched_stories.append({**story, "news_url": search_url})
+    return {**section, "stories": enriched_stories, "media": {}}
 
 
 def _build_player_media(player: dict, player_id_lookup: dict[str, int]) -> dict:
@@ -148,20 +200,28 @@ async def _enrich_sections(
     sections: list[dict], date: str, player_id_lookup: dict[str, int]
 ) -> tuple[list[dict], int]:
     """Phase 3: enrich all sections in parallel. Returns (enriched_sections, subagents_spawned)."""
-    print(f"  🔍 Enriching {len(sections)} sections via subagents...")
+    print(f"  🔍 Enriching {len(sections)} sections...")
+
+    # Fetch ESPN game data once — shared by game_of_night and quick_hits
+    espn_games = await _fetch_all_espn_games(date)
+
     tasks = []
     subagents_spawned = 0
 
     for section in sections:
         section_type = section.get("type", "")
         if section_type == "game_of_night":
-            tasks.append(_enrich_game_section(section, date))
+            tasks.append(_enrich_game_section(section, espn_games, date))
             subagents_spawned += 1
         elif section_type == "player_spotlight":
             player_count = min(3, len(section.get("players", [])))
             tasks.append(_enrich_player_section(section, player_id_lookup))
             subagents_spawned += player_count
-        elif section_type in {"storylines", "quick_hits", "looking_ahead"}:
+        elif section_type == "quick_hits":
+            tasks.append(_enrich_quick_hits_section(section, espn_games, date))
+        elif section_type == "storylines":
+            tasks.append(_enrich_storylines_section(section))
+        elif section_type in {"looking_ahead"}:
             tasks.append(_passthrough(section))
         else:
             print(f"  ⚠️  Unknown section type '{section_type}' — passing through unchanged")

@@ -19,6 +19,73 @@ def validate_output(output: dict) -> None:
         raise ValueError(f"Missing required field(s): {', '.join(sorted(missing))}")
 
 
+def _render_section(section: dict) -> list[str]:
+    """Render a single section to Markdown lines."""
+    lines: list[str] = []
+    section_type = section.get("type", "")
+    lines.append(f"## {section.get('title', '')}")
+    lines.append("")
+
+    if section.get("narrative"):
+        lines.append(section["narrative"])
+        lines.append("")
+
+    media = section.get("media", {})
+
+    if section_type == "game_of_night":
+        if media.get("recap_url"):
+            lines.append(f"[Full recap]({media['recap_url']})")
+        if media.get("highlight_url"):
+            lines.append(f"[Highlights]({media['highlight_url']})")
+        if media.get("recap_url") or media.get("highlight_url"):
+            lines.append("")
+
+    elif section_type == "player_spotlight":
+        for player in section.get("players", []):
+            name = player.get("name", "")
+            line = player.get("line", "")
+            context = player.get("context", "")
+            player_media = player.get("media", {})
+            headshot = player_media.get("headshot_url")
+            interview = player_media.get("interview_url")
+            # Name as link to headshot if available
+            name_md = f"[{name}]({headshot})" if headshot else name
+            parts = [f"**{name_md}**", line, context]
+            lines.append(" — ".join(p for p in parts if p))
+            if interview:
+                lines.append(f"  [Post-game interview]({interview})")
+        lines.append("")
+
+    elif section_type == "storylines":
+        for story in section.get("stories", []):
+            headline = story.get("headline", "")
+            summary = story.get("summary", "")
+            news_url = story.get("news_url")
+            headline_md = f"[{headline}]({news_url})" if news_url else headline
+            lines.append(f"**{headline_md}** — {summary}")
+        lines.append("")
+
+    elif section_type == "quick_hits":
+        for game in section.get("games", []):
+            matchup = game.get("matchup", "")
+            note = game.get("note", "")
+            recap_url = game.get("recap_url")
+            matchup_md = f"[{matchup}]({recap_url})" if recap_url else matchup
+            lines.append(f"- {matchup_md} — {note}")
+        lines.append("")
+
+    elif section_type == "looking_ahead":
+        for upcoming in section.get("upcoming", []):
+            home = upcoming.get("home", "")
+            away = upcoming.get("away", "")
+            time_et = upcoming.get("time_et", "")
+            storyline = upcoming.get("storyline", "")
+            lines.append(f"- **{away} @ {home}** {time_et} — {storyline}")
+        lines.append("")
+
+    return lines
+
+
 def render_markdown(output: dict) -> str:
     """Render the final output dict as a Markdown string."""
     content = output.get("content", {})
@@ -31,15 +98,7 @@ def render_markdown(output: dict) -> str:
         "",
     ]
     for section in content.get("sections", []):
-        lines.append(f"## {section.get('title', '')}")
-        lines.append("")
-        if section.get("narrative"):
-            lines.append(section["narrative"])
-            lines.append("")
-        media = section.get("media", {})
-        if media.get("recap_url"):
-            lines.append(f"[Full recap]({media['recap_url']})")
-            lines.append("")
+        lines.extend(_render_section(section))
     return "\n".join(lines)
 
 

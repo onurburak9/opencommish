@@ -1,18 +1,18 @@
 {
   "recap_id": "nba-daily-2026-05-06",
   "date": "2026-05-06",
-  "generated_at": "2026-05-07T18:18:38Z",
+  "generated_at": "2026-05-07T18:50:39Z",
   "metadata": {
     "games_count": 2,
     "sources_used": [
       "nba_api"
     ],
     "subagents_spawned": 4,
-    "generation_time_seconds": 28.2
+    "generation_time_seconds": 30.1
   },
   "content": {
-    "headline": "Knicks Hold Off Maxey's Heroics, Secure Gritty Win Over 76ers",
-    "summary": "The New York Knicks battled past the Philadelphia 76ers in a tough contest, winning 108-102 despite Tyrese Maxey's league-leading 26 points. Elsewhere, the San Antonio Spurs delivered a dominant 133-95 home victory over the Minnesota Timberwolves.",
+    "headline": "Tyrese Maxey's Big Night Not Enough as Knicks Secure Hard-Fought Win Over 76ers",
+    "summary": "The New York Knicks outlasted the Philadelphia 76ers 108-102 in a tight contest, overcoming a game-high 26 points from Tyrese Maxey. Elsewhere, the San Antonio Spurs delivered a dominant 38-point victory against the Minnesota Timberwolves, showcasing an impressive offensive display.",
     "sections": [
       {
         "order": 1,
@@ -23,7 +23,7 @@
         "away_team": "PHI",
         "home_score": 108,
         "away_score": 102,
-        "narrative": "The New York Knicks emerged victorious in a hard-fought battle, securing a 108-102 win over the Philadelphia 76ers. Despite a strong offensive push from Tyrese Maxey and Paul George, who led the charge for Philadelphia, the Knicks managed to hold off their rivals. New York maintained control down the stretch, fending off Philadelphia's late game efforts to clinch the six-point victory. A full recap of the intense matchup is available.",
+        "narrative": "The New York Knicks battled past the Philadelphia 76ers, securing a 108-102 victory in a fiercely contested matchup. Tyrese Maxey led all scorers with 26 points for the 76ers, but his impressive offensive display wasn't enough to overcome the Knicks' late-game execution and resilience. Fans can dive deeper into the action with the full recap available.",
         "key_players": [
           "Tyrese Maxey",
           "Paul George"
@@ -42,7 +42,7 @@
             "name": "Tyrese Maxey",
             "team": "PHI",
             "line": "26 PTS/3 REB/6 AST",
-            "context": "Tyrese Maxey put on a scoring clinic, leading all players across the league with 26 points. He also contributed 3 rebounds and 6 assists, single-handedly driving much of the 76ers' offensive attack.",
+            "context": "Tyrese Maxey delivered an outstanding performance for the Philadelphia 76ers, leading all scorers with an impressive 26 points, complemented by 3 rebounds and 6 assists. His relentless offensive pressure kept the 76ers competitive throughout the game, even as they ultimately fell short.",
             "media": {
               "headshot_url": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630178.png",
               "interview_url": "https://www.youtube.com/results?search_query=Tyrese+Maxey+post+game+interview+NBA+2026"
@@ -52,7 +52,7 @@
             "name": "Paul George",
             "team": "PHI",
             "line": "19 PTS/6 REB/4 AST",
-            "context": "Paul George showcased his versatile game for Philadelphia, tallying 19 points, 6 rebounds, and 4 assists. His all-around effort was crucial in supporting the 76ers' offensive scheme.",
+            "context": "Paul George provided valuable all-around contributions for Philadelphia, registering 19 points, 6 rebounds, and 4 assists. His versatile play on both ends of the court was crucial in keeping the 76ers within striking distance against the Knicks.",
             "media": {
               "headshot_url": "https://cdn.nba.com/headshots/nba/latest/1040x760/202331.png",
               "interview_url": "https://www.youtube.com/results?search_query=Paul+George+post+game+interview+NBA+2026"
@@ -62,7 +62,7 @@
             "name": "Kelly Oubre Jr.",
             "team": "PHI",
             "line": "19 PTS/5 REB/2 AST",
-            "context": "Kelly Oubre Jr. provided a significant scoring spark off the bench for the 76ers, matching George with 19 points. He added 5 rebounds and 2 assists, proving to be an impactful contributor for his team.",
+            "context": "Kelly Oubre Jr. was another significant scoring threat for the 76ers, adding 19 points, 5 rebounds, and 2 assists. His consistent offensive output ensured Philadelphia maintained pressure on the Knicks' defense.",
             "media": {
               "headshot_url": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626162.png",
               "interview_url": "https://www.youtube.com/results?search_query=Kelly+Oubre+Jr.+post+game+interview+NBA+2026"
@@ -75,7 +75,18 @@
         "order": 3,
         "type": "storylines",
         "title": "Key Storylines",
-        "stories": [],
+        "stories": [
+          {
+            "headline": "Knicks Hold Off Sixers in Tight Eastern Conference Battle",
+            "summary": "The New York Knicks showcased their clutch capabilities by maintaining their lead against a resilient Philadelphia squad, ultimately securing an important 108-102 victory. This win highlighted the Knicks' ability to execute under pressure in a tight Eastern Conference battle.",
+            "news_url": "https://news.google.com/search?q=Knicks+Hold+Off+Sixers+in+Tight+Eastern+Conference+Battle+NBA"
+          },
+          {
+            "headline": "Spurs Deliver Dominant Performance Against Timberwolves",
+            "summary": "The San Antonio Spurs delivered an emphatic statement on their home court, overwhelming the Minnesota Timberwolves with a commanding 133-95 victory. San Antonio's impressive offensive explosion led to a significant 38-point margin, demonstrating their potential.",
+            "news_url": "https://news.google.com/search?q=Spurs+Deliver+Dominant+Performance+Against+Timberwolves+NBA"
+          }
+        ],
         "media": {}
       },
       {
@@ -85,7 +96,8 @@
         "games": [
           {
             "matchup": "MIN 95 @ SAS 133",
-            "note": "The San Antonio Spurs put on a dominant display at home, absolutely cruising past the Minnesota Timberwolves with a resounding 133-95 victory. Their 38-point margin highlighted a commanding performance from start to finish."
+            "note": "The San Antonio Spurs delivered a commanding performance, routing the Minnesota Timberwolves with a 133-95 victory. This dominant 38-point win saw the Spurs control the game from start to finish. A full recap of this impressive showing is available for fans.",
+            "recap_url": "https://www.espn.com/nba/game/_/gameId/401871153/timberwolves-spurs"
           }
         ],
         "media": {}
@@ -99,13 +111,13 @@
             "home": "DET",
             "away": "CLE",
             "time_et": "TBD",
-            "storyline": "An intriguing Eastern Conference clash is on tap as the Detroit Pistons prepare to host the Cleveland Cavaliers. Both teams will look to make their mark early in what promises to be a competitive matchup."
+            "storyline": "Two Eastern Conference teams are set to clash in what could be a pivotal game for playoff positioning. Both the Pistons and Cavaliers will be looking to gain an edge as the season progresses."
           },
           {
             "home": "OKC",
             "away": "LAL",
             "time_et": "TBD",
-            "storyline": "The Western Conference features a marquee showdown as the Oklahoma City Thunder welcome the Los Angeles Lakers. This highly anticipated game is expected to deliver fireworks between two conference contenders."
+            "storyline": "Fans can anticipate a high-stakes Western Conference showdown featuring two teams battling for crucial playoff seeding. The Thunder and Lakers will undoubtedly bring their A-game in this anticipated matchup."
           }
         ],
         "media": {}
