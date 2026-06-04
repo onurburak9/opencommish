@@ -19,6 +19,7 @@ def validate_output(output: dict) -> None:
 
 
 def _render_section(section: dict) -> list[str]:
+    """Render a single section to Markdown lines."""
     lines: list[str] = [f"## {section.get('title', '')}", ""]
     section_type = section.get("type", "")
     if section.get("narrative"):
@@ -31,7 +32,8 @@ def _render_section(section: dict) -> list[str]:
             lines.append(f"[Full recap]({media['recap_url']})")
         if media.get("highlight_url"):
             lines.append(f"[Highlights]({media['highlight_url']})")
-        lines.append("")
+        if media.get("recap_url") or media.get("highlight_url"):
+            lines.append("")
     elif section_type == "results_roundup":
         for game in section.get("games", []):
             lines.append(f"- {game.get('matchup', '')} — {game.get('note', '')}")
@@ -60,6 +62,7 @@ def _render_section(section: dict) -> list[str]:
 
 
 def render_markdown(output: dict) -> str:
+    """Render the final output dict as a Markdown string."""
     content = output.get("content", {})
     date_str = output.get("date", "")
     lines = [
@@ -80,6 +83,7 @@ def build_final_output(
     generation_time: float,
     verification: dict,
 ) -> dict:
+    """Assemble the schema-valid final recap dict from collected + synthesized data."""
     output = {
         "recap_id": build_recap_id(data.date),
         "date": data.date,

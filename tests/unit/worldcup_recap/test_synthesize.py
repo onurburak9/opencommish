@@ -1,7 +1,5 @@
 """Tests for worldcup_recap/synthesize.py."""
 
-import json
-
 import pytest
 
 from worldcup_recap.providers.base import CollectedData
@@ -66,3 +64,53 @@ def test_render_markdown_includes_headline_and_links():
     assert "Match of the Day" in md
     assert "https://youtube.com/x" in md
     assert "Larsen" in md
+
+
+def test_render_markdown_results_roundup_and_looking_ahead():
+    out = build_final_output(
+        _data(),
+        {
+            "headline": "h", "summary": "s",
+            "sections": [
+                {"type": "results_roundup", "title": "Other Results",
+                 "games": [{"matchup": "Brazil 2-1 Serbia", "note": "late winner"}]},
+                {"type": "looking_ahead", "title": "Looking Ahead",
+                 "upcoming": [{"home": "France", "away": "Peru",
+                               "kickoff": "2026-06-12T19:00Z", "storyline": "Group D opener"}]},
+            ],
+        },
+        generation_time=1.0,
+        verification={"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0},
+    )
+    md = render_markdown(out)
+    assert "Brazil 2-1 Serbia" in md
+    assert "late winner" in md
+    assert "Peru @ France" in md
+    assert "Group D opener" in md
+
+
+def test_render_markdown_match_of_day_without_media_has_no_stray_blank():
+    out = build_final_output(
+        _data(),
+        {"headline": "h", "summary": "s",
+         "sections": [{"type": "match_of_day", "title": "Match of the Day",
+                       "narrative": "Tight game.", "score": "1-0", "media": {}}]},
+        generation_time=1.0,
+        verification={"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0},
+    )
+    md = render_markdown(out)
+    assert "[Full recap]" not in md
+    assert "[Highlights]" not in md
+    # no triple newline (stray double blank line) introduced by the empty media block
+    assert "\n\n\n" not in md
+
+
+def test_render_markdown_empty_sections():
+    out = build_final_output(
+        _data(), {"headline": "Quiet day", "summary": "No games.", "sections": []},
+        generation_time=0.5,
+        verification={"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0},
+    )
+    md = render_markdown(out)
+    assert "# Quiet day" in md
+    assert "No games." in md
