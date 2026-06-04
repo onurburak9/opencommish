@@ -4,6 +4,8 @@ Parse functions are pure (no network) so they unit-test with inline dicts.
 The EspnProvider wraps them with httpx fetches.
 """
 
+from datetime import date, timedelta
+
 import httpx
 
 from worldcup_recap.providers.base import (
@@ -155,7 +157,11 @@ def _build_match(client: httpx.Client, event: dict) -> RawMatch:
     news = parse_news(summary.get("news", {}).get("articles", []))
     game_info = summary.get("gameInfo", {})
     recap_url = next(
-        (l.get("href") for l in event.get("links", []) if "summary" in l.get("rel", [])),
+        (
+            l.get("href")
+            for l in event.get("links", [])
+            if isinstance(l.get("rel"), list) and "summary" in l["rel"]
+        ),
         None,
     )
     videos = [
@@ -192,8 +198,10 @@ def _build_preview(client: httpx.Client, event: dict) -> PreviewMatch:
     odds_list = summary.get("odds") or []
     h2h = summary.get("headToHeadGames") or []
     form = summary.get("boxscore", {}).get("form") or []
-    home_form = [r.get("displayResult", "") for r in (form[0].get("events", []) if len(form) > 0 else [])]
-    away_form = [r.get("displayResult", "") for r in (form[1].get("events", []) if len(form) > 1 else [])]
+    home_block = form[0] if len(form) > 0 and isinstance(form[0], dict) else {}
+    away_block = form[1] if len(form) > 1 and isinstance(form[1], dict) else {}
+    home_form = [r.get("displayResult", "") for r in home_block.get("events", [])]
+    away_form = [r.get("displayResult", "") for r in away_block.get("events", [])]
     return PreviewMatch(
         match_id=base["match_id"],
         stage=base["stage"],
@@ -220,9 +228,8 @@ class EspnProvider:
             events = board.get("events", []) or []
             return [_build_match(client, e) for e in events]
 
-    def upcoming(self, date: str) -> list[PreviewMatch]:
-        from datetime import date as date_type, timedelta
-        next_day = (date_type.fromisoformat(date) + timedelta(days=1)).isoformat()
+    def upcoming(self, date_str: str) -> list[PreviewMatch]:
+        next_day = (date.fromisoformat(date_str) + timedelta(days=1)).isoformat()
         compact = next_day.replace("-", "")
         with httpx.Client() as client:
             board = _get(client, "/scoreboard", {"dates": compact})
