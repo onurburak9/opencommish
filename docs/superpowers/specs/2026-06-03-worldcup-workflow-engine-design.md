@@ -1,11 +1,25 @@
-# World Cup AI Workflow Engine — Design
+# World Cup AI Workflow Engine — Design (End-Goal Vision)
 
 **Date:** 2026-06-03
-**Status:** Approved design direction; decomposed into sequenced sub-plans below
+**Status:** **High-level end-goal vision.** Not built yet and not hand-built from
+scratch — the intent is to **adopt an existing orchestration engine (e.g. n8n)**
+for the workflow/scheduling/integration layer and keep only the AI-specific logic as
+custom code. **First milestone is the daily-recap MVP** (data gathering + recap),
+which is fully specced and planned and does not require this engine.
 **Related:** [agentic-system-overview](../../worldcup_recap/agentic-system-overview.md) ·
 [roadmap](../../worldcup_recap/roadmap.md) ·
 [daily-recap design](2026-06-03-worldcup-daily-recap-design.md) ·
 [daily-recap plan](../plans/2026-06-03-worldcup-daily-recap.md)
+
+## Framing (read first)
+
+- This document is the **north-star architecture**, kept deliberately **high-level**.
+- We **prefer adopting an existing engine over building a bespoke runner** — see
+  "Orchestration: adopt, don't build" below. The step/context model here is a
+  **conceptual design that maps onto** such an engine's nodes, not a spec for a
+  custom framework.
+- **Milestone 1 is the MVP**: daily recaps from game data + the data-gathering
+  layer. Everything in this document comes *after* that ships and proves value.
 
 ## Goal
 
@@ -112,11 +126,15 @@ steps:
 
 ### Runner
 
-Loads YAML → resolves step graph from the registry → validates `requires`/`provides`
-wiring → executes sequential steps and parallel groups → applies per-step
-retry/timeout → records a run (inputs, step results, telemetry, artifacts) to a run
-store → returns outputs. Graceful degradation: a non-fatal step failure is logged
-and the pipeline continues where downstream steps allow.
+Conceptually: loads the workflow → resolves the step graph → executes sequential
+steps and parallel groups → applies per-step retry/timeout → records the run
+(inputs, step results, telemetry, artifacts) → returns outputs, degrading gracefully
+on non-fatal failures.
+
+**We do not plan to hand-build this runner.** This is precisely what mature
+orchestration engines already do (scheduling, retries, parallelism, run history,
+integrations). See the next section — the Runner role is expected to be filled by an
+adopted engine, with our steps invoked as its nodes.
 
 ## Shared domain model (collect once)
 
@@ -203,6 +221,39 @@ Each renderer reads `ctx.analysis` + `ctx.media` and writes `ctx.outputs[format]
 The video scenario reuses **verified** media from `enrich.find_verify_media`, so no
 unverified clip ever lands in a beat.
 
+## Orchestration: adopt, don't build
+
+The workflow/scheduling/integration layer is a **solved problem** — we should adopt
+an existing engine rather than maintain a bespoke runner. Our differentiated value
+is the **AI core** (collect/analyze/enrich/verify), not orchestration plumbing.
+
+### Candidate engines
+
+| Engine | Model | Strengths for us | Watch-outs |
+|--------|-------|------------------|------------|
+| **n8n** (recommended to evaluate first) | Low-code, visual node editor; self-hostable | Huge built-in integration library (email, Slack, HTTP, schedule, cron), visual workflows match the "plug-in steps" vision, fast to wire delivery + scheduling, AI/LangChain nodes exist | Heavy custom Python (our find/verify loop, ADK agents) is awkward inside nodes; best used calling our code via HTTP/CLI nodes |
+| **Temporal** | Durable code-first execution | Rock-solid retries/durability; already used elsewhere in your stack | Heavier infra; no built-in integrations or visual editor; more engineering |
+| **Prefect / Dagster** | Pythonic DAGs + UI | Native Python (our steps drop in directly), run history, backfills, scheduling | Fewer turnkey delivery integrations than n8n; still infra to run |
+| **Windmill** | Scripts + flows, low-code + code | Runs Python scripts as steps *and* has a flow builder + schedules | Smaller ecosystem than n8n |
+
+### Likely shape (to validate during the engine milestone)
+
+Keep the **AI core in Python** (the MVP code) exposed as a small set of callable
+units — a CLI and/or a thin HTTP service — then let the adopted engine **orchestrate,
+schedule, and deliver**:
+
+```
+  n8n (or Windmill) workflow:
+    [Schedule/cron] ─▶ [HTTP/CLI: collect] ─▶ [HTTP/CLI: analyze]
+        ─▶ [HTTP/CLI: enrich+verify] ─▶ [HTTP/CLI: render] ─▶ [Email/Slack node]
+```
+
+This gives the YAML/visual composability, scheduling, and integrations "for free"
+while our Python owns the agentic logic. The step taxonomy (`collect.* / analyze.* /
+enrich.* / render.* / deliver.*`) becomes the **node boundary** between our service
+and the engine. The decision among n8n / Windmill / Prefect is made in the engine
+milestone after the MVP — not now.
+
 ## How Phase 1 maps onto the engine
 
 The daily recap built in [the Phase 1 plan](../plans/2026-06-03-worldcup-daily-recap.md)
@@ -226,9 +277,10 @@ steps:
 ```
 
 Phase 1's `collect`, structure/synthesis agents, and the `find_and_verify` loop are
-written as standalone functions now and **wrapped as registered steps** during
-engine extraction — minimal rework, because Phase 1's boundaries already match the
-step categories.
+written as standalone functions now and later **exposed as CLI/HTTP nodes** that the
+adopted engine calls — minimal rework, because Phase 1's boundaries already match the
+step categories. (The YAML above is illustrative of the node wiring; the concrete
+syntax will be whatever the adopted engine uses.)
 
 ## Decomposition into sub-plans (sequenced)
 
@@ -236,26 +288,30 @@ Each sub-plan is independently shippable and testable.
 
 | Plan | Scope | Depends on | Roadmap phase |
 |------|-------|------------|---------------|
-| **A — Daily Recap MVP** *(plan written)* | Vertical slice: hardcoded daily recap, JSON+MD, CI | — | 1 |
-| **B — Workflow engine core** | `Step`/`PipelineContext`/`Registry`/`Runner` + YAML loader + `ScriptStep`/`AgentStep`; re-express daily_recap as YAML by wrapping Plan A pieces as steps | A | 2 |
-| **C — Shared model + lenses + analysis** | `WorldCupData` model; expand `collect.*`; focus lenses; `analyze.form_and_h2h` / `stakes` / `player_spotlight`; future-game preview mode | B | 5 (data/intel) |
-| **D — Renderers** | `render.json` / `render.text` / `render.video_scenario` as steps | B (C for richer input) | 5 (outputs) |
-| **E — Delivery + scheduling** | `deliver.*` sinks (email/slack/web), run store, backfill, scheduling tier | B | 3 + 4 |
+| **A — Daily Recap MVP** ⭐ **FIRST MILESTONE** *(specced + planned)* | Vertical slice: data gathering + daily recap from game data, JSON+MD output, CI. Built in Python; no engine required. | — | 1 |
+| **B — Adopt an orchestration engine** | Evaluate & adopt n8n / Windmill / Prefect; expose the MVP's `collect/analyze/enrich/render` as CLI/HTTP nodes; re-express daily_recap as an engine workflow. **No bespoke runner.** | A | 2 |
+| **C — Shared model + lenses + analysis** | `WorldCupData` model; expand `collect.*`; focus lenses; `analyze.form_and_h2h` / `stakes` / `player_spotlight`; future-game preview mode | A (B to orchestrate) | 5 (data/intel) |
+| **D — Renderers** | `render.json` / `render.text` / `render.video_scenario` | A (C for richer input) | 5 (outputs) |
+| **E — Delivery + scheduling** | Delivery (email/Slack/web) + scheduling + run history — largely **provided by the adopted engine** | B | 3 + 4 |
 
-**Critical path to the full vision:** A → B → (C, D in parallel) → E. B is the
-keystone — it turns everything else into pluggable steps.
+**Sequencing:** **Ship Milestone 1 (A) first.** Then adopt the engine (B), which
+also delivers most of E for free. C and D extend capability and can proceed in
+parallel once the MVP's data layer exists. The earlier idea of a hand-built
+`Step`/`Runner` core is **dropped** in favor of adopting an existing engine.
 
 ## Non-goals (this design)
 
 - No predictive/quantitative modeling.
 - No live in-match processing.
-- No visual workflow builder UI (YAML only; UI is a later roadmap item).
+- **No bespoke workflow runner** — orchestration/scheduling/integration come from an
+  adopted engine (a visual builder, if any, comes with that engine, e.g. n8n).
 - No multi-sport generalization yet (World Cup domain model first).
 
-## Open items to resolve in sub-plan B
+## Open items to resolve in the engine milestone (B)
 
-- Run-store backend (start: JSON files under `data/runs/`; later: Postgres from the
-  planned backend).
-- Parallel-group + conditional syntax details in the YAML schema.
-- Whether `deliver.*` runs inside the Runner or as a separate post-step (lean: inside,
-  as ordinary steps).
+- **Engine choice:** n8n vs Windmill vs Prefect — decided via a short spike after the
+  MVP, weighing integration breadth (n8n) vs native-Python ergonomics (Prefect/Windmill).
+- **Node boundary:** expose the AI core as a **CLI** (simplest, reuses MVP entrypoint)
+  or a **thin HTTP service** (better for n8n HTTP nodes). Lean CLI first.
+- **Self-hosting/infra:** where the engine runs (the planned VPS deployment from the
+  product roadmap) and how secrets (`GOOGLE_API_KEY`, channel keys) are managed.
