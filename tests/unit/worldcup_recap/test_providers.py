@@ -47,3 +47,124 @@ def test_preview_match_structure():
     )
     assert p.home_team == "Mexico"
     assert p.home_form == ["W", "D"]
+
+
+from worldcup_recap.providers.espn import (
+    parse_scoreboard_event,
+    parse_timeline,
+    parse_player_stats,
+    derive_top_performers,
+    parse_news,
+)
+
+
+def _event():
+    # Mirrors ESPN /scoreboard events[] shape
+    return {
+        "id": "401864055",
+        "date": "2026-06-11T19:00Z",
+        "name": "Sweden at Norway",
+        "shortName": "SWE @ NOR",
+        "status": {"type": {"name": "STATUS_FULL_TIME"}},
+        "competitions": [{
+            "venue": {"fullName": "Ullevaal Stadion"},
+            "notes": [{"headline": "Group A"}],
+            "competitors": [
+                {"homeAway": "home", "score": "3", "team": {"displayName": "Norway"}},
+                {"homeAway": "away", "score": "1", "team": {"displayName": "Sweden"}},
+            ],
+        }],
+    }
+
+
+def test_parse_scoreboard_event():
+    r = parse_scoreboard_event(_event())
+    assert r["match_id"] == "401864055"
+    assert r["home_team"] == "Norway"
+    assert r["away_team"] == "Sweden"
+    assert r["home_score"] == 3
+    assert r["away_score"] == 1
+    assert r["status"] == "STATUS_FULL_TIME"
+    assert r["stage"] == "Group A"
+    assert r["venue"] == "Ullevaal Stadion"
+
+
+def test_parse_scoreboard_event_missing_fields():
+    r = parse_scoreboard_event({"id": "x", "competitions": [{}]})
+    assert r["match_id"] == "x"
+    assert r["home_team"] == ""
+    assert r["home_score"] == 0
+    assert r["stage"] == ""
+
+
+def test_parse_timeline_filters_and_maps():
+    key_events = [
+        {"type": {"text": "Kickoff"}, "clock": {"displayValue": ""},
+         "text": "First Half begins.", "scoringPlay": False},
+        {"type": {"text": "Goal - Header"}, "clock": {"displayValue": "8'"},
+         "text": "Goal! Norway 1, Sweden 0. Jørgen Strand Larsen header.",
+         "scoringPlay": True,
+         "participants": [{"athlete": {"displayName": "Jørgen Strand Larsen"}}]},
+        {"type": {"text": "Yellow Card"}, "clock": {"displayValue": "40'"},
+         "text": "Booking.", "scoringPlay": False,
+         "participants": [{"athlete": {"displayName": "Some Player"}}]},
+    ]
+    tl = parse_timeline(key_events)
+    # Kickoff is filtered out; goal + card kept
+    assert len(tl) == 2
+    goal = tl[0]
+    assert goal["type"] == "Goal - Header"
+    assert goal["minute"] == "8'"
+    assert goal["player"] == "Jørgen Strand Larsen"
+    assert goal["scoring_play"] is True
+
+
+def test_parse_player_stats():
+    rosters = [{
+        "team": {"displayName": "Norway"},
+        "formation": "4-4-2",
+        "roster": [{
+            "athlete": {"displayName": "Ørjan Nyland"},
+            "position": {"abbreviation": "G"},
+            "starter": True,
+            "stats": [
+                {"name": "saves", "displayValue": "3"},
+                {"name": "goalsConceded", "displayValue": "1"},
+            ],
+        }],
+    }]
+    ps = parse_player_stats(rosters)
+    assert len(ps) == 1
+    assert ps[0]["name"] == "Ørjan Nyland"
+    assert ps[0]["team"] == "Norway"
+    assert ps[0]["position"] == "G"
+    assert ps[0]["stats"]["saves"] == "3"
+
+
+def test_derive_top_performers_counts_goals_and_gk():
+    timeline = [
+        {"type": "Goal - Header", "player": "Jørgen Strand Larsen", "scoring_play": True},
+        {"type": "Goal", "player": "Antonio Nusa", "scoring_play": True},
+        {"type": "Goal - Header", "player": "Jørgen Strand Larsen", "scoring_play": True},
+    ]
+    player_stats = [
+        {"name": "Ørjan Nyland", "team": "Norway", "position": "G",
+         "stats": {"saves": "3"}},
+    ]
+    perf = derive_top_performers(timeline, player_stats)
+    names = [p["name"] for p in perf]
+    assert "Jørgen Strand Larsen" in names
+    larsen = next(p for p in perf if p["name"] == "Jørgen Strand Larsen")
+    assert larsen["goals"] == 2
+    # GK with saves is included
+    assert any(p["name"] == "Ørjan Nyland" and p.get("saves") == 3 for p in perf)
+
+
+def test_parse_news():
+    articles = [
+        {"headline": "Norway thrash Sweden", "published": "2026-06-11T21:00Z",
+         "links": {"web": {"href": "https://espn.com/story/1"}}},
+    ]
+    news = parse_news(articles)
+    assert news[0]["headline"] == "Norway thrash Sweden"
+    assert news[0]["url"] == "https://espn.com/story/1"
