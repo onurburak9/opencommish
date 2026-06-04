@@ -135,3 +135,101 @@ def parse_news(articles: list[dict]) -> list[dict]:
             "published": a.get("published", ""),
         })
     return out
+
+
+def _get(client: httpx.Client, path: str, params: dict | None = None) -> dict:
+    try:
+        resp = client.get(f"{_BASE}{path}", params=params or {}, timeout=20)
+        resp.raise_for_status()
+        return resp.json()
+    except Exception as e:  # noqa: BLE001 — degrade gracefully, never fatal
+        print(f"  ⚠️  ESPN fetch failed {path}: {e}")
+        return {}
+
+
+def _build_match(client: httpx.Client, event: dict) -> RawMatch:
+    base = parse_scoreboard_event(event)
+    summary = _get(client, "/summary", {"event": base["match_id"]})
+    timeline = parse_timeline(summary.get("keyEvents", []))
+    player_stats = parse_player_stats(summary.get("rosters", []))
+    news = parse_news(summary.get("news", {}).get("articles", []))
+    game_info = summary.get("gameInfo", {})
+    recap_url = next(
+        (l.get("href") for l in event.get("links", []) if "summary" in l.get("rel", [])),
+        None,
+    )
+    videos = [
+        {
+            "headline": v.get("headline", ""),
+            "url": v.get("links", {}).get("source", {}).get("href"),
+            "thumbnail": v.get("thumbnail"),
+            "duration": v.get("duration"),
+        }
+        for v in summary.get("videos", []) or []
+    ]
+    return RawMatch(
+        match_id=base["match_id"],
+        stage=base["stage"],
+        home_team=base["home_team"],
+        away_team=base["away_team"],
+        home_score=base["home_score"],
+        away_score=base["away_score"],
+        status=base["status"],
+        timeline=timeline,
+        top_performers=derive_top_performers(timeline, player_stats),
+        player_stats=player_stats,
+        venue=base["venue"] or game_info.get("venue", {}).get("fullName", ""),
+        attendance=game_info.get("attendance"),
+        espn_recap_url=recap_url,
+        espn_videos=videos,
+        news=news,
+    )
+
+
+def _build_preview(client: httpx.Client, event: dict) -> PreviewMatch:
+    base = parse_scoreboard_event(event)
+    summary = _get(client, "/summary", {"event": base["match_id"]})
+    odds_list = summary.get("odds") or []
+    h2h = summary.get("headToHeadGames") or []
+    form = summary.get("boxscore", {}).get("form") or []
+    home_form = [r.get("displayResult", "") for r in (form[0].get("events", []) if len(form) > 0 else [])]
+    away_form = [r.get("displayResult", "") for r in (form[1].get("events", []) if len(form) > 1 else [])]
+    return PreviewMatch(
+        match_id=base["match_id"],
+        stage=base["stage"],
+        home_team=base["home_team"],
+        away_team=base["away_team"],
+        kickoff=base["date"],
+        odds=odds_list[0] if odds_list else None,
+        head_to_head=h2h,
+        home_form=home_form,
+        away_form=away_form,
+        news=parse_news(summary.get("news", {}).get("articles", [])),
+    )
+
+
+class EspnProvider:
+    """Primary, keyless data source for FIFA World Cup."""
+
+    name = "espn"
+
+    def matches_for_date(self, date: str) -> list[RawMatch]:
+        compact = date.replace("-", "")
+        with httpx.Client() as client:
+            board = _get(client, "/scoreboard", {"dates": compact})
+            events = board.get("events", []) or []
+            return [_build_match(client, e) for e in events]
+
+    def upcoming(self, date: str) -> list[PreviewMatch]:
+        from datetime import date as date_type, timedelta
+        next_day = (date_type.fromisoformat(date) + timedelta(days=1)).isoformat()
+        compact = next_day.replace("-", "")
+        with httpx.Client() as client:
+            board = _get(client, "/scoreboard", {"dates": compact})
+            events = board.get("events", []) or []
+            return [_build_preview(client, e) for e in events]
+
+    def standings(self) -> list[dict]:
+        with httpx.Client() as client:
+            data = _get(client, "/standings")
+        return data.get("children", []) or data.get("standings", []) or []
