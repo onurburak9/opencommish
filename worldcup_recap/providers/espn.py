@@ -16,7 +16,7 @@ _BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world"
 _TIMELINE_KEEP = ("Goal", "Card", "Substitution", "Penalty", "VAR")
 
 
-def _int(value) -> int:
+def _int(value: object) -> int:
     try:
         return int(value)
     except (TypeError, ValueError):
@@ -57,6 +57,8 @@ def parse_timeline(key_events: list[dict]) -> list[dict]:
         type_text = ev.get("type", {}).get("text", "")
         if not any(k in type_text for k in _TIMELINE_KEEP):
             continue
+        if "Goal Kick" in type_text:
+            continue
         participants = ev.get("participants") or []
         player = participants[0].get("athlete", {}).get("displayName", "") if participants else ""
         out.append({
@@ -93,7 +95,7 @@ def derive_top_performers(timeline: list[dict], player_stats: list[dict]) -> lis
     """Goalscorers (from timeline) first, then the busiest goalkeeper."""
     goals: dict[str, int] = {}
     for ev in timeline:
-        if "Goal" in ev.get("type", "") and ev.get("player"):
+        if "Goal" in ev.get("type", "") and "Own Goal" not in ev.get("type", "") and ev.get("player"):
             goals[ev["player"]] = goals.get(ev["player"], 0) + 1
 
     name_to_team = {p["name"]: p.get("team", "") for p in player_stats}

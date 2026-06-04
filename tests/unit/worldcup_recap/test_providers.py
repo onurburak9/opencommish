@@ -168,3 +168,29 @@ def test_parse_news():
     news = parse_news(articles)
     assert news[0]["headline"] == "Norway thrash Sweden"
     assert news[0]["url"] == "https://espn.com/story/1"
+
+
+def test_parse_timeline_excludes_goal_kick():
+    key_events = [
+        {"type": {"text": "Goal Kick"}, "clock": {"displayValue": "12'"},
+         "text": "Goal kick.", "scoringPlay": False},
+        {"type": {"text": "Goal"}, "clock": {"displayValue": "15'"},
+         "text": "Goal! 1-0.", "scoringPlay": True,
+         "participants": [{"athlete": {"displayName": "Scorer"}}]},
+    ]
+    tl = parse_timeline(key_events)
+    types = [e["type"] for e in tl]
+    assert "Goal Kick" not in types
+    assert "Goal" in types
+    assert len(tl) == 1
+
+
+def test_derive_top_performers_excludes_own_goal():
+    timeline = [
+        {"type": "Own Goal", "player": "Unlucky Defender", "scoring_play": True},
+        {"type": "Goal", "player": "Real Scorer", "scoring_play": True},
+    ]
+    perf = derive_top_performers(timeline, [])
+    names = [p["name"] for p in perf]
+    assert "Unlucky Defender" not in names
+    assert "Real Scorer" in names
