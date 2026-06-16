@@ -65,3 +65,14 @@ async def test_drops_when_finder_returns_nothing():
     assert result["status"] == "dropped"
     assert result["media"] is None
     assert result["attempts"] == 2
+
+
+async def test_resolve_redirect_passthrough_non_grounding():
+    from worldcup_recap.pipeline import _resolve_redirect
+    url = "https://www.fifa.com/en/articles/highlights"
+    assert await _resolve_redirect(url) == url
+
+
+async def test_resolve_redirect_empty_returns_empty():
+    from worldcup_recap.pipeline import _resolve_redirect
+    assert await _resolve_redirect("") == ""

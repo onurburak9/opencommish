@@ -8,6 +8,7 @@ Flow:
 """
 
 import asyncio
+import httpx
 import json
 import uuid
 from typing import Awaitable, Callable
@@ -97,11 +98,41 @@ async def find_and_verify(
 
 # --- Agent-backed finder/verifier (used by the real pipeline) ---
 
+_GROUNDING_REDIRECT = "vertexaisearch.cloud.google.com/grounding-api-redirect"
+_BROWSER_UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/120 Safari/537.36"
+)
+
+
+async def _resolve_redirect(url: str) -> str:
+    """Resolve a Google grounding-redirect URL to its real destination.
+
+    Returns the url unchanged for non-redirect URLs (no network call) or on failure.
+    """
+    if not url or _GROUNDING_REDIRECT not in url:
+        return url
+    try:
+        async with httpx.AsyncClient(
+            follow_redirects=True, timeout=15, headers={"User-Agent": _BROWSER_UA}
+        ) as client:
+            resp = await client.get(url)
+            final = str(resp.url)
+            # Only accept a real resolved URL; if still a redirect, keep original.
+            return final if _GROUNDING_REDIRECT not in final else url
+    except Exception as e:  # noqa: BLE001 — never fatal; keep original on failure
+        print(f"  ⚠️  could not resolve media redirect: {e}")
+        return url
+
+
 async def _agent_finder(need: dict, feedback: str | None) -> dict | None:
     prompt = build_finder_prompt(need, feedback)
     resp = await _run_agent(media_finder_agent, prompt, f"finder_{uuid.uuid4().hex}")
     parsed = _parse_json(resp, {"url": None})
-    return parsed if parsed.get("url") else None
+    if not parsed.get("url"):
+        return None
+    parsed["url"] = await _resolve_redirect(parsed["url"])
+    return parsed
 
 
 async def _agent_verifier(need: dict, candidate: dict) -> dict:
