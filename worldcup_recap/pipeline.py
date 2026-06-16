@@ -137,6 +137,16 @@ def _attach_deterministic_media(sections: list[dict], data: CollectedData) -> No
             media.setdefault("recap_url", match.espn_recap_url)
             if match.espn_videos and match.espn_videos[0].get("url"):
                 media.setdefault("highlight_url", match.espn_videos[0]["url"])
+            home_meta = match.team_meta.get(section.get("home_team"), {})
+            away_meta = match.team_meta.get(section.get("away_team"), {})
+            if home_meta.get("logo_url"):
+                media.setdefault("home_logo_url", home_meta["logo_url"])
+            if home_meta.get("profile_url"):
+                media.setdefault("home_team_url", home_meta["profile_url"])
+            if away_meta.get("logo_url"):
+                media.setdefault("away_logo_url", away_meta["logo_url"])
+            if away_meta.get("profile_url"):
+                media.setdefault("away_team_url", away_meta["profile_url"])
         else:
             print(
                 f"  ⚠️  match_of_day has no matching collected match "
@@ -161,9 +171,31 @@ def _apply_verified_media(sections: list[dict], results: list[dict], needs: list
                 players[j].setdefault("media", {})[key] = url
 
 
+def _attach_player_media(sections: list[dict], data: CollectedData) -> None:
+    """Attach deterministic ESPN profile/headshot URLs to player_spotlight players by name."""
+    meta: dict[str, dict] = {}
+    for m in data.matches:
+        for p in m.player_stats:
+            if p.get("name"):
+                meta[p["name"]] = {"profile_url": p.get("profile_url"), "headshot_url": p.get("headshot_url")}
+    for section in sections:
+        if section.get("type") != "player_spotlight":
+            continue
+        for player in section.get("players", []) or []:
+            pm = meta.get(player.get("name", ""))
+            if not pm:
+                continue
+            media = player.setdefault("media", {})
+            if pm.get("profile_url"):
+                media.setdefault("profile_url", pm["profile_url"])
+            if pm.get("headshot_url"):
+                media.setdefault("headshot_url", pm["headshot_url"])
+
+
 async def _enrich(sections: list[dict], data: CollectedData) -> dict:
     """Phase 2+3: deterministic attach + searched find/verify loop. Returns telemetry."""
     _attach_deterministic_media(sections, data)
+    _attach_player_media(sections, data)
     needs = _collect_media_needs(sections)
     print(f"  🔍 Verifying {len(needs)} searched media link(s)...")
     results = await asyncio.gather(

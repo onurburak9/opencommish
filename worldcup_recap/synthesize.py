@@ -34,6 +34,14 @@ def _render_section(section: dict) -> list[str]:
             lines.append(f"[Highlights]({media['highlight_url']})")
         if media.get("recap_url") or media.get("highlight_url"):
             lines.append("")
+        if media.get("home_team_url") or media.get("away_team_url"):
+            teams_line = []
+            if media.get("home_team_url"):
+                teams_line.append(f"[{section.get('home_team', 'Home')}]({media['home_team_url']})")
+            if media.get("away_team_url"):
+                teams_line.append(f"[{section.get('away_team', 'Away')}]({media['away_team_url']})")
+            lines.append("Teams: " + " vs ".join(teams_line))
+            lines.append("")
     elif section_type == "results_roundup":
         for game in section.get("games", []):
             lines.append(f"- {game.get('matchup', '')} — {game.get('note', '')}")
@@ -41,13 +49,20 @@ def _render_section(section: dict) -> list[str]:
     elif section_type == "player_spotlight":
         for player in section.get("players", []):
             name = player.get("name", "")
+            profile = player.get("media", {}).get("profile_url")
+            name_md = f"[{name}]({profile})" if profile else f"**{name}**"
             line = player.get("line", "")
             context = player.get("context", "")
-            parts = [f"**{name}**", line, context]
+            parts = [name_md, line, context]
             lines.append(" — ".join(p for p in parts if p))
-            interview = player.get("media", {}).get("interview_url")
-            if interview:
-                lines.append(f"  [Interview]({interview})")
+            pmedia = player.get("media", {})
+            links = []
+            if pmedia.get("headshot_url"):
+                links.append(f"[Photo]({pmedia['headshot_url']})")
+            if pmedia.get("interview_url"):
+                links.append(f"[Interview]({pmedia['interview_url']})")
+            if links:
+                lines.append("  " + " · ".join(links))
         lines.append("")
     elif section_type == "storylines":
         for story in section.get("stories", []):

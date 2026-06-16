@@ -25,6 +25,7 @@ class RawMatch:
     espn_recap_url: str | None
     espn_videos: list[dict]     # {headline, url, thumbnail, duration}
     news: list[dict]            # {headline, url, published}
+    team_meta: dict = field(default_factory=dict)
 
 
 @dataclass

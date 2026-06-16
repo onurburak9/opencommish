@@ -83,11 +83,23 @@ def parse_player_stats(rosters: list[dict]) -> list[dict]:
                 s.get("name", ""): s.get("displayValue", s.get("value", ""))
                 for s in entry.get("stats", [])
             }
+            athlete = entry.get("athlete", {})
+            aid = athlete.get("id", "")
+            links = athlete.get("links", []) or []
+            profile_url = links[0].get("href") if links else (
+                f"https://www.espn.com/soccer/player/_/id/{aid}" if aid else None
+            )
+            headshot_url = (
+                f"https://a.espncdn.com/i/headshots/soccer/players/full/{aid}.png" if aid else None
+            )
             out.append({
-                "name": entry.get("athlete", {}).get("displayName", ""),
+                "name": athlete.get("displayName", ""),
                 "team": team_name,
                 "position": entry.get("position", {}).get("abbreviation", ""),
                 "starter": bool(entry.get("starter")),
+                "id": aid,
+                "profile_url": profile_url,
+                "headshot_url": headshot_url,
                 "stats": stats,
             })
     return out
@@ -101,6 +113,10 @@ def derive_top_performers(timeline: list[dict], player_stats: list[dict]) -> lis
             goals[ev["player"]] = goals.get(ev["player"], 0) + 1
 
     name_to_team = {p["name"]: p.get("team", "") for p in player_stats}
+    meta_by_name = {
+        p["name"]: {"profile_url": p.get("profile_url"), "headshot_url": p.get("headshot_url")}
+        for p in player_stats
+    }
     performers = []
     for name, count in sorted(goals.items(), key=lambda kv: kv[1], reverse=True):
         note = "hat-trick" if count >= 3 else ("brace" if count == 2 else "")
@@ -109,6 +125,7 @@ def derive_top_performers(timeline: list[dict], player_stats: list[dict]) -> lis
             "team": name_to_team.get(name, ""),
             "goals": count,
             "note": note,
+            **meta_by_name.get(name, {}),
         })
 
     keepers = [
@@ -123,6 +140,7 @@ def derive_top_performers(timeline: list[dict], player_stats: list[dict]) -> lis
             "goals": 0,
             "saves": _int(best["stats"].get("saves")),
             "note": "goalkeeper",
+            **meta_by_name.get(best["name"], {}),
         })
     return performers
 
@@ -136,6 +154,25 @@ def parse_news(articles: list[dict]) -> list[dict]:
             "url": a.get("links", {}).get("web", {}).get("href", ""),
             "published": a.get("published", ""),
         })
+    return out
+
+
+def parse_team_meta(summary: dict) -> dict:
+    """Map team displayName -> {id, profile_url, logo_url} from summary.header."""
+    out: dict = {}
+    comp = (summary.get("header", {}).get("competitions") or [{}])[0]
+    for c in comp.get("competitors", []):
+        team = c.get("team", {})
+        name = team.get("displayName", "")
+        if not name:
+            continue
+        logos = team.get("logos", []) or []
+        links = team.get("links", []) or []
+        out[name] = {
+            "id": team.get("id", ""),
+            "profile_url": links[0].get("href") if links else None,
+            "logo_url": logos[0].get("href") if logos else None,
+        }
     return out
 
 
@@ -189,6 +226,7 @@ def _build_match(client: httpx.Client, event: dict) -> RawMatch:
         espn_recap_url=recap_url,
         espn_videos=videos,
         news=news,
+        team_meta=parse_team_meta(summary),
     )
 
 

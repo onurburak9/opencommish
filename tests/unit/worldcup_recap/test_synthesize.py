@@ -114,3 +114,20 @@ def test_render_markdown_empty_sections():
     md = render_markdown(out)
     assert "# Quiet day" in md
     assert "No games." in md
+
+
+def test_render_player_profile_link_and_photo():
+    out = build_final_output(
+        _data(),
+        {"headline": "h", "summary": "s", "sections": [
+            {"type": "player_spotlight", "title": "Standout Players", "players": [
+                {"name": "Raúl Jiménez", "line": "1 goal", "context": "opener",
+                 "media": {"profile_url": "https://espn.com/p/1", "headshot_url": "https://espn.com/h/1.png"}},
+            ]},
+        ]},
+        generation_time=1.0,
+        verification={"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0},
+    )
+    md = render_markdown(out)
+    assert "[Raúl Jiménez](https://espn.com/p/1)" in md
+    assert "[Photo](https://espn.com/h/1.png)" in md

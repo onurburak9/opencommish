@@ -194,3 +194,44 @@ def test_derive_top_performers_excludes_own_goal():
     names = [p["name"] for p in perf]
     assert "Unlucky Defender" not in names
     assert "Real Scorer" in names
+
+
+from worldcup_recap.providers.espn import parse_team_meta
+
+
+def test_parse_player_stats_adds_profile_and_headshot():
+    rosters = [{
+        "team": {"displayName": "Mexico"},
+        "roster": [{
+            "athlete": {"displayName": "Raúl Rangel", "id": "290899",
+                        "links": [{"href": "https://www.espn.com/soccer/player/_/id/290899/raul-rangel"}]},
+            "position": {"abbreviation": "G"}, "starter": True,
+            "stats": [{"name": "saves", "displayValue": "2"}],
+        }],
+    }]
+    ps = parse_player_stats(rosters)
+    assert ps[0]["id"] == "290899"
+    assert ps[0]["profile_url"] == "https://www.espn.com/soccer/player/_/id/290899/raul-rangel"
+    assert ps[0]["headshot_url"] == "https://a.espncdn.com/i/headshots/soccer/players/full/290899.png"
+
+
+def test_parse_team_meta():
+    summary = {"header": {"competitions": [{"competitors": [
+        {"team": {"id": "203", "displayName": "Mexico",
+                  "logos": [{"href": "https://a.espncdn.com/i/teamlogos/countries/500/mex.png"}],
+                  "links": [{"href": "https://www.espn.com/soccer/team/_/id/203/mexico"}]}},
+    ]}]}}
+    meta = parse_team_meta(summary)
+    assert meta["Mexico"]["logo_url"] == "https://a.espncdn.com/i/teamlogos/countries/500/mex.png"
+    assert meta["Mexico"]["profile_url"] == "https://www.espn.com/soccer/team/_/id/203/mexico"
+
+
+def test_derive_top_performers_carries_profile():
+    timeline = [{"type": "Goal", "player": "Raúl Jiménez", "scoring_play": True}]
+    player_stats = [{"name": "Raúl Jiménez", "team": "Mexico", "position": "F",
+                     "profile_url": "https://espn.com/p/1", "headshot_url": "https://espn.com/h/1.png",
+                     "stats": {}}]
+    perf = derive_top_performers(timeline, player_stats)
+    j = next(p for p in perf if p["name"] == "Raúl Jiménez")
+    assert j["profile_url"] == "https://espn.com/p/1"
+    assert j["headshot_url"] == "https://espn.com/h/1.png"
