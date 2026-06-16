@@ -64,3 +64,4 @@ async def test_drops_when_finder_returns_nothing():
     result = await find_and_verify({"kind": "highlights"}, finder, verifier, max_attempts=2)
     assert result["status"] == "dropped"
     assert result["media"] is None
+    assert result["attempts"] == 2

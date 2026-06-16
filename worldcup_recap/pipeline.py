@@ -9,6 +9,7 @@ Flow:
 
 import asyncio
 import json
+import uuid
 from typing import Awaitable, Callable
 
 from google.adk.runners import Runner
@@ -98,14 +99,14 @@ async def find_and_verify(
 
 async def _agent_finder(need: dict, feedback: str | None) -> dict | None:
     prompt = build_finder_prompt(need, feedback)
-    resp = await _run_agent(media_finder_agent, prompt, "finder_session")
+    resp = await _run_agent(media_finder_agent, prompt, f"finder_{uuid.uuid4().hex}")
     parsed = _parse_json(resp, {"url": None})
     return parsed if parsed.get("url") else None
 
 
 async def _agent_verifier(need: dict, candidate: dict) -> dict:
     prompt = build_verifier_prompt(need, candidate)
-    resp = await _run_agent(media_verifier_agent, prompt, "verifier_session")
+    resp = await _run_agent(media_verifier_agent, prompt, f"verifier_{uuid.uuid4().hex}")
     return _parse_json(resp, {"relevant": False, "confidence": 0.0, "reason": "unparseable verdict"})
 
 
@@ -136,6 +137,11 @@ def _attach_deterministic_media(sections: list[dict], data: CollectedData) -> No
             media.setdefault("recap_url", match.espn_recap_url)
             if match.espn_videos and match.espn_videos[0].get("url"):
                 media.setdefault("highlight_url", match.espn_videos[0]["url"])
+        else:
+            print(
+                f"  ⚠️  match_of_day has no matching collected match "
+                f"(home={section.get('home_team')!r} away={section.get('away_team')!r})"
+            )
 
 
 def _apply_verified_media(sections: list[dict], results: list[dict], needs: list[tuple]) -> None:
@@ -150,7 +156,9 @@ def _apply_verified_media(sections: list[dict], results: list[dict], needs: list
             sections[idx].setdefault("media", {})[key] = url
         elif owner.startswith("player:"):
             j = int(owner.split(":")[1])
-            sections[idx]["players"][j].setdefault("media", {})[key] = url
+            players = sections[idx].get("players", [])
+            if j < len(players):
+                players[j].setdefault("media", {})[key] = url
 
 
 async def _enrich(sections: list[dict], data: CollectedData) -> dict:
@@ -163,14 +171,15 @@ async def _enrich(sections: list[dict], data: CollectedData) -> dict:
         return_exceptions=True,
     )
     clean = []
-    for r in results:
+    for (_, _, need), r in zip(needs, results):
         if isinstance(r, Exception):
-            clean.append({"status": "dropped", "media": None, "attempts": 0})
+            clean.append({"need": need, "status": "dropped", "media": None, "attempts": 0})
         else:
             clean.append(r)
     _apply_verified_media(sections, clean, needs)
     accepted = sum(1 for r in clean if r["status"] == "accepted")
     dropped = sum(1 for r in clean if r["status"] == "dropped")
+    # rejected = verifier rejections: all attempts for dropped needs; attempts-minus-winner for accepted
     rejected = sum(max(0, r.get("attempts", 0) - (1 if r["status"] == "accepted" else 0)) for r in clean)
     return {"searched": len(needs), "accepted": accepted, "rejected": rejected, "dropped": dropped}
 
