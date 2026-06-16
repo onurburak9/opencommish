@@ -105,20 +105,18 @@ _BROWSER_UA = (
 )
 
 
-async def _url_ok(url: str) -> bool:
-    """True if the URL is reachable (HTTP < 400). Gates best-effort photo URLs."""
-    if not url:
-        return False
+async def _fetch_headshot(athlete_id: str) -> str | None:
+    """Fetch the real ESPN headshot href for a player id, or None if absent/unreachable."""
+    if not athlete_id:
+        return None
+    from worldcup_recap.providers.espn import _ATHLETE_API, parse_athlete_headshot
     try:
-        async with httpx.AsyncClient(
-            follow_redirects=True, timeout=10, headers={"User-Agent": _BROWSER_UA}
-        ) as client:
-            resp = await client.head(url)
-            if resp.status_code == 405:  # some servers reject HEAD; retry with GET
-                resp = await client.get(url)
-            return resp.status_code < 400
-    except Exception:  # noqa: BLE001 — unreachable -> treat as not OK
-        return False
+        async with httpx.AsyncClient(timeout=10, headers={"User-Agent": _BROWSER_UA}) as client:
+            resp = await client.get(_ATHLETE_API.format(id=athlete_id))
+            resp.raise_for_status()
+            return parse_athlete_headshot(resp.json())
+    except Exception:  # noqa: BLE001
+        return None
 
 
 async def _resolve_redirect(url: str) -> str:
@@ -141,6 +139,24 @@ async def _resolve_redirect(url: str) -> str:
         return url
 
 
+def _is_youtube(url: str) -> bool:
+    return "youtube.com/watch" in (url or "") or "youtu.be/" in (url or "")
+
+
+async def _youtube_oembed_title(url: str) -> str | None:
+    """Return the real video title via YouTube oEmbed, or None if the video is invalid/unavailable."""
+    try:
+        async with httpx.AsyncClient(timeout=10, headers={"User-Agent": _BROWSER_UA}) as client:
+            resp = await client.get(
+                "https://www.youtube.com/oembed", params={"url": url, "format": "json"}
+            )
+            if resp.status_code != 200:
+                return None
+            return resp.json().get("title")
+    except Exception:  # noqa: BLE001
+        return None
+
+
 async def _agent_finder(need: dict, feedback: str | None) -> dict | None:
     prompt = build_finder_prompt(need, feedback)
     resp = await _run_agent(media_finder_agent, prompt, f"finder_{uuid.uuid4().hex}")
@@ -148,6 +164,11 @@ async def _agent_finder(need: dict, feedback: str | None) -> dict | None:
     if not parsed.get("url"):
         return None
     parsed["url"] = await _resolve_redirect(parsed["url"])
+    if _is_youtube(parsed["url"]):
+        title = await _youtube_oembed_title(parsed["url"])
+        if not title:
+            return None  # dead/invalid video -> treat as no result so the loop retries
+        parsed["title"] = title  # real title feeds the verifier's relevance check
     return parsed
 
 
@@ -219,16 +240,16 @@ def _apply_verified_media(sections: list[dict], results: list[dict], needs: list
 
 
 async def _attach_player_media(sections: list[dict], data: CollectedData) -> None:
-    """Attach ESPN profile/headshot URLs to player_spotlight players by name.
+    """Attach ESPN profile + REAL headshot URLs to player_spotlight players by name.
 
-    profile_url is always attached (reliable ESPN page); headshot_url is attached
-    only when the CDN image is actually reachable (many players have no ESPN photo).
+    profile_url is always attached (reliable ESPN page). headshot_url is fetched
+    from the ESPN athlete endpoint by id and attached only when the player has one.
     """
     meta: dict[str, dict] = {}
     for m in data.matches:
         for p in m.player_stats:
             if p.get("name"):
-                meta[p["name"]] = {"profile_url": p.get("profile_url"), "headshot_url": p.get("headshot_url")}
+                meta[p["name"]] = {"id": p.get("id"), "profile_url": p.get("profile_url")}
     for section in sections:
         if section.get("type") != "player_spotlight":
             continue
@@ -239,8 +260,8 @@ async def _attach_player_media(sections: list[dict], data: CollectedData) -> Non
             media = player.setdefault("media", {})
             if pm.get("profile_url"):
                 media.setdefault("profile_url", pm["profile_url"])
-            headshot = pm.get("headshot_url")
-            if headshot and await _url_ok(headshot):
+            headshot = await _fetch_headshot(pm.get("id"))
+            if headshot:
                 media.setdefault("headshot_url", headshot)
 
 

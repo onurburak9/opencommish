@@ -15,6 +15,7 @@ from worldcup_recap.providers.base import (
 )
 
 _BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world"
+_ATHLETE_API = "https://site.web.api.espn.com/apis/common/v3/sports/soccer/fifa.world/athletes/{id}"
 _TIMELINE_KEEP = ("Goal", "Card", "Substitution", "Penalty", "VAR")
 
 
@@ -89,9 +90,7 @@ def parse_player_stats(rosters: list[dict]) -> list[dict]:
             profile_url = links[0].get("href") if links else (
                 f"https://www.espn.com/soccer/player/_/id/{aid}" if aid else None
             )
-            headshot_url = (
-                f"https://a.espncdn.com/i/headshots/soccer/players/full/{aid}.png" if aid else None
-            )
+            headshot_url = None
             out.append({
                 "name": athlete.get("displayName", ""),
                 "team": team_name,
@@ -174,6 +173,11 @@ def parse_team_meta(summary: dict) -> dict:
             "logo_url": logos[0].get("href") if logos else None,
         }
     return out
+
+
+def parse_athlete_headshot(payload: dict) -> str | None:
+    """Extract the real headshot href from an ESPN athlete API payload, or None."""
+    return (payload.get("athlete", {}) or {}).get("headshot", {}).get("href")
 
 
 def _get(client: httpx.Client, path: str, params: dict | None = None) -> dict:

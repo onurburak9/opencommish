@@ -212,7 +212,16 @@ def test_parse_player_stats_adds_profile_and_headshot():
     ps = parse_player_stats(rosters)
     assert ps[0]["id"] == "290899"
     assert ps[0]["profile_url"] == "https://www.espn.com/soccer/player/_/id/290899/raul-rangel"
-    assert ps[0]["headshot_url"] == "https://a.espncdn.com/i/headshots/soccer/players/full/290899.png"
+    assert ps[0]["headshot_url"] is None
+
+
+from worldcup_recap.providers.espn import parse_athlete_headshot
+
+
+def test_parse_athlete_headshot_present_and_absent():
+    assert parse_athlete_headshot({"athlete": {"headshot": {"href": "https://espn/h.png"}}}) == "https://espn/h.png"
+    assert parse_athlete_headshot({"athlete": {}}) is None
+    assert parse_athlete_headshot({}) is None
 
 
 def test_parse_team_meta():

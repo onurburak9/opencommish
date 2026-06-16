@@ -78,46 +78,43 @@ async def test_resolve_redirect_empty_returns_empty():
     assert await _resolve_redirect("") == ""
 
 
-async def test_attach_player_media_omits_unreachable_headshot(monkeypatch):
+async def test_attach_player_media_attaches_real_headshot(monkeypatch):
     import worldcup_recap.pipeline as P
     from worldcup_recap.providers.base import CollectedData, RawMatch
-
-    match = RawMatch(
-        match_id="1", stage="", home_team="A", away_team="B",
+    match = RawMatch(match_id="1", stage="", home_team="A", away_team="B",
         home_score=0, away_score=0, status="", timeline=[], top_performers=[],
-        player_stats=[{"name": "Star", "profile_url": "https://espn/p",
-                       "headshot_url": "https://espn/h.png"}],
-        venue="", attendance=None, espn_recap_url=None, espn_videos=[], news=[],
-    )
+        player_stats=[{"name": "Star", "id": "99", "profile_url": "https://espn/p", "headshot_url": None}],
+        venue="", attendance=None, espn_recap_url=None, espn_videos=[], news=[])
     data = CollectedData(date="d", matches=[match], standings=[], upcoming=[])
     sections = [{"type": "player_spotlight", "players": [{"name": "Star"}]}]
-
-    async def fake_unreachable(url):
-        return False
-    monkeypatch.setattr(P, "_url_ok", fake_unreachable)
+    async def fake_headshot(aid): return "https://espn/h.png"
+    monkeypatch.setattr(P, "_fetch_headshot", fake_headshot)
     await P._attach_player_media(sections, data)
-    pm = sections[0]["players"][0]["media"]
-    assert pm["profile_url"] == "https://espn/p"
-    assert "headshot_url" not in pm
+    media = sections[0]["players"][0]["media"]
+    assert media["profile_url"] == "https://espn/p"
+    assert media["headshot_url"] == "https://espn/h.png"
 
 
-async def test_attach_player_media_keeps_reachable_headshot(monkeypatch):
+async def test_attach_player_media_omits_headshot_when_absent(monkeypatch):
     import worldcup_recap.pipeline as P
     from worldcup_recap.providers.base import CollectedData, RawMatch
-
-    match = RawMatch(
-        match_id="1", stage="", home_team="A", away_team="B",
+    match = RawMatch(match_id="1", stage="", home_team="A", away_team="B",
         home_score=0, away_score=0, status="", timeline=[], top_performers=[],
-        player_stats=[{"name": "Star", "profile_url": "https://espn/p",
-                       "headshot_url": "https://espn/h.png"}],
-        venue="", attendance=None, espn_recap_url=None, espn_videos=[], news=[],
-    )
+        player_stats=[{"name": "Star", "id": "99", "profile_url": "https://espn/p", "headshot_url": None}],
+        venue="", attendance=None, espn_recap_url=None, espn_videos=[], news=[])
     data = CollectedData(date="d", matches=[match], standings=[], upcoming=[])
     sections = [{"type": "player_spotlight", "players": [{"name": "Star"}]}]
-
-    async def fake_reachable(url):
-        return True
-    monkeypatch.setattr(P, "_url_ok", fake_reachable)
+    async def fake_headshot(aid): return None
+    monkeypatch.setattr(P, "_fetch_headshot", fake_headshot)
     await P._attach_player_media(sections, data)
-    pm = sections[0]["players"][0]["media"]
-    assert pm["headshot_url"] == "https://espn/h.png"
+    media = sections[0]["players"][0]["media"]
+    assert media["profile_url"] == "https://espn/p"
+    assert "headshot_url" not in media
+
+
+async def test_is_youtube():
+    from worldcup_recap.pipeline import _is_youtube
+    assert _is_youtube("https://www.youtube.com/watch?v=abc")
+    assert _is_youtube("https://youtu.be/abc")
+    assert not _is_youtube("https://www.fifa.com/x")
+    assert not _is_youtube("")
