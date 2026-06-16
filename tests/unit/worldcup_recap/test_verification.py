@@ -76,3 +76,48 @@ async def test_resolve_redirect_passthrough_non_grounding():
 async def test_resolve_redirect_empty_returns_empty():
     from worldcup_recap.pipeline import _resolve_redirect
     assert await _resolve_redirect("") == ""
+
+
+async def test_attach_player_media_omits_unreachable_headshot(monkeypatch):
+    import worldcup_recap.pipeline as P
+    from worldcup_recap.providers.base import CollectedData, RawMatch
+
+    match = RawMatch(
+        match_id="1", stage="", home_team="A", away_team="B",
+        home_score=0, away_score=0, status="", timeline=[], top_performers=[],
+        player_stats=[{"name": "Star", "profile_url": "https://espn/p",
+                       "headshot_url": "https://espn/h.png"}],
+        venue="", attendance=None, espn_recap_url=None, espn_videos=[], news=[],
+    )
+    data = CollectedData(date="d", matches=[match], standings=[], upcoming=[])
+    sections = [{"type": "player_spotlight", "players": [{"name": "Star"}]}]
+
+    async def fake_unreachable(url):
+        return False
+    monkeypatch.setattr(P, "_url_ok", fake_unreachable)
+    await P._attach_player_media(sections, data)
+    pm = sections[0]["players"][0]["media"]
+    assert pm["profile_url"] == "https://espn/p"
+    assert "headshot_url" not in pm
+
+
+async def test_attach_player_media_keeps_reachable_headshot(monkeypatch):
+    import worldcup_recap.pipeline as P
+    from worldcup_recap.providers.base import CollectedData, RawMatch
+
+    match = RawMatch(
+        match_id="1", stage="", home_team="A", away_team="B",
+        home_score=0, away_score=0, status="", timeline=[], top_performers=[],
+        player_stats=[{"name": "Star", "profile_url": "https://espn/p",
+                       "headshot_url": "https://espn/h.png"}],
+        venue="", attendance=None, espn_recap_url=None, espn_videos=[], news=[],
+    )
+    data = CollectedData(date="d", matches=[match], standings=[], upcoming=[])
+    sections = [{"type": "player_spotlight", "players": [{"name": "Star"}]}]
+
+    async def fake_reachable(url):
+        return True
+    monkeypatch.setattr(P, "_url_ok", fake_reachable)
+    await P._attach_player_media(sections, data)
+    pm = sections[0]["players"][0]["media"]
+    assert pm["headshot_url"] == "https://espn/h.png"

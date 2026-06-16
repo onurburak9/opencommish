@@ -105,6 +105,22 @@ _BROWSER_UA = (
 )
 
 
+async def _url_ok(url: str) -> bool:
+    """True if the URL is reachable (HTTP < 400). Gates best-effort photo URLs."""
+    if not url:
+        return False
+    try:
+        async with httpx.AsyncClient(
+            follow_redirects=True, timeout=10, headers={"User-Agent": _BROWSER_UA}
+        ) as client:
+            resp = await client.head(url)
+            if resp.status_code == 405:  # some servers reject HEAD; retry with GET
+                resp = await client.get(url)
+            return resp.status_code < 400
+    except Exception:  # noqa: BLE001 — unreachable -> treat as not OK
+        return False
+
+
 async def _resolve_redirect(url: str) -> str:
     """Resolve a Google grounding-redirect URL to its real destination.
 
@@ -202,8 +218,12 @@ def _apply_verified_media(sections: list[dict], results: list[dict], needs: list
                 players[j].setdefault("media", {})[key] = url
 
 
-def _attach_player_media(sections: list[dict], data: CollectedData) -> None:
-    """Attach deterministic ESPN profile/headshot URLs to player_spotlight players by name."""
+async def _attach_player_media(sections: list[dict], data: CollectedData) -> None:
+    """Attach ESPN profile/headshot URLs to player_spotlight players by name.
+
+    profile_url is always attached (reliable ESPN page); headshot_url is attached
+    only when the CDN image is actually reachable (many players have no ESPN photo).
+    """
     meta: dict[str, dict] = {}
     for m in data.matches:
         for p in m.player_stats:
@@ -219,14 +239,15 @@ def _attach_player_media(sections: list[dict], data: CollectedData) -> None:
             media = player.setdefault("media", {})
             if pm.get("profile_url"):
                 media.setdefault("profile_url", pm["profile_url"])
-            if pm.get("headshot_url"):
-                media.setdefault("headshot_url", pm["headshot_url"])
+            headshot = pm.get("headshot_url")
+            if headshot and await _url_ok(headshot):
+                media.setdefault("headshot_url", headshot)
 
 
 async def _enrich(sections: list[dict], data: CollectedData) -> dict:
     """Phase 2+3: deterministic attach + searched find/verify loop. Returns telemetry."""
     _attach_deterministic_media(sections, data)
-    _attach_player_media(sections, data)
+    await _attach_player_media(sections, data)
     needs = _collect_media_needs(sections)
     print(f"  🔍 Verifying {len(needs)} searched media link(s)...")
     results = await asyncio.gather(
