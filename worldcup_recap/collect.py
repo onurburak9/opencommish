@@ -30,4 +30,5 @@ def collect(target_date: str, tz: str | None = None) -> CollectedData:
         standings=standings,
         upcoming=upcoming,
         sources_used=[provider.name],
+        timezone=tz,
     )

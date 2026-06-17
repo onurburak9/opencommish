@@ -49,6 +49,7 @@ class CollectedData:
     standings: list[dict]
     upcoming: list[PreviewMatch]
     sources_used: list[str] = field(default_factory=list)
+    timezone: str = ""
 
 
 class StatsProvider(Protocol):

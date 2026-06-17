@@ -107,6 +107,7 @@ def build_final_output(
         "metadata": {
             "matches_count": len(data.matches),
             "sources_used": data.sources_used,
+            "timezone": data.timezone,
             "verification": verification,
             "generation_time_seconds": round(generation_time, 1),
         },
@@ -115,11 +116,19 @@ def build_final_output(
             "summary": synthesized.get("summary", ""),
             "sections": synthesized.get("sections", []),
         },
+        "source_data_file": f"{data.date}.source.json",
     }
-    output["source_data"] = {
+    validate_output(output)
+    return output
+
+
+def build_source_data(data: CollectedData) -> dict:
+    """The full collected game data, written to a standalone {date}.source.json file."""
+    return {
+        "date": data.date,
+        "timezone": data.timezone,
+        "sources_used": data.sources_used,
         "matches": [asdict(m) for m in data.matches],
         "standings": data.standings,
         "upcoming": [asdict(p) for p in data.upcoming],
     }
-    validate_output(output)
-    return output

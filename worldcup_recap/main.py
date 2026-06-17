@@ -24,18 +24,21 @@ load_dotenv(Path(__file__).parent.parent / ".env")
 
 from worldcup_recap.collect import collect
 from worldcup_recap.pipeline import run_pipeline
-from worldcup_recap.synthesize import build_final_output, render_markdown
+from worldcup_recap.synthesize import build_final_output, build_source_data, render_markdown
 
 _OUTPUT_DIR = Path(__file__).parent.parent / "data" / "worldcup_recaps"
 
 
-def _save(output: dict, date_str: str) -> None:
+def _save(output: dict, source: dict, date_str: str) -> None:
     _OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     json_path = _OUTPUT_DIR / f"{date_str}.json"
+    source_path = _OUTPUT_DIR / f"{date_str}.source.json"
     md_path = _OUTPUT_DIR / f"{date_str}.md"
     json_path.write_text(json.dumps(output, indent=2, ensure_ascii=False))
+    source_path.write_text(json.dumps(source, indent=2, ensure_ascii=False))
     md_path.write_text(render_markdown(output))
     print(f"✅ {json_path}")
+    print(f"✅ {source_path}")
     print(f"✅ {md_path}")
 
 
@@ -67,7 +70,7 @@ def main() -> None:
 
     generation_time = time.time() - start
     output = build_final_output(data, synthesized, generation_time, verification)
-    _save(output, target_date)
+    _save(output, build_source_data(data), target_date)
     print(f"\n⚽ Done in {generation_time:.1f}s (verification: {verification})")
 
 
