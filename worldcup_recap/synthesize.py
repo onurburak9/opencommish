@@ -1,5 +1,6 @@
 """Output helpers: build final JSON, validate, render Markdown."""
 
+import re
 from dataclasses import asdict
 from datetime import datetime, timezone
 
@@ -19,42 +20,227 @@ def validate_output(output: dict) -> None:
         raise ValueError(f"Missing required field(s): {', '.join(sorted(missing))}")
 
 
-def _render_section(section: dict) -> list[str]:
-    """Render a single section to Markdown lines."""
+# ---------------------------------------------------------------------------
+# Normalisation helpers for team-name matching
+# ---------------------------------------------------------------------------
+
+def _norm(s: str) -> str:
+    """Normalize a team name for matching (lowercase, letters only)."""
+    return re.sub(r"[^a-z]", "", (s or "").lower())
+
+
+def _match_id_for(home: str, away: str, data: "CollectedData") -> str | None:
+    """Find the collected match_id for a home/away pair (orientation-independent)."""
+    want = {_norm(home), _norm(away)}
+    for m in data.matches:
+        if {_norm(m.home_team), _norm(m.away_team)} == want:
+            return m.match_id
+    return None
+
+
+def _match_id_from_text(text: str, data: "CollectedData") -> str | None:
+    """Find a match_id by checking which collected match's both team names appear in text."""
+    n = _norm(text)
+    for m in data.matches:
+        if _norm(m.home_team) and _norm(m.away_team) and _norm(m.home_team) in n and _norm(m.away_team) in n:
+            return m.match_id
+    return None
+
+
+def _scorers_for(match) -> list[dict]:
+    """Goal events from the timeline with the scorer's profile link."""
+    profile = {p.get("name"): p.get("profile_url") for p in match.player_stats}
+    out = []
+    for ev in match.timeline:
+        t = ev.get("type", "")
+        if "Goal" in t and "Own Goal" not in t and ev.get("player"):
+            out.append({
+                "player": ev["player"],
+                "minute": ev.get("minute", ""),
+                "profile_url": profile.get(ev["player"]),
+            })
+    return out
+
+
+def build_games(data: "CollectedData") -> list[dict]:
+    """Deterministic, complete per-game objects for ALL of the day's matches."""
+    games = []
+    for m in data.matches:
+        tm = m.team_meta or {}
+        home_meta = tm.get(m.home_team, {})
+        away_meta = tm.get(m.away_team, {})
+        highlight = None
+        for v in m.espn_videos or []:
+            if v.get("web") or v.get("url"):
+                highlight = v.get("web") or v.get("url")
+                break
+        games.append({
+            "match_id": m.match_id,
+            "stage": m.stage,
+            "status": m.status,
+            "home": {
+                "team": m.home_team,
+                "score": m.home_score,
+                "logo_url": home_meta.get("logo_url"),
+                "team_url": home_meta.get("profile_url"),
+            },
+            "away": {
+                "team": m.away_team,
+                "score": m.away_score,
+                "logo_url": away_meta.get("logo_url"),
+                "team_url": away_meta.get("profile_url"),
+            },
+            "venue": m.venue,
+            "media": {"recap_url": m.espn_recap_url, "highlight_url": highlight},
+            "scorers": _scorers_for(m),
+            "news": (m.news or [])[:3],
+        })
+    return games
+
+
+def _enrich_upcoming(upcoming_list: list[dict], data: "CollectedData") -> list[dict]:
+    """Add odds + top news to looking_ahead upcoming entries from the collected preview."""
+    out = []
+    for up in upcoming_list:
+        e = dict(up)
+        want = {_norm(up.get("home", "")), _norm(up.get("away", ""))}
+        for pm in data.upcoming:
+            if {_norm(pm.home_team), _norm(pm.away_team)} == want:
+                if pm.odds:
+                    e["odds"] = pm.odds
+                if pm.news:
+                    e["news"] = [{"headline": n.get("headline"), "url": n.get("url")} for n in pm.news[:2]]
+                break
+        out.append(e)
+    return out
+
+
+def _clean_sections(sections: list[dict], data: "CollectedData") -> list[dict]:
+    """Strip internal media_needs / empty section media; add match_id links; enrich look-ahead."""
+    cleaned = []
+    for raw in sections:
+        s = {k: v for k, v in raw.items() if k != "media_needs"}
+        s.pop("media", None)  # game media now lives in content.games; player media stays on players
+        t = s.get("type")
+        if t == "match_of_day":
+            s["match_id"] = _match_id_for(s.get("home_team", ""), s.get("away_team", ""), data)
+        elif t == "results_roundup":
+            s["games"] = [
+                {**{k: v for k, v in g.items()}, "match_id": _match_id_from_text(g.get("matchup", ""), data)}
+                for g in s.get("games", [])
+            ]
+        elif t == "player_spotlight":
+            s["players"] = [{k: v for k, v in p.items() if k != "media_needs"} for p in s.get("players", [])]
+        elif t == "looking_ahead":
+            s["upcoming"] = _enrich_upcoming(s.get("upcoming", []), data)
+        cleaned.append(s)
+    return cleaned
+
+
+def build_final_output(
+    data: CollectedData,
+    synthesized: dict,
+    generation_time: float,
+    verification: dict,
+) -> dict:
+    """Assemble the schema-valid final recap dict from collected + synthesized data."""
+    games = build_games(data)
+    games_by_id = {g["match_id"]: g for g in games}
+    raw_sections = synthesized.get("sections", [])
+    # Prefer the verified/searched highlight for the match_of_day game when present.
+    for s in raw_sections:
+        if s.get("type") == "match_of_day":
+            mid = _match_id_for(s.get("home_team", ""), s.get("away_team", ""), data)
+            searched = (s.get("media") or {}).get("highlight_url")
+            if mid in games_by_id and searched:
+                games_by_id[mid]["media"]["highlight_url"] = searched
+    output = {
+        "recap_id": build_recap_id(data.date),
+        "date": data.date,
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "metadata": {
+            "matches_count": len(data.matches),
+            "sources_used": data.sources_used,
+            "timezone": data.timezone,
+            "verification": verification,
+            "generation_time_seconds": round(generation_time, 1),
+        },
+        "content": {
+            "headline": synthesized.get("headline", ""),
+            "summary": synthesized.get("summary", ""),
+            "games": games,
+            "sections": _clean_sections(raw_sections, data),
+        },
+        "source_data_file": f"{data.date}.source.json",
+    }
+    validate_output(output)
+    return output
+
+
+# ---------------------------------------------------------------------------
+# Markdown renderer
+# ---------------------------------------------------------------------------
+
+def _fmt_matchup(game: dict) -> str:
+    h, a = game["home"], game["away"]
+    return f"{a['team']} {a['score']}-{h['score']} {h['team']}"
+
+
+def _game_link_lines(game: dict) -> list[str]:
+    lines: list[str] = []
+    media = game.get("media", {})
+    parts = []
+    if media.get("recap_url"):
+        parts.append(f"[Recap]({media['recap_url']})")
+    if media.get("highlight_url"):
+        parts.append(f"[Highlights]({media['highlight_url']})")
+    if parts:
+        lines.append(" · ".join(parts))
+    if game.get("scorers"):
+        scs = ", ".join(f"{s['player']} {s['minute']}".strip() for s in game["scorers"])
+        lines.append(f"⚽ {scs}")
+    return lines
+
+
+def _render_section(section: dict, games_by_id: dict) -> list[str]:
+    """Render a single section to Markdown lines, pulling game links from content.games."""
     lines: list[str] = [f"## {section.get('title', '')}", ""]
     section_type = section.get("type", "")
     if section.get("narrative"):
         lines.append(section["narrative"])
         lines.append("")
 
-    media = section.get("media", {})
     if section_type == "match_of_day":
-        if media.get("recap_url"):
-            lines.append(f"[Full recap]({media['recap_url']})")
-        if media.get("highlight_url"):
-            lines.append(f"[Highlights]({media['highlight_url']})")
-        if media.get("recap_url") or media.get("highlight_url"):
-            lines.append("")
-        if media.get("home_team_url") or media.get("away_team_url"):
-            teams_line = []
-            if media.get("home_team_url"):
-                teams_line.append(f"[{section.get('home_team', 'Home')}]({media['home_team_url']})")
-            if media.get("away_team_url"):
-                teams_line.append(f"[{section.get('away_team', 'Away')}]({media['away_team_url']})")
-            lines.append("Teams: " + " vs ".join(teams_line))
+        game = games_by_id.get(section.get("match_id"))
+        if game:
+            lines.extend(_game_link_lines(game))
+            home_meta = game["home"]
+            away_meta = game["away"]
+            team_links = []
+            if home_meta.get("team_url"):
+                team_links.append(f"[{home_meta['team']}]({home_meta['team_url']})")
+            if away_meta.get("team_url"):
+                team_links.append(f"[{away_meta['team']}]({away_meta['team_url']})")
+            if team_links:
+                lines.append("Teams: " + " vs ".join(team_links))
             lines.append("")
     elif section_type == "results_roundup":
-        for game in section.get("games", []):
-            lines.append(f"- {game.get('matchup', '')} — {game.get('note', '')}")
+        for g in section.get("games", []):
+            game = games_by_id.get(g.get("match_id"))
+            label = g.get("matchup", "") or (_fmt_matchup(game) if game else "")
+            recap = game.get("media", {}).get("recap_url") if game else None
+            label_md = f"[{label}]({recap})" if recap else label
+            lines.append(f"- {label_md} — {g.get('note', '')}")
+            if game and game.get("scorers"):
+                scs = ", ".join(f"{s['player']} {s['minute']}".strip() for s in game["scorers"])
+                lines.append(f"  ⚽ {scs}")
         lines.append("")
     elif section_type == "player_spotlight":
         for player in section.get("players", []):
             name = player.get("name", "")
             profile = player.get("media", {}).get("profile_url")
             name_md = f"[{name}]({profile})" if profile else f"**{name}**"
-            line = player.get("line", "")
-            context = player.get("context", "")
-            parts = [name_md, line, context]
+            parts = [name_md, player.get("line", ""), player.get("context", "")]
             lines.append(" — ".join(p for p in parts if p))
             pmedia = player.get("media", {})
             links = []
@@ -73,6 +259,9 @@ def _render_section(section: dict) -> list[str]:
         for up in section.get("upcoming", []):
             matchup = f"{up.get('away', '')} @ {up.get('home', '')}"
             lines.append(f"- **{matchup}** {up.get('kickoff', '')} — {up.get('storyline', '')}")
+            for n in up.get("news", []):
+                if n.get("url"):
+                    lines.append(f"  [{n.get('headline', 'Preview')}]({n['url']})")
         lines.append("")
     return lines
 
@@ -80,6 +269,7 @@ def _render_section(section: dict) -> list[str]:
 def render_markdown(output: dict) -> str:
     """Render the final output dict as a Markdown string."""
     content = output.get("content", {})
+    games_by_id = {g.get("match_id"): g for g in content.get("games", [])}
     date_str = output.get("date", "")
     lines = [
         f"# {content.get('headline', 'World Cup Daily Recap')}",
@@ -89,37 +279,8 @@ def render_markdown(output: dict) -> str:
         "",
     ]
     for section in content.get("sections", []):
-        lines.extend(_render_section(section))
+        lines.extend(_render_section(section, games_by_id))
     return "\n".join(lines)
-
-
-def build_final_output(
-    data: CollectedData,
-    synthesized: dict,
-    generation_time: float,
-    verification: dict,
-) -> dict:
-    """Assemble the schema-valid final recap dict from collected + synthesized data."""
-    output = {
-        "recap_id": build_recap_id(data.date),
-        "date": data.date,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "metadata": {
-            "matches_count": len(data.matches),
-            "sources_used": data.sources_used,
-            "timezone": data.timezone,
-            "verification": verification,
-            "generation_time_seconds": round(generation_time, 1),
-        },
-        "content": {
-            "headline": synthesized.get("headline", ""),
-            "summary": synthesized.get("summary", ""),
-            "sections": synthesized.get("sections", []),
-        },
-        "source_data_file": f"{data.date}.source.json",
-    }
-    validate_output(output)
-    return output
 
 
 def build_source_data(data: CollectedData) -> dict:

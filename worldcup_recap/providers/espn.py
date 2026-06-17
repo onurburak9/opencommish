@@ -221,6 +221,7 @@ def _build_match(client: httpx.Client, event: dict) -> RawMatch:
         {
             "headline": v.get("headline", ""),
             "url": v.get("links", {}).get("source", {}).get("href"),
+            "web": v.get("links", {}).get("web", {}).get("href"),
             "thumbnail": v.get("thumbnail"),
             "duration": v.get("duration"),
         }
