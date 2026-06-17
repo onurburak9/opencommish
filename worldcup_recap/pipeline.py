@@ -164,6 +164,8 @@ async def _agent_finder(need: dict, feedback: str | None) -> dict | None:
     if not parsed.get("url"):
         return None
     parsed["url"] = await _resolve_redirect(parsed["url"])
+    if _GROUNDING_REDIRECT in parsed["url"]:
+        return None  # resolution failed; never store a redirect URL that will 404
     if _is_youtube(parsed["url"]):
         title = await _youtube_oembed_title(parsed["url"])
         if not title:

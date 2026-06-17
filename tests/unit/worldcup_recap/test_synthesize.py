@@ -271,3 +271,28 @@ def test_render_markdown_links_all_games_from_games_list():
     md = render_markdown(out)
     assert "https://espn/recap" in md    # recap link rendered for a non-headline game
     assert "Havertz" in md              # scorer rendered
+
+
+def test_enrich_upcoming_filters_generic_news():
+    from worldcup_recap.synthesize import _enrich_upcoming
+    from worldcup_recap.providers.base import CollectedData, PreviewMatch
+    pm = PreviewMatch(match_id="1", stage="", home_team="Spain", away_team="Cape Verde",
+                      kickoff="", odds={"x": 1},
+                      head_to_head=[], home_form=[], away_form=[],
+                      news=[{"headline": "Portugal held by Congo DR", "url": "u1"},
+                            {"headline": "Spain name squad for opener", "url": "u2"}])
+    data = CollectedData(date="d", matches=[], standings=[], upcoming=[pm])
+    out = _enrich_upcoming([{"home": "Spain", "away": "Cape Verde"}], data)
+    assert out[0]["odds"] == {"x": 1}
+    assert out[0]["news"] == [{"headline": "Spain name squad for opener", "url": "u2"}]  # generic one filtered out
+
+
+def test_enrich_upcoming_omits_news_when_none_relevant():
+    from worldcup_recap.synthesize import _enrich_upcoming
+    from worldcup_recap.providers.base import CollectedData, PreviewMatch
+    pm = PreviewMatch(match_id="1", stage="", home_team="Spain", away_team="Cape Verde",
+                      kickoff="", odds=None, head_to_head=[], home_form=[], away_form=[],
+                      news=[{"headline": "Portugal held by Congo DR", "url": "u1"}])
+    data = CollectedData(date="d", matches=[], standings=[], upcoming=[pm])
+    out = _enrich_upcoming([{"home": "Spain", "away": "Cape Verde"}], data)
+    assert "news" not in out[0]

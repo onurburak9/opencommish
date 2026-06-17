@@ -109,7 +109,13 @@ def _enrich_upcoming(upcoming_list: list[dict], data: "CollectedData") -> list[d
                 if pm.odds:
                     e["odds"] = pm.odds
                 if pm.news:
-                    e["news"] = [{"headline": n.get("headline"), "url": n.get("url")} for n in pm.news[:2]]
+                    rel = [
+                        n for n in pm.news
+                        if (_norm(pm.home_team) and _norm(pm.home_team) in _norm(n.get("headline", "")))
+                        or (_norm(pm.away_team) and _norm(pm.away_team) in _norm(n.get("headline", "")))
+                    ]
+                    if rel:
+                        e["news"] = [{"headline": n.get("headline"), "url": n.get("url")} for n in rel[:2]]
                 break
         out.append(e)
     return out

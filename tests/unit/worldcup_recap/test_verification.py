@@ -118,3 +118,16 @@ async def test_is_youtube():
     assert _is_youtube("https://youtu.be/abc")
     assert not _is_youtube("https://www.fifa.com/x")
     assert not _is_youtube("")
+
+
+async def test_agent_finder_drops_unresolved_grounding_redirect(monkeypatch):
+    import worldcup_recap.pipeline as P
+    redirect = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/ABC"
+    async def fake_run_agent(agent, prompt, sid):
+        return '{"url": "' + redirect + '", "source": "x", "title": "t"}'
+    async def fake_resolve(url):
+        return url  # resolution failed -> still a grounding redirect
+    monkeypatch.setattr(P, "_run_agent", fake_run_agent)
+    monkeypatch.setattr(P, "_resolve_redirect", fake_resolve)
+    result = await P._agent_finder({"kind": "highlights"}, None)
+    assert result is None
