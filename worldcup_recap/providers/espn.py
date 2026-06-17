@@ -4,7 +4,8 @@ Parse functions are pure (no network) so they unit-test with inline dicts.
 The EspnProvider wraps them with httpx fetches.
 """
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 
 import httpx
 
@@ -180,6 +181,17 @@ def parse_athlete_headshot(payload: dict) -> str | None:
     return (payload.get("athlete", {}) or {}).get("headshot", {}).get("href")
 
 
+def event_local_date(utc_iso: str, tz: str) -> str:
+    """Convert an ESPN event UTC datetime (e.g. '2026-06-14T04:00Z') to YYYY-MM-DD in tz."""
+    if not utc_iso:
+        return ""
+    try:
+        dt = datetime.fromisoformat(utc_iso.replace("Z", "+00:00"))
+    except ValueError:
+        return ""
+    return dt.astimezone(ZoneInfo(tz)).date().isoformat()
+
+
 def _get(client: httpx.Client, path: str, params: dict | None = None) -> dict:
     try:
         resp = client.get(f"{_BASE}{path}", params=params or {}, timeout=20)
@@ -263,19 +275,26 @@ class EspnProvider:
 
     name = "espn"
 
-    def matches_for_date(self, date: str) -> list[RawMatch]:
-        compact = date.replace("-", "")
-        with httpx.Client() as client:
+    def _events_for_local_date(self, client: httpx.Client, target_date: str, tz: str) -> list[dict]:
+        base = date.fromisoformat(target_date)
+        seen: dict = {}
+        for offset in (-1, 0, 1):
+            compact = (base + timedelta(days=offset)).strftime("%Y%m%d")
             board = _get(client, "/scoreboard", {"dates": compact})
-            events = board.get("events", []) or []
+            for e in board.get("events", []) or []:
+                seen[e.get("id")] = e
+        return [e for e in seen.values() if event_local_date(e.get("date", ""), tz) == target_date]
+
+    def matches_for_date(self, date: str, tz: str) -> list[RawMatch]:
+        with httpx.Client() as client:
+            events = self._events_for_local_date(client, date, tz)
             return [_build_match(client, e) for e in events]
 
-    def upcoming(self, date_str: str) -> list[PreviewMatch]:
-        next_day = (date.fromisoformat(date_str) + timedelta(days=1)).isoformat()
-        compact = next_day.replace("-", "")
+    def upcoming(self, date: str, tz: str) -> list[PreviewMatch]:
+        from datetime import date as _date
+        next_day = (_date.fromisoformat(date) + timedelta(days=1)).isoformat()
         with httpx.Client() as client:
-            board = _get(client, "/scoreboard", {"dates": compact})
-            events = board.get("events", []) or []
+            events = self._events_for_local_date(client, next_day, tz)
             return [_build_preview(client, e) for e in events]
 
     def standings(self) -> list[dict]:

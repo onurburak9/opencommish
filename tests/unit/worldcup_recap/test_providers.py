@@ -244,3 +244,21 @@ def test_derive_top_performers_carries_profile():
     j = next(p for p in perf if p["name"] == "Raúl Jiménez")
     assert j["profile_url"] == "https://espn.com/p/1"
     assert j["headshot_url"] == "https://espn.com/h/1.png"
+
+
+from worldcup_recap.providers.espn import event_local_date
+
+
+def test_event_local_date_pst_rolls_back_a_day():
+    # 04:00 UTC June 14 == 21:00 PDT June 13
+    assert event_local_date("2026-06-14T04:00Z", "America/Los_Angeles") == "2026-06-13"
+
+
+def test_event_local_date_pst_same_day():
+    # 20:00 UTC June 14 == 13:00 PDT June 14
+    assert event_local_date("2026-06-14T20:00Z", "America/Los_Angeles") == "2026-06-14"
+
+
+def test_event_local_date_empty_and_bad():
+    assert event_local_date("", "UTC") == ""
+    assert event_local_date("not-a-date", "UTC") == ""

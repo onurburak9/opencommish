@@ -25,6 +25,7 @@
         "summary": {"type": "string"},
         "sections": {"type": "array"}
       }
-    }
+    },
+    "source_data": {"type": "object"}
   }
 }

@@ -1,5 +1,6 @@
 """Output helpers: build final JSON, validate, render Markdown."""
 
+from dataclasses import asdict
 from datetime import datetime, timezone
 
 from worldcup_recap.providers.base import CollectedData
@@ -114,6 +115,11 @@ def build_final_output(
             "summary": synthesized.get("summary", ""),
             "sections": synthesized.get("sections", []),
         },
+    }
+    output["source_data"] = {
+        "matches": [asdict(m) for m in data.matches],
+        "standings": data.standings,
+        "upcoming": [asdict(p) for p in data.upcoming],
     }
     validate_output(output)
     return output

@@ -131,3 +131,21 @@ def test_render_player_profile_link_and_photo():
     md = render_markdown(out)
     assert "[Raúl Jiménez](https://espn.com/p/1)" in md
     assert "[Photo](https://espn.com/h/1.png)" in md
+
+
+def test_build_final_output_includes_source_data():
+    from worldcup_recap.providers.base import RawMatch
+    m = RawMatch(
+        match_id="1", stage="", home_team="A", away_team="B", home_score=1, away_score=0,
+        status="FT",
+        timeline=[{"minute": "10'", "type": "Goal", "player": "X", "text": "", "scoring_play": True}],
+        top_performers=[], player_stats=[], venue="V", attendance=None,
+        espn_recap_url=None, espn_videos=[], news=[],
+    )
+    data = CollectedData(date="2026-06-14", matches=[m], standings=[{"x": 1}], upcoming=[],
+                         sources_used=["espn"])
+    out = build_final_output(data, _synth(), 1.0,
+                             {"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0})
+    assert out["source_data"]["matches"][0]["match_id"] == "1"
+    assert out["source_data"]["matches"][0]["timeline"][0]["player"] == "X"
+    assert out["source_data"]["standings"] == [{"x": 1}]
