@@ -124,24 +124,29 @@ async def _fetch_headshot(athlete_id: str) -> str | None:
         return None
 
 
-async def _resolve_redirect(url: str) -> str:
-    """Resolve a Google grounding-redirect URL to its real destination.
+async def _resolve_redirect(url: str, attempts: int = 3) -> str:
+    """Resolve a Google grounding-redirect URL to its real destination, with retries.
 
-    Returns the url unchanged for non-redirect URLs (no network call) or on failure.
+    Returns the url unchanged for non-redirect URLs (no network call), or the original
+    URL if it still cannot be resolved after `attempts` tries (caller then drops it).
     """
     if not url or _GROUNDING_REDIRECT not in url:
         return url
-    try:
-        async with httpx.AsyncClient(
-            follow_redirects=True, timeout=15, headers={"User-Agent": _BROWSER_UA}
-        ) as client:
-            resp = await client.get(url)
-            final = str(resp.url)
-            # Only accept a real resolved URL; if still a redirect, keep original.
-            return final if _GROUNDING_REDIRECT not in final else url
-    except Exception as e:  # noqa: BLE001 — never fatal; keep original on failure
-        print(f"  ⚠️  could not resolve media redirect: {e}")
-        return url
+    for i in range(attempts):
+        try:
+            async with httpx.AsyncClient(
+                follow_redirects=True, timeout=15, headers={"User-Agent": _BROWSER_UA}
+            ) as client:
+                resp = await client.get(url)
+                final = str(resp.url)
+                if _GROUNDING_REDIRECT not in final:
+                    return final
+        except Exception:  # noqa: BLE001 — transient; retry then give up
+            pass
+        if i < attempts - 1:
+            await asyncio.sleep(0.5 * (i + 1))
+    print("  ⚠️  could not resolve media redirect after retries")
+    return url
 
 
 def _is_youtube(url: str) -> bool:

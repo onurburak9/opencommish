@@ -204,3 +204,58 @@ async def test_find_and_verify_log_records_finder_dropreason():
     res = await find_and_verify({"kind": "highlights"}, finder, verifier, max_attempts=2)
     assert res["status"] == "dropped"
     assert [e["outcome"] for e in res["log"]] == ["unresolved_redirect", "unresolved_redirect"]
+
+
+async def _noop():
+    return None
+
+
+async def test_resolve_redirect_retries_then_succeeds(monkeypatch):
+    import worldcup_recap.pipeline as P
+
+    calls = {"n": 0}
+
+    class _Resp:
+        def __init__(self, url): self.url = url
+
+    class _FakeClient:
+        def __init__(self, *a, **k): pass
+        async def __aenter__(self): return self
+        async def __aexit__(self, *a): return False
+        async def get(self, url):
+            calls["n"] += 1
+            if calls["n"] == 1:
+                raise RuntimeError("transient")
+            return _Resp("https://www.fifa.com/real")
+
+    async def fake_sleep(*_):
+        return None
+
+    monkeypatch.setattr(P.httpx, "AsyncClient", _FakeClient)
+    monkeypatch.setattr(P.asyncio, "sleep", fake_sleep)
+    out = await P._resolve_redirect("https://vertexaisearch.cloud.google.com/grounding-api-redirect/X")
+    assert out == "https://www.fifa.com/real"
+    assert calls["n"] == 2  # failed once, succeeded on retry
+
+
+async def test_resolve_redirect_gives_up_after_attempts(monkeypatch):
+    import worldcup_recap.pipeline as P
+
+    class _Resp:
+        def __init__(self, url): self.url = url
+
+    class _FakeClient:
+        def __init__(self, *a, **k): pass
+        async def __aenter__(self): return self
+        async def __aexit__(self, *a): return False
+        async def get(self, url):
+            return _Resp(url)  # still a grounding redirect every time
+
+    async def fake_sleep(*_):
+        return None
+
+    monkeypatch.setattr(P.httpx, "AsyncClient", _FakeClient)
+    monkeypatch.setattr(P.asyncio, "sleep", fake_sleep)
+    redirect = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/X"
+    out = await P._resolve_redirect(redirect, attempts=3)
+    assert out == redirect  # unresolved -> original returned (caller drops it)
