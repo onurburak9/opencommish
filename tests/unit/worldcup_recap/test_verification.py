@@ -120,6 +120,42 @@ async def test_is_youtube():
     assert not _is_youtube("")
 
 
+async def test_agent_finder_attaches_youtube_channel(monkeypatch):
+    import worldcup_recap.pipeline as P
+    yt = "https://www.youtube.com/watch?v=abc"
+    async def fake_run_agent(agent, prompt, sid):
+        return '{"url": "' + yt + '", "source": "search", "title": "x"}'
+    async def fake_resolve(url):
+        return yt
+    async def fake_oembed(url):
+        return {"title": "Argentina vs Algeria | Match Highlights | FIFA World Cup 2026", "author_name": "SuperSport", "author_url": "https://www.youtube.com/@supersport"}
+    monkeypatch.setattr(P, "_run_agent", fake_run_agent)
+    monkeypatch.setattr(P, "_resolve_redirect", fake_resolve)
+    monkeypatch.setattr(P, "_youtube_oembed", fake_oembed)
+    cand = await P._agent_finder({"kind": "highlights"}, None)
+    assert cand["url"] == yt
+    assert cand["channel"] == "SuperSport"
+    assert cand["title"].startswith("Argentina vs Algeria")
+    assert cand["is_video"] is True
+
+
+async def test_agent_finder_youtube_invalid_oembed_drops(monkeypatch):
+    import worldcup_recap.pipeline as P
+    yt = "https://www.youtube.com/watch?v=dead"
+    async def fake_run_agent(agent, prompt, sid):
+        return '{"url": "' + yt + '"}'
+    async def fake_resolve(url):
+        return yt
+    async def fake_oembed(url):
+        return None
+    monkeypatch.setattr(P, "_run_agent", fake_run_agent)
+    monkeypatch.setattr(P, "_resolve_redirect", fake_resolve)
+    monkeypatch.setattr(P, "_youtube_oembed", fake_oembed)
+    cand = await P._agent_finder({"kind": "highlights"}, None)
+    assert cand["url"] is None
+    assert cand["drop_reason"] == "youtube_oembed_invalid"
+
+
 async def test_agent_finder_drops_unresolved_grounding_redirect(monkeypatch):
     import worldcup_recap.pipeline as P
     redirect = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/ABC"

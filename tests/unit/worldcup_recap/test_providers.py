@@ -246,6 +246,13 @@ def test_derive_top_performers_carries_profile():
     assert j["headshot_url"] == "https://espn.com/h/1.png"
 
 
+def test_build_verifier_prompt_includes_channel():
+    from worldcup_recap.agents.media_verifier_agent import build_verifier_prompt
+    p = build_verifier_prompt({"kind": "highlights"},
+                              {"url": "u", "title": "t", "channel": "SuperSport", "source": "s"})
+    assert "channel=SuperSport" in p
+
+
 from worldcup_recap.providers.espn import event_local_date
 
 

@@ -21,6 +21,10 @@ def build_verifier_prompt(need: dict, candidate: dict) -> str:
     """Build the verifier user-turn message from the need + the found candidate."""
     return (
         "Need: " + str(need) + "\n"
-        "Candidate link: " + str(candidate) + "\n"
-        "Is this candidate relevant to the need? Respond with the JSON verdict."
+        "Candidate: url=" + str(candidate.get("url"))
+        + " | title=" + str(candidate.get("title"))
+        + " | channel=" + str(candidate.get("channel"))
+        + " | source=" + str(candidate.get("source")) + "\n"
+        "Is this candidate relevant AND from an acceptable (official, non-AI) source? "
+        "Respond with the JSON verdict."
     )

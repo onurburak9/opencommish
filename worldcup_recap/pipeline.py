@@ -148,8 +148,8 @@ def _is_youtube(url: str) -> bool:
     return "youtube.com/watch" in (url or "") or "youtu.be/" in (url or "")
 
 
-async def _youtube_oembed_title(url: str) -> str | None:
-    """Return the real video title via YouTube oEmbed, or None if the video is invalid/unavailable."""
+async def _youtube_oembed(url: str) -> dict | None:
+    """Return the YouTube oEmbed payload (title, author_name, author_url) or None if invalid."""
     try:
         async with httpx.AsyncClient(timeout=10, headers={"User-Agent": _BROWSER_UA}) as client:
             resp = await client.get(
@@ -157,7 +157,7 @@ async def _youtube_oembed_title(url: str) -> str | None:
             )
             if resp.status_code != 200:
                 return None
-            return resp.json().get("title")
+            return resp.json()
     except Exception:  # noqa: BLE001
         return None
 
@@ -173,10 +173,12 @@ async def _agent_finder(need: dict, feedback: str | None) -> dict:
     if _GROUNDING_REDIRECT in resolved:
         return {"url": None, "raw_url": raw, "drop_reason": "unresolved_redirect"}
     if _is_youtube(resolved):
-        title = await _youtube_oembed_title(resolved)
-        if not title:
+        oe = await _youtube_oembed(resolved)
+        if not oe or not oe.get("title"):
             return {"url": None, "raw_url": raw, "drop_reason": "youtube_oembed_invalid"}
-        return {"url": resolved, "raw_url": raw, "source": parsed.get("source"), "title": title}
+        return {"url": resolved, "raw_url": raw, "source": parsed.get("source"),
+                "title": oe.get("title"), "channel": oe.get("author_name"),
+                "channel_url": oe.get("author_url"), "is_video": True}
     return {"url": resolved, "raw_url": raw, "source": parsed.get("source"), "title": parsed.get("title")}
 
 
