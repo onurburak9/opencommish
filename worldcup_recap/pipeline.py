@@ -72,28 +72,33 @@ async def find_and_verify(
 ) -> dict:
     """Find a media link and verify it, retrying with feedback up to max_attempts.
 
-    Returns {need, media, confidence?, attempts, status} where status is
-    'accepted' or 'dropped'. Pure orchestration — finder/verifier are injectable.
+    Returns {need, media, confidence?, attempts, status, log}. `log` is a per-attempt
+    list of {attempt, raw_url, resolved_url, outcome, reason} for diagnostics.
     """
     feedback: str | None = None
     attempts = 0
+    log: list[dict] = []
     for attempt in range(1, max_attempts + 1):
         attempts = attempt
         candidate = await finder(need, feedback)
         if not candidate or not candidate.get("url"):
+            reason = (candidate or {}).get("drop_reason", "no_result")
+            log.append({"attempt": attempt, "raw_url": (candidate or {}).get("raw_url"),
+                        "resolved_url": None, "outcome": reason, "reason": reason})
             feedback = "no result found; broaden the search"
             continue
         verdict = await verifier(need, candidate)
         if verdict.get("relevant"):
-            return {
-                "need": need,
-                "media": candidate,
-                "confidence": verdict.get("confidence"),
-                "attempts": attempt,
-                "status": "accepted",
-            }
+            log.append({"attempt": attempt, "raw_url": candidate.get("raw_url"),
+                        "resolved_url": candidate["url"], "outcome": "accepted",
+                        "reason": verdict.get("reason", "")})
+            return {"need": need, "media": candidate, "confidence": verdict.get("confidence"),
+                    "attempts": attempt, "status": "accepted", "log": log}
+        log.append({"attempt": attempt, "raw_url": candidate.get("raw_url"),
+                    "resolved_url": candidate["url"], "outcome": "verifier_rejected",
+                    "reason": verdict.get("reason", "")})
         feedback = verdict.get("reason", "not relevant")
-    return {"need": need, "media": None, "attempts": attempts, "status": "dropped"}
+    return {"need": need, "media": None, "attempts": attempts, "status": "dropped", "log": log}
 
 
 # --- Agent-backed finder/verifier (used by the real pipeline) ---
@@ -157,21 +162,22 @@ async def _youtube_oembed_title(url: str) -> str | None:
         return None
 
 
-async def _agent_finder(need: dict, feedback: str | None) -> dict | None:
+async def _agent_finder(need: dict, feedback: str | None) -> dict:
     prompt = build_finder_prompt(need, feedback)
     resp = await _run_agent(media_finder_agent, prompt, f"finder_{uuid.uuid4().hex}")
     parsed = _parse_json(resp, {"url": None})
-    if not parsed.get("url"):
-        return None
-    parsed["url"] = await _resolve_redirect(parsed["url"])
-    if _GROUNDING_REDIRECT in parsed["url"]:
-        return None  # resolution failed; never store a redirect URL that will 404
-    if _is_youtube(parsed["url"]):
-        title = await _youtube_oembed_title(parsed["url"])
+    raw = parsed.get("url")
+    if not raw:
+        return {"url": None, "raw_url": None, "drop_reason": "finder_returned_no_url"}
+    resolved = await _resolve_redirect(raw)
+    if _GROUNDING_REDIRECT in resolved:
+        return {"url": None, "raw_url": raw, "drop_reason": "unresolved_redirect"}
+    if _is_youtube(resolved):
+        title = await _youtube_oembed_title(resolved)
         if not title:
-            return None  # dead/invalid video -> treat as no result so the loop retries
-        parsed["title"] = title  # real title feeds the verifier's relevance check
-    return parsed
+            return {"url": None, "raw_url": raw, "drop_reason": "youtube_oembed_invalid"}
+        return {"url": resolved, "raw_url": raw, "source": parsed.get("source"), "title": title}
+    return {"url": resolved, "raw_url": raw, "source": parsed.get("source"), "title": parsed.get("title")}
 
 
 async def _agent_verifier(need: dict, candidate: dict) -> dict:
@@ -288,7 +294,18 @@ async def _enrich(sections: list[dict], data: CollectedData) -> dict:
     dropped = sum(1 for r in clean if r["status"] == "dropped")
     # rejected = verifier rejections: all attempts for dropped needs; attempts-minus-winner for accepted
     rejected = sum(max(0, r.get("attempts", 0) - (1 if r["status"] == "accepted" else 0)) for r in clean)
-    return {"searched": len(needs), "accepted": accepted, "rejected": rejected, "dropped": dropped}
+    details = []
+    for (idx, owner, need), r in zip(needs, clean):
+        details.append({
+            "owner": owner,
+            "need": {"kind": need.get("kind"), "subject": need.get("subject"),
+                     "context": need.get("context")},
+            "status": r.get("status"),
+            "accepted_url": (r.get("media") or {}).get("url"),
+            "attempts": r.get("log", []),
+        })
+    return {"searched": len(needs), "accepted": accepted, "rejected": rejected,
+            "dropped": dropped, "details": details}
 
 
 async def _run_synthesis(enriched_sections: list[dict]) -> dict:

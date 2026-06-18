@@ -130,4 +130,41 @@ async def test_agent_finder_drops_unresolved_grounding_redirect(monkeypatch):
     monkeypatch.setattr(P, "_run_agent", fake_run_agent)
     monkeypatch.setattr(P, "_resolve_redirect", fake_resolve)
     result = await P._agent_finder({"kind": "highlights"}, None)
-    assert result is None
+    assert result["url"] is None
+    assert result["drop_reason"] == "unresolved_redirect"
+
+
+async def test_find_and_verify_log_records_accept():
+    async def finder(need, feedback):
+        return {"url": "https://fifa.com/x", "raw_url": "https://redir/x", "source": "fifa", "title": "t"}
+    async def verifier(need, cand):
+        return {"relevant": True, "confidence": 0.9, "reason": "match"}
+    res = await find_and_verify({"kind": "highlights"}, finder, verifier, max_attempts=3)
+    assert res["status"] == "accepted"
+    assert len(res["log"]) == 1
+    entry = res["log"][0]
+    assert entry["resolved_url"] == "https://fifa.com/x"
+    assert entry["raw_url"] == "https://redir/x"
+    assert entry["outcome"] == "accepted"
+
+
+async def test_find_and_verify_log_records_reject_then_drop():
+    async def finder(need, feedback):
+        return {"url": "https://x/bad", "raw_url": "https://x/bad"}
+    async def verifier(need, cand):
+        return {"relevant": False, "confidence": 0.1, "reason": "wrong fixture"}
+    res = await find_and_verify({"kind": "highlights"}, finder, verifier, max_attempts=3)
+    assert res["status"] == "dropped"
+    assert len(res["log"]) == 3
+    assert all(e["outcome"] == "verifier_rejected" for e in res["log"])
+    assert res["log"][0]["reason"] == "wrong fixture"
+
+
+async def test_find_and_verify_log_records_finder_dropreason():
+    async def finder(need, feedback):
+        return {"url": None, "raw_url": "https://redir/x", "drop_reason": "unresolved_redirect"}
+    async def verifier(need, cand):
+        raise AssertionError("verifier should not be called")
+    res = await find_and_verify({"kind": "highlights"}, finder, verifier, max_attempts=2)
+    assert res["status"] == "dropped"
+    assert [e["outcome"] for e in res["log"]] == ["unresolved_redirect", "unresolved_redirect"]
