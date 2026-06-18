@@ -98,6 +98,24 @@ def build_games(data: "CollectedData") -> list[dict]:
     return games
 
 
+def _summarize_odds(odds: dict | None, home: str, away: str) -> dict | None:
+    """Compact odds for the recap: favorite, line, over/under. Drops raw provider/team noise."""
+    if not odds:
+        return None
+    favorite = None
+    if (odds.get("homeTeamOdds") or {}).get("favorite"):
+        favorite = home
+    elif (odds.get("awayTeamOdds") or {}).get("favorite"):
+        favorite = away
+    summary = {
+        "favorite": favorite,
+        "line": odds.get("details"),
+        "over_under": odds.get("overUnder"),
+    }
+    summary = {k: v for k, v in summary.items() if v is not None}
+    return summary or None
+
+
 def _enrich_upcoming(upcoming_list: list[dict], data: "CollectedData") -> list[dict]:
     """Add odds + top news to looking_ahead upcoming entries from the collected preview."""
     out = []
@@ -106,8 +124,9 @@ def _enrich_upcoming(upcoming_list: list[dict], data: "CollectedData") -> list[d
         want = {_norm(up.get("home", "")), _norm(up.get("away", ""))}
         for pm in data.upcoming:
             if {_norm(pm.home_team), _norm(pm.away_team)} == want:
-                if pm.odds:
-                    e["odds"] = pm.odds
+                summarized = _summarize_odds(pm.odds, up.get("home", ""), up.get("away", ""))
+                if summarized:
+                    e["odds"] = summarized
                 if pm.news:
                     rel = [
                         n for n in pm.news

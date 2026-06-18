@@ -283,8 +283,43 @@ def test_enrich_upcoming_filters_generic_news():
                             {"headline": "Spain name squad for opener", "url": "u2"}])
     data = CollectedData(date="d", matches=[], standings=[], upcoming=[pm])
     out = _enrich_upcoming([{"home": "Spain", "away": "Cape Verde"}], data)
-    assert out[0]["odds"] == {"x": 1}
+    # {"x": 1} has no useful fields so _summarize_odds returns None → odds absent
+    assert "odds" not in out[0]
     assert out[0]["news"] == [{"headline": "Spain name squad for opener", "url": "u2"}]  # generic one filtered out
+
+
+def test_summarize_odds_extracts_useful_fields():
+    from worldcup_recap.synthesize import _summarize_odds
+    raw = {
+        "provider": {"name": "DraftKings", "logos": [{"href": "x.svg"}]},
+        "details": "CZE -0.5", "overUnder": 2.5, "spread": -0.5,
+        "homeTeamOdds": {"favorite": True, "moneyLine": -150, "team": {"id": "1", "logos": []}},
+        "awayTeamOdds": {"favorite": False, "moneyLine": 370, "team": {"id": "2", "logos": []}},
+    }
+    out = _summarize_odds(raw, home="Czechia", away="South Africa")
+    assert out == {"favorite": "Czechia", "line": "CZE -0.5", "over_under": 2.5}
+    # none of the raw noise survives
+    assert "provider" not in out and "homeTeamOdds" not in out
+
+
+def test_summarize_odds_none():
+    from worldcup_recap.synthesize import _summarize_odds
+    assert _summarize_odds(None, "A", "B") is None
+    assert _summarize_odds({"foo": "bar"}, "A", "B") is None
+
+
+def test_enrich_upcoming_summarizes_odds():
+    from worldcup_recap.synthesize import _enrich_upcoming
+    from worldcup_recap.providers.base import CollectedData, PreviewMatch
+    pm = PreviewMatch(match_id="1", stage="", home_team="Czechia", away_team="South Africa",
+                      kickoff="", odds={"details": "CZE -0.5", "overUnder": 2.5,
+                                        "homeTeamOdds": {"favorite": True}, "awayTeamOdds": {"favorite": False},
+                                        "provider": {"logos": [{"href": "x"}]}},
+                      head_to_head=[], home_form=[], away_form=[], news=[])
+    data = CollectedData(date="d", matches=[], standings=[], upcoming=[pm])
+    out = _enrich_upcoming([{"home": "Czechia", "away": "South Africa"}], data)
+    assert out[0]["odds"] == {"favorite": "Czechia", "line": "CZE -0.5", "over_under": 2.5}
+    assert len(str(out[0]["odds"])) < 120  # compact, not the raw 16KB object
 
 
 def test_enrich_upcoming_omits_news_when_none_relevant():
