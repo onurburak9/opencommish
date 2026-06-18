@@ -269,3 +269,15 @@ def test_event_local_date_pst_same_day():
 def test_event_local_date_empty_and_bad():
     assert event_local_date("", "UTC") == ""
     assert event_local_date("not-a-date", "UTC") == ""
+
+
+def test_parse_group_map():
+    from worldcup_recap.providers.espn import parse_group_map
+    payload = {"content": {"standings": {"groups": [
+        {"name": "Group A", "standings": {"entries": [
+            {"team": {"displayName": "Mexico"}},
+            {"team": {"displayName": "Czechia"}},
+        ]}},
+    ]}}}
+    gm = parse_group_map(payload)
+    assert gm == {"Mexico": "Group A", "Czechia": "Group A"}

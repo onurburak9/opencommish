@@ -5,6 +5,7 @@ The EspnProvider wraps them with httpx fetches.
 """
 
 from datetime import date, datetime, timedelta
+from functools import lru_cache
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -18,6 +19,33 @@ from worldcup_recap.providers.base import (
 _BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world"
 _ATHLETE_API = "https://site.web.api.espn.com/apis/common/v3/sports/soccer/fifa.world/athletes/{id}"
 _TIMELINE_KEEP = ("Goal", "Card", "Substitution", "Penalty", "VAR")
+_GROUP_TABLE = "https://cdn.espn.com/core/soccer/table?xhr=1&league=fifa.world&season=2026"
+
+
+def parse_group_map(payload: dict) -> dict:
+    """Build {team_displayName: 'Group X'} from the ESPN core table payload."""
+    out: dict = {}
+    groups = ((payload.get("content", {}) or {}).get("standings", {}) or {}).get("groups", []) or []
+    for g in groups:
+        name = g.get("name", "")
+        for e in ((g.get("standings", {}) or {}).get("entries", []) or []):
+            team = e.get("team", {}).get("displayName", "")
+            if team and name:
+                out[team] = name
+    return out
+
+
+@lru_cache(maxsize=1)
+def fetch_group_map() -> dict:
+    """Fetch the live team->group map from ESPN (cached per process). {} on failure."""
+    try:
+        with httpx.Client(timeout=15) as client:
+            resp = client.get(_GROUP_TABLE)
+            resp.raise_for_status()
+            return parse_group_map(resp.json())
+    except Exception as e:  # noqa: BLE001
+        print(f"  ⚠️  ESPN group table fetch failed: {e}")
+        return {}
 
 
 def _int(value: object) -> int:
@@ -287,16 +315,26 @@ class EspnProvider:
         return [e for e in seen.values() if event_local_date(e.get("date", ""), tz) == target_date]
 
     def matches_for_date(self, date: str, tz: str) -> list[RawMatch]:
+        from worldcup_recap.schedule import stage_for, phase_for_date
         with httpx.Client() as client:
             events = self._events_for_local_date(client, date, tz)
-            return [_build_match(client, e) for e in events]
+            matches = [_build_match(client, e) for e in events]
+        group_map = fetch_group_map() if phase_for_date(date) == "Group Stage" else {}
+        for m in matches:
+            m.stage = stage_for(m.home_team, m.away_team, date, group_map)
+        return matches
 
     def upcoming(self, date: str, tz: str) -> list[PreviewMatch]:
         from datetime import date as _date
+        from worldcup_recap.schedule import stage_for, phase_for_date
         next_day = (_date.fromisoformat(date) + timedelta(days=1)).isoformat()
         with httpx.Client() as client:
             events = self._events_for_local_date(client, next_day, tz)
-            return [_build_preview(client, e) for e in events]
+            previews = [_build_preview(client, e) for e in events]
+        group_map = fetch_group_map() if phase_for_date(next_day) == "Group Stage" else {}
+        for p in previews:
+            p.stage = stage_for(p.home_team, p.away_team, next_day, group_map)
+        return previews
 
     def standings(self) -> list[dict]:
         with httpx.Client() as client:
