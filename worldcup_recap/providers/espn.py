@@ -1,0 +1,342 @@
+"""ESPN soccer parsing + provider. Endpoint shapes verified 2026-06-03.
+
+Parse functions are pure (no network) so they unit-test with inline dicts.
+The EspnProvider wraps them with httpx fetches.
+"""
+
+from datetime import date, datetime, timedelta
+from functools import lru_cache
+from zoneinfo import ZoneInfo
+
+import httpx
+
+from worldcup_recap.providers.base import (
+    RawMatch,
+    PreviewMatch,
+    StatsProvider,
+)
+
+_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world"
+_ATHLETE_API = "https://site.web.api.espn.com/apis/common/v3/sports/soccer/fifa.world/athletes/{id}"
+_TIMELINE_KEEP = ("Goal", "Card", "Substitution", "Penalty", "VAR")
+_GROUP_TABLE = "https://cdn.espn.com/core/soccer/table?xhr=1&league=fifa.world&season=2026"
+
+
+def parse_group_map(payload: dict) -> dict:
+    """Build {team_displayName: 'Group X'} from the ESPN core table payload."""
+    out: dict = {}
+    groups = ((payload.get("content", {}) or {}).get("standings", {}) or {}).get("groups", []) or []
+    for g in groups:
+        name = g.get("name", "")
+        for e in ((g.get("standings", {}) or {}).get("entries", []) or []):
+            team = e.get("team", {}).get("displayName", "")
+            if team and name:
+                out[team] = name
+    return out
+
+
+@lru_cache(maxsize=1)
+def fetch_group_map() -> dict:
+    """Fetch the live team->group map from ESPN (cached per process). {} on failure."""
+    try:
+        with httpx.Client(timeout=15) as client:
+            resp = client.get(_GROUP_TABLE)
+            resp.raise_for_status()
+            return parse_group_map(resp.json())
+    except Exception as e:  # noqa: BLE001
+        print(f"  ⚠️  ESPN group table fetch failed: {e}")
+        return {}
+
+
+def _int(value: object) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 0
+
+
+def parse_scoreboard_event(event: dict) -> dict:
+    """Flatten a /scoreboard events[] entry into a flat dict."""
+    comp = (event.get("competitions") or [{}])[0]
+    home_name = away_name = ""
+    home_score = away_score = 0
+    for c in comp.get("competitors", []):
+        if c.get("homeAway") == "home":
+            home_name = c.get("team", {}).get("displayName", "")
+            home_score = _int(c.get("score"))
+        else:
+            away_name = c.get("team", {}).get("displayName", "")
+            away_score = _int(c.get("score"))
+    notes = comp.get("notes") or []
+    stage = notes[0].get("headline", "") if notes else ""
+    return {
+        "match_id": event.get("id", ""),
+        "date": event.get("date", ""),
+        "home_team": home_name,
+        "away_team": away_name,
+        "home_score": home_score,
+        "away_score": away_score,
+        "status": event.get("status", {}).get("type", {}).get("name", ""),
+        "stage": stage,
+        "venue": comp.get("venue", {}).get("fullName", ""),
+    }
+
+
+def parse_timeline(key_events: list[dict]) -> list[dict]:
+    """Keep goals/cards/subs/VAR; map to {minute, type, player, text, scoring_play}."""
+    out = []
+    for ev in key_events or []:
+        type_text = ev.get("type", {}).get("text", "")
+        if not any(k in type_text for k in _TIMELINE_KEEP):
+            continue
+        if "Goal Kick" in type_text:
+            continue
+        participants = ev.get("participants") or []
+        player = participants[0].get("athlete", {}).get("displayName", "") if participants else ""
+        out.append({
+            "minute": ev.get("clock", {}).get("displayValue", ""),
+            "type": type_text,
+            "player": player,
+            "text": ev.get("text", ""),
+            "scoring_play": bool(ev.get("scoringPlay")),
+        })
+    return out
+
+
+def parse_player_stats(rosters: list[dict]) -> list[dict]:
+    """Flatten summary.rosters[].roster[] into per-player stat dicts."""
+    out = []
+    for team_block in rosters or []:
+        team_name = team_block.get("team", {}).get("displayName", "")
+        for entry in team_block.get("roster", []):
+            stats = {
+                s.get("name", ""): s.get("displayValue", s.get("value", ""))
+                for s in entry.get("stats", [])
+            }
+            athlete = entry.get("athlete", {})
+            aid = athlete.get("id", "")
+            links = athlete.get("links", []) or []
+            profile_url = links[0].get("href") if links else (
+                f"https://www.espn.com/soccer/player/_/id/{aid}" if aid else None
+            )
+            headshot_url = None
+            out.append({
+                "name": athlete.get("displayName", ""),
+                "team": team_name,
+                "position": entry.get("position", {}).get("abbreviation", ""),
+                "starter": bool(entry.get("starter")),
+                "id": aid,
+                "profile_url": profile_url,
+                "headshot_url": headshot_url,
+                "stats": stats,
+            })
+    return out
+
+
+def derive_top_performers(timeline: list[dict], player_stats: list[dict]) -> list[dict]:
+    """Goalscorers (from timeline) first, then the busiest goalkeeper."""
+    goals: dict[str, int] = {}
+    for ev in timeline:
+        if "Goal" in ev.get("type", "") and "Own Goal" not in ev.get("type", "") and ev.get("player"):
+            goals[ev["player"]] = goals.get(ev["player"], 0) + 1
+
+    name_to_team = {p["name"]: p.get("team", "") for p in player_stats}
+    meta_by_name = {
+        p["name"]: {"profile_url": p.get("profile_url"), "headshot_url": p.get("headshot_url")}
+        for p in player_stats
+    }
+    performers = []
+    for name, count in sorted(goals.items(), key=lambda kv: kv[1], reverse=True):
+        note = "hat-trick" if count >= 3 else ("brace" if count == 2 else "")
+        performers.append({
+            "name": name,
+            "team": name_to_team.get(name, ""),
+            "goals": count,
+            "note": note,
+            **meta_by_name.get(name, {}),
+        })
+
+    keepers = [
+        p for p in player_stats
+        if p.get("position") == "G" and _int(p.get("stats", {}).get("saves")) > 0
+    ]
+    if keepers:
+        best = max(keepers, key=lambda p: _int(p["stats"].get("saves")))
+        performers.append({
+            "name": best["name"],
+            "team": best.get("team", ""),
+            "goals": 0,
+            "saves": _int(best["stats"].get("saves")),
+            "note": "goalkeeper",
+            **meta_by_name.get(best["name"], {}),
+        })
+    return performers
+
+
+def parse_news(articles: list[dict]) -> list[dict]:
+    """Flatten ESPN news articles[] to {headline, url, published}."""
+    out = []
+    for a in articles or []:
+        out.append({
+            "headline": a.get("headline", ""),
+            "url": a.get("links", {}).get("web", {}).get("href", ""),
+            "published": a.get("published", ""),
+        })
+    return out
+
+
+def parse_team_meta(summary: dict) -> dict:
+    """Map team displayName -> {id, profile_url, logo_url} from summary.header."""
+    out: dict = {}
+    comp = (summary.get("header", {}).get("competitions") or [{}])[0]
+    for c in comp.get("competitors", []):
+        team = c.get("team", {})
+        name = team.get("displayName", "")
+        if not name:
+            continue
+        logos = team.get("logos", []) or []
+        links = team.get("links", []) or []
+        out[name] = {
+            "id": team.get("id", ""),
+            "profile_url": links[0].get("href") if links else None,
+            "logo_url": logos[0].get("href") if logos else None,
+        }
+    return out
+
+
+def parse_athlete_headshot(payload: dict) -> str | None:
+    """Extract the real headshot href from an ESPN athlete API payload, or None."""
+    return (payload.get("athlete", {}) or {}).get("headshot", {}).get("href")
+
+
+def event_local_date(utc_iso: str, tz: str) -> str:
+    """Convert an ESPN event UTC datetime (e.g. '2026-06-14T04:00Z') to YYYY-MM-DD in tz."""
+    if not utc_iso:
+        return ""
+    try:
+        dt = datetime.fromisoformat(utc_iso.replace("Z", "+00:00"))
+    except ValueError:
+        return ""
+    return dt.astimezone(ZoneInfo(tz)).date().isoformat()
+
+
+def _get(client: httpx.Client, path: str, params: dict | None = None) -> dict:
+    try:
+        resp = client.get(f"{_BASE}{path}", params=params or {}, timeout=20)
+        resp.raise_for_status()
+        return resp.json()
+    except Exception as e:  # noqa: BLE001 — degrade gracefully, never fatal
+        print(f"  ⚠️  ESPN fetch failed {path}: {e}")
+        return {}
+
+
+def _build_match(client: httpx.Client, event: dict) -> RawMatch:
+    base = parse_scoreboard_event(event)
+    summary = _get(client, "/summary", {"event": base["match_id"]})
+    timeline = parse_timeline(summary.get("keyEvents", []))
+    player_stats = parse_player_stats(summary.get("rosters", []))
+    news = parse_news(summary.get("news", {}).get("articles", []))
+    game_info = summary.get("gameInfo", {})
+    recap_url = next(
+        (
+            l.get("href")
+            for l in event.get("links", [])
+            if isinstance(l.get("rel"), list) and "summary" in l["rel"]
+        ),
+        None,
+    )
+    videos = [
+        {
+            "headline": v.get("headline", ""),
+            "url": v.get("links", {}).get("source", {}).get("href"),
+            "web": v.get("links", {}).get("web", {}).get("href"),
+            "thumbnail": v.get("thumbnail"),
+            "duration": v.get("duration"),
+        }
+        for v in summary.get("videos", []) or []
+    ]
+    return RawMatch(
+        match_id=base["match_id"],
+        stage=base["stage"],
+        home_team=base["home_team"],
+        away_team=base["away_team"],
+        home_score=base["home_score"],
+        away_score=base["away_score"],
+        status=base["status"],
+        timeline=timeline,
+        top_performers=derive_top_performers(timeline, player_stats),
+        player_stats=player_stats,
+        venue=base["venue"] or game_info.get("venue", {}).get("fullName", ""),
+        attendance=game_info.get("attendance"),
+        espn_recap_url=recap_url,
+        espn_videos=videos,
+        news=news,
+        team_meta=parse_team_meta(summary),
+    )
+
+
+def _build_preview(client: httpx.Client, event: dict) -> PreviewMatch:
+    base = parse_scoreboard_event(event)
+    summary = _get(client, "/summary", {"event": base["match_id"]})
+    odds_list = summary.get("odds") or []
+    h2h = summary.get("headToHeadGames") or []
+    form = summary.get("boxscore", {}).get("form") or []
+    home_block = form[0] if len(form) > 0 and isinstance(form[0], dict) else {}
+    away_block = form[1] if len(form) > 1 and isinstance(form[1], dict) else {}
+    home_form = [r.get("displayResult", "") for r in home_block.get("events", [])]
+    away_form = [r.get("displayResult", "") for r in away_block.get("events", [])]
+    return PreviewMatch(
+        match_id=base["match_id"],
+        stage=base["stage"],
+        home_team=base["home_team"],
+        away_team=base["away_team"],
+        kickoff=base["date"],
+        odds=odds_list[0] if odds_list else None,
+        head_to_head=h2h,
+        home_form=home_form,
+        away_form=away_form,
+        news=parse_news(summary.get("news", {}).get("articles", [])),
+    )
+
+
+class EspnProvider:
+    """Primary, keyless data source for FIFA World Cup."""
+
+    name = "espn"
+
+    def _events_for_local_date(self, client: httpx.Client, target_date: str, tz: str) -> list[dict]:
+        base = date.fromisoformat(target_date)
+        seen: dict = {}
+        for offset in (-1, 0, 1):
+            compact = (base + timedelta(days=offset)).strftime("%Y%m%d")
+            board = _get(client, "/scoreboard", {"dates": compact})
+            for e in board.get("events", []) or []:
+                seen[e.get("id")] = e
+        return [e for e in seen.values() if event_local_date(e.get("date", ""), tz) == target_date]
+
+    def matches_for_date(self, date: str, tz: str) -> list[RawMatch]:
+        from worldcup_recap.schedule import stage_for, phase_for_date
+        with httpx.Client() as client:
+            events = self._events_for_local_date(client, date, tz)
+            matches = [_build_match(client, e) for e in events]
+        group_map = fetch_group_map() if phase_for_date(date) == "Group Stage" else {}
+        for m in matches:
+            m.stage = stage_for(m.home_team, m.away_team, date, group_map)
+        return matches
+
+    def upcoming(self, date: str, tz: str) -> list[PreviewMatch]:
+        from datetime import date as _date
+        from worldcup_recap.schedule import stage_for, phase_for_date
+        next_day = (_date.fromisoformat(date) + timedelta(days=1)).isoformat()
+        with httpx.Client() as client:
+            events = self._events_for_local_date(client, next_day, tz)
+            previews = [_build_preview(client, e) for e in events]
+        group_map = fetch_group_map() if phase_for_date(next_day) == "Group Stage" else {}
+        for p in previews:
+            p.stage = stage_for(p.home_team, p.away_team, next_day, group_map)
+        return previews
+
+    def standings(self) -> list[dict]:
+        with httpx.Client() as client:
+            data = _get(client, "/standings")
+        return data.get("children", []) or data.get("standings", []) or []
