@@ -62,6 +62,18 @@ def _scorers_for(match) -> list[dict]:
     return out
 
 
+def _top_performers_for(match) -> list[dict]:
+    """Top performers with the player's profile link enriched from player_stats."""
+    profile = {p.get("name"): p.get("profile_url") for p in match.player_stats}
+    out = []
+    for p in match.top_performers or []:
+        tp = dict(p)
+        if not tp.get("profile_url") and profile.get(p.get("name")):
+            tp["profile_url"] = profile[p["name"]]
+        out.append(tp)
+    return out
+
+
 def build_games(data: "CollectedData") -> list[dict]:
     """Deterministic, complete per-game objects for ALL of the day's matches."""
     games = []
@@ -91,8 +103,11 @@ def build_games(data: "CollectedData") -> list[dict]:
                 "team_url": away_meta.get("profile_url"),
             },
             "venue": m.venue,
+            "attendance": m.attendance,
             "media": {"recap_url": m.espn_recap_url, "highlight_url": highlight},
             "scorers": _scorers_for(m),
+            "top_performers": _top_performers_for(m),
+            "timeline": m.timeline,
             "news": (m.news or [])[:3],
         })
     return games

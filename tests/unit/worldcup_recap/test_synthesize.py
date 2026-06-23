@@ -331,3 +331,23 @@ def test_enrich_upcoming_omits_news_when_none_relevant():
     data = CollectedData(date="d", matches=[], standings=[], upcoming=[pm])
     out = _enrich_upcoming([{"home": "Spain", "away": "Cape Verde"}], data)
     assert "news" not in out[0]
+
+
+def test_build_games_includes_inclusive_fields():
+    """build_games now carries timeline, top_performers, and attendance."""
+    from worldcup_recap.synthesize import build_games
+    m = _match(
+        attendance=74000,
+        top_performers=[{"name": "Havertz", "team": "Germany", "goals": 2,
+                         "saves": 0, "note": "brace"}],
+    )
+    data = CollectedData(date="2026-06-14", matches=[m], standings=[], upcoming=[],
+                         sources_used=["espn"])
+    g = build_games(data)[0]
+    assert g["attendance"] == 74000
+    assert g["timeline"][0]["player"] == "Havertz"
+    assert g["timeline"][0]["type"] == "Goal"
+    assert g["top_performers"][0]["name"] == "Havertz"
+    assert g["top_performers"][0]["goals"] == 2
+    # profile_url enriched from player_stats (Havertz has a profile in _match defaults)
+    assert g["top_performers"][0]["profile_url"] == "https://espn/h"
