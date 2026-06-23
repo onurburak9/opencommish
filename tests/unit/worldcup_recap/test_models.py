@@ -124,3 +124,18 @@ def test_section_preserves_unknown_fields():
         {"type": "group_watch", "title": "G", "notes": "n", "future_field": "keep"},
     ])
     assert out[0].model_dump(mode="json")["future_field"] == "keep"
+
+
+def test_committed_schema_matches_models():
+    """The committed recap_output.json must equal the freshly generated schema."""
+    import sys
+    from pathlib import Path
+
+    repo_root = Path(__file__).resolve().parents[3]
+    sys.path.insert(0, str(repo_root))
+    from scripts.gen_schema import generate_schema, _SCHEMA_PATH
+
+    committed = _SCHEMA_PATH.read_text()
+    assert committed == generate_schema(), (
+        "recap_output.json is stale — regenerate with: uv run python scripts/gen_schema.py"
+    )
