@@ -1,6 +1,6 @@
 """Tests for worldcup_recap/models.py — the recap JSON contract."""
 
-from worldcup_recap.models import Game, RecapOutput
+from worldcup_recap.models import Content, Game, RecapOutput, coerce_sections
 
 
 def test_recap_output_fills_defaults_for_missing_fields():
@@ -56,7 +56,13 @@ def test_verification_round_trips_real_shape():
     assert out["metadata"]["verification"]["details"][0]["attempts"][0]["outcome"] == "accepted"
 
 
-from worldcup_recap.models import coerce_sections
+def test_content_validates_sections_as_discriminated_union():
+    """Content's `list[Section]` wiring + model_rebuild() resolves end-to-end."""
+    c = Content.model_validate(
+        {"headline": "h", "sections": [{"type": "group_watch", "title": "G", "notes": "n"}]}
+    )
+    assert c.sections[0].type == "group_watch"
+    assert c.sections[0].notes == "n"
 
 
 def test_coerce_sections_validates_all_known_types():

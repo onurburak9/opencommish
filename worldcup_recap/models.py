@@ -266,9 +266,13 @@ def coerce_sections(raw_sections: list[dict]) -> list[Section]:
         try:
             coerced.append(_SECTION_ADAPTER.validate_python(raw))
         except ValidationError as exc:
+            logged_type = (
+                raw.get("type") if isinstance(raw, dict)
+                else f"<non-dict {type(raw).__name__}>"
+            )
             logger.warning(
                 "Dropping invalid recap section (type=%r): %s",
-                (raw or {}).get("type"), exc,
+                logged_type, exc,
             )
     return coerced
 
