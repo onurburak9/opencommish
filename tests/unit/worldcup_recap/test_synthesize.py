@@ -66,8 +66,6 @@ def test_build_recap_id():
     assert build_recap_id("2026-06-11") == "worldcup-daily-2026-06-11"
 
 
-
-
 def test_build_final_output_shape():
     out = build_final_output(
         _data(), _synth(), generation_time=1.23,
