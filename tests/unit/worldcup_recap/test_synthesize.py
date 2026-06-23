@@ -66,9 +66,6 @@ def test_build_recap_id():
     assert build_recap_id("2026-06-11") == "worldcup-daily-2026-06-11"
 
 
-def test_validate_output_missing_key():
-    with pytest.raises(ValueError):
-        validate_output({"date": "2026-06-11"})
 
 
 def test_build_final_output_shape():
@@ -351,3 +348,44 @@ def test_build_games_includes_inclusive_fields():
     assert g["top_performers"][0]["goals"] == 2
     # profile_url enriched from player_stats (Havertz has a profile in _match defaults)
     assert g["top_performers"][0]["profile_url"] == "https://espn/h"
+
+
+def test_build_final_output_is_model_valid_and_complete():
+    """The returned dict is a complete RecapOutput shape (defaults filled, games inclusive)."""
+    data = CollectedData(date="2026-06-14", matches=[_match()], standings=[], upcoming=[],
+                         sources_used=["espn"])
+    out = build_final_output(data, _synth(), generation_time=1.0,
+                             verification={"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0})
+    # deterministic core + inclusive game fields present
+    assert "timeline" in out["content"]["games"][0]
+    assert "top_performers" in out["content"]["games"][0]
+    assert "attendance" in out["content"]["games"][0]
+    # verification dumped with full shape (details list present)
+    assert out["metadata"]["verification"]["details"] == []
+    # no legacy embedded source_data
+    assert "source_data" not in out
+    # re-validating the dump does not raise
+    validate_output(out)
+
+
+def test_build_final_output_drops_unknown_section_type():
+    """An LLM section with an unknown type is dropped; valid siblings survive."""
+    data = CollectedData(date="2026-06-14", matches=[], standings=[], upcoming=[],
+                         sources_used=["espn"])
+    synth = {"headline": "h", "summary": "s", "sections": [
+        {"type": "storylines", "title": "Keep", "stories": [{"headline": "x", "summary": "y"}]},
+        {"type": "totally_unknown", "title": "Drop"},
+    ]}
+    out = build_final_output(data, synth, 1.0,
+                             {"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0})
+    titles = [s["title"] for s in out["content"]["sections"]]
+    assert titles == ["Keep"]
+
+
+def test_build_final_output_coerces_string_score():
+    """A stringy game score is coerced to int through the model gate."""
+    data = CollectedData(date="2026-06-14", matches=[_match(home_score="5")], standings=[],
+                         upcoming=[], sources_used=["espn"])
+    out = build_final_output(data, _synth(), 1.0,
+                             {"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0})
+    assert out["content"]["games"][0]["home"]["score"] == 5

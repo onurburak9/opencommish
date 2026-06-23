@@ -4,9 +4,8 @@ import re
 from dataclasses import asdict
 from datetime import datetime, timezone
 
+from worldcup_recap.models import RecapOutput, coerce_sections
 from worldcup_recap.providers.base import CollectedData
-
-_REQUIRED_KEYS = {"recap_id", "date", "generated_at", "metadata", "content"}
 
 
 def build_recap_id(date_str: str) -> str:
@@ -14,10 +13,8 @@ def build_recap_id(date_str: str) -> str:
 
 
 def validate_output(output: dict) -> None:
-    """Raise ValueError if any required top-level key is missing."""
-    missing = _REQUIRED_KEYS - set(output.keys())
-    if missing:
-        raise ValueError(f"Missing required field(s): {', '.join(sorted(missing))}")
+    """Validate a recap dict against the RecapOutput contract (raises on irreparable input)."""
+    RecapOutput.model_validate(output)
 
 
 # ---------------------------------------------------------------------------
@@ -209,12 +206,11 @@ def build_final_output(
             "headline": synthesized.get("headline", ""),
             "summary": synthesized.get("summary", ""),
             "games": games,
-            "sections": _clean_sections(raw_sections, data),
+            "sections": coerce_sections(_clean_sections(raw_sections, data)),
         },
         "source_data_file": f"{data.date}.source.json",
     }
-    validate_output(output)
-    return output
+    return RecapOutput.model_validate(output).model_dump(mode="json")
 
 
 # ---------------------------------------------------------------------------
