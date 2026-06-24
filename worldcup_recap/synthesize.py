@@ -1,12 +1,14 @@
 """Output helpers: build final JSON, validate, render Markdown."""
 
+import logging
 import re
 from dataclasses import asdict
 from datetime import datetime, timezone
 
+from worldcup_recap.models import RecapOutput, coerce_sections
 from worldcup_recap.providers.base import CollectedData
 
-_REQUIRED_KEYS = {"recap_id", "date", "generated_at", "metadata", "content"}
+logger = logging.getLogger(__name__)
 
 
 def build_recap_id(date_str: str) -> str:
@@ -14,10 +16,12 @@ def build_recap_id(date_str: str) -> str:
 
 
 def validate_output(output: dict) -> None:
-    """Raise ValueError if any required top-level key is missing."""
-    missing = _REQUIRED_KEYS - set(output.keys())
-    if missing:
-        raise ValueError(f"Missing required field(s): {', '.join(sorted(missing))}")
+    """Validate a recap dict against the RecapOutput contract (raises on irreparable input).
+
+    Note: a few deterministic-core fields (e.g. TeamSide.score, TimelineEvent.minute)
+    have before-validators that coerce common bad values rather than raise.
+    """
+    RecapOutput.model_validate(output)
 
 
 # ---------------------------------------------------------------------------
@@ -62,6 +66,18 @@ def _scorers_for(match) -> list[dict]:
     return out
 
 
+def _top_performers_for(match) -> list[dict]:
+    """Top performers with the player's profile link enriched from player_stats."""
+    profile = {p.get("name"): p.get("profile_url") for p in match.player_stats}
+    out = []
+    for p in match.top_performers or []:
+        tp = dict(p)
+        if not tp.get("profile_url") and profile.get(p.get("name")):
+            tp["profile_url"] = profile[p["name"]]
+        out.append(tp)
+    return out
+
+
 def build_games(data: "CollectedData") -> list[dict]:
     """Deterministic, complete per-game objects for ALL of the day's matches."""
     games = []
@@ -91,8 +107,11 @@ def build_games(data: "CollectedData") -> list[dict]:
                 "team_url": away_meta.get("profile_url"),
             },
             "venue": m.venue,
+            "attendance": m.attendance,
             "media": {"recap_url": m.espn_recap_url, "highlight_url": highlight},
             "scorers": _scorers_for(m),
+            "top_performers": _top_performers_for(m),
+            "timeline": m.timeline,
             "news": (m.news or [])[:3],
         })
     return games
@@ -171,7 +190,14 @@ def build_final_output(
     """Assemble the schema-valid final recap dict from collected + synthesized data."""
     games = build_games(data)
     games_by_id = {g["match_id"]: g for g in games}
-    raw_sections = synthesized.get("sections", [])
+    all_sections = synthesized.get("sections", [])
+    raw_sections = [s for s in all_sections if isinstance(s, dict)]
+    dropped_non_dict = len(all_sections) - len(raw_sections)
+    if dropped_non_dict:
+        logger.warning(
+            "Dropped %d non-dict element(s) from sections list before processing.",
+            dropped_non_dict,
+        )
     # Prefer the verified/searched highlight for the match_of_day game when present.
     for s in raw_sections:
         if s.get("type") == "match_of_day":
@@ -194,12 +220,11 @@ def build_final_output(
             "headline": synthesized.get("headline", ""),
             "summary": synthesized.get("summary", ""),
             "games": games,
-            "sections": _clean_sections(raw_sections, data),
+            "sections": coerce_sections(_clean_sections(raw_sections, data)),
         },
         "source_data_file": f"{data.date}.source.json",
     }
-    validate_output(output)
-    return output
+    return RecapOutput.model_validate(output).model_dump(mode="json")
 
 
 # ---------------------------------------------------------------------------

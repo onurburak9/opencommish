@@ -1,31 +1,973 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "WorldCupDailyRecap",
-  "type": "object",
-  "required": ["recap_id", "date", "generated_at", "metadata", "content"],
-  "properties": {
-    "recap_id": {"type": "string"},
-    "date": {"type": "string"},
-    "generated_at": {"type": "string"},
-    "metadata": {
-      "type": "object",
-      "required": ["matches_count", "sources_used", "generation_time_seconds"],
+  "$defs": {
+    "Content": {
+      "additionalProperties": true,
       "properties": {
-        "matches_count": {"type": "integer"},
-        "sources_used": {"type": "array", "items": {"type": "string"}},
-        "verification": {"type": "object"},
-        "generation_time_seconds": {"type": "number"}
-      }
+        "headline": {
+          "default": "",
+          "title": "Headline",
+          "type": "string"
+        },
+        "summary": {
+          "default": "",
+          "title": "Summary",
+          "type": "string"
+        },
+        "games": {
+          "items": {
+            "$ref": "#/$defs/Game"
+          },
+          "title": "Games",
+          "type": "array"
+        },
+        "sections": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "group_watch": "#/$defs/GroupWatchSection",
+                "looking_ahead": "#/$defs/LookingAheadSection",
+                "match_of_day": "#/$defs/MatchOfDaySection",
+                "player_spotlight": "#/$defs/PlayerSpotlightSection",
+                "results_roundup": "#/$defs/ResultsRoundupSection",
+                "storylines": "#/$defs/StorylinesSection"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/MatchOfDaySection"
+              },
+              {
+                "$ref": "#/$defs/ResultsRoundupSection"
+              },
+              {
+                "$ref": "#/$defs/PlayerSpotlightSection"
+              },
+              {
+                "$ref": "#/$defs/GroupWatchSection"
+              },
+              {
+                "$ref": "#/$defs/StorylinesSection"
+              },
+              {
+                "$ref": "#/$defs/LookingAheadSection"
+              }
+            ]
+          },
+          "title": "Sections",
+          "type": "array"
+        }
+      },
+      "title": "Content",
+      "type": "object"
+    },
+    "Game": {
+      "additionalProperties": true,
+      "properties": {
+        "match_id": {
+          "default": "",
+          "title": "Match Id",
+          "type": "string"
+        },
+        "stage": {
+          "default": "",
+          "title": "Stage",
+          "type": "string"
+        },
+        "status": {
+          "default": "",
+          "title": "Status",
+          "type": "string"
+        },
+        "home": {
+          "$ref": "#/$defs/TeamSide"
+        },
+        "away": {
+          "$ref": "#/$defs/TeamSide"
+        },
+        "venue": {
+          "default": "",
+          "title": "Venue",
+          "type": "string"
+        },
+        "attendance": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attendance"
+        },
+        "media": {
+          "$ref": "#/$defs/GameMedia"
+        },
+        "scorers": {
+          "items": {
+            "$ref": "#/$defs/Scorer"
+          },
+          "title": "Scorers",
+          "type": "array"
+        },
+        "top_performers": {
+          "items": {
+            "$ref": "#/$defs/Performer"
+          },
+          "title": "Top Performers",
+          "type": "array"
+        },
+        "timeline": {
+          "items": {
+            "$ref": "#/$defs/TimelineEvent"
+          },
+          "title": "Timeline",
+          "type": "array"
+        },
+        "news": {
+          "items": {
+            "$ref": "#/$defs/NewsItem"
+          },
+          "title": "News",
+          "type": "array"
+        }
+      },
+      "title": "Game",
+      "type": "object"
+    },
+    "GameMedia": {
+      "additionalProperties": true,
+      "properties": {
+        "recap_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recap Url"
+        },
+        "highlight_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Highlight Url"
+        }
+      },
+      "title": "GameMedia",
+      "type": "object"
+    },
+    "GroupWatchSection": {
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "narrative": {
+          "default": "",
+          "title": "Narrative",
+          "type": "string"
+        },
+        "type": {
+          "const": "group_watch",
+          "default": "group_watch",
+          "title": "Type",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        }
+      },
+      "title": "GroupWatchSection",
+      "type": "object"
+    },
+    "LookingAheadSection": {
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "narrative": {
+          "default": "",
+          "title": "Narrative",
+          "type": "string"
+        },
+        "type": {
+          "const": "looking_ahead",
+          "default": "looking_ahead",
+          "title": "Type",
+          "type": "string"
+        },
+        "upcoming": {
+          "items": {
+            "$ref": "#/$defs/UpcomingFixture"
+          },
+          "title": "Upcoming",
+          "type": "array"
+        }
+      },
+      "title": "LookingAheadSection",
+      "type": "object"
+    },
+    "MatchOfDaySection": {
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "narrative": {
+          "default": "",
+          "title": "Narrative",
+          "type": "string"
+        },
+        "type": {
+          "const": "match_of_day",
+          "default": "match_of_day",
+          "title": "Type",
+          "type": "string"
+        },
+        "home_team": {
+          "default": "",
+          "title": "Home Team",
+          "type": "string"
+        },
+        "away_team": {
+          "default": "",
+          "title": "Away Team",
+          "type": "string"
+        },
+        "score": {
+          "default": "",
+          "title": "Score",
+          "type": "string"
+        },
+        "facts": {
+          "default": "",
+          "title": "Facts",
+          "type": "string"
+        },
+        "match_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Match Id"
+        }
+      },
+      "title": "MatchOfDaySection",
+      "type": "object"
+    },
+    "Metadata": {
+      "additionalProperties": true,
+      "properties": {
+        "matches_count": {
+          "default": 0,
+          "title": "Matches Count",
+          "type": "integer"
+        },
+        "sources_used": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sources Used",
+          "type": "array"
+        },
+        "timezone": {
+          "default": "",
+          "title": "Timezone",
+          "type": "string"
+        },
+        "verification": {
+          "$ref": "#/$defs/Verification"
+        },
+        "generation_time_seconds": {
+          "default": 0.0,
+          "title": "Generation Time Seconds",
+          "type": "number"
+        }
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "NewsItem": {
+      "additionalProperties": true,
+      "properties": {
+        "headline": {
+          "default": "",
+          "title": "Headline",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        },
+        "published": {
+          "default": "",
+          "title": "Published",
+          "type": "string"
+        }
+      },
+      "title": "NewsItem",
+      "type": "object"
+    },
+    "OddsSummary": {
+      "additionalProperties": true,
+      "properties": {
+        "favorite": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Favorite"
+        },
+        "line": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "over_under": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Over Under"
+        }
+      },
+      "title": "OddsSummary",
+      "type": "object"
+    },
+    "Performer": {
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "default": "",
+          "title": "Name",
+          "type": "string"
+        },
+        "team": {
+          "default": "",
+          "title": "Team",
+          "type": "string"
+        },
+        "goals": {
+          "default": 0,
+          "title": "Goals",
+          "type": "integer"
+        },
+        "saves": {
+          "default": 0,
+          "title": "Saves",
+          "type": "integer"
+        },
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "profile_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Profile Url"
+        },
+        "headshot_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Headshot Url"
+        }
+      },
+      "title": "Performer",
+      "type": "object"
+    },
+    "PlayerMedia": {
+      "additionalProperties": true,
+      "properties": {
+        "profile_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Profile Url"
+        },
+        "headshot_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Headshot Url"
+        },
+        "interview_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interview Url"
+        }
+      },
+      "title": "PlayerMedia",
+      "type": "object"
+    },
+    "PlayerSpotlightSection": {
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "narrative": {
+          "default": "",
+          "title": "Narrative",
+          "type": "string"
+        },
+        "type": {
+          "const": "player_spotlight",
+          "default": "player_spotlight",
+          "title": "Type",
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/$defs/SpotlightPlayer"
+          },
+          "title": "Players",
+          "type": "array"
+        }
+      },
+      "title": "PlayerSpotlightSection",
+      "type": "object"
+    },
+    "ResultGame": {
+      "additionalProperties": true,
+      "properties": {
+        "matchup": {
+          "default": "",
+          "title": "Matchup",
+          "type": "string"
+        },
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "match_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Match Id"
+        }
+      },
+      "title": "ResultGame",
+      "type": "object"
+    },
+    "ResultsRoundupSection": {
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "narrative": {
+          "default": "",
+          "title": "Narrative",
+          "type": "string"
+        },
+        "type": {
+          "const": "results_roundup",
+          "default": "results_roundup",
+          "title": "Type",
+          "type": "string"
+        },
+        "games": {
+          "items": {
+            "$ref": "#/$defs/ResultGame"
+          },
+          "title": "Games",
+          "type": "array"
+        }
+      },
+      "title": "ResultsRoundupSection",
+      "type": "object"
+    },
+    "Scorer": {
+      "additionalProperties": true,
+      "properties": {
+        "player": {
+          "default": "",
+          "title": "Player",
+          "type": "string"
+        },
+        "minute": {
+          "default": "",
+          "title": "Minute",
+          "type": "string"
+        },
+        "profile_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Profile Url"
+        }
+      },
+      "title": "Scorer",
+      "type": "object"
+    },
+    "SpotlightPlayer": {
+      "additionalProperties": true,
+      "properties": {
+        "name": {
+          "default": "",
+          "title": "Name",
+          "type": "string"
+        },
+        "team": {
+          "default": "",
+          "title": "Team",
+          "type": "string"
+        },
+        "line": {
+          "default": "",
+          "title": "Line",
+          "type": "string"
+        },
+        "context": {
+          "default": "",
+          "title": "Context",
+          "type": "string"
+        },
+        "media": {
+          "$ref": "#/$defs/PlayerMedia"
+        }
+      },
+      "title": "SpotlightPlayer",
+      "type": "object"
+    },
+    "Story": {
+      "additionalProperties": true,
+      "properties": {
+        "headline": {
+          "default": "",
+          "title": "Headline",
+          "type": "string"
+        },
+        "summary": {
+          "default": "",
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "title": "Story",
+      "type": "object"
+    },
+    "StorylinesSection": {
+      "additionalProperties": true,
+      "properties": {
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "narrative": {
+          "default": "",
+          "title": "Narrative",
+          "type": "string"
+        },
+        "type": {
+          "const": "storylines",
+          "default": "storylines",
+          "title": "Type",
+          "type": "string"
+        },
+        "stories": {
+          "items": {
+            "$ref": "#/$defs/Story"
+          },
+          "title": "Stories",
+          "type": "array"
+        }
+      },
+      "title": "StorylinesSection",
+      "type": "object"
+    },
+    "TeamSide": {
+      "additionalProperties": true,
+      "properties": {
+        "team": {
+          "default": "",
+          "title": "Team",
+          "type": "string"
+        },
+        "score": {
+          "default": 0,
+          "title": "Score",
+          "type": "integer"
+        },
+        "logo_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Logo Url"
+        },
+        "team_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Team Url"
+        }
+      },
+      "title": "TeamSide",
+      "type": "object"
+    },
+    "TimelineEvent": {
+      "additionalProperties": true,
+      "properties": {
+        "minute": {
+          "default": "",
+          "title": "Minute",
+          "type": "string"
+        },
+        "type": {
+          "default": "",
+          "title": "Type",
+          "type": "string"
+        },
+        "player": {
+          "default": "",
+          "title": "Player",
+          "type": "string"
+        },
+        "text": {
+          "default": "",
+          "title": "Text",
+          "type": "string"
+        },
+        "scoring_play": {
+          "default": false,
+          "title": "Scoring Play",
+          "type": "boolean"
+        }
+      },
+      "title": "TimelineEvent",
+      "type": "object"
+    },
+    "UpcomingFixture": {
+      "additionalProperties": true,
+      "properties": {
+        "home": {
+          "default": "",
+          "title": "Home",
+          "type": "string"
+        },
+        "away": {
+          "default": "",
+          "title": "Away",
+          "type": "string"
+        },
+        "kickoff": {
+          "default": "",
+          "title": "Kickoff",
+          "type": "string"
+        },
+        "storyline": {
+          "default": "",
+          "title": "Storyline",
+          "type": "string"
+        },
+        "odds": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OddsSummary"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "news": {
+          "items": {
+            "$ref": "#/$defs/NewsItem"
+          },
+          "title": "News",
+          "type": "array"
+        }
+      },
+      "title": "UpcomingFixture",
+      "type": "object"
+    },
+    "Verification": {
+      "additionalProperties": true,
+      "properties": {
+        "searched": {
+          "default": 0,
+          "title": "Searched",
+          "type": "integer"
+        },
+        "accepted": {
+          "default": 0,
+          "title": "Accepted",
+          "type": "integer"
+        },
+        "rejected": {
+          "default": 0,
+          "title": "Rejected",
+          "type": "integer"
+        },
+        "dropped": {
+          "default": 0,
+          "title": "Dropped",
+          "type": "integer"
+        },
+        "details": {
+          "items": {
+            "$ref": "#/$defs/VerificationDetail"
+          },
+          "title": "Details",
+          "type": "array"
+        }
+      },
+      "title": "Verification",
+      "type": "object"
+    },
+    "VerificationAttempt": {
+      "additionalProperties": true,
+      "properties": {
+        "attempt": {
+          "default": 0,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "raw_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw Url"
+        },
+        "resolved_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resolved Url"
+        },
+        "outcome": {
+          "default": "",
+          "title": "Outcome",
+          "type": "string"
+        },
+        "reason": {
+          "default": "",
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "title": "VerificationAttempt",
+      "type": "object"
+    },
+    "VerificationDetail": {
+      "additionalProperties": true,
+      "properties": {
+        "owner": {
+          "default": "",
+          "title": "Owner",
+          "type": "string"
+        },
+        "need": {
+          "$ref": "#/$defs/VerificationNeed"
+        },
+        "status": {
+          "default": "",
+          "title": "Status",
+          "type": "string"
+        },
+        "accepted_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Accepted Url"
+        },
+        "attempts": {
+          "items": {
+            "$ref": "#/$defs/VerificationAttempt"
+          },
+          "title": "Attempts",
+          "type": "array"
+        }
+      },
+      "title": "VerificationDetail",
+      "type": "object"
+    },
+    "VerificationNeed": {
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "default": "",
+          "title": "Kind",
+          "type": "string"
+        },
+        "subject": {
+          "default": "",
+          "title": "Subject",
+          "type": "string"
+        },
+        "context": {
+          "default": "",
+          "title": "Context",
+          "type": "string"
+        }
+      },
+      "title": "VerificationNeed",
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "properties": {
+    "recap_id": {
+      "default": "",
+      "title": "Recap Id",
+      "type": "string"
+    },
+    "date": {
+      "default": "",
+      "title": "Date",
+      "type": "string"
+    },
+    "generated_at": {
+      "default": "",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
     },
     "content": {
-      "type": "object",
-      "required": ["headline", "summary", "sections"],
-      "properties": {
-        "headline": {"type": "string"},
-        "summary": {"type": "string"},
-        "sections": {"type": "array"}
-      }
+      "$ref": "#/$defs/Content"
     },
-    "source_data": {"type": "object"}
-  }
+    "source_data_file": {
+      "default": "",
+      "title": "Source Data File",
+      "type": "string"
+    }
+  },
+  "title": "RecapOutput",
+  "type": "object"
 }
