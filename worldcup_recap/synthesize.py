@@ -1,5 +1,6 @@
 """Output helpers: build final JSON, validate, render Markdown."""
 
+import logging
 import re
 from dataclasses import asdict
 from datetime import datetime, timezone
@@ -7,13 +8,19 @@ from datetime import datetime, timezone
 from worldcup_recap.models import RecapOutput, coerce_sections
 from worldcup_recap.providers.base import CollectedData
 
+logger = logging.getLogger(__name__)
+
 
 def build_recap_id(date_str: str) -> str:
     return f"worldcup-daily-{date_str}"
 
 
 def validate_output(output: dict) -> None:
-    """Validate a recap dict against the RecapOutput contract (raises on irreparable input)."""
+    """Validate a recap dict against the RecapOutput contract (raises on irreparable input).
+
+    Note: a few deterministic-core fields (e.g. TeamSide.score, TimelineEvent.minute)
+    have before-validators that coerce common bad values rather than raise.
+    """
     RecapOutput.model_validate(output)
 
 
@@ -183,7 +190,14 @@ def build_final_output(
     """Assemble the schema-valid final recap dict from collected + synthesized data."""
     games = build_games(data)
     games_by_id = {g["match_id"]: g for g in games}
-    raw_sections = synthesized.get("sections", [])
+    all_sections = synthesized.get("sections", [])
+    raw_sections = [s for s in all_sections if isinstance(s, dict)]
+    dropped_non_dict = len(all_sections) - len(raw_sections)
+    if dropped_non_dict:
+        logger.warning(
+            "Dropped %d non-dict element(s) from sections list before processing.",
+            dropped_non_dict,
+        )
     # Prefer the verified/searched highlight for the match_of_day game when present.
     for s in raw_sections:
         if s.get("type") == "match_of_day":

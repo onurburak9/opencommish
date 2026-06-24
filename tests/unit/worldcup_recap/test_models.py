@@ -139,3 +139,34 @@ def test_committed_schema_matches_models():
     assert committed == generate_schema(), (
         "recap_output.json is stale — regenerate with: uv run python scripts/gen_schema.py"
     )
+
+
+# ---------------------------------------------------------------------------
+# Finding 2: None score and int minute must coerce rather than raise
+# ---------------------------------------------------------------------------
+
+def test_team_side_none_score_coerces_to_zero():
+    """TeamSide.score=None must coerce to 0, not raise."""
+    from worldcup_recap.models import TeamSide
+    ts = TeamSide.model_validate({"team": "A", "score": None})
+    assert ts.score == 0
+
+
+def test_game_with_none_home_score_validates_and_dumps_zero():
+    """A Game with None home score still validates and dumps 0 for that score."""
+    from worldcup_recap.models import Game
+    g = Game.model_validate({
+        "match_id": "1",
+        "home": {"team": "A", "score": None},
+        "away": {"team": "B", "score": 2},
+    })
+    dumped = g.model_dump(mode="json")
+    assert dumped["home"]["score"] == 0
+    assert dumped["away"]["score"] == 2
+
+
+def test_timeline_event_int_minute_coerces_to_str():
+    """TimelineEvent.minute=6 (int) must coerce to '6', not raise."""
+    from worldcup_recap.models import TimelineEvent
+    ev = TimelineEvent.model_validate({"minute": 6, "type": "Goal"})
+    assert ev.minute == "6"

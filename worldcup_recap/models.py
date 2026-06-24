@@ -15,7 +15,7 @@ import logging
 
 from typing import Annotated, Literal, Union
 
-from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, ValidationError, field_validator
 
 logger = logging.getLogger(__name__)
 
@@ -80,6 +80,16 @@ class TeamSide(BaseModel):
     logo_url: str | None = None
     team_url: str | None = None
 
+    @field_validator("score", mode="before")
+    @classmethod
+    def _coerce_score(cls, v: object) -> int:
+        if v is None or v == "":
+            return 0
+        try:
+            return int(v)
+        except (TypeError, ValueError):
+            return 0
+
 
 class GameMedia(BaseModel):
     model_config = _CONFIG
@@ -112,6 +122,15 @@ class TimelineEvent(BaseModel):
     player: str = ""
     text: str = ""
     scoring_play: bool = False
+
+    @field_validator("minute", mode="before")
+    @classmethod
+    def _coerce_minute(cls, v: object) -> str:
+        if v is None:
+            return ""
+        if not isinstance(v, str):
+            return str(v)
+        return v
 
 
 class NewsItem(BaseModel):

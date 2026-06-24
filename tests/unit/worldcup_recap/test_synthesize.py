@@ -387,3 +387,35 @@ def test_build_final_output_coerces_string_score():
     out = build_final_output(data, _synth(), 1.0,
                              {"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0})
     assert out["content"]["games"][0]["home"]["score"] == 5
+
+
+# ---------------------------------------------------------------------------
+# Finding 1 regression: non-dict element in sections must not crash
+# ---------------------------------------------------------------------------
+
+def test_build_final_output_tolerates_non_dict_section():
+    """A bare string (or null) in the sections list must not crash build_final_output.
+
+    The non-dict element should be silently dropped; the valid sibling section
+    survives; the document is returned normally.
+    """
+    data = CollectedData(date="2026-06-14", matches=[], standings=[], upcoming=[],
+                         sources_used=["espn"])
+    synth = {
+        "headline": "Test", "summary": "s",
+        "sections": [
+            "bare string — not a dict",  # non-dict: must be dropped, not crash
+            {"type": "storylines", "title": "Keep", "stories": [{"headline": "x", "summary": "y"}]},
+            None,  # null element: also non-dict
+        ],
+    }
+    # Must not raise AttributeError or any other exception
+    out = build_final_output(data, synth, 1.0,
+                             {"searched": 0, "accepted": 0, "rejected": 0, "dropped": 0})
+    # Document is returned
+    assert out["recap_id"] == "worldcup-daily-2026-06-14"
+    # The valid section survived
+    titles = [s["title"] for s in out["content"]["sections"]]
+    assert "Keep" in titles
+    # Non-dict elements are gone
+    assert all(isinstance(s, dict) for s in out["content"]["sections"])
